@@ -21,7 +21,7 @@ export default {
     test(){
       console.log('test')
       router.push('/mine')
-      this.$http.get('http://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=62178508000020445332').then(res=>{
+      this.$http.get('https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=62178508000020445332').then(res=>{
         console.log('res',res)
       })
     },
