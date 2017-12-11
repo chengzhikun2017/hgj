@@ -11,34 +11,59 @@
 import './css/styles.scss'
 import router from './router'
 import footNav from './footNav.vue'
+import { mapGetters ,mapState,mapActions,mapMutations} from 'vuex'
 export default {
   name: 'app',
 
   components:{
     footNav
   },
+  created(){
+    setTimeout(() =>{
+      this.pushRoutes(['/test1','/test2','/test3',])
+    }, 3000);    
+  },
+  computed:{
+    // backToIndex(){
+    //   return this.$store.getters.backToIndex
+    // },
+    // 
+    ...mapState([
+      'backToIndex'
+      ]),
+    // ...mapGetters([
+    //   'backToIndex',
+    // ]),
+  },
   methods:{
     test(){
       console.log('test')
-      router.push('/mine')
-      this.$http.get('https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=62178508000020445332').then(res=>{
-        console.log('res',res)
-      })
+      this.willBackToIndex()
+      // this.routerBackToIndex()
+      // router.go(-1)
+      // router.beforeEach((to,from,next)=>{
+      //   console.log('---')
+      //   next()
+      // })
+    },
+    routerBackToIndex(){
+
     },
     pushRoutes(paths){
       let i=0
-      while(i<path.length){
+      while(i<paths.length){
         console.log('i',i)
         router.push(paths[i])
         i++
       }
-
     },
     resetRoute(routeArr){//
 
-    }
+    },
+    ...mapMutations([
+    'willBackToIndex',
+    ])
   },
-
 }
 </script>
 

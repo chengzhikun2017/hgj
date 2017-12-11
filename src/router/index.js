@@ -72,14 +72,26 @@ var router = new Router({
 //   console.log('from', from)
 //   console.log('to', to)
 //   console.log('/promotion/.test(to.name)', /promotion/.test(to.name))
-//   if(/promotion/.test(to.name)||count===0){
-//     next()
-//   }else{
-//     count--
-//     // history.pushState({}, '', 'localhost:1314'+to.fullPath);
-//     next()
-//     router.push('/promotion')
+//   if(this.$store.state.backToIndex){
+//     console.log('need backToIndex')
+//     if(this.$store.state.navPaths.indexOf(this.$route.path)>=0){
+//       console.log('isBackToIndex')
+//       this.$store.commit('isBackToIndex')
+//       next()
+//     }else{
+//       next()
+//       router.go(-1)
+//     }
 //   }
+//   next()
+//   // if(/promotion/.test(to.name)||count===0){
+//   //   next()
+//   // }else{
+//   //   count--
+//   //   // history.pushState({}, '', 'localhost:1314'+to.fullPath);
+//   //   next()
+//   //   router.push('/promotion')
+//   // }
 //   // router.push('/cards')
 // })
 export default router
