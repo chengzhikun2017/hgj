@@ -25,6 +25,15 @@ export default {
         console.log('res',res)
       })
     },
+    pushRoutes(paths){
+      let i=0
+      while(i<path.length){
+        console.log('i',i)
+        router.push(paths[i])
+        i++
+      }
+
+    },
     resetRoute(routeArr){//
 
     }

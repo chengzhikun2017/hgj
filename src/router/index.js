@@ -5,6 +5,9 @@ import cards from '../pages/cards.vue'
 import mine from '../pages/mine.vue'
 import pay from '../pages/pay.vue'
 import promotion from '../pages/promotion.vue'
+import test1 from '../pages/testPage/test1.vue'
+import test2 from '../pages/testPage/test2.vue'
+import test3 from '../pages/testPage/test3.vue'
 Vue.use(Router)
   /**
    * 针对某一个组件创建路由数组（多个路由）
@@ -40,7 +43,6 @@ var newRoute = function(paths, name, component, options) {
 var routes = [],
   basicRoutes = [],
   route_test = [],
-  route_test2 = [],
   index = []
 index = index.concat(
     newRoute('/cards', 'cards', cards),
@@ -48,17 +50,18 @@ index = index.concat(
     newRoute('/promotion', 'promotion', promotion),
     newRoute('/pay', 'pay', pay),
   )
-  // route_test=route_test.concat(
-  //   newRoute('',)
-  //   )
+  route_test=route_test.concat(
+    newRoute('/test1', 'test1', test1),
+    newRoute('/test2', 'test2', test2),
+    newRoute('/test3', 'test3', test3),
+    )
 basicRoutes = [{
   path: '/*',
   name: 'HelloWorld',
   component: HelloWorld
 }]
-routes = routes.concat(route_test.concat(
-  route_test2,
-  index,
+routes = routes.concat(index.concat(
+  route_test,
 ), basicRoutes)
 var router = new Router({
   mode: 'history',
