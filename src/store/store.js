@@ -6,7 +6,16 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     backToIndex: false,
+    //path:[{
+    //  path:'/cards',
+    //  index:0,
+    //},{
+    //  path:'/',
+    //  index:0,
+    //},{}],
     navPaths:['/cards','/promotion','/mine'],
+    showFootNavPaths:['','/'],
+    newPaths:[],
   },
   getters: { // 约等于 computed
     doneTodos: state => {
@@ -18,12 +27,18 @@ const store = new Vuex.Store({
     // sum: s => s.a + s.b,
     backToIndex:s=>s.backToIndex
   },
+  actions:{
+
+  },
   mutations: {
     willBackToIndex (state) {
       state.backToIndex=true
     },
     isBackToIndex (state) {
-      state.backToIndex=true
+      state.backToIndex=false
+    },
+    setNewPath(state,){
+     state.newPaths=['/mine','/test3','/test2',]
     },
   }
 })

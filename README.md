@@ -1,5 +1,13 @@
 # hgj
 
+# 适配
+1rem=100px(对应设备宽度375px，非375宽度同比缩放)
+可支持7px（大约）以上首付
+
+
+
+
+
 > smart credit card repayment
 
 ## Build Setup

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import cards from '../pages/cards.vue'
 import mine from '../pages/mine.vue'
 import pay from '../pages/pay.vue'
@@ -56,9 +55,10 @@ index = index.concat(
     newRoute('/test3', 'test3', test3),
     )
 basicRoutes = [{
-  path: '/*',
-  name: 'HelloWorld',
-  component: HelloWorld
+  path: '*',
+  name: 'cards',
+  redirect: '/cards',
+  component: cards
 }]
 routes = routes.concat(index.concat(
   route_test,

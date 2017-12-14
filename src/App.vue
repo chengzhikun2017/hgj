@@ -3,6 +3,7 @@
   <!-- <div class="test" @click='test'></div> -->
     <router-view/>
     <button @click='test' id='test-bttn'> test</button>
+    <button @click='test2' id='test-bttn2'> test2</button>
     <foot-nav></foot-nav>
   </div>
 </template>
@@ -19,9 +20,6 @@ export default {
     footNav
   },
   created(){
-    setTimeout(() =>{
-      this.pushRoutes(['/test1','/test2','/test3',])
-    }, 3000);    
   },
   computed:{
     // backToIndex(){
@@ -29,7 +27,7 @@ export default {
     // },
     // 
     ...mapState([
-      'backToIndex'
+      'backToIndex',
       ]),
     // ...mapGetters([
     //   'backToIndex',
@@ -38,13 +36,20 @@ export default {
   methods:{
     test(){
       console.log('test')
+      this.setNewPath()
       this.willBackToIndex()
+      router.go(-1)
+      
+      // this.resetRoute()
       // this.routerBackToIndex()
       // router.go(-1)
       // router.beforeEach((to,from,next)=>{
       //   console.log('---')
       //   next()
       // })
+    },
+    test2(){
+      this.pushRoutes(['/test1','/test2','/test3',])
     },
     routerBackToIndex(){
 
@@ -53,15 +58,21 @@ export default {
       let i=0
       while(i<paths.length){
         console.log('i',i)
-        router.push(paths[i])
+        router.push({path:paths[i],})
         i++
       }
     },
     resetRoute(routeArr){//
-
+      router.go(-3,()=>{
+        console.warn('router go -3')
+      })
+      setTimeout(()=> {
+        this.pushRoutes(['/mine','/test1','/test3',])
+      }, 2000);
     },
     ...mapMutations([
     'willBackToIndex',
+    'setNewPath',
     ])
   },
 }
@@ -71,7 +82,11 @@ export default {
 #test-bttn{
   position: fixed;
   bottom: 1rem;
-  left:0.1rem;
+  right:0.1rem;
+}#test-bttn2{
+  position: fixed;
+  bottom: 1.2rem;
+  right:0.1rem;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

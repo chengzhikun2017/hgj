@@ -10,11 +10,12 @@
 
 <script>
 import router from './router'
+import {mapState} from 'vuex'
 export default {
   data() {
     return {
       activeIndex:0,
-      navPaths:['/cards','/promotion','/mine'],
+      
       // note: changing this line won't causes changes
       // with hot-reload because the reloaded component
       // preserves its current state and we are modifying
@@ -27,12 +28,25 @@ export default {
       router.push(this.navPaths[index])
     },
   },
+  created(){
+    this.activeIndex=this.navPaths.indexOf(this.$route.path)
+    router.beforeEach((to,from,next)=>{
+      console.log('to',to)
+      this.activeIndex=this.navPaths.indexOf(to.path)
+      next()
+    })
+  },
   computed:{ 
     showFootNav(){
-      console.log('this.$route',this.$route)
-      return this.navPaths.indexOf(this.$route.path)>=0
+      let path=this.$route.path
+      let isFootNavPath=this.navPaths.indexOf(path)>=0
+      let isShowFootNavPath=this.showFootNavPaths.indexOf(path)>=0
+      return isFootNavPath||isShowFootNavPath
     },
-    
+    ...mapState([
+      'navPaths',
+      'showFootNavPaths',
+      ])
   },
   events: {},
   components: {}
