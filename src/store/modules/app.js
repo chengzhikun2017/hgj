@@ -1,5 +1,8 @@
 const app = {
-  state: {},
+  state: {
+    backToIndex:true,
+    appTest:111,
+  },
   getters: {},
   mutations: {},
   actions: {}

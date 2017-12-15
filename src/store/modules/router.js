@@ -1,9 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
+const router={
+  // namespaced:true,
   state: {
     backToIndex: false,
     //path:[{
@@ -18,29 +14,23 @@ const store = new Vuex.Store({
     newPaths:[],
   },
   getters: { // 约等于 computed
-    doneTodos: state => {
-      // return 'from getters'
-    },
-    doneTodosCount: (s, g) => {
-      // return g.doneTodos.length
-    },
-    // sum: s => s.a + s.b,
-    backToIndex:s=>s.backToIndex
+    router_backToIndex(s,g){
+      console.log('state,getter',s,g)
+      return s.backToIndex
+    }
   },
   actions:{
-
   },
   mutations: {
-    willBackToIndex (state) {
+    router_willBackToIndex (state) {
       state.backToIndex=true
     },
-    isBackToIndex (state) {
+    router_isBackToIndex (state) {
       state.backToIndex=false
     },
-    setNewPath(state,){
+    router_setNewPath(state,){//test
      state.newPaths=['/mine','/test3','/test2',]
     },
   }
-})
-
-export default store
+} 
+export default router

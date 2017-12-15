@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       activeIndex:0,
-      
+      // navPaths:['/cards','/promotion','/mine'],
       // note: changing this line won't causes changes
       // with hot-reload because the reloaded component
       // preserves its current state and we are modifying
@@ -40,13 +40,21 @@ export default {
     showFootNav(){
       let path=this.$route.path
       let isFootNavPath=this.navPaths.indexOf(path)>=0
-      let isShowFootNavPath=this.showFootNavPaths.indexOf(path)>=0
-      return isFootNavPath||isShowFootNavPath
+      // let isShowFootNavPath=this.showFootNavPaths.indexOf(path)>=0
+      return isFootNavPath
     },
     ...mapState([
-      'navPaths',
-      'showFootNavPaths',
-      ])
+      // 'navPaths',
+      // 'showFootNavPaths',
+      ]),
+    ...mapState({
+      navPaths: s => {
+        console.log('state',s)
+        return s.router.navPaths
+      },
+      // 'showFootNavPaths':router.showFootNavPaths,
+    })
+
   },
   events: {},
   components: {}

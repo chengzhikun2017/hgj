@@ -2,9 +2,13 @@
   <div id="app" >
   <!-- <div class="test" @click='test'></div> -->
     <router-view/>
+    
+    <foot-nav></foot-nav>
+    <app-alert :alert='alert'></app-alert>
+    <app-toast></app-toast>
+    <app-loading></app-loading>
     <button @click='test' id='test-bttn'> test</button>
     <button @click='test2' id='test-bttn2'> test2</button>
-    <foot-nav></foot-nav>
   </div>
 </template>
 
@@ -13,6 +17,7 @@ import './css/styles.scss'
 import router from './router'
 import footNav from './footNav.vue'
 import { mapGetters ,mapState,mapActions,mapMutations} from 'vuex'
+import fetch from './utils/fetch.js'
 export default {
   name: 'app',
 
@@ -20,6 +25,7 @@ export default {
     footNav
   },
   created(){
+    console.log('app store',this.$store)
   },
   computed:{
     // backToIndex(){
@@ -29,24 +35,35 @@ export default {
     ...mapState([
       'backToIndex',
       ]),
+    ...mapState({
+      alert:s=>s.alert.alert
+    }),
+    ...mapGetters([
+      'router_backToIndex',
+      ]),
     // ...mapGetters([
     //   'backToIndex',
     // ]),
   },
   methods:{
     test(){
-      console.log('test')
-      this.setNewPath()
-      this.willBackToIndex()
-      router.go(-1)
-      
-      // this.resetRoute()
-      // this.routerBackToIndex()
+      // this.router_setNewPath()
+      // this.router_willBackToIndex()
       // router.go(-1)
-      // router.beforeEach((to,from,next)=>{
-      //   console.log('---')
-      //   next()
-      // })
+      console.log('fetch',fetch)
+      fetch()
+    },
+    testAlert(){
+      let alert = {
+        title: 'alert title',
+        options: [{
+          text: 'confirm',
+          callback: () => {
+            console.log('yes')
+          }
+        }]
+      }
+      this.showAlert(alert)
     },
     test2(){
       this.pushRoutes(['/test1','/test2','/test3',])
@@ -70,10 +87,14 @@ export default {
         this.pushRoutes(['/mine','/test1','/test3',])
       }, 2000);
     },
-    ...mapMutations([
-    'willBackToIndex',
-    'setNewPath',
-    ])
+    // ...mapMutations([
+    //   'router_willBackToIndex',
+    //   'router_setNewPath',
+    // ]),
+    ...mapMutations({
+      router_willBackToIndex:'router_willBackToIndex',
+      router_setNewPath:'router_setNewPath',
+    }),
   },
 }
 </script>
@@ -83,10 +104,12 @@ export default {
   position: fixed;
   bottom: 1rem;
   right:0.1rem;
+  z-index: 999999;
 }#test-bttn2{
   position: fixed;
   bottom: 1.2rem;
   right:0.1rem;
+  z-index: 999999;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

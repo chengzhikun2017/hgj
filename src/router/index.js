@@ -4,6 +4,7 @@ import cards from '../pages/cards.vue'
 import mine from '../pages/mine.vue'
 import pay from '../pages/pay.vue'
 import promotion from '../pages/promotion.vue'
+import test from '../pages/testPage/test.vue'
 import test1 from '../pages/testPage/test1.vue'
 import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
@@ -50,6 +51,7 @@ index = index.concat(
     newRoute('/pay', 'pay', pay),
   )
   route_test=route_test.concat(
+    newRoute('/test', 'test', test),
     newRoute('/test1', 'test1', test1),
     newRoute('/test2', 'test2', test2),
     newRoute('/test3', 'test3', test3),
@@ -67,33 +69,7 @@ var router = new Router({
   mode: 'history',
   routes: routes
 })
-// var count=2
-// router.beforeEach((to, from, next) => {
-//   console.log('from', from)
-//   console.log('to', to)
-//   console.log('/promotion/.test(to.name)', /promotion/.test(to.name))
-//   if(this.$store.state.backToIndex){
-//     console.log('need backToIndex')
-//     if(this.$store.state.navPaths.indexOf(this.$route.path)>=0){
-//       console.log('isBackToIndex')
-//       this.$store.commit('isBackToIndex')
-//       next()
-//     }else{
-//       next()
-//       router.go(-1)
-//     }
-//   }
-//   next()
-//   // if(/promotion/.test(to.name)||count===0){
-//   //   next()
-//   // }else{
-//   //   count--
-//   //   // history.pushState({}, '', 'localhost:1314'+to.fullPath);
-//   //   next()
-//   //   router.push('/promotion')
-//   // }
-//   // router.push('/cards')
-// })
+
 export default router
 // export default new Router({
 //   routes: [{

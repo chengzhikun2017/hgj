@@ -4,14 +4,20 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-import store from './store/store.js'
-import select from './components/views/select.vue'
-import input from './components/views/input.vue'
+import store from './store'
+import select from './components/containers/select.vue'
+import input from './components/containers/input.vue'
+import alert from './components/views/alerts/alert.vue'
+import loading from './components/views/alerts/loading.vue'
+import toast from './components/views/alerts/toast.vue'
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 Vue.component('app-select',select)
 Vue.component('app-input',input)
+Vue.component('app-alert',alert)
+Vue.component('app-loading',loading)
+Vue.component('app-toast',toast)
 
 /* eslint-disable no-new */
 var HGJ_VUE=new Vue({
@@ -19,18 +25,24 @@ var HGJ_VUE=new Vue({
   router,
   store,
   template: '<App/>',
+
   components: { App }
 })
+Vue.prototype.showAlert=(alert)=>{
+  
+  HGJ_VUE.$store.commit('alert_showAlert',alert)
+}
 router.beforeEach((to, from, next) => {
-  // console.log('from', from)
-  // console.log('to', to)
-  let paths=HGJ_VUE.$store.state.newPaths,lenNewPaths=paths.length
-  if(HGJ_VUE.$store.state.backToIndex){
-    // console.log('need backToIndex')
-    if(HGJ_VUE.$store.state.navPaths.indexOf(to.path)>=0){
-      // console.log('isBackToIndex')
-      let paths=HGJ_VUE.$store.state.newPaths,l=paths.length,i=0
-      HGJ_VUE.$store.commit('isBackToIndex')
+  console.log('HGJ_VUE.$store.router.state',HGJ_VUE.$store.state)
+
+  // next()
+  // return
+  let routerState=HGJ_VUE.$store.state.router
+  let paths=routerState.newPaths,lenNewPaths=paths.length
+  if(routerState.backToIndex){
+    if(routerState.navPaths.indexOf(to.path)>=0){
+      let paths=routerState.newPaths,l=paths.length,i=0
+      HGJ_VUE.$store.commit('router_isBackToIndex')
       if(l>0){
         while(i<l){
           router.push(paths[i])
