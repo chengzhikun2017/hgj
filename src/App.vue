@@ -50,8 +50,8 @@ export default {
       // this.router_setNewPath()
       // this.router_willBackToIndex()
       // router.go(-1)
-      console.log('fetch',fetch)
-      fetch()
+      // fetch()
+      this.testAlert()
     },
     testAlert(){
       let alert = {
@@ -63,7 +63,7 @@ export default {
           }
         }]
       }
-      this.showAlert(alert)
+      this.hzgAlert(alert)
     },
     test2(){
       this.pushRoutes(['/test1','/test2','/test3',])

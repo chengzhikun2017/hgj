@@ -28,7 +28,7 @@ var HGJ_VUE=new Vue({
 
   components: { App }
 })
-Vue.prototype.showAlert=(alert)=>{
+Vue.prototype.hzgAlert=(alert)=>{
   
   HGJ_VUE.$store.commit('alert_showAlert',alert)
 }
@@ -58,3 +58,4 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
