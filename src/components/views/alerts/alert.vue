@@ -26,23 +26,28 @@
 
     },
     props:{
-      alert:{
-      default () {
-        return {
-          isShow: true,
-          title: 'alert',
-          options: [{
-            text: '确定',
-          }, ],
-        }
-      }
-      },
+      // alert:{
+      // default () {
+      //   return {
+      //     isShow: true,
+      //     title: 'alert',
+      //     options: [{
+      //       text: '确定',
+      //     }, ],
+      //   }
+      // }
+      // },
 
+    },
+    computed:{
+      alert(){
+        return this.$store.state.alert.alert
+      },
     },
     methods: {
       close(callback) {
         this.closeAlert()
-        // console.log('callback from alert',callback)
+        // console.log('callback from alert',.callback)
         // this.canNavigate()
         if (callback !== undefined && callback instanceof Function) {
           callback()

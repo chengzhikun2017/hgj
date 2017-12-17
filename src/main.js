@@ -29,8 +29,11 @@ var HGJ_VUE=new Vue({
   components: { App }
 })
 Vue.prototype.hzgAlert=(alert)=>{
-  
   HGJ_VUE.$store.commit('alert_showAlert',alert)
+}
+Vue.prototype.hzgToast=(toast)=>{
+  console.log('toast',toast)
+  HGJ_VUE.$store.commit('alert_showToast',toast)
 }
 router.beforeEach((to, from, next) => {
   console.log('HGJ_VUE.$store.router.state',HGJ_VUE.$store.state)

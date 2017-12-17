@@ -17,10 +17,17 @@
     <div id="test-input">
       <app-input v-model='valueInput2' :placeholder='placeholder' ref='appInput2' :type='"password"' :onSubmit='submitInput2'></app-input>
     </div>
+    <button @click='alert'>alert</button>
+    <button @click='alert2'>alert only title</button>
+    <button @click='alert_showLoading'>show loading</button>
+    <button @click='alert_toast1'>show toast with no callback</button>
+    <button @click='alert_toast2'>show toast with callback</button>
+
   </div>
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
 export default {
   data() {
     return {
@@ -53,12 +60,52 @@ export default {
     submitInput2(){
       alert("提交啦~")
     },
+    alert(){
+      this.hzgAlert({
+        title:'提示标题',
+        content:'提示内容*****',
+        options: [{
+          text: 'yes',
+          callback: () => {
+            console.log('clicked yes')
+          }
+        }, {
+          text: 'no',
+          callback: () => {
+            console.log('clicked no')
+          }
+        }, ],
+      })
+    },
+    alert2(){
+      this.hzgAlert({title:'alert alert'})
+    },
+    alert_toast1(){
+      // this.$store.commit('alert_showToast','111')
+      this.hzgToast('hahah')
+    },
+    alert_toast2(){
+      this.hzgToast({
+        content:'toast with callback',
+        cbLeave: () => {
+          console.warn('toast leaved')
+        },
+        cbEnter: () => {
+          console.warn('toast entered')
+        },
+      })
+    },
     callbackTest(){
       
       console.log('this.$ref.appInput.$refs.input',this.$refs.appInput.$refs.input)
       this.$refs.appInput.$refs.input.focus()
       console.log('test call back of select')
     },
+    ...mapMutations({
+      alert_stopLoading:'alert_stopLoading',
+      alert_showLoading:'alert_showLoading',
+      
+    }),
   },
   events: {},
   components: {}
@@ -69,6 +116,10 @@ export default {
 .holder{
   height: 3rem;
 }
+button{
+  /*border:1px solid red;*/
+  background: #ccc;
+}
   #test-select{
     height: 0.6rem;
     width: 1rem;
@@ -77,7 +128,7 @@ export default {
   }
   #test-input{
     height: 0.4rem;
-    border:1px solid red;
+    /*border:1px solid red;*/
     font-size: 0.2rem;
     color:blue;
     width: 2rem;

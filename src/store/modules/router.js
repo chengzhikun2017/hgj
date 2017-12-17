@@ -1,14 +1,7 @@
 const router={
-  // namespaced:true,
   state: {
     backToIndex: false,
-    //path:[{
-    //  path:'/cards',
-    //  index:0,
-    //},{
-    //  path:'/',
-    //  index:0,
-    //},{}],
+
     navPaths:['/cards','/promotion','/mine'],
     showFootNavPaths:['','/'],
     newPaths:[],
@@ -22,7 +15,7 @@ const router={
   actions:{
   },
   mutations: {
-    router_willBackToIndex (state) {
+    router_willBackToIndex (state) {//todo 需判断是否已经是index
       state.backToIndex=true
     },
     router_isBackToIndex (state) {

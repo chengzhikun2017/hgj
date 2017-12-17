@@ -2,16 +2,21 @@ const alert = {
   state: {
     backToIndex: false,
     alert: {
-      isShow: true,
+      isShow: false,
       title: 'remind',
       // self_: this,
       options: [{
         text: '确定',
       }, ],
     },
-    // navPaths:['/cards','/promotion','/mine'],
-    // showFootNavPaths:['','/'],
-    // newPaths:[],
+    toast:{
+      isShow:false,
+      content:'test from vuex store',
+      cbLeave:()=>{},
+      cbEnter:()=>{},
+    },
+    isLoading:false,
+    loadingText:'请稍后',
   },
   getters: { // 约等于 computed
     // router_backToIndex(s,g){
@@ -43,9 +48,40 @@ const alert = {
       s.alert.title = alert.title
       s.alert.options = alert.options
       if (alert.content) {
-        s.alert.options = alert.options
+        s.alert.content = alert.content
       }
-
+    },
+    alert_stopLoading(s){
+      s.isLoading=false
+    },
+    alert_showLoading(s){
+      s.isLoading=true
+    },
+    alert_setLoadingText(s){
+      
+    },
+    alert_hideToast(s){
+      console.log('hide toast')
+      s.toast.isShow=false
+    },
+    alert_showToast(s,toast){
+      // console.log('toast',toast,toast instanceof String)
+      // s.toast.content=toast
+      if( typeof toast=='string'){
+        s.toast.content=toast
+      }else if(toast instanceof Object){
+        if(toast.content){
+          s.toast.content=toast.content
+        }else{
+          s.toast.content='no toast content'
+          console.warn('need toast content')
+        }
+        s.toast.cbLeave=toast.cbLeave
+        s.toast.cbEnter=toast.cbEnter
+      }else if(toast==undefined){
+        console.warn('need toast content')
+      }
+      s.toast.isShow=true
     },
   }
 }

@@ -1,23 +1,129 @@
 <template>
+  <div class="toastVue">
+    <transition name="slide"  v-on:after-leave="afterLeave" v-on:afterEnter='afterEnter'>
 
+      <div class="toast" v-if='isShow'>
+      <!-- <div class="toast" v-if='true'> -->
+        <p class="toast-title">{{content}}</p>
+      </div>
+
+    </transition>
+    <div class="cover"   v-if='isShow'  >
+
+    </div>
+  </div>
 </template>
 
 <script>
+import {mapMutations,mapState} from 'vuex'
 export default {
   data() {
+    // 显示
+    // slide
+    // disapear
+    // callback
     return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
     }
   },
-  methods:{},
+  created(){
+    setTimeout(()=> {
+      // bus.remindSimple.isShow=false
+      // this.$store.commit('alert_hideToast')
+      this.alert_hideToast()
+    }, 1000);
+  },
+  computed:{
+    toast(){
+      return this.$store.state.alert.toast
+    },
+    content(){
+      return this.toast.content
+    },
+    isShow(){
+      return this.toast.isShow
+      // return bus.remindSimple.isShow
+    },
+    cbLeave() {
+        let nullFunc = () => {
+          // console.log('callback leave')
+        }
+
+        // return nullFunc
+        return this.toast.cbLeave || nullFunc
+      },
+      cbEnter() {
+        let nullFunc = () => {
+            // console.log('callback enter')
+          }
+          // return nullFunc
+        return this.toast.cbEnter || nullFunc
+      },
+  },
+  methods:{
+    afterLeave(){
+      this.cbLeave()
+    },
+    afterEnter(){
+      setTimeout(()=> {
+        this.cbEnter()
+      }, 200);
+      setTimeout(()=>{
+        this.alert_hideToast()
+      },500)
+    },
+    ...mapMutations({
+      alert_hideToast:'alert_hideToast',
+    })
+  },
+
   events: {},
   components: {}
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
+.cover{
+  position: fixed;
+  background:transparent;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 99999;
+}
+.toast{
+  position: absolute;
+  top: 0.4rem;
+  width: 100%;
+  z-index: 99999;
+  /*transform: scaleY(1);*/
+  transform-origin: top;
+  transition: 1s linear;
+  text-align: center;
+}
+.toast-title{
+  background: #0090f6;
+  color:#fff;
+  text-align: center;
+  display: inline-block;
+  font-size: 0.16rem;
+  line-height: 0.2rem;
+  padding:0.05rem 0.1rem;
+  border-radius: 0.05rem;
+}
 
+.slide-enter-to{
+  transform:  scaleY(1);
+}
+.slide-enter{
+  transform:scaleY(0);
+}
+.slide-leave-active{
+  transition: 0.2s cubic-bezier(0.24, 1.13, 1, 1);
+}
+.slide-enter-active{
+  transition: 0.2s cubic-bezier(0.24, 1.13, 1, 1);
+}
+.slide-leave-to {
+  transform: scaleY(0);
+}
 </style>

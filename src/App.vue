@@ -4,7 +4,7 @@
     <router-view/>
     
     <foot-nav></foot-nav>
-    <app-alert :alert='alert'></app-alert>
+    <app-alert ></app-alert>
     <app-toast></app-toast>
     <app-loading></app-loading>
     <button @click='test' id='test-bttn'> test</button>
@@ -28,30 +28,14 @@ export default {
     console.log('app store',this.$store)
   },
   computed:{
-    // backToIndex(){
-    //   return this.$store.getters.backToIndex
-    // },
-    // 
-    ...mapState([
-      'backToIndex',
-      ]),
-    ...mapState({
-      alert:s=>s.alert.alert
-    }),
-    ...mapGetters([
-      'router_backToIndex',
-      ]),
-    // ...mapGetters([
-    //   'backToIndex',
-    // ]),
   },
   methods:{
     test(){
-      // this.router_setNewPath()
-      // this.router_willBackToIndex()
-      // router.go(-1)
+      this.router_setNewPath()
+      this.router_willBackToIndex()
+      router.go(-1)
       // fetch()
-      this.testAlert()
+      // this.testAlert()
     },
     testAlert(){
       let alert = {
@@ -67,9 +51,6 @@ export default {
     },
     test2(){
       this.pushRoutes(['/test1','/test2','/test3',])
-    },
-    routerBackToIndex(){
-
     },
     pushRoutes(paths){
       let i=0
