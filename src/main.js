@@ -17,10 +17,13 @@ import toast from './components/views/alerts/toast.vue'
 
 import nav from './components/containers/nav.vue'
 
+import protocol from './components/containers/protocol.vue'
+Vue.component('app-nav', nav)
+Vue.component('app-protocol', protocol)
+
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
-Vue.component('app-nav', nav)
 Vue.component('app-select', select)
 Vue.component('app-input', input)
 Vue.component('app-alert', alert)

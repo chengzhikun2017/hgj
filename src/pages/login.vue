@@ -70,6 +70,9 @@
           padding-left: 0.05rem;
         }
       }
+      .input {
+        width: 100%;
+      }
     }
     .note {
       padding-top: 0.2rem;

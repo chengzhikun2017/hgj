@@ -15,10 +15,7 @@
         <br>
         <button>登录</button>
       </div>
-      <div class="note" flex="main:center cross:center">
-        <span class="radio"></span>
-        <p>我同意并已阅读</p>
-      </div>
+      <app-protocol v-model="check"></app-protocol>
     </article>
   </div>
 </template>
@@ -27,6 +24,7 @@
   export default {
     data () {
       return {
+        check: true
       }
     }
   }

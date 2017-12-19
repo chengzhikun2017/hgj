@@ -58,7 +58,7 @@ export default {
 
 <style lang='scss' scoped>
 .app-input{
-  display: inline-block;
+  display: block;
   height: 0.2rem;
   width:0.2rem;
   font-size: 0px;
