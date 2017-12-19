@@ -1,6 +1,7 @@
 <template>
   <div class="app-input">
-   <input :type="type" ref='input' :value='value' @input='onInput' :placeholder='placeholder' class="input__" @keyup.enter='onEnter($event)'>
+    <input type="radio" :value='test'>
+
   </div>
 </template>
 
@@ -8,6 +9,7 @@
 export default {
   data() {
     return {
+      test:false,
     }
   },
   props:{
@@ -25,7 +27,7 @@ export default {
       default :null,
     },
     onSubmit:{
-      default:null,
+      default:null
     },
   },
   computed:{
@@ -44,7 +46,6 @@ export default {
       // this.$emit('change',e.target.value)
     },
     onEnter(e){
-      // console.log('this.onSubmit',this.onSubmit)
       if(this.onSubmit){
         this.onSubmit()
       }

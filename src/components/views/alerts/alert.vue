@@ -56,7 +56,6 @@
       ...mapMutations({
         closeAlert:'alert_closeAlert',
       }),
-
     },
     created(){
       // this.bus=bus

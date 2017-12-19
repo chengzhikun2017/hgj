@@ -15,13 +15,12 @@
 </template>
 
 <script>
+/**
+ * 暂未考虑toast队列·
+ */
 import {mapMutations,mapState} from 'vuex'
 export default {
   data() {
-    // 显示
-    // slide
-    // disapear
-    // callback
     return {
     }
   },
