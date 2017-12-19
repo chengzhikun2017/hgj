@@ -58,12 +58,12 @@ export default {
 
 <style lang='scss' scoped>
 .app-input{
-  
+  display: inline-block;
+  height: 0.2rem;
 }
 .check{
   width:0.2rem;
   height: 0.2rem;
-  border:1px solid red;
 }
 .container{
   padding:0.03rem;

@@ -2,7 +2,7 @@
 
   <div>
     <!-- <input type="month" id='test'> -->
-<!--     <div class="holder">
+<!--<div class="holder">
       
     </div> -->
     <p class="title">select:</p>
@@ -23,8 +23,10 @@
     <button @click='alert_toast1'>show toast with no callback</button>
     <button @click='alert_toast2'>show toast with callback</button>
   
-  
-    <app-check v-model='testConfirm' style='border:1px solid red;'></app-check>
+    
+    <span style="border:1px solid red;">
+      <app-check v-model='testConfirm' style='border:0px solid red;'></app-check>
+    </span>
     <app-button>enabled</app-button>
     <app-button :disabled='true'>disabled</app-button>
 
