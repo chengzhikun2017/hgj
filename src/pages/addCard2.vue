@@ -1,6 +1,6 @@
 <template>
   <div class="addCard">
-    <hgj-nav title="添加信用卡" flex-box="0"></hgj-nav>
+    <app-nav title="添加信用卡" flex-box="0"></app-nav>
     <article flex-box="1">
       <div class="form">
         <div class="input">
@@ -35,11 +35,7 @@
 </template>
 <script>
   import '@/css/flex.css'
-  import nav from '@/pages/nav.vue'
   export default {
-    components: {
-      'hgj-nav': nav
-    },
     data () {
       return {
 

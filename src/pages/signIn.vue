@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <hgj-nav title="注册页"></hgj-nav>
+    <app-nav title="注册页"></app-nav>
     <article>
       <div class="logo"></div>
       <div class="form">
@@ -24,14 +24,9 @@
 </template>
 <script>
   import '@/css/flex.css'
-  import nav from '@/pages/nav.vue'
   export default {
-    components: {
-      'hgj-nav': nav
-    },
     data () {
       return {
-
       }
     }
   }
