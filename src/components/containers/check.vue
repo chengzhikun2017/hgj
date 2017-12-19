@@ -58,7 +58,7 @@ export default {
 
 <style lang='scss' scoped>
 .app-input{
-  
+  display: block;
 }
 .check{
   width:0.2rem;

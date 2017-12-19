@@ -17,7 +17,9 @@ import toast from './components/views/alerts/toast.vue'
 
 // others
 import nav from './components/containers/nav.vue'
+import protocol from './components/containers/protocol.vue'
 Vue.component('app-nav', nav)
+Vue.component('app-protocol', protocol)
 
 Vue.prototype.$http = axios
 
