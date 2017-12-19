@@ -5,11 +5,11 @@
 <!--     <div class="holder">
       
     </div> -->
-    <p>select:</p>
+    <p class="title">select:</p>
     <div id="test-select">
       <app-select :options='options' v-model='selectValue' :cb='callbackTest'></app-select>
     </div>
-    <p>input:</p>
+    <p class="title">input:</p>
     <div id="test-input">
       <app-input v-model='valueInput' :placeholder='placeholder' ref='appInput' :onSubmit='submitInput1'></app-input>
     </div>
@@ -17,12 +17,24 @@
     <div id="test-input">
       <app-input v-model='valueInput2' :placeholder='placeholder' ref='appInput2' :type='"password"' :onSubmit='submitInput2'></app-input>
     </div>
+    <p class="title">alert and toast</p>
     <button @click='alert'>alert</button>
     <button @click='alert2'>alert only title</button>
-    <button @click='alert_showLoading'>show loading</button>
     <button @click='alert_toast1'>show toast with no callback</button>
     <button @click='alert_toast2'>show toast with callback</button>
+  
+  
+    <app-check v-model='testConfirm' style='border:1px solid red;'></app-check>
+    <app-button>enabled</app-button>
+    <app-button :disabled='true'>disabled</app-button>
 
+    <hr style="margin:0.1rem">
+    <p class="title">待续....</p>
+      <app-input v-model='loadingText' :placeholder="'输入loading内容'"  style='border:1px solid #ccc;'></app-input>
+
+    <button @click='alert_showLoading(loadingText)'>show loading</button>
+    <app-radio ></app-radio>
+    <app-checkbox v-model='checked'></app-checkbox>
   </div>
 </template>
 
@@ -31,6 +43,7 @@ import {mapMutations} from 'vuex'
 export default {
   data() {
     return {
+      loadingText:'',
       options:[
         {value:1},
         {value:2},
@@ -39,6 +52,8 @@ export default {
         {value:5},
         {value:6},
       ],
+      testConfirm:false,
+      checked:true,
       selectValue:'',
       valueInput:'',
       valueInput2:'',
@@ -102,7 +117,7 @@ export default {
       console.log('test call back of select')
     },
     ...mapMutations({
-      alert_stopLoading:'alert_stopLoading',
+      alert_hideLoading:'alert_hideLoading',
       alert_showLoading:'alert_showLoading',
       
     }),
@@ -119,6 +134,10 @@ export default {
 button{
   /*border:1px solid red;*/
   background: #ccc;
+}
+.title{
+  margin-top: 0.2rem;
+  margin-bottom: 0.05rem;
 }
   #test-select{
     height: 0.6rem;

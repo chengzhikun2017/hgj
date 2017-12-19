@@ -7,6 +7,10 @@ import axios from 'axios'
 import store from './store'
 import select from './components/containers/select.vue'
 import input from './components/containers/input.vue'
+import radio from './components/containers/radio.vue'
+import checkbox from './components/containers/checkbox.vue'
+import button from './components/containers/button.vue'
+import check from './components/containers/check.vue'
 import alert from './components/views/alerts/alert.vue'
 import loading from './components/views/alerts/loading.vue'
 import toast from './components/views/alerts/toast.vue'
@@ -18,6 +22,10 @@ Vue.component('app-input',input)
 Vue.component('app-alert',alert)
 Vue.component('app-loading',loading)
 Vue.component('app-toast',toast)
+Vue.component('app-radio',radio)
+Vue.component('app-checkbox',checkbox)
+Vue.component('app-check',check)
+Vue.component('app-button',button)
 
 /* eslint-disable no-new */
 var HGJ_VUE=new Vue({
@@ -34,6 +42,12 @@ Vue.prototype.hzgAlert=(alert)=>{
 Vue.prototype.hzgToast=(toast)=>{
   console.log('toast',toast)
   HGJ_VUE.$store.commit('alert_showToast',toast)
+}
+Vue.prototype.hzgShowLoading=(loadingText)=>{
+  HGJ_VUE.$store.commit('alert_showLoading',loadingText)
+}
+Vue.prototype.hzgHideLoading=()=>{
+  HGJ_VUE.$store.commit('alert_hideLoading')
 }
 router.beforeEach((to, from, next) => {
   console.log('HGJ_VUE.$store.router.state',HGJ_VUE.$store.state)

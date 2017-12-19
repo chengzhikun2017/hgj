@@ -51,15 +51,17 @@ const alert = {
         s.alert.content = alert.content
       }
     },
-    alert_stopLoading(s){
+    alert_hideLoading(s){
       s.isLoading=false
     },
-    alert_showLoading(s){
+    alert_showLoading(s,loadingText){
       s.isLoading=true
+      if(!loadingText){
+        loadingText='请稍后'
+      }
+      s.loadingText=loadingText
     },
-    alert_setLoadingText(s){
-      
-    },
+
     alert_hideToast(s){
       console.log('hide toast')
       s.toast.isShow=false

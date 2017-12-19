@@ -1,5 +1,5 @@
 <template>
-  <div class="app-loading" v-if='isLoading' @click='alert_stopLoading'>
+  <div class="app-loading" v-if='isLoading' @click='alert_hideLoading'>
     <div class="loading-container">
       <div class="loading">
         <div class="loading-icon"></div>
@@ -30,7 +30,7 @@ export default {
   },
   methods:{
     ...mapMutations({
-      alert_stopLoading:'alert_stopLoading',
+      alert_hideLoading:'alert_hideLoading',
       alert_showLoading:'alert_showLoading',
 
     }),
