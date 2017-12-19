@@ -24,9 +24,14 @@
     <button @click='alert_toast2'>show toast with callback</button>
   
     
-    <span style="border:1px solid red;">
-      <app-check v-model='testConfirm' style='border:0px solid red;'></app-check>
-    </span>
+    <p style="font-size: 0.13rem;height:0.3rem; border:1px solid red;display:flex;align-items:center;">
+      <app-check v-model='testConfirm'></app-check>
+      <span>使用flex垂直居中</span>
+    </p>
+    <p style="font-size: 0.13rem;height:0.3rem; border:1px solid red; position:relative; ">
+      <app-check v-model='testConfirm' style='position:absolute;top: 0;bottom: 0;margin:auto 0;'></app-check>
+      <span style='line-height: 0.3rem; margin-left: 0.25rem'>不使用flex垂直居中</span>
+    </p>
     <app-button>enabled</app-button>
     <app-button :disabled='true'>disabled</app-button>
 

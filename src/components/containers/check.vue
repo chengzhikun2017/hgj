@@ -60,6 +60,8 @@ export default {
 .app-input{
   display: inline-block;
   height: 0.2rem;
+  width:0.2rem;
+  font-size: 0px;
 }
 .check{
   width:0.2rem;
