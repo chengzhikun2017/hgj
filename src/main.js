@@ -14,9 +14,7 @@ import check from './components/containers/check.vue'
 import alert from './components/views/alerts/alert.vue'
 import loading from './components/views/alerts/loading.vue'
 import toast from './components/views/alerts/toast.vue'
-Vue.prototype.$http = axios
 
-Vue.config.productionTip = false
 Vue.component('app-select',select)
 Vue.component('app-input',input)
 Vue.component('app-alert',alert)
@@ -27,6 +25,8 @@ Vue.component('app-checkbox',checkbox)
 Vue.component('app-check',check)
 Vue.component('app-button',button)
 
+Vue.prototype.$http = axios
+Vue.config.productionTip = false
 /* eslint-disable no-new */
 var HGJ_VUE=new Vue({
   el: '#app',
