@@ -46,6 +46,8 @@
 
 <style lang='scss' scoped>
   .cards {
+    width:100%;
+    height: 100%;
     nav {
       height: 0.44rem;
       background: #f3f3f3;
