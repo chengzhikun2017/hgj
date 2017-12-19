@@ -1,10 +1,6 @@
 <template>
   <div class="login">
-    <nav flex="cross:center">
-      <span flex-box="0">返回</span>
-      <h1 flex-box="1">登录页</h1>
-      <span flex-box="0">...</span>
-    </nav>
+    <hgj-nav title="登录页"></hgj-nav>
     <article>
       <div class="logo"></div>
       <div class="form">
@@ -27,7 +23,11 @@
 </template>
 <script>
   import '@/css/flex.css'
+  import nav from '@/pages/nav.vue'
   export default {
+    components: {
+      'hgj-nav': nav
+    },
     data () {
       return {
 
