@@ -1,6 +1,10 @@
 <template>
   <div>
-    pay page
+    <nav flex="cross:center">
+      <span flex-box="0">返回</span>
+      <h1 flex-box="1">登录页</h1>
+      <span flex-box="0">...</span>
+    </nav>
   </div>
 </template>
 

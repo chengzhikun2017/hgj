@@ -8,6 +8,9 @@ import test from '../pages/testPage/test.vue'
 import test1 from '../pages/testPage/test1.vue'
 import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
+
+import login from '@/pages/login.vue'
+import signIn from '@/pages/signIn.vue'
 Vue.use(Router)
   /**
    * 针对某一个组件创建路由数组（多个路由）
@@ -45,17 +48,19 @@ var routes = [],
   route_test = [],
   index = []
 index = index.concat(
-    newRoute('/cards', 'cards', cards),
-    newRoute('/mine', 'mine', mine),
-    newRoute('/promotion', 'promotion', promotion),
-    newRoute('/pay', 'pay', pay),
-  )
-  route_test=route_test.concat(
-    newRoute('/test', 'test', test),
-    newRoute('/test1', 'test1', test1),
-    newRoute('/test2', 'test2', test2),
-    newRoute('/test3', 'test3', test3),
-    )
+  newRoute('/cards', 'cards', cards),
+  newRoute('/mine', 'mine', mine),
+  newRoute('/promotion', 'promotion', promotion),
+  newRoute('/pay', 'pay', pay),
+  newRoute('/login', 'login', login),
+  newRoute('/signIn', 'signIn', signIn),
+)
+route_test = route_test.concat(
+  newRoute('/test', 'test', test),
+  newRoute('/test1', 'test1', test1),
+  newRoute('/test2', 'test2', test2),
+  newRoute('/test3', 'test3', test3),
+)
 basicRoutes = [{
   path: '*',
   name: 'cards',
