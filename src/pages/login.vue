@@ -8,14 +8,16 @@
           <span class="icon-account"></span>
           <span class="label-name">手机号</span>
         </div>
-        <input class="input" name="phone" type="text">
-        <br>
+        <div class="input">
+          
+        </div>
         <div class="label">
           <span class="icon-password"></span>
           <span class="label-name">密码</span>
         </div>
-        <input class="input" name="password" type="password">
-        <br>
+        <div class="input">
+          
+        </div>
         <div class="mybutton">
           <app-button>登录</app-button>
         </div>
@@ -61,17 +63,6 @@
       padding: 0 0.2rem;
     }
     .form {
-      .input {
-        outline: none;
-        width: 100%;
-        height: 0.36rem;
-        margin-bottom: 0.1rem;
-        line-height: 0.36rem;
-        padding-bottom: 0.04rem;
-        border: none;
-        border-bottom: 0.01rem solid #d3d3d3;
-        font-size: 0.19rem
-      }
       .label {
         font-size: 0.14rem;
         color: #a4a4a4;
