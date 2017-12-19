@@ -39,7 +39,7 @@ export default {
   opacity: 0.8;
 }
 .app-input{
-  width: 3rem;
+  width: 100%;
   height: 0.44rem;
   border-radius: 0.22rem;
   background-image: linear-gradient(to right, #f86b4b 1%, #f84b4b);

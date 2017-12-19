@@ -1,18 +1,24 @@
 <template>
-  <div class="login">
-    <hgj-nav title="登录页"></hgj-nav>
+  <div class="login" flex="dir:top">
+    <app-nav title="登录页" flex-box="0"></app-nav>
     <article>
       <div class="logo"></div>
       <div class="form">
-        <label for="phone">手机号</label>
-        <br>
+        <div class="label">
+          <span class="icon-account"></span>
+          <span class="label-name">手机号</span>
+        </div>
         <input class="input" name="phone" type="text">
         <br>
-        <label for="password">密码</label>
-        <br>
+        <div class="label">
+          <span class="icon-password"></span>
+          <span class="label-name">密码</span>
+        </div>
         <input class="input" name="password" type="password">
         <br>
-        <button>登录</button>
+        <div class="mybutton">
+          <app-button>登录</app-button>
+        </div>
       </div>
       <div class="note" flex="main:justify">
         <p>新用户注册</p>
@@ -23,11 +29,8 @@
 </template>
 <script>
   import '@/css/flex.css'
-  import nav from '@/pages/nav.vue'
+  import '@/css/font.css'
   export default {
-    components: {
-      'hgj-nav': nav
-    },
     data () {
       return {
 
@@ -37,6 +40,12 @@
 </script>
 <style lang="scss" scoped>
   .login {
+    width: 100%;
+    height: 100%;
+    .logo {
+      width: 100%;
+      height: 1.22rem;
+    }
     nav {
       height: 0.44rem;
       background: #f3f3f3;
@@ -54,25 +63,21 @@
     .form {
       .input {
         outline: none;
-        padding:0 0 0.15rem;
+        width: 100%;
+        height: 0.36rem;
+        margin-bottom: 0.1rem;
+        line-height: 0.36rem;
+        padding-bottom: 0.04rem;
         border: none;
         border-bottom: 0.01rem solid #d3d3d3;
         font-size: 0.19rem
       }
-      label {
+      .label {
         font-size: 0.14rem;
-      }
-      button {
-        margin-top: 1.68rem;
-        width: 100%;
-        height: 0.44rem;
-        font-size: 0.18rem;
-        border:none;
-        color: white;
-        border-radius: 0.22rem;
-        background-image: linear-gradient(to right, #f86b4b 1%, #f84b4b);
-        box-shadow: 0 0.065rem 0.16rem 0 rgba(248, 81, 75, 0.36);
-        
+        color: #a4a4a4;
+        .label-name {
+          padding-left: 0.05rem;
+        }
       }
     }
     .note {
@@ -81,6 +86,9 @@
         font-size: 0.15rem;
         color: #999999;
       }
+    }
+    .mybutton {
+      margin-top: 1.68rem;
     }
   } 
 </style>
