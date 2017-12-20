@@ -50,17 +50,6 @@
       width: 100%;
       height: 1.22rem;
     }
-    nav {
-      height: 0.44rem;
-      background: #f3f3f3;
-      h1 {
-        text-align: center;
-        font-size: 0.18rem;
-      }
-      span {
-        font-size: 0.15rem;
-      }
-    }
     article {
       padding: 0 0.2rem;
     }
