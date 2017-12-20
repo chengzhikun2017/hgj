@@ -7,9 +7,10 @@ import axios from 'axios'
 import store from './store'
 import select from './components/containers/select.vue'
 import input from './components/containers/input.vue'
-import radio from './components/containers/radio.vue'
+// import radio from './components/containers/radio.vue'
 import checkbox from './components/containers/checkbox.vue'
 import button from './components/containers/button.vue'
+import bttn_choose from './components/containers/button/bttn_choose.vue'
 import check from './components/containers/check.vue'
 import alert from './components/views/alerts/alert.vue'
 import loading from './components/views/alerts/loading.vue'
@@ -28,11 +29,12 @@ Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 Vue.component('app-select', select)
+Vue.component('bttn-choose', bttn_choose)
 Vue.component('app-input', input)
 Vue.component('app-alert', alert)
 Vue.component('app-loading', loading)
 Vue.component('app-toast', toast)
-Vue.component('app-radio', radio)
+// Vue.component('app-radio', radio)
 Vue.component('app-checkbox', checkbox)
 Vue.component('app-check', check)
 Vue.component('app-button', button)

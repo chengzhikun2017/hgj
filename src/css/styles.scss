@@ -4,7 +4,7 @@
   background: #ccc;
   display: flex;
 }
-$placeholderColor:#ccc;
+$placeholderColor:#a4a4a4;
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
   color:    $placeholderColor;
@@ -51,5 +51,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     margin:auto 0;
     height: 0.15rem;
     color:#a4a4a4;
+  }
+}
+
+.form-input{
+  font-size: 0.13rem;
+  .input__{
+    text-align: right;
   }
 }
