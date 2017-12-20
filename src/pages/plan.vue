@@ -47,23 +47,23 @@
           <div class="content">
             <div class="liner"></div>
             <app-formitem2 label="计划还款：">
-              <span class="money">2000.00元</span>
+              <span class="msg">2000.00元</span>
             </app-formitem2>
              <app-formitem2 label="保证金：">
-              <span class="money">600.00元</span>
+              <span class="msg">600.00元</span>
             </app-formitem2>
             <app-formitem2 label="服务费：">
-              <span class="money">18.00元</span>
+              <span class="msg">18.00元</span>
             </app-formitem2>
             <app-formitem2 label="总计：">
-              <span class="money red"><span class="total">618.00</span>元</span>
+              <span class="msg red"><span class="total">618.00</span>元</span>
             </app-formitem2>
             <div class="liner"></div>
             <app-formitem2 label="还款时间：">
-              <span class="money">2017/12/09 —— 2019/01/18</span>
+              <span class="msg">2017/12/09 —— 2019/01/18</span>
             </app-formitem2>
              <app-formitem2 label="还款周期：">
-              <span class="money">36天/保证金600元/6期还完</span>
+              <span class="msg">36天/保证金600元/6期还完</span>
             </app-formitem2>
           </div>
           <div class="footer">
@@ -183,7 +183,7 @@
             margin: 0.15rem 0;
             border:1px dashed #d3d3d3;
           }
-          .money {
+          .msg {
             color: #383838;
             font-size: 0.14rem;
             line-height: 1;
