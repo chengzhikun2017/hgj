@@ -28,7 +28,7 @@ export default {
       default:'请选择'
     },
     placeholderColor:{
-      default:'#97a7be'
+      default:'#a4a4a4'
     },
     filter:{
       default :false,
@@ -65,7 +65,7 @@ export default {
 
 <style lang='scss' scoped>
 .app-select{
-  border:1px solid red;
+  /*border:1px solid red;*/
   height: 100%;
   width:100%;
   height: 100%;
@@ -88,9 +88,11 @@ export default {
     height:100%;
     position: relative;
     .text{
-      position: relative;
+      font-size: 0.13rem;
+      text-align: right;
+     /* position: relative;
       top:50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%);*/
     }
   }
   .__disabled{

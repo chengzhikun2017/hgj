@@ -35,12 +35,13 @@
     <app-button>enabled</app-button>
     <app-button :disabled='true'>disabled</app-button>
 
-    <hr style="margin:0.1rem">
-    <p class="title">待续....</p>
       <app-input v-model='loadingText' :placeholder="'输入loading内容'"  style='border:1px solid #ccc;'></app-input>
 
     <button @click='alert_showLoading(loadingText)'>show loading</button>
-    <app-radio ></app-radio>
+    <bttn-choose>100</bttn-choose>
+
+    <hr style="margin:0.1rem">
+    <p class="title">待续....</p>
     <app-checkbox v-model='checked'></app-checkbox>
   </div>
 </template>

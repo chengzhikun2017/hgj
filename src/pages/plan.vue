@@ -7,10 +7,13 @@
       </div>
       <div class="form">
         <app-formitem label="还款金额">
-          <input type="text" placeholder="请输入还款金额">
+          <app-input type="text" :placeholder='"请输入还款金额"' class='form-input' v-model='planAmount'/>
         </app-formitem>
-        <app-formitem :last="true" label="还款时间">
-          <span>还款时间-结束时间</span>
+        <app-formitem :last="true" label="选择开始时间">
+            <app-select v-model='startDay' :options='daysAvailable' :placeholder='"请选择开始日期"' />
+        </app-formitem>
+        <app-formitem :last="true" label="计划执行天数">
+          <app-select v-model='duration' :options='durationAvailable' :placeholder='"请选择执行天数"' />
         </app-formitem>
         <div class="note" flex>
           <span class="icon-alert"></span>
@@ -18,13 +21,10 @@
         </div>
         <app-formitem :last="true" label="选择保证金">
           |
-          <button>500</button>
-          <button>1000</button>
-          <button>2000</button>
+          <bttn-choose :actived='item===securityFee'  v-for='item in securityFeeOpts' @click.native='chooseSecurityFee(item)' :key='item'>{{item}}</bttn-choose>
+         
         </app-formitem>
-        <app-formitem :last="true" label="选择开始时间">
-          <span>请选择开始时间</span>
-        </app-formitem>
+
       </div>
       <app-protocol></app-protocol>
       <div class="mybutton">
@@ -79,6 +79,21 @@
   export default {
     data () {
       return {
+        planAmount:'',
+        startDay:'',
+        daysAvailable:[
+        {value:'3号'},
+        {value:'4号'},
+        {value:'5号'},
+        ],
+        duration:'',
+        durationAvailable:[
+          {value:'3天'},
+          {value:'4天'},
+          {value:'5天'},
+        ],
+        securityFee:'',
+        securityFeeOpts:[500,1000,2000,4000],
         card1: {
           type: 'change',
           name: '韩**',
@@ -88,7 +103,12 @@
         },
         popFlag: true
       }
-    }
+    },
+    methods:{
+      chooseSecurityFee(fee){
+        this.securityFee=fee
+      },
+    },
   }
 </script>
 <style lang="scss" scoped>
