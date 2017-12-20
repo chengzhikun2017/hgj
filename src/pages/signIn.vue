@@ -53,6 +53,7 @@
     }
     .form {
       .label {
+        padding-top: 0.1rem;
         font-size: 0.14rem;
         color: #a4a4a4;
         .label-name {
