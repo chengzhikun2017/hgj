@@ -9,23 +9,8 @@
       <span flex-box="0">...</span>
     </nav>
     <article flex-box="1">
-      <div class="card">
-        <div class="floor" flex="main:justify">
-          <div class="logo"></div>
-          <span class="btn1">查看明细</span>
-        </div>
-        <div class="floor floor2" flex="main:justify">
-          <div class="left">
-            <span>韩**</span>
-            <span class="liner">|</span>
-            <span>卡片尾号：3638</span>
-          </div>
-          <span class="btn2">建立还款计划</span>
-        </div>
-        <div class="floor">
-          <span>账单日：每月3号 <span class="liner">|</span> 还款日：每月13号</span>
-        </div>
-      </div>
+      <app-bluecard v-model="card1"></app-bluecard>
+      <app-bluecard v-model="card2"></app-bluecard>
     </article>
     <button>添加银行卡</button>
   </div>
@@ -34,6 +19,20 @@
   export default {
     data() {
       return {
+        card1: {
+          type: 'build',
+          name: '韩**',
+          lastNo: '3638',
+          billDate: 3,
+          payDate: 13
+        },
+        card2: {
+          type: 'change',
+          name: '韩**',
+          lastNo: '3638',
+          billDate: 3,
+          payDate: 13
+        }
       }
     },
     created(){

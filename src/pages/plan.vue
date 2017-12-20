@@ -3,7 +3,7 @@
     <app-nav title="新建还款计划" flex-box="0"></app-nav>
     <article flex-box="1">
       <div class="photoDetail">
-        
+        <app-bluecard v-model="card1"></app-bluecard>
       </div>
       <div class="form">
         <div class="input">
@@ -26,10 +26,12 @@
           <input type="text" placeholder="请输入还款金额">
         </div>
       </div>
-      <p>我已同意并已阅读软件服务条款及协议</p>
-      <button>预览还款计划</button>
+      <app-protocol></app-protocol>
+      <div class="mybutton">
+        <app-button>预览还款计划</app-button>
+      </div>
     </article>
-    <div class="popView">
+    <div class="popView" v-show="false">
       <div class="popCard">
         <div class="title" flex>
           <img src="" alt="">
@@ -74,7 +76,13 @@
   export default {
     data () {
       return {
-
+        card1: {
+          type: 'change',
+          name: '韩**',
+          lastNo: '3638',
+          billDate: 3,
+          payDate: 13
+        }
       }
     }
   }
@@ -84,7 +92,14 @@
     width: 100%;
     height: 100%;
     article {
-
+      .photoDetail {
+        padding: 0.15rem 0.2rem;
+        background: black;
+      }
+      .mybutton {
+        margin-top: 0.4rem;
+        padding: 0 0.2rem;
+      }
     }
   }
 </style>

@@ -16,10 +16,11 @@ import loading from './components/views/alerts/loading.vue'
 import toast from './components/views/alerts/toast.vue'
 
 import nav from './components/containers/nav.vue'
-
 import protocol from './components/containers/protocol.vue'
+import bluecard from './components/containers/bluecard.vue'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
+Vue.component('app-bluecard', bluecard)
 
 Vue.prototype.$http = axios
 
@@ -36,7 +37,7 @@ Vue.component('app-button', button)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
-/* eslint-disable no-new */
+  /* eslint-disable no-new */
 var HGJ_VUE = new Vue({
   el: '#app',
   router,
