@@ -9,14 +9,16 @@
           <span class="label-name">验证码</span>
         </div>
         <div class="input">
-          
+          <app-input v-model='code' class='login-input' :placeholder='"请输入验证码"'></app-input>
+          <div class="getcode-bttn"></div> 
+          <!-- 绝对定位 可好？ -->
         </div>
         <div class="label">
           <span class="icon-password"></span>
           <span class="label-name">密码</span>
         </div>
         <div class="input">
-          
+          <app-input v-model='pwd' class='login-input' :placeholder='"请输入密码"' :type='"password"'></app-input>
         </div>
         <div class="mybutton">
           <app-button>注册并登录</app-button>
@@ -33,7 +35,9 @@
   export default {
     data () {
       return {
-        check: true
+        check: true,
+        code:'',
+        pwd:'',
       }
     }
   }
