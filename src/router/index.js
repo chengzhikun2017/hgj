@@ -12,6 +12,7 @@ import test3 from '../pages/testPage/test3.vue'
 import login from '@/pages/login.vue'
 import signIn from '@/pages/signIn.vue'
 import plan from '@/pages/plan.vue'
+import cardDetail from '@/pages/cardDetail.vue'
 Vue.use(Router)
   /**
    * 针对某一个组件创建路由数组（多个路由）
@@ -56,6 +57,7 @@ index = index.concat(
   newRoute('/login', 'login', login),
   newRoute('/signIn', 'signIn', signIn),
   newRoute('/plan', 'plan', plan),
+  newRoute('/carddetail', 'cardDetail', cardDetail),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),

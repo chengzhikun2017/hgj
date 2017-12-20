@@ -44,7 +44,7 @@
             </div>
             <span flex-box="0" @click="popFlag=false">关闭</span>
           </header>
-          <div class="content">
+          <div class="planbox-content">
             <div class="liner"></div>
             <app-formitem2 label="计划还款：">
               <span class="msg">2000.00元</span>
@@ -76,6 +76,7 @@
 </template>
 <script>
   import '@/css/flex.css'
+  import '@/css/components.scss'
   export default {
     data () {
       return {
@@ -152,54 +153,6 @@
         left: 0.2rem;
         right: 0.2rem;
         bottom: 0.2rem;
-      }
-      .planbox {
-        background: white;
-        border-radius: 0.1rem;
-        padding:0.2rem 0.15rem;
-        header {
-          padding-bottom: 0.05rem;
-          .icon {
-            border-radius: 50%;
-            width: 0.4rem;
-            height: 0.4rem;
-            margin-right: 0.11rem;
-            background-image: linear-gradient(to right, #64a6f8, #6767e8);
-            .icon-plan {
-              font-size: 0.24rem;
-              color:white;
-            }
-          }
-          .title {
-            h2 {
-              font-size: 0.19rem;
-            }
-          }
-        }
-        .content {
-          .liner {
-            width: 100%;
-            height: 1px;
-            margin: 0.15rem 0;
-            border:1px dashed #d3d3d3;
-          }
-          .msg {
-            color: #383838;
-            font-size: 0.14rem;
-            line-height: 1;
-            vertical-align: bottom;
-            .total {
-              font-size: 0.28rem;
-              line-height: 1;
-            }
-          }
-          .red {
-            color: #f84c4b;
-          }
-        }
-        .footer {
-          padding-top: 0.45rem;
-        }
       }
     }
   }
