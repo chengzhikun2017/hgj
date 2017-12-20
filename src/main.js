@@ -18,9 +18,11 @@ import toast from './components/views/alerts/toast.vue'
 import nav from './components/containers/nav.vue'
 import protocol from './components/containers/protocol.vue'
 import bluecard from './components/containers/bluecard.vue'
+import formitem from './components/containers/formitem.vue'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
 Vue.component('app-bluecard', bluecard)
+Vue.component('app-formitem', formitem)
 
 Vue.prototype.$http = axios
 

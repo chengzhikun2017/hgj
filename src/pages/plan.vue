@@ -6,25 +6,25 @@
         <app-bluecard v-model="card1"></app-bluecard>
       </div>
       <div class="form">
-        <div class="input">
-          <label for="">还款金额</label>
+        <app-formitem label="还款金额">
           <input type="text" placeholder="请输入还款金额">
+        </app-formitem>
+        <app-formitem :last="true" label="还款时间">
+          <span>还款时间-结束时间</span>
+        </app-formitem>
+        <div class="note" flex>
+          <span class="icon-alert"></span>
+          <p>结束时间必须在还款日前 2 天，起止时间最少间隔 1 天以上</p>
         </div>
-        <div class="input">
-          <label for="">还款金额</label>
-          <input type="text" placeholder="请输入还款金额">
-        </div>
-        <p>结束时间必须在还款日前2天，起止时间最少间隔1天以上</p>
-        <div class="input">
-          <label for="">选择保证金</label>
+        <app-formitem :last="true" label="选择保证金">
+          |
           <button>500</button>
           <button>1000</button>
           <button>2000</button>
-        </div>
-        <div class="input">
-          <label for="">选择开始时间</label>
-          <input type="text" placeholder="请输入还款金额">
-        </div>
+        </app-formitem>
+        <app-formitem :last="true" label="选择开始时间">
+          <span>请选择开始时间</span>
+        </app-formitem>
       </div>
       <app-protocol></app-protocol>
       <div class="mybutton">
@@ -92,13 +92,28 @@
     width: 100%;
     height: 100%;
     article {
+      background: #f3f3f3;
       .photoDetail {
         padding: 0.15rem 0.2rem;
         background: black;
+        overflow: hidden;
+      }
+      .form {
+        padding-bottom: 0.2rem;
       }
       .mybutton {
-        margin-top: 0.4rem;
-        padding: 0 0.2rem;
+        margin-top: 0.24rem;
+        padding: 0.16rem 0.2rem;
+      }
+      .note {
+        padding: 0.16rem 0.2rem;
+        font-size: 0.14rem;
+        color: #a4a4a4;
+        .icon-alert {
+          position: relative;
+          top: 0.03rem;
+          padding-right: 0.1rem;
+        }
       }
     }
   }
