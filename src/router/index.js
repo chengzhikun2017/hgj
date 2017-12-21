@@ -16,6 +16,7 @@ import cardDetail from '@/pages/cardDetail.vue'
 import addCard1 from '@/pages/addCard1.vue'
 import addCard2 from '@/pages/addCard2.vue'
 import records from '@/pages/records.vue'
+import payresult from '@/pages/payresult.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -63,7 +64,8 @@ index = index.concat(
   newRoute('/carddetail', 'cardDetail', cardDetail),
   newRoute('/addcard1', 'addCard1', addCard1),
   newRoute('/addcard2', 'addCard2', addCard2),
-  newRoute('/records', 'records', records)
+  newRoute('/records', 'records', records),
+  newRoute('/payresult', 'payresult', payresult)
 
 )
 route_test = route_test.concat(
