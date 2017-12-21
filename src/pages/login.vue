@@ -64,6 +64,7 @@
         return true
       },
       login() {
+        setTimeout(() =>{this.hgjToast('请输入正确的手机号')}, 500);
         if (this.checkValid()) {
           //login
         }

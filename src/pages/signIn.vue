@@ -11,8 +11,7 @@
         <div class="input">
           <app-input v-model='code' class='login-input' :placeholder='"请输入验证码"'></app-input>
           <div class="getcode-bttn"></div> 
-          <div class="code-bttn code-bttn-disabled" @click='getVerifyCode' >{{codeBttnMsg}}</div>
-          <!-- 绝对定位 可好？ -->
+          <div class="code-bttn " :class="{'code-bttn-disabled':countdownTimer!==null}"@click='getVerifyCode' >{{codeBttnMsg}}</div>
         </div>
         <div class="label">
           <span class="icon-password"></span>
@@ -43,8 +42,12 @@
         pwdInputType:"password",
         codeBttnMsg:'获取验证码',
         countdownTimer:null,
+        // getCodeRecently:false,
       }
       
+    },
+    beforeDestroy(){
+      clearInterval(this.countdownTimer)
     },
     methods:{
       togglePwdType(){
@@ -55,21 +58,29 @@
         }
         this.$refs.pwdInput.focus()
       },
-      countdown(){
+      countdownGetCode(){
+        // this.getCodeRecently=true
         let remainSec=5
+        this.codeBttnMsg=remainSec+'s后获取'
+        remainSec--
         let timer=setInterval(()=>{
           if(remainSec==0){
             this.codeBttnMsg='重新获取'
             clearInterval(timer)
+            this.countdownTimer=null
             return
           }
           this.codeBttnMsg=remainSec+'s后获取'
           remainSec--
         },1000)
+        this.countdownTimer=timer
         return timer
       },
       getVerifyCode(){
-        this.countdown()
+        if(this.countdownTimer){
+          return
+        }
+        this.countdownGetCode()
         console.log('get code')
       },
     },

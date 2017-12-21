@@ -1,10 +1,5 @@
 <template>
-
   <div>
-    <!-- <input type="month" id='test'> -->
-<!--<div class="holder">
-      
-    </div> -->
     <p class="title">select:</p>
     <div id="test-select">
       <app-select :options='options' v-model='selectValue' :cb='callbackTest'></app-select>

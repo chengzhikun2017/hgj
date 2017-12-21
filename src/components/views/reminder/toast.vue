@@ -42,6 +42,9 @@ export default {
       return this.toast.isShow
       // return bus.remindSimple.isShow
     },
+    type(){
+      return this.toast.type||'normal'
+    },
     cbLeaved() {
         let nullFunc = () => {
           // console.log('callback leave')
