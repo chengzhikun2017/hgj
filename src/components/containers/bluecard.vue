@@ -5,6 +5,7 @@
         <div class="logo"></div>
         <span class="btn1" v-show="value.type === 'build'">查看明细</span>
         <span class="btn1" v-show="value.type === 'change'">换一张卡</span>
+        <span class="btn1" v-show="value.type === 'edit'">编辑</span>
       </div>
       <div class="floor floor2" flex="main:justify">
         <div class="left">
