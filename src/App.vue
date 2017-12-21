@@ -4,7 +4,7 @@
     <router-view/>
     
     <foot-nav></foot-nav>
-    <app-alert ></app-alert>
+    <app-alert></app-alert>
     <app-toast></app-toast>
     <app-loading></app-loading>
     <button @click='test' id='test-bttn'> test</button>
@@ -20,7 +20,6 @@ import { mapGetters ,mapState,mapActions,mapMutations} from 'vuex'
 import fetch from './utils/fetch.js'
 export default {
   name: 'app',
-
   components:{
     footNav
   },
@@ -95,6 +94,7 @@ export default {
 #app {
   width:100%;
   height: 100%;
+  position: relative;
   font-family:'PingFangSC' ,'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

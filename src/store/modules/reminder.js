@@ -1,4 +1,4 @@
-const alert = {
+const reminder = {
   state: {
     backToIndex: false,
     alert: {
@@ -12,24 +12,20 @@ const alert = {
     toast:{
       isShow:false,
       content:'test from vuex store',
-      cbLeave:()=>{},
-      cbEnter:()=>{},
+      cbLeaved:()=>{},
+      cbEntered:()=>{},
     },
     isLoading:false,
     loadingText:'请稍后',
   },
-  getters: { // 约等于 computed
-    // router_backToIndex(s,g){
-    //   console.log('state,getter',s,g)
-    //   return s.backToIndex
-    // }
+  getters: {
   },
   actions: {},
   mutations: {
-    alert_closeAlert(s) {
+    reminder_closeAlert(s) {
       s.alert.isShow = false
     },
-    alert_showAlert(s, alert) {
+    reminder_showAlert(s, alert) {
       if (alert === undefined) {
         alert = {
           title: 'alert',
@@ -43,7 +39,7 @@ const alert = {
           text: '确定',
         }, ]
       }
-      console.log('alert_showAlert', alert)
+      // console.log('reminder_showAlert', alert)
       s.alert.isShow = true
       s.alert.title = alert.title
       s.alert.options = alert.options
@@ -51,10 +47,10 @@ const alert = {
         s.alert.content = alert.content
       }
     },
-    alert_hideLoading(s){
+    reminder_hideLoading(s){
       s.isLoading=false
     },
-    alert_showLoading(s,loadingText){
+    reminder_showLoading(s,loadingText){
       s.isLoading=true
       if(!loadingText){
         loadingText='请稍后'
@@ -62,11 +58,11 @@ const alert = {
       s.loadingText=loadingText
     },
 
-    alert_hideToast(s){
-      console.log('hide toast')
+    reminder_hideToast(s){
+      // console.log('hide toast')
       s.toast.isShow=false
     },
-    alert_showToast(s,toast){
+    reminder_showToast(s,toast){
       // console.log('toast',toast,toast instanceof String)
       // s.toast.content=toast
       if( typeof toast=='string'){
@@ -78,8 +74,8 @@ const alert = {
           s.toast.content='no toast content'
           console.warn('need toast content')
         }
-        s.toast.cbLeave=toast.cbLeave
-        s.toast.cbEnter=toast.cbEnter
+        s.toast.cbLeaved=toast.cbLeaved
+        s.toast.cbEntered=toast.cbEntered
       }else if(toast==undefined){
         console.warn('need toast content')
       }
@@ -88,4 +84,4 @@ const alert = {
   }
 }
 
-export default alert
+export default reminder

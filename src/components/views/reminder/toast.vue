@@ -27,13 +27,13 @@ export default {
   created(){
     setTimeout(()=> {
       // bus.remindSimple.isShow=false
-      // this.$store.commit('alert_hideToast')
-      this.alert_hideToast()
+      // this.$store.commit('reminder_hideToast')
+      this.reminder_hideToast()
     }, 1000);
   },
   computed:{
     toast(){
-      return this.$store.state.alert.toast
+      return this.$store.state.reminder.toast
     },
     content(){
       return this.toast.content
@@ -42,36 +42,36 @@ export default {
       return this.toast.isShow
       // return bus.remindSimple.isShow
     },
-    cbLeave() {
+    cbLeaved() {
         let nullFunc = () => {
           // console.log('callback leave')
         }
 
         // return nullFunc
-        return this.toast.cbLeave || nullFunc
+        return this.toast.cbLeaved || nullFunc
       },
-      cbEnter() {
+      cbEntered() {
         let nullFunc = () => {
             // console.log('callback enter')
           }
           // return nullFunc
-        return this.toast.cbEnter || nullFunc
+        return this.toast.cbEntered || nullFunc
       },
   },
   methods:{
     afterLeave(){
-      this.cbLeave()
+      this.cbLeaved()
     },
     afterEnter(){
       setTimeout(()=> {
-        this.cbEnter()
+        this.cbEntered()
       }, 200);
       setTimeout(()=>{
-        this.alert_hideToast()
+        this.reminder_hideToast()
       },500)
     },
     ...mapMutations({
-      alert_hideToast:'alert_hideToast',
+      reminder_hideToast:'reminder_hideToast',
     })
   },
 
@@ -90,8 +90,8 @@ export default {
   z-index: 99999;
 }
 .toast{
-  position: absolute;
-  top: 0.4rem;
+  position: fixed;
+  top: 0.44rem;
   width: 100%;
   z-index: 99999;
   /*transform: scaleY(1);*/

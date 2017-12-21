@@ -14,8 +14,8 @@ function getTimeString(AdDate, AiStart = 0, AiEnd, cfg = {}) {
       AiEnd = 19
     }
   }
-  function pad0(aNum) {
-    return aNum >= 10 ? aNum : "0" + aNum;
+  function pad0(num) {
+    return num >= 10 ? num : "0" + num;
   };
   if (AdDate === undefined) {
     var dNow = new Date();

@@ -20,8 +20,8 @@
     <p class="title">alert and toast</p>
     <button @click='alert'>alert</button>
     <button @click='alert2'>alert only title</button>
-    <button @click='alert_toast1'>show toast with no callback</button>
-    <button @click='alert_toast2'>show toast with callback</button>
+    <button @click='reminder_toast1'>show toast with no callback</button>
+    <button @click='reminder_toast2'>show toast with callback</button>
   
     
     <p style="font-size: 0.13rem;height:0.3rem; border:1px solid red;display:flex;align-items:center;">
@@ -37,7 +37,7 @@
 
       <app-input v-model='loadingText' :placeholder="'输入loading内容'"  style='border:1px solid #ccc;'></app-input>
 
-    <button @click='alert_showLoading(loadingText)'>show loading</button>
+    <button @click='reminder_showLoading(loadingText)'>show loading</button>
     <bttn-choose>100</bttn-choose>
 
     <hr style="margin:0.1rem">
@@ -84,7 +84,7 @@ export default {
       alert("提交啦~")
     },
     alert(){
-      this.hzgAlert({
+      this.hgjAlert({
         title:'提示标题',
         content:'提示内容*****',
         options: [{
@@ -101,19 +101,19 @@ export default {
       })
     },
     alert2(){
-      this.hzgAlert({title:'alert alert'})
+      this.hgjAlert({title:'alert alert'})
     },
-    alert_toast1(){
-      // this.$store.commit('alert_showToast','111')
-      this.hzgToast('hahah')
+    reminder_toast1(){
+      // this.$store.commit('reminder_showToast','111')
+      this.hgjToast('hahah')
     },
-    alert_toast2(){
-      this.hzgToast({
+    reminder_toast2(){
+      this.hgjToast({
         content:'toast with callback',
-        cbLeave: () => {
+        cbLeaved: () => {
           console.warn('toast leaved')
         },
-        cbEnter: () => {
+        cbEntered: () => {
           console.warn('toast entered')
         },
       })
@@ -125,8 +125,8 @@ export default {
       console.log('test call back of select')
     },
     ...mapMutations({
-      alert_hideLoading:'alert_hideLoading',
-      alert_showLoading:'alert_showLoading',
+      reminder_hideLoading:'reminder_hideLoading',
+      reminder_showLoading:'reminder_showLoading',
       
     }),
   },

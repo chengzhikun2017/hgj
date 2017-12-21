@@ -53,7 +53,25 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     color:#a4a4a4;
   }
 }
-
+.input-right-icon{
+  position: absolute;
+  right: 0;
+  top: 0;bottom: 0;
+  margin:auto 0;
+  height: 0.15rem;
+}
+.icon-pwd-type{
+  position: absolute;
+  right: 0;
+  top: 0;bottom: 0;
+  margin:auto 0;
+  height: 0.15rem;
+  color:#a4a4a4;
+}
+.icon-pwd-hide{
+  // color:blue;
+  opacity: 0.46;
+}
 .form-input{
   font-size: 0.13rem;
   .input__{

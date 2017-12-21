@@ -9,18 +9,18 @@
           <span class="label-name">手机号</span>
         </div>
         <div class="input">
-          <app-input v-model='phone' class='login-input' :placeholder='"请输入手机号"'></app-input>
+          <app-input v-model='phone' ref='phoneInput' class='login-input' :placeholder='"请输入手机号"'></app-input>
         </div>
         <div class="label">
           <span class="icon-password"></span>
           <span class="label-name">密码</span>
         </div>
         <div class="input">
-          <app-input v-model='pwd' class='login-input' :placeholder='"请输入密码"' :type='"password"'></app-input>
-          <span class="icon-eye"></span>
+          <app-input v-model='pwd' ref='pwdInput' class='login-input' :placeholder='"请输入密码"' :type='pwdInputType'></app-input>
+          <span class="icon-eye icon-pwd-type" @click='togglePwdType' :class='{"icon-pwd-hide":pwdInputType=="password"}'></span>
         </div>
         <div class="mybutton">
-          <app-button>登录</app-button>
+          <app-button @click.native='login'>登录</app-button>
         </div>
       </div>
       <div class="note" flex="main:justify">
@@ -33,13 +33,51 @@
 <script>
   import '@/css/flex.css'
   import '@/css/font.css'
+  import Regs from '../utils/reg.js'
+  import CR from '../utils/commonRemind.js'
   export default {
     data () {
       return {
         phone:'',
         pwd:'',
+        pwdInputType:"password",
       }
-    }
+    },
+    computed:{
+      phoneValid(){
+        return Regs.phone(this.phone)
+      },
+
+    },
+    methods:{
+      checkValid() {
+        if (!this.phoneValid) {
+          CR.inputWarn(this,'请输入正确的手机号','phoneInput')
+          // this.hgjToast({
+          //   content: '请输入正确的手机号',
+          //   cbEntered: () => {
+          //     this.$refs.phoneInput.focus()
+          //   }
+          // })
+          return false
+        }
+        return true
+      },
+      login() {
+        if (this.checkValid()) {
+          //login
+        }
+      },
+      togglePwdType() {
+        if (this.pwdInputType === 'text') {
+          this.pwdInputType = "password"
+        } else {
+          this.pwdInputType = "text"
+        }
+        this.$refs.pwdInput.focus()
+      },
+  },
+  created() {},
   }
 </script>
 <style lang="scss" scoped>
@@ -79,13 +117,6 @@
     .input{
       position: relative;
     }
-    .icon-eye{
-      position: absolute;
-      right: 0;
-      top: 0;bottom: 0;
-      margin:auto 0;
-      height: 0.15rem;
-      color:#a4a4a4;
-    }
+
   } 
 </style>

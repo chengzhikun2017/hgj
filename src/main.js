@@ -12,9 +12,9 @@ import checkbox from './components/containers/checkbox.vue'
 import button from './components/containers/button.vue'
 import bttn_choose from './components/containers/button/bttn_choose.vue'
 import check from './components/containers/check.vue'
-import alert from './components/views/alerts/alert.vue'
-import loading from './components/views/alerts/loading.vue'
-import toast from './components/views/alerts/toast.vue'
+import alert from './components/views/reminder/alert.vue'
+import loading from './components/views/reminder/loading.vue'
+import toast from './components/views/reminder/toast.vue'
 
 import nav from './components/containers/nav.vue'
 import protocol from './components/containers/protocol.vue'
@@ -52,18 +52,18 @@ var HGJ_VUE = new Vue({
     App
   }
 })
-Vue.prototype.hzgAlert = (alert) => {
-  HGJ_VUE.$store.commit('alert_showAlert', alert)
+Vue.prototype.hgjAlert = (alert) => {
+  HGJ_VUE.$store.commit('reminder_showAlert', alert)
 }
-Vue.prototype.hzgToast = (toast) => {
-  console.log('toast', toast)
-  HGJ_VUE.$store.commit('alert_showToast', toast)
+Vue.prototype.hgjToast = (toast) => {
+  // console.log('toast', toast)
+  HGJ_VUE.$store.commit('reminder_showToast', toast)
 }
-Vue.prototype.hzgShowLoading = (loadingText) => {
-  HGJ_VUE.$store.commit('alert_showLoading', loadingText)
+Vue.prototype.hgjShowLoading = (loadingText) => {
+  HGJ_VUE.$store.commit('reminder_showLoading', loadingText)
 }
-Vue.prototype.hzgHideLoading = () => {
-  HGJ_VUE.$store.commit('alert_hideLoading')
+Vue.prototype.hgjHideLoading = () => {
+  HGJ_VUE.$store.commit('reminder_hideLoading')
 }
 router.beforeEach((to, from, next) => {
   console.log('HGJ_VUE.$store.router.state', HGJ_VUE.$store.state)

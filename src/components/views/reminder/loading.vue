@@ -1,5 +1,5 @@
 <template>
-  <div class="app-loading" v-if='isLoading' @click='alert_hideLoading'>
+  <div class="app-loading" v-if='isLoading' @click='reminder_hideLoading'>
     <div class="loading-container">
       <div class="loading">
         <div class="loading-icon"></div>
@@ -22,16 +22,16 @@ export default {
   },
   computed:{
     loadingText(){
-      return this.$store.state.alert.loadingText
+      return this.$store.state.reminder.loadingText
     },
     isLoading(){
-      return this.$store.state.alert.isLoading
+      return this.$store.state.reminder.isLoading
     },
   },
   methods:{
     ...mapMutations({
-      alert_hideLoading:'alert_hideLoading',
-      alert_showLoading:'alert_showLoading',
+      reminder_hideLoading:'reminder_hideLoading',
+      reminder_showLoading:'reminder_showLoading',
 
     }),
    

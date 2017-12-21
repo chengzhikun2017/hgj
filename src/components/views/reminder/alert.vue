@@ -41,7 +41,7 @@
     },
     computed:{
       alert(){
-        return this.$store.state.alert.alert
+        return this.$store.state.reminder.alert
       },
     },
     methods: {
@@ -54,7 +54,7 @@
         }
       },
       ...mapMutations({
-        closeAlert:'alert_closeAlert',
+        closeAlert:'reminder_closeAlert',
       }),
     },
     created(){
