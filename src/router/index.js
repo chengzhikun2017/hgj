@@ -15,15 +15,16 @@ import plan from '@/pages/plan.vue'
 import cardDetail from '@/pages/cardDetail.vue'
 import addCard1 from '@/pages/addCard1.vue'
 import addCard2 from '@/pages/addCard2.vue'
+import records from '@/pages/records.vue'
 Vue.use(Router)
-  /**
-   * 针对某一个组件创建路由数组（多个路由）
-   * @param  {string || array} paths     路由字符串或者路由数组
-   * @param  {string} name      路由名称
-   * @param  {Vue component} component 指定的组件/模块
-   * @param  {[配置]} options   路由的配置，e.g. meta:{ keepAlive:true}
-   * @return {[type]}           [description]
-   */
+/**
+ * 针对某一个组件创建路由数组（多个路由）
+ * @param  {string || array} paths     路由字符串或者路由数组
+ * @param  {string} name      路由名称
+ * @param  {Vue component} component 指定的组件/模块
+ * @param  {[配置]} options   路由的配置，e.g. meta:{ keepAlive:true}
+ * @return {[type]}           [description]
+ */
 var rootPath = ''
 var newRoute = function(paths, name, component, options) {
   // console.log('typeof paths', typeof paths)
@@ -61,7 +62,9 @@ index = index.concat(
   newRoute('/plan', 'plan', plan),
   newRoute('/carddetail', 'cardDetail', cardDetail),
   newRoute('/addcard1', 'addCard1', addCard1),
-  newRoute('/addcard2', 'addCard2', addCard2)
+  newRoute('/addcard2', 'addCard2', addCard2),
+  newRoute('/records', 'records', records)
+
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),

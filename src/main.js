@@ -18,14 +18,16 @@ import toast from './components/views/reminder/toast.vue'
 
 import nav from './components/containers/nav.vue'
 import protocol from './components/containers/protocol.vue'
-import bluecard from './components/containers/bluecard.vue'
+import creditcard from './components/containers/creditcard.vue'
 import formitem from './components/containers/formitem.vue'
 import formitem2 from './components/containers/formitem2.vue'
+import record from './components/containers/record.vue'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
-Vue.component('app-bluecard', bluecard)
+Vue.component('app-creditcard', creditcard)
 Vue.component('app-formitem', formitem)
 Vue.component('app-formitem2', formitem2)
+Vue.component('app-record', record)
 
 Vue.prototype.$http = axios
 
@@ -43,7 +45,7 @@ Vue.component('app-button', button)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
-  /* eslint-disable no-new */
+/* eslint-disable no-new */
 var HGJ_VUE = new Vue({
   el: '#app',
   router,

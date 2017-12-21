@@ -3,7 +3,7 @@
     <app-nav title="信用卡详情" flex-box="0"></app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-bluecard v-model="card1"></app-bluecard>
+        <app-creditcard v-model="card1"></app-creditcard>
       </div>
       <div class="content">
         <div class="planbox">

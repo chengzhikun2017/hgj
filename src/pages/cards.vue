@@ -9,8 +9,8 @@
       <span flex-box="0">...</span>
     </nav>
     <article flex-box="1">
-      <app-bluecard v-model="card1"></app-bluecard>
-      <app-bluecard v-model="card2"></app-bluecard>
+      <app-creditcard v-model="card1"></app-creditcard>
+      <app-creditcard v-model="card2"></app-creditcard>
     </article>
     <button>添加银行卡</button>
   </div>
