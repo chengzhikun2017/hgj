@@ -1,6 +1,6 @@
 <template>
   <div>
-    test11111111111111111111
+    <app-record-list></app-record-list>
   </div>
 </template>
 

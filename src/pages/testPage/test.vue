@@ -111,6 +111,7 @@ export default {
         cbEntered: () => {
           console.warn('toast entered')
         },
+        type:'normal',
       })
     },
     callbackTest(){
