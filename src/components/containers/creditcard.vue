@@ -1,6 +1,6 @@
 <template>
   <div class="bluecard">
-    <div class="card">
+    <div class="card cardbg-blue">
       <div class="floor" flex="main:justify">
         <div class="logo"></div>
         <span class="btn1" v-show="value.type === 'build'">查看明细</span>
@@ -16,7 +16,8 @@
         <span class="btn2" v-show="value.type === 'build'">建立还款计划</span>
       </div>
       <div class="floor">
-        <span>账单日：每月{{value.billDate}}号 <span class="liner">|</span> 还款日：每月{{value.payDate}}号</span>
+        <span v-if="value.type !== 'choose'" >账单日：每月{{value.billDate}}号 <span class="liner">|</span> 还款日：每月{{value.payDate}}号</span>
+        <span class="btn3" v-show="value.type === 'choose'">重新选择银行卡</span>
       </div>
     </div>
   </div>
@@ -50,8 +51,6 @@
     height: 1.68rem;
     padding: 0.2rem 0.15rem;
     border-radius: 0.08rem;
-    background-image: linear-gradient(to right, #64a6f8, #6767e8);
-    box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
     .floor {
       font-size: 0.13rem;
       color: white;
@@ -84,6 +83,21 @@
       border-radius: 0.125rem;
       background: transparent;
       color: white;
+    }
+    .btn3 {
+      display: table;
+      margin:0 auto;
+      border-radius: 0.125rem;
+      padding: 0.06rem 0.3rem;
+      font-size: 0.13rem;
+      line-height: 1;
+      color: #f84c4b;
+      background-color: #ffffff;
+      box-shadow: 0px 0.015px 0.065px 0 rgba(13, 13, 13, 0.26);
+    }
+    .cardbg-blue {
+      background-image: linear-gradient(to right, #64a6f8, #6767e8);
+      box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
     }
   }
 </style>
