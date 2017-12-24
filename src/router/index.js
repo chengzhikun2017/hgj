@@ -15,8 +15,10 @@ import plan from '@/pages/plan.vue'
 import cardDetail from '@/pages/cardDetail.vue'
 import addCard1 from '@/pages/addCard1.vue'
 import addCard2 from '@/pages/addCard2.vue'
-import records from '@/pages/records.vue'
+import planrecords from '@/pages/planrecords.vue'
 import payresult from '@/pages/payresult.vue'
+import activeAccount from '@/pages/activeAccount.vue'
+import order from '@/pages/order.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -64,8 +66,10 @@ index = index.concat(
   newRoute('/carddetail', 'cardDetail', cardDetail),
   newRoute('/addcard1', 'addCard1', addCard1),
   newRoute('/addcard2', 'addCard2', addCard2),
-  newRoute('/records', 'records', records),
-  newRoute('/payresult', 'payresult', payresult)
+  newRoute('/planrecords', 'planrecords', planrecords),
+  newRoute('/payresult', 'payresult', payresult),
+  newRoute('/activeaccount', 'activeAccount', activeAccount),
+  newRoute('/order', 'order', order)
 
 )
 route_test = route_test.concat(
