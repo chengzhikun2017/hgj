@@ -6,7 +6,7 @@
         <div class="title">
           {{title}}
         </div>
-        <p>{{note}}</p>
+        <p :class="{'important':notePoint}">{{note}}</p>
       </div>
       <slot name="action" flex-box="0"></slot>
     </div>
@@ -28,6 +28,10 @@
         default: false
       },
       last: {
+        type: Boolean,
+        default: false
+      },
+      notePoint: {
         type: Boolean,
         default: false
       }
@@ -86,6 +90,9 @@
       p {
         font-size: 0.13rem;
         color: #a4a4a4;
+        &.important {
+          color: #f84f4b;
+        }
       }
     }
   }
