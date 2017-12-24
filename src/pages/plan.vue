@@ -3,7 +3,7 @@
     <app-nav title="新建还款计划" flex-box="0"></app-nav>
     <article flex-box="1">
       <div class="photoDetail">
-        <app-bluecard v-model="card1"></app-bluecard>
+        <app-creditcard v-model="card1"></app-creditcard>
       </div>
       <div class="form">
         <app-formitem label="还款金额">
