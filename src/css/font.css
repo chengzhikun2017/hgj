@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?wy7uui');
-  src:  url('fonts/icomoon.eot?wy7uui#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?wy7uui') format('truetype'),
-    url('fonts/icomoon.woff?wy7uui') format('woff'),
-    url('fonts/icomoon.svg?wy7uui#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?sh9hlu');
+  src:  url('fonts/icomoon.eot?sh9hlu#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?sh9hlu') format('truetype'),
+    url('fonts/icomoon.woff?sh9hlu') format('woff'),
+    url('fonts/icomoon.svg?sh9hlu#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,73 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-success:before {
+  content: "\e908";
+  color: #5ebfb7;
+}
+.icon-message:before {
+  content: "\e909";
+}
+.icon-二维码:before {
+  content: "\e90a";
+}
+.icon-back:before {
+  content: "\e90b";
+}
+.icon-go:before {
+  content: "\e91d";
+}
+.icon-share:before {
+  content: "\e90c";
+}
+.icon-wallet:before {
+  content: "\e90d";
+}
+.icon-aboutus:before {
+  content: "\e90e";
+}
+.icon-rank:before {
+  content: "\e90f";
+}
+.icon-star:before {
+  content: "\e910";
+}
+.icon-date:before {
+  content: "\e911";
+}
+.icon-cricle-yuan:before {
+  content: "\e912";
+}
+.icon-联系:before {
+  content: "\e913";
+}
+.icon-link:before {
+  content: "\e914";
+}
+.icon-yuan:before {
+  content: "\e915";
+}
+.icon-person:before {
+  content: "\e916";
+}
+.icon-wechat:before {
+  content: "\e917";
+}
+.icon-question:before {
+  content: "\e918";
+}
+.icon-creditcard:before {
+  content: "\e919";
+}
+.icon-bankcard:before {
+  content: "\e91a";
+}
+.icon-money:before {
+  content: "\e91b";
+}
+.icon-qq:before {
+  content: "\e91c";
+}
 .icon-plan:before {
   content: "\e900";
 }

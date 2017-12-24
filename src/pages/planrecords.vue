@@ -1,5 +1,5 @@
 <template>
-  <div class="records" flex="dir:top">
+  <div class="planrecords" flex="dir:top">
     <app-nav title="计划执行记录" flex-box="0"></app-nav>
     <article flex-box="1">
       <ul class="recordlist">
@@ -34,7 +34,7 @@
   }
 </script>
 <style lang="scss" scoped>
-  .records {
+  .planrecords {
     width: 100%;
     height: 100%;
     article {

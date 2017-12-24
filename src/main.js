@@ -21,13 +21,17 @@ import protocol from './components/containers/protocol.vue'
 import creditcard from './components/containers/creditcard.vue'
 import formitem from './components/containers/formitem.vue'
 import formitem2 from './components/containers/formitem2.vue'
+import formitem3 from './components/containers/formitem3.vue'
 import record from './components/containers/record.vue'
+import cricleicon from './components/containers/icon/cricleIcon.vue'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
 Vue.component('app-creditcard', creditcard)
 Vue.component('app-formitem', formitem)
 Vue.component('app-formitem2', formitem2)
+Vue.component('app-formitem3', formitem3)
 Vue.component('app-record', record)
+Vue.component('app-cricleicon', cricleicon)
 
 Vue.prototype.$http = axios
 
