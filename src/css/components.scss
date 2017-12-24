@@ -1,19 +1,21 @@
+.hgj-container {
+  width: 100%;
+  height: 100%;
+  article {
+    overflow: auto;
+    background: #f3f3f3;
+  }
+}
+
+
 .planbox {
   background: white;
   border-radius: 0.1rem;
   padding:0.2rem 0.15rem;
   header {
     padding-bottom: 0.05rem;
-    .icon {
-      border-radius: 50%;
-      width: 0.4rem;
-      height: 0.4rem;
+    .myicon {
       margin-right: 0.11rem;
-      background-image: linear-gradient(to right, #64a6f8, #6767e8);
-      .icon-plan {
-        font-size: 0.24rem;
-        color:white;
-      }
     }
     .title {
       h2 {
@@ -49,4 +51,16 @@
   .footer {
     padding-top: 0.45rem;
   }
+}
+
+/* enviroment */
+.bg-blue {
+  background-image: -webkit-linear-gradient(left, #64a6f8, #6767e8);
+  background-image: -o-linear-gradient(left, #64a6f8, #6767e8);
+  background-image: linear-gradient(to right, #64a6f8, #6767e8);
+}
+.bg-red {
+  background-image: -webkit-linear-gradient(left, #f1518d, #f15151);
+  background-image: -o-linear-gradient(left, #f1518d, #f15151);
+  background-image: linear-gradient(to right, #f1518d, #f15151);
 }

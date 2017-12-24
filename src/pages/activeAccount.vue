@@ -32,6 +32,53 @@
           </div>
         </app-formitem3>
       </div>
+      <div class="popView" v-show="popFlag">
+        <div class="popcontent">
+          <div class="planbox">
+            <header flex="cross:center">
+              <div class="myicon">
+                <app-cricleicon icon="icon-share" bgcolor="bg-red"></app-cricleicon>
+              </div>
+              <div class="title" flex="dir:top main:center" flex-box="1">
+                <h2>分享</h2>
+                <p></p>
+              </div>
+              <span flex-box="0" @click="popFlag=false">关闭</span>
+            </header>
+            <div class="planbox-content">
+              <div class="liner"></div>
+              <div class="waysItem" flex>
+                <div class="waybox">
+                  <div class="icon-message"></div>
+                  <p>短信分享</p>
+                </div>
+                <div class="waybox">
+                  <div class="icon-wechat"></div>
+                  <p>微信分享</p>
+                </div>
+                <div class="waybox">
+                  <div class="icon-wechat-cicle"></div>
+                  <p>朋友圈分享</p>
+                </div>
+              </div>
+              <div class="waysItem" flex>
+                <div class="waybox">
+                  <div class="icon-qq"></div>
+                  <p>QQ分享</p>
+                </div>
+                <div class="waybox">
+                  <div class="icon-link"></div>
+                  <p>通过链接分享</p>
+                </div>
+                <div class="waybox">
+                  <div class="icon-qrcode"></div>
+                  <p>二维码分享</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </article>
   </div>
 </template>
@@ -39,7 +86,7 @@
   export default {
     data () {
       return {
-
+        popFlag: true
       }
     }
   }
@@ -71,6 +118,31 @@
         .content {
           font-size: 0.13rem;
           color: #a4a4a4;
+        }
+      }
+    }
+    .popView {
+      position: fixed;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, .8);
+      .popcontent {
+        position: absolute;
+        left: 0.2rem;
+        right: 0.2rem;
+        bottom: 0.2rem;
+        .planbox-content {
+          .ways {
+            li {
+              width: 33%;
+            }
+            p {
+              font-size: 0.14rem;
+              color: #7d7d7d;
+            }
+          }
         }
       }
     }

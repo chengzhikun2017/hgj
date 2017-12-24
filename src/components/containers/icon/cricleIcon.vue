@@ -12,7 +12,7 @@
       },
       bgcolor: {
         type: String,
-        default: 'red'
+        default: 'bg-red'
       }
     },
     data () {
@@ -30,8 +30,5 @@
       color: white;
       font-size: 0.23rem;
     }
-  }
-  .red {
-    background-image: linear-gradient(to right, #f1518d, #f15151);
   }
 </style>
