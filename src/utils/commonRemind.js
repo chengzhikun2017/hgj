@@ -4,7 +4,8 @@ class commonRemind {
       content: content,
       cbEntered: () => {
         vm.$refs[refName].focus()
-      }
+      },
+      type:'normal',
     })
   }
 }

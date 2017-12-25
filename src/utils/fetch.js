@@ -8,13 +8,15 @@ export default function fetch(options) {
       // 超时时间设置
       timeout: 6000,
       // 请求的host设置
-      baseURL: '',
+      baseURL: 'http://106.14.119.213:9009/api/',
       // 通过cookies进行认证
       withCredentials: true
     })
     instance(options).then(response => {
         // status必然是200
+        console.log('responese',response)
         const res = response.data
+        resolve(res)
           // 根据陶雨的基本标准，做error的错误封装
           // if (res.error === 0) {
           // resolve(res.data)

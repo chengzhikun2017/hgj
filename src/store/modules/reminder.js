@@ -14,6 +14,7 @@ const reminder = {
       content:'test from vuex store',
       cbLeaved:()=>{},
       cbEntered:()=>{},
+      type:'normal',
     },
     isLoading:false,
     loadingText:'请稍后',
@@ -74,6 +75,7 @@ const reminder = {
           s.toast.content='no toast content'
           console.warn('need toast content')
         }
+        s.toast.type=toast.type||'normal'
         s.toast.cbLeaved=toast.cbLeaved
         s.toast.cbEntered=toast.cbEntered
       }else if(toast==undefined){

@@ -23,18 +23,18 @@
         response: null,
         loading: false,
         records: [],
-      crrtPage:0,
-      ttlPage:null,
-      getting:false,
-      allGet:false,
-      remind: {
-        isShow: false,
-        remindMsg: 'remind',
-        self_: this,
-        remindOpts: [{
-          msg: '确定',
-        }, ],
-      },
+        crrtPage:0,
+        ttlPage:null,
+        getting:false,
+        allGet:false,
+        remind: {
+          isShow: false,
+          remindMsg: 'remind',
+          self_: this,
+          remindOpts: [{
+            msg: '确定',
+          }, ],
+        },
     }
   },
   props:{
@@ -48,7 +48,6 @@
   created(){
     // this.url=this.config.url
     this.getNew()
-   
   },
   methods:{
     getmore(){
