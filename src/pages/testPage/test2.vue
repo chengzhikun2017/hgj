@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div @click='testGet'>test get</div>
     <div @click='test'>test post</div>
     <div @click='testXHR'>test xhr post</div>
     <div @click='testPost'>test not fetch post</div>
@@ -16,8 +17,13 @@ export default {
     }
   },
   methods:{
+    testGet(){
+      var fetchPro=testFetch.isPhoneRegister(17702103430)
+      fetchPro.then(res=>{
+        console.log('res',res)
+      })
+    },
     test(){
-      console.log('testFetch',testFetch)
       var fetchPro=testFetch.testPost()
       fetchPro.then(res=>{
         console.log('res',res)
@@ -83,7 +89,7 @@ export default {
       xhr.send(formData)
     },
     testPost(){
-      axios.post('http://106.14.119.213:9009/api/card/bindCC', {
+      axios.post('/api/card/bindCC', {
         firstName: 'Fred',
         lastName: 'Flintstone'
       })
