@@ -1,5 +1,5 @@
 <template>
-  <div class="bluecard">
+  <div class="creditcard">
     <div class="card cardbg-blue">
       <div class="floor" flex="main:justify">
         <div class="logo"></div>
@@ -95,7 +95,7 @@
       background-color: #ffffff;
       box-shadow: 0px 0.015px 0.065px 0 rgba(13, 13, 13, 0.26);
     }
-    .cardbg-blue {
+    &.cardbg-blue {
       background-image: linear-gradient(to right, #64a6f8, #6767e8);
       box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
     }

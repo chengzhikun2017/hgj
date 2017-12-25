@@ -36,7 +36,7 @@
         <div class="planbox">
           <header flex="cross:center">
             <span class="icon" flex="main:center cross:center" flex-box="0">
-              <span class="icon-plan"></span>
+              <app-cricleicon bgcolor="bg-blue"></app-cricleicon>
             </span>
             <div class="title" flex="dir:top main:center" flex-box="1">
               <h2>您的还款计划</h2>
@@ -153,6 +153,11 @@
         left: 0.2rem;
         right: 0.2rem;
         bottom: 0.2rem;
+        .planbox {
+          .icon {
+            margin-right: 0.1rem;
+          }
+        }
       }
     }
   }
