@@ -21,6 +21,7 @@ import activeAccount from '@/pages/activeAccount.vue'
 import order from '@/pages/order.vue'
 import orderEdit from '@/pages/orderEdit.vue'
 import balance from '@/pages/balance.vue'
+import register from '@/pages/register.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -73,9 +74,8 @@ index = index.concat(
   newRoute('/activeaccount', 'activeAccount', activeAccount),
   newRoute('/order', 'order', order),
   newRoute('/orderedit', 'orderEdit', orderEdit),
-  newRoute('/balance', 'balance', balance)
-
-
+  newRoute('/balance', 'balance', balance),
+  newRoute('/register', 'register', register)
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),
