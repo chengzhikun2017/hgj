@@ -9,9 +9,9 @@
           <span class="label-name">图片验证码</span>
         </div>
         <div class="input">
-          <app-input v-model='code' class='login-input' :placeholder='"请输入图片验证码"'></app-input>
-          <div class="code-bttn " :class="{'code-bttn-disabled':countdownTimer!==null}"@click='getCaptcha' >
-            <img :src="captcha">
+          <app-input v-model='captcha' class='login-input' :placeholder='"请输入图片验证码"'></app-input>
+          <div class="code-bttn " @click='getCaptcha' >
+            <img :src="captchaSrc" alt="获取图片码" @click='getCaptcha'>
           </div>
         </div>
         <div class="label">
@@ -19,7 +19,7 @@
           <span class="label-name">验证码</span>
         </div>
         <div class="input">
-          <app-input v-model='code' class='login-input' :placeholder='"请输入验证码"'></app-input>
+          <app-input v-model='verifyCode' class='login-input' :placeholder='"请输入验证码"'></app-input>
           <div class="code-bttn " :class="{'code-bttn-disabled':countdownTimer!==null}"@click='getVerifyCode' >{{codeBttnMsg}}</div>
         </div>
         <div class="label">
@@ -43,16 +43,18 @@
 <script>
   import '@/css/flex.css'
   import {mapActions} from 'vuex'
+  import helper from '../utils/helper.js'
   export default {
     data () {
       return {
         check: true,
-        code:'',
+        verifyCode:'',
         pwd:'',
         pwdInputType:"password",
         codeBttnMsg:'获取验证码',
         countdownTimer:null,
-        captcha:null
+        captcha:null,
+        captchaSrc:'#',
         // getCodeRecently:false,
       }
       
@@ -88,21 +90,24 @@
         return timer
       },
       getCaptcha(){
-        this.account_getCaptcha().then(res=>{
-          console.log('res',res)
-          this.captcha=res.data
+
+        let url=helper.urlConcat('account/captcha',{
+          phone:this.phone,
+          v:(new Date()).getTime()
         })
+        this.captchaSrc='/api'+url
       },
       getVerifyCode(){
         if(this.countdownTimer){
           return
         }
         this.countdownGetCode()
-
+        this.account_getVerifyCode()
         console.log('get code')
       },
       ...mapActions([
         'account_getCaptcha',
+        'account_getVerifyCode',
       ])
     },
   }

@@ -3,8 +3,7 @@ import {simpleFetch} from '../../utils/fetch.js'
 const account = {
   state: {
     phone:'13816938525',
-    isPhoneRegisted:false,
-
+    // isPhoneRegisted:false,
   },
   getters: {},
   mutations: {
@@ -30,13 +29,9 @@ const account = {
       // },err=>{})
       return promise
     },
-    account_getVerifyCode(){
-      
-    },
-    account_getCaptcha(context){
-      console.log('context.state.phone',context.state.phone)
-      return simpleFetch({
-        url:'/account/captcha',
+    account_getVerifyCode(context){
+      return fetch({
+        url:'/account/sendVerifyCode',
         params:{
           phone:context.state.phone,
         },

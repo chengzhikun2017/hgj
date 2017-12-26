@@ -15,14 +15,20 @@ function handleUnlogin(res){
     ]
   })
 }
+function handleWrongCode(res){
+  HGJ_VUE.hgjToast({
+    content:res.message,
+    type:'error',
+  })
+}
 export default function fetch(options) {
-  return new Promise((resolve, reject) => {
+  var fetchPromis=new Promise((resolve, reject) => {
     const instance = axios.create({
       // 超时时间设置
       timeout: 6000,
       // 请求的host设置
-      baseURL: 'http://106.14.119.213:9009/api/',
-      // baseURL: '/api',
+      // baseURL: 'http://106.14.119.213:9009/api/',
+      baseURL: '/api',
       // 通过cookies进行认证
       withCredentials: true,
       // headers: {'Access-Control-Allow-Origin': "*"},
@@ -37,11 +43,10 @@ export default function fetch(options) {
         } else {
           let code=res.error
           // let msg=res.message
-          if(code===20006){
-            handleUnlogin(res)
-          }
-          if(code===20001){
-            console.log('code 20001')
+          switch(code){
+            case 20006:handleUnlogin(res);break;
+            case 20012:handleWrongCode(res);break;
+            case 20006:console.log('code 20001');break;
           }
           reject(res.message)
         }
@@ -52,6 +57,10 @@ export default function fetch(options) {
         // store.dispatch('error', err)
       })
   })
+  fetchPromis.then(res=>{},err=>{
+    console.log('error fetch',err)
+  })
+  return fetchPromis
 }
 export function simpleFetch(options) {
   return new Promise((resolve, reject) => {
@@ -59,8 +68,8 @@ export function simpleFetch(options) {
       // 超时时间设置
       timeout: 6000,
       // 请求的host设置
-      baseURL: 'http://106.14.119.213:9009/api/',
-      // baseURL: '/api',
+      // baseURL: 'http://106.14.119.213:9009/api/',
+      baseURL: '/api',
       // 通过cookies进行认证
       withCredentials: true,
       // headers: {'Access-Control-Allow-Origin': "*"},
