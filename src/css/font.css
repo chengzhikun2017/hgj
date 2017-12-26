@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?sh9hlu');
-  src:  url('fonts/icomoon.eot?sh9hlu#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?sh9hlu') format('truetype'),
-    url('fonts/icomoon.woff?sh9hlu') format('woff'),
-    url('fonts/icomoon.svg?sh9hlu#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?3f3qey');
+  src:  url('fonts/icomoon.eot?3f3qey#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?3f3qey') format('truetype'),
+    url('fonts/icomoon.woff?3f3qey') format('woff'),
+    url('fonts/icomoon.svg?3f3qey#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -61,7 +61,7 @@
 .icon-cricle-yuan:before {
   content: "\e912";
 }
-.icon-联系:before {
+.icon-contact:before {
   content: "\e913";
 }
 .icon-link:before {
@@ -109,7 +109,7 @@
 .icon-eye:before {
   content: "\e905";
 }
-.icon-qrcode:before {
+.icon-safe:before {
   content: "\e906";
 }
 .icon-account:before {

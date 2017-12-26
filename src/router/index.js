@@ -10,7 +10,7 @@ import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
 
 import login from '@/pages/login.vue'
-import signIn from '@/pages/signIn.vue'
+import signUp from '@/pages/signUp.vue'
 import plan from '@/pages/plan.vue'
 import cardDetail from '@/pages/cardDetail.vue'
 import addCard1 from '@/pages/addCard1.vue'
@@ -22,6 +22,7 @@ import order from '@/pages/order.vue'
 import orderEdit from '@/pages/orderEdit.vue'
 import balance from '@/pages/balance.vue'
 import register from '@/pages/register.vue'
+import paybankcard from '@/pages/paybankcard.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -64,7 +65,7 @@ index = index.concat(
   newRoute('/promotion', 'promotion', promotion),
   newRoute('/pay', 'pay', pay),
   newRoute('/login', 'login', login),
-  newRoute('/signIn', 'signIn', signIn),
+  newRoute('/signUp', 'signUp', signUp),
   newRoute('/plan', 'plan', plan),
   newRoute('/carddetail', 'cardDetail', cardDetail),
   newRoute('/addcard1', 'addCard1', addCard1),
@@ -76,6 +77,7 @@ index = index.concat(
   newRoute('/orderedit', 'orderEdit', orderEdit),
   newRoute('/balance', 'balance', balance),
   newRoute('/register', 'register', register),
+  newRoute('/paybankcard', 'paybankcard', paybankcard),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),

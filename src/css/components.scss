@@ -59,6 +59,21 @@
   background-image: -o-linear-gradient(left, #64a6f8, #6767e8);
   background-image: linear-gradient(to right, #64a6f8, #6767e8);
 }
+.bg-lightblue {
+  background-image: -webkit-linear-gradient(left, #6bbff5, #5182f1);
+  background-image: -o-linear-gradient(left, #6bbff5, #5182f1);
+  background-image: linear-gradient(to right, #6bbff5, #5182f1);
+}
+.bg-purple {
+  background-image: -webkit-linear-gradient(left, #e06bf5, #af51f1);
+  background-image: -o-linear-gradient(left, #e06bf5, #af51f1);
+  background-image: linear-gradient(to right, #e06bf5, #af51f1);
+}
+.bg-orange {
+  background-image: -webkit-linear-gradient(left, #f5b96b, #f17e51);
+  background-image: -o-linear-gradient(left, #f5b96b, #f17e51);
+  background-image: linear-gradient(to right, #f5b96b, #f17e51);
+}
 .bg-red {
   background-image: -webkit-linear-gradient(left, #f1518d, #f15151);
   background-image: -o-linear-gradient(left, #f1518d, #f15151);
