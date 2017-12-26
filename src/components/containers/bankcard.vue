@@ -1,10 +1,10 @@
 <template>
   <div class="bankcard">
-    <div class="card cardbg-blue">
+    <div class="card" :class="bgcolor">
       <div class="floor" flex="main:justify">
         <div class="logo"></div>
-        <span class="btn1" v-show="value.type === 'build'">查看明细</span>
-        <span class="btn1" v-show="value.type === 'change'">换一张卡</span>
+        <span class="btn1" v-show="value.type === 'check'">结算卡</span>
+        <span class="btn1" v-show="value.type === 'uncheck'">设为结算卡</span>
         <span class="btn1" v-show="value.type === 'edit'">编辑</span>
       </div>
       <div class="floor floor2" flex="main:justify">
@@ -34,6 +34,10 @@
             lastNo: '3638'
           }
         })()
+      },
+      bgcolor: {
+        type: String,
+        default: 'cardbg-blue'
       }
     },
     data () {
@@ -53,10 +57,16 @@
       .floor {
         font-size: 0.13rem;
         color: white;
+        .logo {
+          width: 0.5rem;
+          height: 0.25rem;
+        }
         .liner {
           padding:0 0.06rem;
         }
         &.floor2 {
+          box-sizing: border-box;
+          height: 0.67rem;
           padding-top: 0.265rem;
           padding-bottom: 0.15rem;
           border-bottom: 1px dashed white;
@@ -65,7 +75,7 @@
       }
       .btn1 {
         display: block;
-        width: 0.78rem;
+        padding:0 0.2rem;
         height: 0.25rem;
         border-radius: 0.125rem;
         background-color: #ffffff;
@@ -73,7 +83,6 @@
         text-align: center;
         line-height: 0.25rem;
         font-size: 0.13rem;
-        color: #676dea;
       }
       .btn2 {
         display: inline-block;
@@ -97,6 +106,16 @@
       &.cardbg-blue {
         background-image: linear-gradient(to right, #64a6f8, #6767e8);
         box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
+        .btn1 {
+          color: #676dea;
+        }
+      }
+      &.cardbg-lightpurple {
+        background-image: linear-gradient(to right, #d449ed, #9d25db);
+        box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
+        .btn1 {
+          color: #9f26dc;
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="creditcard">
-    <div class="card cardbg-blue">
+    <div class="card" :class="bgcolor">
       <div class="floor" flex="main:justify">
         <div class="logo"></div>
         <span class="btn1" v-show="value.type === 'build'">查看明细</span>
@@ -36,6 +36,10 @@
             payDate: 13
           }
         })()
+      },
+      bgcolor: {
+        type: String,
+        default: 'cardbg-blue'
       }
     },
     data () {
@@ -52,21 +56,27 @@
     padding: 0.2rem 0.15rem;
     border-radius: 0.08rem;
     .floor {
-      font-size: 0.13rem;
-      color: white;
-      .liner {
-        padding:0 0.06rem;
+        font-size: 0.13rem;
+        color: white;
+        .logo {
+          width: 0.5rem;
+          height: 0.25rem;
+        }
+        .liner {
+          padding:0 0.06rem;
+        }
+        &.floor2 {
+          box-sizing: border-box;
+          height: 0.67rem;
+          padding-top: 0.265rem;
+          padding-bottom: 0.15rem;
+          border-bottom: 1px dashed white;
+          margin-bottom: 0.15rem;
+        }
       }
-      &.floor2 {
-        padding-top: 0.265rem;
-        padding-bottom: 0.15rem;
-        border-bottom: 1px dashed white;
-        margin-bottom: 0.15rem;
-      }
-    }
     .btn1 {
       display: block;
-      width: 0.78rem;
+      padding:0 0.2rem;
       height: 0.25rem;
       border-radius: 0.125rem;
       background-color: #ffffff;
@@ -98,6 +108,13 @@
     &.cardbg-blue {
       background-image: linear-gradient(to right, #64a6f8, #6767e8);
       box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
+    },
+    &.cardbg-lightpurple {
+      background-image: linear-gradient(to right, #d449ed, #9d25db);
+      box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
+      .btn1 {
+        color: #9f26dc;
+      }
     }
   }
 </style>

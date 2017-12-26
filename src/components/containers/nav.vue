@@ -1,9 +1,13 @@
 <template>
   <div class="nav">
     <nav flex="cross:center">
-      <span flex-box="0" @click='back'>返回</span>
+      <span class="side" flex-box="0" @click='back'>
+        <span class="icon" flex="main:center cross:center">
+          <span class="icon-back"></span>
+        </span>
+      </span>
       <h1 flex-box="1">{{title}}</h1>
-      <span flex-box="0"></span>
+      <span class="side" flex-box="0"></span>
     </nav>
   </div>
 </template>
@@ -36,9 +40,19 @@
         text-align: center;
         font-size: 0.18rem;
       }
-      span {
+      .side {
         width: 40px;
         font-size: 0.14rem;
+        .icon {
+          width: 0.23rem;
+          height: 0.23rem;
+          border-radius: 50%;
+          background-color: #383838;
+          font-size: 0.10rem;
+          font-weight: 1000;
+          color: white;
+          line-height: 1;
+        }
       }
     }
   }  
