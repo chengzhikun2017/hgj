@@ -3,22 +3,32 @@
     <nav flex="cross:center" flex-box="0">
       <span flex-box="0">返回</span>
       <div class="tabs" flex-box="1" flex="main:center">
-        <span>我的信用卡(3)</span>
-        <span>我的储蓄卡(0)</span>
+        <span :class="{'active': choose == 0}" @click="choose=0">我的信用卡(3)</span>
+        <span :class="{'active': choose == 1}" @click="choose=1">我的储蓄卡(0)</span>
       </div>
       <span flex-box="0">...</span>
     </nav>
-    <article flex-box="1">
+    <article v-if="choose == 0" flex-box="1">
       <app-creditcard v-model="card1"></app-creditcard>
       <app-creditcard v-model="card2"></app-creditcard>
+      <div class="mybutton">
+        <button>添加银行卡</button>
+      </div>
     </article>
-    <button>添加银行卡</button>
+    <article v-if="choose == 1" flex-box="1">
+      <app-bankcard v-model="card3"></app-bankcard>
+      <app-bankcard v-model="card4"></app-bankcard>
+      <div class="mybutton">
+        <button>添加银行卡</button>
+      </div>
+    </article>
   </div>
 </template>
 <script>
   export default {
     data() {
       return {
+        choose: 0,
         card1: {
           type: 'build',
           name: '韩**',
@@ -32,6 +42,16 @@
           lastNo: '3638',
           billDate: 3,
           payDate: 13
+        },
+        card3: {
+          type: 'bank',
+          name: '韩**',
+          lastNo: '3638',
+        },
+        card4: {
+          type: 'bank',
+          name: '韩**',
+          lastNo: '3638',
         }
       }
     },
@@ -59,6 +79,20 @@
       }
       span {
         font-size: 0.15rem;
+      }
+      .tabs {
+        span {
+          box-sizing: border-box;
+          height: 0.44rem;
+          display: inline-block;
+          margin:0 0.225rem;
+          line-height: 0.44rem;
+          font-weight: 700;
+        }
+        .active {
+          color: #f84c4b;
+          border-bottom: 3px solid #f84c4b;
+        }
       }
     }
     article {
