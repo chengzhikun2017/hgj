@@ -11,6 +11,7 @@
         <div class="input">
           <app-input v-model='code' class='login-input' :placeholder='"请输入验证码"'></app-input>
           <div class="getcode-bttn"></div> 
+          
           <div class="code-bttn " :class="{'code-bttn-disabled':countdownTimer!==null}"@click='getVerifyCode' >{{codeBttnMsg}}</div>
         </div>
         <div class="label">
