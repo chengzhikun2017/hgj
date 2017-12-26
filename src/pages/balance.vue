@@ -69,6 +69,8 @@
         },
         popFlag: true
       }
+    },
+    methods: {
     }
   }
 </script>

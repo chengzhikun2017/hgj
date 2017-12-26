@@ -17,13 +17,22 @@
   import '@/css/flex.css'
   export default {
     props: {
+      diyBack: {
+        type: Boolean,
+        default: false
+      }
     },
     data () {
       return {}
     },
     methods:{
       back(){//temp
-        this.$router.go(-1)
+        if(!this.diyBack) {
+          // 默认方法
+          this.$router.go(-1)
+        } else {
+          this.$emit('back')
+        }
       },
     },
   }
