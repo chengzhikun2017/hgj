@@ -6,7 +6,9 @@
           <span class="icon-back"></span>
         </span>
       </span>
-      <h1 flex-box="1">{{title}}</h1>
+      <h1 flex-box="1">
+        <slot></slot>
+      </h1>
       <span class="side" flex-box="0"></span>
     </nav>
   </div>
@@ -15,10 +17,6 @@
   import '@/css/flex.css'
   export default {
     props: {
-      title: {
-        type: String,
-        default: ''
-      }
     },
     data () {
       return {}

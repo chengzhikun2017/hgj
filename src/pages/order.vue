@@ -1,6 +1,6 @@
 <template>
   <div class="order">
-    <app-nav title="支付订单"></app-nav>
+    <app-nav>支付订单</app-nav>
     <article>
       <div class="banner">
         <app-creditcard v-model="card1"></app-creditcard>

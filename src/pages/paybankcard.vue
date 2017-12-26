@@ -1,6 +1,6 @@
 <template>
   <div class="paybankcard hgj-container" flex="dir:top">
-    <app-nav flex-box="0" title="储蓄卡支付"></app-nav>
+    <app-nav flex-box="0">储蓄卡支付</app-nav>
     <article flex-box="1">
       <app-formitem label="姓名" :first="true">
         

@@ -1,6 +1,6 @@
 <template>
   <div class="accountUpdate" flex="dir:top">
-    <spp-nav title="账户升级" flex-box="0"></spp-nav>
+    <spp-nav flex-box="0">账户升级</spp-nav>
     <article flex-box="1">
       <div class="banner">
         

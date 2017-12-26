@@ -1,6 +1,6 @@
 <template>
-  <div class="addCard2" flex="dir:top">
-    <app-nav title="添加信用卡" flex-box="0"></app-nav>
+  <div class="addCreditCard2" flex="dir:top">
+    <app-nav flex-box="0">添加信用卡</app-nav>
     <article flex-box="1">
       <div class="form">
         <app-formitem label="信用卡有效期" :first="true"></app-formitem>
@@ -31,7 +31,7 @@
   }
 </script>
 <style lang="scss" scoped>
-  .addCard2 {
+  .addCreditCard2 {
     width:100%;
     height: 100%;
     article {

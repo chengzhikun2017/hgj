@@ -1,6 +1,6 @@
 <template>
   <div class="plan" flex="dir:top">
-    <app-nav title="新建还款计划" flex-box="0"></app-nav>
+    <app-nav flex-box="0">新建还款计划</app-nav>
     <article flex-box="1">
       <div class="photoDetail">
         <app-creditcard v-model="card1"></app-creditcard>

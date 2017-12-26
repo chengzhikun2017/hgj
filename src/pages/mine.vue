@@ -1,6 +1,6 @@
 <template>
   <div class="mine hgj-container" flex="dir:top">
-    <app-nav title="我的" flex-box="0"></app-nav>
+    <app-nav flex-box="0">我的</app-nav>
     <article flex-box="1">
       <div class="myInfo">
         <div class="portraiture">

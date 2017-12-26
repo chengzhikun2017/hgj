@@ -1,6 +1,6 @@
 <template>
   <div class="activeaccount" flex="dir:top">
-    <app-nav title="激活账户" flex-box="0"></app-nav>
+    <app-nav flex-box="0">激活账户</app-nav>
     <article flex-box="1">
       <div class="banner">
         

@@ -1,6 +1,6 @@
 <template>
   <div class="pushShare hgj-container" flex="dir:top">
-    <app-nav title="推广积分页面" flex-box="0"></app-nav>
+    <app-nav flex-box="0">推广积分页面</app-nav>
     <article flex-box="1">
       <div class="banner"></div>
       <div class="pushShare-content">

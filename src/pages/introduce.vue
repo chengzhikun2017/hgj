@@ -1,6 +1,6 @@
 <template>
   <div class="introduce hgj-container" flex="dir:top">
-    <app-nav title="养成页面介绍"></app-nav>
+    <app-nav>养成页面介绍</app-nav>
     <article>
       <ul class="newsList">
         <li class="newsItem">

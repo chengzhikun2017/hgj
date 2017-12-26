@@ -1,6 +1,6 @@
 <template>
   <div class="planrecords" flex="dir:top">
-    <app-nav title="计划执行记录" flex-box="0"></app-nav>
+    <app-nav flex-box="0">计划执行记录</app-nav>
     <article flex-box="1">
       <ul class="recordlist">
         <li class="recorditem">
