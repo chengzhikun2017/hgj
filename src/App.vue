@@ -30,6 +30,8 @@ export default {
   },
   methods:{
     test(){
+      console.log('vuex state',this.$store.state)
+      return
       this.router_setNewPath()
       this.router_willBackToIndex()
       router.go(-1)
@@ -37,16 +39,16 @@ export default {
       // this.testAlert()
     },
     testAlert(){
-      let alert = {
-        title: 'alert title',
-        options: [{
-          text: 'confirm',
-          callback: () => {
-            console.log('yes')
-          }
-        }]
-      }
-      this.hzgAlert(alert)
+      // let alert = {
+      //   title: 'alert title',
+      //   options: [{
+      //     text: 'confirm',
+      //     callback: () => {
+      //       console.log('yes')
+      //     }
+      //   }]
+      // }
+      // this.hzgAlert(alert)
     },
     test2(){
       this.pushRoutes(['/test1','/test2','/test3',])

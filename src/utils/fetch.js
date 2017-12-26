@@ -21,7 +21,8 @@ function handleWrongCode(res){
     type:'error',
   })
 }
-export default function fetch(options) {
+
+export default function fetch(options,showloading=1) {
   var fetchPromis=new Promise((resolve, reject) => {
     const instance = axios.create({
       // 超时时间设置
@@ -33,31 +34,35 @@ export default function fetch(options) {
       withCredentials: true,
       // headers: {'Access-Control-Allow-Origin': "*"},
     })
+    HGJ_VUE.hgjShowLoading()
     instance(options).then(response => {
         // status必然是200
+        HGJ_VUE.hgjHideLoading()
         console.log('responese',response)
         const res = response.data
           // 根据陶雨的基本标准，做error的错误封装
         if (res.error === 0) {
           resolve(res.data)
         } else {
-          let code=res.error
-          // let msg=res.message
-          switch(code){
+          // let code=res.error
+          switch(res.error){
             case 20006:handleUnlogin(res);break;
+            case 20011:handleWrongCode(res);break;
             case 20012:handleWrongCode(res);break;
-            case 20006:console.log('code 20001');break;
+            case 20006:console.log('code 20006');break;
           }
-          reject(res.message)
+          reject(res)
         }
       })
       .catch(err => {
+        HGJ_VUE.hgjHideLoading()
         // 加载失败：超时，无响应，无对应资源
         // 通过store数据驱动，做错误提示
         // store.dispatch('error', err)
       })
   })
   fetchPromis.then(res=>{},err=>{
+
     console.log('error fetch',err)
   })
   return fetchPromis

@@ -31,7 +31,7 @@
           <span class="icon-eye icon-pwd-type" @click='togglePwdType' :class='{"icon-pwd-hide":pwdInputType=="password"}'></span>
         </div>
         <div class="mybutton">
-          <app-button>注册并登录</app-button>
+          <app-button @click.native='signUp'>注册并登录</app-button>
         </div>
       </div>
       <div class="protocol">
@@ -42,8 +42,9 @@
 </template>
 <script>
   import '@/css/flex.css'
-  import {mapActions} from 'vuex'
+  import {mapActions,mapMutations} from 'vuex'
   import helper from '../utils/helper.js'
+  import Regs from '../utils/reg.js'
   export default {
     data () {
       return {
@@ -62,7 +63,52 @@
     beforeDestroy(){
       clearInterval(this.countdownTimer)
     },
+    computed:{
+      captchaValid(){
+        return this.captcha&&this.captcha.length===4
+      },
+      pwdValid(){
+        return Regs.pwd(this.pwd)
+      },
+      verifyCodeValid(){
+        return /\d{6}/.test(this.verifyCode)
+      },
+      
+    },
+    watch:{
+      // verifyCode(v){
+      //   this.account_setVerifyCode(v)
+      // },
+      // captcha(v){
+      //   this.account_setCaptcha(v)
+      // },
+    },
+    created(){
+      this.getCaptcha()
+    },
     methods:{
+      signUp(){
+        if(!this.verifyCodeValid){
+          this.hgjToast('请输入正确的验证码',2)
+          return
+        }
+        if(!this.pwdValid){
+          this.hgjToast('请按要求输入密码',2)
+          return
+        }
+        this.account_signUp({
+          password:this.pwd,
+          code:this.verifyCode,
+        }).then(res=>{
+
+        },err=>{
+          err
+        })
+        // this.account_signUp({
+        //   code:
+        //   pwd:
+        // })
+      },
       togglePwdType(){
         if(this.pwdInputType==='text'){
           this.pwdInputType="password"
@@ -101,13 +147,22 @@
         if(this.countdownTimer){
           return
         }
+        if(!this.captchaValid){
+          this.hgjToast('请输入正确的图片验证码')
+          return
+        }
         this.countdownGetCode()
-        this.account_getVerifyCode()
+        this.account_getVerifyCode(this.captcha)
         console.log('get code')
       },
+      ...mapMutations([
+        'account_setCaptcha',
+        'account_setVerifyCode',
+        ]),
       ...mapActions([
         'account_getCaptcha',
         'account_getVerifyCode',
+        'account_signUp',
       ])
     },
   }

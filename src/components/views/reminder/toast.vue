@@ -2,8 +2,8 @@
   <div class="toastVue">
     <transition name="slide"  v-on:after-leave="afterLeave" v-on:afterEnter='afterEnter'>
 
-      <div class="toast" v-if='isShow'>
-      <!-- <div class="toast" v-if='true'> -->
+      <div class="toast" v-if='isShow' :style="{background:bgcolor}">
+      <!-- <div class="toast"  v-if='true'> -->
         <p class="toast-title">{{content}}</p>
       </div>
 
@@ -32,6 +32,19 @@ export default {
     }, 1000);
   },
   computed:{
+    bgcolor(){
+      let type=this.toast.type
+      let color
+      switch(type){
+        case 0: color='#0090f6';break;
+        case 'normal': color='#0090f6';break;
+        case 1: color='#FFC000';break;
+        case 'warning': color='#FFC000';break;
+        case 2: color='red';break;
+        case 'error': color='red';break;
+      } 
+      return color
+    },
     toast(){
       return this.$store.state.reminder.toast
     },
@@ -101,9 +114,10 @@ export default {
   transform-origin: top;
   transition: 1s linear;
   text-align: center;
+  background: #0090f6;
 }
 .toast-title{
-  background: #0090f6;
+  /*background: #0090f6;*/
   color:#fff;
   text-align: center;
   display: inline-block;

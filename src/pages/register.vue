@@ -12,7 +12,7 @@
           <app-input v-model='phone' ref='phoneInput' class='login-input' :placeholder='"请输入手机号"'></app-input>
         </div>
         <div class="mybutton">
-          <app-button @click.native='goSignUp'>获取验证码</app-button>
+          <app-button @click.native='goSignUp'>下一步</app-button>
         </div>
       </div>
     </article>
@@ -32,8 +32,20 @@
     },
     methods:{
       goSignUp(){
-        console.log('this.$router',this,this.$router)
-        this.$router.push('/signin')
+        this.isPhoneRegisted(this.phone).then(res=>{
+          console.log('res,account_isPhoneRegister',res)
+          if(res.status===1){
+            this.hgjAlert({
+              title:'已有账号',
+              // todo
+              // options:[
+
+              // ],
+            })
+          }else{
+            this.$router.push('/signup')
+          }
+        })
       },
       ...mapActions({
         isPhoneRegisted:'account_isPhoneRegister'
@@ -41,28 +53,21 @@
     },
     computed:{
       phoneValid(){
+        this.$store.commit('account_setPhone',this.phone)
         return Regs.phone(this.phone)
       },
     },
+    created(){
+      if(this.$store.state.account.phone){
+        this.phone=this.$store.state.account.phone
+      }
+    },
     watch:{
-      phoneValid(v){
-        if(v){
-          console.log('phone is valid')
-          this.isPhoneRegisted(this.phone).then(res=>{
-            console.log('res,account_isPhoneRegister',res)
-            if(res.status===1){
-              this.hgjAlert({
-                title:'已有账号',
-                // todo
-                // options:[
-
-                // ],
-              })
-            }
-          })
-        }
-        this.$store.commit('account_setPhone',this.phone)
-      },
+      // phoneValid(v){
+      //   if(v){
+      //     // this.$store.commit('account_setPhone',this.phone)
+      //   }
+      // },
     },
   }
 </script>

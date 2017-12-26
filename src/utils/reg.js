@@ -8,4 +8,8 @@ export default class Regs{
     //reg=
     return reg.test(v)
   }
+  static pwd(v){
+    let reg=/.{8,}/
+    return reg.test(v)
+  }
 }

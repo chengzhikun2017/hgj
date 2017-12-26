@@ -75,7 +75,8 @@ const reminder = {
           s.toast.content='no toast content'
           console.warn('need toast content')
         }
-        s.toast.type=toast.type||'normal'
+        s.toast.type=toast.type||0
+        //'normal' 'error' 'warning'
         s.toast.cbLeaved=toast.cbLeaved
         s.toast.cbEntered=toast.cbEntered
       }else if(toast==undefined){

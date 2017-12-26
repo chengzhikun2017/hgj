@@ -262,8 +262,13 @@ var HGJ_VUE = new Vue({
 Vue.prototype.hgjAlert = (alert) => {
   HGJ_VUE.$store.commit('reminder_showAlert', alert)
 }
-Vue.prototype.hgjToast = (toast) => {
+Vue.prototype.hgjToast = (toast,type) => {
   // console.log('toast', toast)
+  if(type!==undefined && typeof toast ==='string'){
+    let temp={}
+    temp={content:toast,type:type}
+    toast=temp
+  }
   HGJ_VUE.$store.commit('reminder_showToast', toast)
 }
 Vue.prototype.hgjShowLoading = (loadingText) => {
