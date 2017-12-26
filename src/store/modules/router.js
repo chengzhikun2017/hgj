@@ -8,7 +8,7 @@ const router={
   },
   getters: { // 约等于 computed
     router_backToIndex(s,g){
-      console.log('state,getter',s,g)
+      // console.log('state,getter',s,g)
       return s.backToIndex
     }
   },

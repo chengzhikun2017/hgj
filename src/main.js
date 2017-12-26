@@ -302,3 +302,5 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+export {HGJ_VUE} 

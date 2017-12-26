@@ -31,7 +31,7 @@ export default {
   created(){
     this.activeIndex=this.navPaths.indexOf(this.$route.path)
     router.beforeEach((to,from,next)=>{
-      console.log('to',to)
+      // console.log('to',to)
       this.activeIndex=this.navPaths.indexOf(to.path)
       next()
     })
@@ -49,7 +49,7 @@ export default {
       ]),
     ...mapState({
       navPaths: s => {
-        console.log('state',s)
+        // console.log('state',s)
         return s.router.navPaths
       },
       // 'showFootNavPaths':router.showFootNavPaths,
