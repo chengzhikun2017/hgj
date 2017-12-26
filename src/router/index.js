@@ -75,7 +75,7 @@ index = index.concat(
   newRoute('/order', 'order', order),
   newRoute('/orderedit', 'orderEdit', orderEdit),
   newRoute('/balance', 'balance', balance),
-  newRoute('/register', 'register', register)
+  newRoute('/register', 'register', register),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),
