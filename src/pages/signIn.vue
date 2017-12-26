@@ -6,11 +6,20 @@
       <div class="form">
         <div class="label">
           <span class="icon-qrcode"></span>
+          <span class="label-name">图片验证码</span>
+        </div>
+        <div class="input">
+          <app-input v-model='code' class='login-input' :placeholder='"请输入图片验证码"'></app-input>
+          <div class="code-bttn " :class="{'code-bttn-disabled':countdownTimer!==null}"@click='getCaptcha' >
+            <img :src="captcha">
+          </div>
+        </div>
+        <div class="label">
+          <span class="icon-qrcode"></span>
           <span class="label-name">验证码</span>
         </div>
         <div class="input">
           <app-input v-model='code' class='login-input' :placeholder='"请输入验证码"'></app-input>
-          <div class="getcode-bttn"></div> 
           <div class="code-bttn " :class="{'code-bttn-disabled':countdownTimer!==null}"@click='getVerifyCode' >{{codeBttnMsg}}</div>
         </div>
         <div class="label">
@@ -33,6 +42,7 @@
 </template>
 <script>
   import '@/css/flex.css'
+  import {mapActions} from 'vuex'
   export default {
     data () {
       return {
@@ -42,6 +52,7 @@
         pwdInputType:"password",
         codeBttnMsg:'获取验证码',
         countdownTimer:null,
+        captcha:null
         // getCodeRecently:false,
       }
       
@@ -76,13 +87,23 @@
         this.countdownTimer=timer
         return timer
       },
+      getCaptcha(){
+        this.account_getCaptcha().then(res=>{
+          console.log('res',res)
+          this.captcha=res.data
+        })
+      },
       getVerifyCode(){
         if(this.countdownTimer){
           return
         }
         this.countdownGetCode()
+
         console.log('get code')
       },
+      ...mapActions([
+        'account_getCaptcha',
+      ])
     },
   }
 </script>

@@ -24,7 +24,7 @@ export default {
     footNav
   },
   created(){
-    console.log('app store',this.$store)
+    // console.log('app store',this.$store)
   },
   computed:{
   },

@@ -4,11 +4,14 @@
     <div @click='test'>test post</div>
     <div @click='testXHR'>test xhr post</div>
     <div @click='testPost'>test not fetch post</div>
+    <div @click='testAction'>test action</div>
+    <div>{{isPhoneRegisted}}</div>
   </div>
 </template>
 
 <script>
 import testFetch from '../../api/test.js'
+import {mapActions} from 'vuex'
 import axios from 'axios'
 export default {
   data() {
@@ -17,6 +20,11 @@ export default {
     }
   },
   methods:{
+    testAction(){
+      console.log('this.$store',this.$store)
+      this.testAAA(17702103430)
+      // this.$store.dispatch('account_isPhoneRegister',11111111111)
+    },
     testGet(){
       var fetchPro=testFetch.isPhoneRegister(17702103430)
       fetchPro.then(res=>{
@@ -99,6 +107,12 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
+    },
+    ...mapActions({testAAA:'account_isPhoneRegister'}),
+  },
+  computed:{
+    isPhoneRegisted(){
+      return this.$store.state.account.isPhoneRegisted
     },
   },
   events: {},

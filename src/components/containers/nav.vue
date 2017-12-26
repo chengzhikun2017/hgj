@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <nav flex="cross:center">
-      <span flex-box="0">返回</span>
+      <span flex-box="0" @click='back'>返回</span>
       <h1 flex-box="1">{{title}}</h1>
       <span flex-box="0"></span>
     </nav>
@@ -18,7 +18,12 @@
     },
     data () {
       return {}
-    }
+    },
+    methods:{
+      back(){//temp
+        this.$router.go(-1)
+      },
+    },
   }
 </script>
 <style lang="scss" scoped>
