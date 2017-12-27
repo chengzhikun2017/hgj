@@ -17,9 +17,9 @@
       <div class="cardItem">
         <app-creditcard v-model="card1"></app-creditcard>
       </div>
-      <div class="cardItem">
+      <!-- <div class="cardItem">
         <app-creditcard v-model="card2" bgcolor="cardbg-lightpurple"></app-creditcard>
-      </div>
+      </div> -->
       <div class="mybutton">
         <app-button @click.native='goAddCreditCard'><span class="icon-add"></span>添加银行卡</app-button>
       </div>
@@ -43,6 +43,7 @@
 </template>
 <script>
   import helper from '../utils/helper.js'
+  import {mapMutations,mapActions,mapGetters} from 'vuex'
   export default {
     data() {
       return {
@@ -74,7 +75,11 @@
       }
     },
     created(){
-      
+      this.$nextTick(()=>{
+
+      this.cards_getListCC()
+      })
+
     },
     methods:{
       goAddCreditCard(){
@@ -83,6 +88,20 @@
       back(){//temp
         this.$router.go(-1)
       },
+      ...mapMutations([
+        ]),
+      ...mapActions([
+        'cards_getListCC',
+        ]),
+    },
+    computed:{
+      // cardListCC(){
+      //   return this.$store.state.cards.cardListCC
+      // },
+      ...mapGetters({
+        cardListCC:'cards_listCC',
+        cardListDC:'cards_listDC',
+      })
     },
     events: {},
     components: {}
