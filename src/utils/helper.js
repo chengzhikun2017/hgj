@@ -22,4 +22,9 @@ export default class helper {
       callback()
     }
   }
+  static saveUserInfoToLocal(data){
+    console.log('data')
+    //save user info to localstorage
+    //后续单项的更新，也通过此方法更新
+  }
 }

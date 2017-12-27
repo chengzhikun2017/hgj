@@ -8,6 +8,7 @@ import test from '../pages/testPage/test.vue'
 import test1 from '../pages/testPage/test1.vue'
 import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
+import error_page from '../pages/testPage/error.vue'
 
 import login from '@/pages/login.vue'
 import signUp from '@/pages/signUp.vue'
@@ -92,6 +93,11 @@ route_test = route_test.concat(
   newRoute('/test3', 'test3', test3),
 )
 basicRoutes = [{
+  path: '/*',
+  name: 'error_page',
+  // redirect: '/cards',
+  component: error_page
+},{
   path: '*',
   name: 'cards',
   redirect: '/cards',
@@ -101,7 +107,7 @@ routes = routes.concat(index.concat(
   route_test,
 ), basicRoutes)
 var router = new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: routes
 })
 // console.log('router',router)

@@ -22,9 +22,11 @@ function handleWrongCode(res){
   // })
   HGJ_VUE.hgjAlert(res.message)
 }
-
+console.log('HGJ_VUE',HGJ_VUE)
 export default function fetch(options,showloading=1) {
+    console.log('fetch options',options,HGJ_VUE)
   var fetchPromis=new Promise((resolve, reject) => {
+    HGJ_VUE.hgjShowLoading()
     const instance = axios.create({
       // 超时时间设置
       timeout: 6000,
@@ -35,9 +37,10 @@ export default function fetch(options,showloading=1) {
       withCredentials: true,
       // headers: {'Access-Control-Allow-Origin': "*"},
     })
-    HGJ_VUE.hgjShowLoading()
+
     instance(options).then(response => {
         // status必然是200
+        
         HGJ_VUE.hgjHideLoading()
         console.log('responese',response)
         const res = response.data
@@ -48,6 +51,7 @@ export default function fetch(options,showloading=1) {
           // let code=res.error
           switch(res.error){
             case 20006:handleUnlogin(res);break;
+            case 20040:resolve(res);break;
             // case 20011:handleWrongCode(res);break;
             // case 20012:handleWrongCode(res);break;
             // case 20006:console.log('code 20006');break;

@@ -1,12 +1,12 @@
 <template>
-  <div class="addCreditCard2" flex="dir:top">
-    <app-nav flex-box="0">添加信用卡</app-nav>
+  <div class="addCard2" flex="dir:top">
+    <app-nav title="添加信用卡" flex-box="0"></app-nav>
     <article flex-box="1">
       <div class="form">
         <app-formitem label="信用卡有效期" :first="true">
-          <app-select :options='yearOptions':placeholder='"年份"' v-model='fullYear' class='expire-select'/>
+          <app-select :options='yearOptions':placeholder='"年份"' v-model='year' class='expire-select'/>
           <span>/</span>
-          <app-select :options='monthOptions':placeholder='"月份"'v-model='fullMonth' class='expire-select'/>
+          <app-select :options='monthOptions':placeholder='"月份"'v-model='month' class='expire-select'/>
         </app-formitem>
         <app-formitem label="卡背后三位数字" >
           <app-input class='form-input' :placeholder="'请输入相应信息'" v-model='cvv2' :type='"number"'/>
@@ -22,7 +22,6 @@
         </app-formitem>
         <app-formitem label="验证码" :last="true" >
           <!-- <div class="input"> -->
-            
             <app-input class='form-input code-input'  :placeholder="'请输入验证码'" v-model='validateCode'/>
             <bttn-code :validateMethod='canGetVerifyCode' :getCodeMethod='getVerifyCode'/>
             <!-- <div class="code-bttn " :class="{'code-bttn-disabled':countdownTimer!==null}"@click='getVerifyCode' >{{}}获取验证码</div> -->
@@ -41,15 +40,18 @@
   </div>
 </template>
 <script>
+  // todo：
+  // code-bttn
+  // disable 传入
+  // 倒计时内部
   import '@/css/flex.css'
   import {mapMutations,mapActions} from 'vuex'
-  import helper from '../utils/helper.js'
   export default {
     data () {
       return {
         phone:null,
-        fullYear:null,
-        fullMonth:null,
+        year:null,
+        month:null,
         cvv2:null,
         billDate:null,
         repaymentDate:null,
@@ -62,14 +64,7 @@
     },
     methods:{
       submit(){
-        this.addCardCC_setValue(this)
-        this.addCardCC_submit().then(res=>{
-          this.hgjToast('绑定成功')
-          this.router_willBackToIndex()
-          this.router_setNewPath(['/cards'])
-          helper.goPage(-1)
-          // this.
-        })
+        this.addCardCC_submit()        
       },
       dayPaser(v){
         return v+'号'
@@ -79,8 +74,8 @@
         while(i<l){
           this.yearOptions.push({value:start+i})
           i++
-          }
-        },
+        }
+      },
       setMonthOptions(){
         let l=12,i=1
         // let start=(new Date()).getMonth(),i=0
@@ -102,8 +97,8 @@
       getValueFromStore(){
         let info=this.$store.state.addCardCC.info
         this.phone=info.phone
-        this.fullYear=info.fullYear
-        this.fullMonth=info.fullMonth
+        this.year=info.year
+        this.month=info.month
         this.cvv2=info.cvv2
         this.billDate=info.billDate
         this.repaymentDate=info.repaymentDate
@@ -116,13 +111,10 @@
         this.addCardCC_getCode().then(res => {
           countdown()
         })
-
       },
 
       ...mapMutations([
         'addCardCC_setValue',
-        'router_willBackToIndex',
-        'router_setNewPath',
         ]),
       ...mapActions([
         'addCardCC_submit',
@@ -142,17 +134,12 @@
     },
     beforeRouteEnter(to,from,next){
       //todo:刷新此页面，进入addcard1
-      if(/addCreditcard1/.test(from.name)){
-        next()
-      }else{
-        helper.goPage('/addCreditcard1')
-      }
       next()
     },
   }
 </script>
 <style lang="scss" scoped>
-  .addCreditCard2 {
+  .addCard2 {
     width:100%;
     height: 100%;
     article {

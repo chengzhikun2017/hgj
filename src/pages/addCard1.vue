@@ -1,6 +1,6 @@
 <template>
-  <div class="addCreditCard1" flex="dir:top">
-    <app-nav flex-box="0">添加信用卡</app-nav>
+  <div class="addCard1" flex="dir:top">
+    <app-nav title="添加信用卡" flex-box="0"></app-nav>
     <article flex-box="1">
       <div class="banner">
         
@@ -37,7 +37,7 @@
     },
     methods:{
       nextStep(){
-        helper.goPage('/addCreditcard2')
+        helper.goPage('/addcard2')
       },
       getValueFromStore(){
         let info=this.$store.state.addCardCC.info
@@ -60,7 +60,7 @@
   }
 </script>
 <style lang="scss" scoped>
-  .addCreditCard1 {
+  .addCard1 {
     width:100%;
     height: 100%;
     article {

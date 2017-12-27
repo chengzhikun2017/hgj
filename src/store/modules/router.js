@@ -21,8 +21,8 @@ const router={
     router_isBackToIndex (state) {
       state.backToIndex=false
     },
-    router_setNewPath(state,){//test
-     state.newPaths=['/mine','/test3','/test2',]
+    router_setNewPath(state,newPaths){//test
+     state.newPaths=newPaths
     },
   }
 } 
