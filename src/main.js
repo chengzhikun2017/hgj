@@ -1,5 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import config from './config.js'
+import helper from './utils/helper.js'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -7,6 +9,7 @@ import axios from 'axios'
 import store from './store'
 import select from './components/containers/select.vue'
 import input from './components/containers/input.vue'
+
 // import radio from './components/containers/radio.vue'
 import checkbox from './components/containers/checkbox.vue'
 import button from './components/containers/button.vue'
@@ -53,7 +56,7 @@ Vue.component('app-record-list', recordList)
 // Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
-
+console.log('process',process.env)
 
 Vue.directive('scroll-load', {
   bind: function(el, binding, vnode) {
@@ -296,7 +299,7 @@ router.beforeEach((to, from, next) => {
       HGJ_VUE.$store.commit('router_isBackToIndex')
       if (l > 0) {
         while (i < l) {
-          router.push(paths[i])
+          helper.goPage(paths[i])
           i++
         }
       } else {

@@ -2,15 +2,14 @@ import axios from 'axios'
 // 引入store 可以对基础的信息进行配置
 import store from '@/store'
 import {HGJ_VUE} from '../main.js'
-import Router from '@/router'
-
+import helper from '../utils/helper.js'
 function handleUnlogin(res){
   HGJ_VUE.hgjAlert({
     content:res.message,
     options:[
       { text:'取消',color:'#ccc'},
       { text:'登录',callback:()=>{
-        Router.push('/login')
+        helper.goPage('/login')
       }},
     ]
   })
@@ -22,7 +21,8 @@ function handleWrongCode(res){
   // })
   HGJ_VUE.hgjAlert(res.message)
 }
-console.log('HGJ_VUE',HGJ_VUE)
+// console.log('HGJ_VUE',HGJ_VUE)
+console.log('process',process)
 export default function fetch(options,showloading=1) {
     console.log('fetch options',options,HGJ_VUE)
   var fetchPromis=new Promise((resolve, reject) => {
@@ -31,8 +31,8 @@ export default function fetch(options,showloading=1) {
       // 超时时间设置
       timeout: 6000,
       // 请求的host设置
-      // baseURL: 'http://106.14.119.213:9009/api/',
-      baseURL: '/api',
+      baseURL: 'http://106.14.119.213:9009/api/',
+      // baseURL: '/api',
       // 通过cookies进行认证
       withCredentials: true,
       // headers: {'Access-Control-Allow-Origin': "*"},

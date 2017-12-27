@@ -1,3 +1,4 @@
+import config from '../config.js'
 import Vue from 'vue'
 import Router from 'vue-router'
 import cards from '../pages/cards.vue'
@@ -9,7 +10,6 @@ import test1 from '../pages/testPage/test1.vue'
 import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
 import error_page from '../pages/testPage/error.vue'
-
 import login from '@/pages/login.vue'
 import signUp from '@/pages/signUp.vue'
 import plan from '@/pages/plan.vue'
@@ -36,7 +36,7 @@ Vue.use(Router)
  * @param  {[配置]} options   路由的配置，e.g. meta:{ keepAlive:true}
  * @return {[type]}           [description]
  */
-var rootPath = ''
+// var rootPath = config.routerRoot
 var newRoute = function(paths, name, component, options) {
   // console.log('typeof paths', typeof paths)
   if (typeof paths === 'string') {
@@ -50,7 +50,7 @@ var newRoute = function(paths, name, component, options) {
     newRoute, i
   for (i = 0; i < l; i++) {
     newRoute = new Object({
-      path: rootPath + paths[i],
+      path: config.routerRoot + paths[i],
       name: name + '_' + i,
       component: component,
     })
@@ -92,32 +92,35 @@ route_test = route_test.concat(
   newRoute('/test2', 'test2', test2),
   newRoute('/test3', 'test3', test3),
 )
-basicRoutes = [{
-  path: '/*',
-  name: 'error_page',
-  // redirect: '/cards',
-  component: error_page
-},{
+basicRoutes = [
+// {
+//   path: '/*',
+//   name: 'error_page',
+//   // redirect: '/cards',
+//   component: error_page
+// },
+{
   path: '*',
   name: 'cards',
-  redirect: '/cards',
+  redirect: config.routerRoot+'/cards',
   component: cards
 }]
 routes = routes.concat(index.concat(
   route_test,
 ), basicRoutes)
 var router = new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: routes
 })
 // console.log('router',router)
 // router.prototype.firstEnter=1
 router.beforeEach((to,from,next)=>{
-  // console.log('router',to,from)
+  console.log('router',to,from)
   // console.log('first enter app',router.firstEnter,router)
   // &&firstEnter===1
-  if(!from.name&&to.path!=='/cards'){
-    router.push('/cards')
+  if(!from.name&&to.path!==(config.routerRoot+'/cards')){
+    //todo: 使用replace
+    router.push(config.routerRoot+'/cards')
     router.push(to.path)
     // router.prototype.firstEnter=0
     return

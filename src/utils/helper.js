@@ -1,4 +1,5 @@
 import router from '../router'
+import config from '../config.js'
 export default class helper {
   static urlConcat(url, obj) {
     var str = '',
@@ -16,7 +17,7 @@ export default class helper {
       // console.log('back unknown', 1)
       router.go(path)
     } else {
-      router.push(path)
+      router.push(config.routerRoot+path)
     }
     if (callback !== undefined && callback instanceof Function) {
       callback()

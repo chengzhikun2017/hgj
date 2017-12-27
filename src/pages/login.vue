@@ -35,7 +35,7 @@
   import '@/css/font.css'
   import Regs from '../utils/reg.js'
   import CR from '../utils/commonRemind.js'
-  import {mapActions} from 'vuex'
+  import {mapActions,mapMutations} from 'vuex'
   import helper from '../utils/helper.js'
   export default {
     data () {
@@ -71,8 +71,14 @@
           .then(res=>{
             this.hgjToast({
               content:'登录成功',
+
               cbEntered:()=>{
-                helper.goPage(-1)
+                console.log('cbEntered')
+                this.router_willBackToIndex()
+                this.$router.go(-1)
+                // helper.goPage(-1)
+                //todo: 跳转
+                
               }
             })
             console.log('res login', res)
@@ -89,6 +95,10 @@
       },
       ...mapActions([
         'account_login'
+        ]),
+      ...mapMutations([
+        'router_willBackToIndex',
+
         ])
   },
   created() {

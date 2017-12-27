@@ -15,6 +15,7 @@
 <script>
 import './css/styles.scss'
 import router from './router'
+import helper from './utils/helper.js'
 import footNav from './footNav.vue'
 import { mapGetters ,mapState,mapActions,mapMutations} from 'vuex'
 import fetch from './utils/fetch.js'
@@ -51,13 +52,13 @@ export default {
       // this.hzgAlert(alert)
     },
     test2(){
-      this.pushRoutes(['/test1','/test2','/test3',])
+      // this.pushRoutes(['/test1','/test2','/test3',])
     },
     pushRoutes(paths){
       let i=0
       while(i<paths.length){
         console.log('i',i)
-        router.push({path:paths[i],})
+        helper.goPage({path:paths[i],})
         i++
       }
     },

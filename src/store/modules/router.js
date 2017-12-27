@@ -1,8 +1,11 @@
+import config from '../../config.js'
+const rootPath=config.routerRoot
+
 const router={
   state: {
     backToIndex: false,
 
-    navPaths:['/cards','/promotion','/mine'],
+    navPaths:[rootPath+'/cards',rootPath+'/promotion',rootPath+'/mine'],
     showFootNavPaths:['','/'],
     newPaths:[],
   },
