@@ -7,11 +7,17 @@
       </div>
       <p class="note">请绑定您本人的信用卡</p>
       <div class="form">
-        <app-formitem label="持卡人姓名" :first="true"></app-formitem>
-        <app-formitem label="信用卡卡号" ></app-formitem>
-        <app-formitem label="身份证号码" :last="true"></app-formitem>
+        <app-formitem label="持卡人姓名" :first="true">
+          <app-input class='form-input' :placeholder='"请输入持卡人姓名"' v-model='name'/>
+        </app-formitem>
+        <app-formitem label="信用卡卡号" >
+          <app-input class='form-input' :placeholder='"请输入信用卡卡号"' v-model='cardNo'/>
+        </app-formitem>
+        <app-formitem label="身份证号码" :last="true">
+          <app-input class='form-input' :placeholder='"请输入身份证号码"' v-model='idCardNo'/>
+        </app-formitem>
         <div class="mybutton">
-          <app-button>下一步</app-button>
+          <app-button @click.native='nextStep'>下一步</app-button>
         </div>
       </div>
     </article>
@@ -19,12 +25,38 @@
 </template>
 <script>
   import '@/css/flex.css'
+  import helper from '../utils/helper.js'
+  import {mapMutations} from 'vuex'
   export default {
     data () {
       return {
-
+        name:'',
+        cardNo:'',
+        idCardNo:'',
       }
-    }
+    },
+    methods:{
+      nextStep(){
+        helper.goPage('/addcard2')
+      },
+      getValueFromStore(){
+        let info=this.$store.state.addCardCC.info
+        this.name=info.name
+        this.cardNo=info.cardNo
+        this.idCardNo=info.idCardNo
+
+      },
+      ...mapMutations([
+        'addCardCC_setValue',
+        ])
+    },
+    created(){
+      this.getValueFromStore()
+    },
+    beforeDestroy(){
+      // 正则不通过的 （invalid）设为空
+      this.addCardCC_setValue(this)
+    },
   }
 </script>
 <style lang="scss" scoped>

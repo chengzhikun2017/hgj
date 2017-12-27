@@ -39,6 +39,9 @@ export default {
   },
   computed:{
     parsedValue(){
+      if(!this.value){
+        return null
+      }
       if(this.filter){
         return this.filter(this.value)
       }else{

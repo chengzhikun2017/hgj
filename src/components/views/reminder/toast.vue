@@ -29,7 +29,7 @@ export default {
       // bus.remindSimple.isShow=false
       // this.$store.commit('reminder_hideToast')
       this.reminder_hideToast()
-    }, 1000);
+    }, 1200);
   },
   computed:{
     bgcolor(){

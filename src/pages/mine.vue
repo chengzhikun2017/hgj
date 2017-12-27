@@ -3,7 +3,7 @@
     <app-nav title="我的" flex-box="0"></app-nav>
     <article flex-box="1">
       <div class="myInfo">
-        <div class="portraiture">
+        <div class="portraiture" @click='goSignIn'>
           <img src="" alt="">
         </div>
         <div class="name">韩鑫波</div>
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import helper from '../utils/helper.js'
 export default {
   data() {
     return {
@@ -72,7 +73,11 @@ export default {
       // its initial state.
     }
   },
-  methods:{},
+  methods:{
+    goSignIn(){
+      helper.goPage('/login')
+    },
+  },
   events: {},
   components: {}
 }

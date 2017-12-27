@@ -2,7 +2,7 @@
   <div class="formitem" :class="{'first':first,'last':last}">
     <div class="item" flex="cross:center main:justify">
       <span class="label" flex-box="0">{{label}}</span>
-      <slot></slot>
+      <slot ></slot>
     </div>
   </div>
 </template>
@@ -70,6 +70,9 @@
     .label {
       font-size: 0.14rem;
       color: #383838;
+    }
+    .item{
+      position: relative;
     }
   }
 </style>

@@ -35,6 +35,11 @@ const reminder = {
           }, ],
         }
       }
+      if(typeof alert==='string'){
+        alert = {
+          title: alert,
+        }
+      }
       if (alert.options === undefined) {
         alert.options = [{
           text: '确定',

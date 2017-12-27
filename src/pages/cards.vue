@@ -11,11 +11,12 @@
     <article flex-box="1">
       <app-creditcard v-model="card1"></app-creditcard>
       <app-creditcard v-model="card2"></app-creditcard>
+      <app-button @click.native='goAddCreditCard'>添加银行卡</app-button>
     </article>
-    <button>添加银行卡</button>
   </div>
 </template>
 <script>
+  import helper from '../utils/helper.js'
   export default {
     data() {
       return {
@@ -39,7 +40,9 @@
       
     },
     methods:{
-
+      goAddCreditCard(){
+        helper.goPage('/addcard1')
+      },
     },
     events: {},
     components: {}

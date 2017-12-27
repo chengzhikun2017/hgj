@@ -35,11 +35,13 @@
   import '@/css/font.css'
   import Regs from '../utils/reg.js'
   import CR from '../utils/commonRemind.js'
+  import {mapActions} from 'vuex'
+  import helper from '../utils/helper.js'
   export default {
     data () {
       return {
-        phone:'',
-        pwd:'',
+        phone:'13816938525',
+        pwd:'12345678',
         pwdInputType:"password",
       }
     },
@@ -47,7 +49,6 @@
       phoneValid(){
         return Regs.phone(this.phone)
       },
-
     },
     methods:{
       checkValid() {
@@ -64,9 +65,18 @@
         return true
       },
       login() {
-        setTimeout(() =>{this.hgjToast('请输入正确的手机号')}, 500);
         if (this.checkValid()) {
           //login
+          this.account_login({phone:this.phone,pwd:this.pwd})
+          .then(res=>{
+            this.hgjToast({
+              content:'登录成功',
+              cbEntered:()=>{
+                helper.goPage(-1)
+              }
+            })
+            console.log('res login', res)
+          })
         }
       },
       togglePwdType() {
@@ -77,8 +87,13 @@
         }
         this.$refs.pwdInput.focus()
       },
+      ...mapActions([
+        'account_login'
+        ])
   },
-  created() {},
+  created() {
+
+  },
   }
 </script>
 <style lang="scss" scoped>

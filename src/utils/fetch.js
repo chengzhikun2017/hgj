@@ -16,10 +16,11 @@ function handleUnlogin(res){
   })
 }
 function handleWrongCode(res){
-  HGJ_VUE.hgjToast({
-    content:res.message,
-    type:'error',
-  })
+  // HGJ_VUE.hgjToast({
+  //   content:res.message,
+  //   type:'error',
+  // })
+  HGJ_VUE.hgjAlert(res.message)
 }
 
 export default function fetch(options,showloading=1) {
@@ -47,11 +48,12 @@ export default function fetch(options,showloading=1) {
           // let code=res.error
           switch(res.error){
             case 20006:handleUnlogin(res);break;
-            case 20011:handleWrongCode(res);break;
-            case 20012:handleWrongCode(res);break;
-            case 20006:console.log('code 20006');break;
+            // case 20011:handleWrongCode(res);break;
+            // case 20012:handleWrongCode(res);break;
+            // case 20006:console.log('code 20006');break;
+            default: handleWrongCode(res)
           }
-          reject(res)
+          
         }
       })
       .catch(err => {

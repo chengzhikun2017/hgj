@@ -11,6 +11,7 @@ import input from './components/containers/input.vue'
 import checkbox from './components/containers/checkbox.vue'
 import button from './components/containers/button.vue'
 import bttn_choose from './components/containers/button/bttn_choose.vue'
+import bttn_code from './components/containers/button/bttn_code.vue'
 import check from './components/containers/check.vue'
 import alert from './components/views/reminder/alert.vue'
 import loading from './components/views/reminder/loading.vue'
@@ -37,6 +38,7 @@ Vue.component('app-cricleicon', cricleicon)
 Vue.config.productionTip = false
 Vue.component('app-select', select)
 Vue.component('bttn-choose', bttn_choose)
+Vue.component('bttn-code', bttn_code)
 Vue.component('app-input', input)
 Vue.component('app-alert', alert)
 Vue.component('app-loading', loading)

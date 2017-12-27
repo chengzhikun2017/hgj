@@ -2,11 +2,13 @@ import fetch from '../../utils/fetch.js'
 import {
   simpleFetch
 } from '../../utils/fetch.js'
+import {HGJ_VUE} from '../../main.js'
 const account = {
   state: {
     phone: 13816938525,
     captcha: '',
     verifyCode:'',
+    userId:null,
     // isPhoneRegisted:false,
   },
   getters: {},
@@ -23,7 +25,6 @@ const account = {
   },
   actions: {
     account_isPhoneRegister(context, phone) {
-      console.log('context', context)
       var promise = fetch({
         // method:'get',
         url: '/account/isPhoneRegister',
@@ -36,15 +37,17 @@ const account = {
     account_getVerifyCode(context,code) {
       console.log('code',code)
       // return
-      fetch({
+      let promise=fetch({
         url: '/account/sendVerifyCode',
         params: {
           phone: context.state.phone,
           code:code
         },
-      }).then(res => {
-        this.hgjToast('已发送')
+      })
+      promise.then(res => {
+        HGJ_VUE.hgjToast('已发送')
       }, err => {})
+      return promise
     },
     account_signUp({state},{password,code}) {
       return fetch({
@@ -57,6 +60,20 @@ const account = {
           qudao:'',
         }
       })
+    },
+    account_login({state},{phone,pwd}){
+      var loginPromis=fetch({
+        url: 'account/login',
+        params:{
+          phone:phone,
+          password:pwd,
+        }
+      })
+      loginPromis.then(res=>{
+        console.log('res account login',res)
+        state.userId=res.userId
+      })
+      return loginPromis
     }
   }
 }

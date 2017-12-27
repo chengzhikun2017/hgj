@@ -98,7 +98,20 @@ var router = new Router({
   mode: 'history',
   routes: routes
 })
-
+// console.log('router',router)
+// router.prototype.firstEnter=1
+router.beforeEach((to,from,next)=>{
+  // console.log('router',to,from)
+  // console.log('first enter app',router.firstEnter,router)
+  // &&firstEnter===1
+  if(!from.name&&to.path!=='/cards'){
+    router.push('/cards')
+    router.push(to.path)
+    // router.prototype.firstEnter=0
+    return
+  }
+  next()
+})
 export default router
 // export default new Router({
 //   routes: [{

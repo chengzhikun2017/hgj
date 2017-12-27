@@ -44,9 +44,10 @@ export default {
       this.$emit('input',e.target.value) // v-model used on this component will register $on event listenr for parent component
       // this.$emit('change',e.target.value)
     },
-    focus(){
-      this.$refs.input.focus()
-    },
+    // focus(){
+    //   console.log('called',this)
+    //   this.$refs.input.focus.call()
+    // },
     onEnter(e){
       // console.log('this.onSubmit',this.onSubmit)
       if(this.onSubmit){

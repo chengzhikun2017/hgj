@@ -1,6 +1,6 @@
 <template>
-  <div>
-    test3
+  <div id='test3'>
+    <bttn-code></bttn-code>
   </div>
 </template>
 
@@ -13,10 +13,16 @@ export default {
   },
   methods:{},
   events: {},
-  components: {}
+  components: {},
+  mounted(){
+  },
+  components:{
+  },
 }
 </script>
 
 <style>
-
+#test3{
+  padding-top: 1rem;
+}
 </style>

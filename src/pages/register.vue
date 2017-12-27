@@ -33,7 +33,7 @@
     methods:{
       goSignUp(){
         this.isPhoneRegisted(this.phone).then(res=>{
-          console.log('res,account_isPhoneRegister',res)
+          // console.log('res,account_isPhoneRegister',res)
           if(res.status===1){
             this.hgjAlert({
               title:'已有账号',
@@ -53,7 +53,7 @@
     },
     computed:{
       phoneValid(){
-        this.$store.commit('account_setPhone',this.phone)
+        // this.$store.commit('account_setPhone',this.phone)
         return Regs.phone(this.phone)
       },
     },
@@ -63,11 +63,11 @@
       }
     },
     watch:{
-      // phoneValid(v){
-      //   if(v){
-      //     // this.$store.commit('account_setPhone',this.phone)
-      //   }
-      // },
+      phoneValid(v){
+        if(v){
+          this.$store.commit('account_setPhone',this.phone)
+        }
+      },
     },
   }
 </script>
