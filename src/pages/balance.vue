@@ -3,8 +3,8 @@
     <app-nav flex-box="0">余额提现</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-creditcard v-if="isEmpty" v-model="card1"></app-creditcard>
-        <div class="emptyCard" v-if="!isEmpty" flex="dir:top main:center cross:center">
+        <app-creditcard v-if="!isEmpty" v-model="card1"></app-creditcard>
+        <div class="emptyCard" v-if="isEmpty" flex="dir:top main:center cross:center">
           <div class="note" flex="cross:center">
             <span class="icon-alert"></span>
             <p>请选择您要提现的银行卡</p>
@@ -67,7 +67,8 @@
           billDate: 3,
           payDate: 13
         },
-        popFlag: true
+        popFlag: true,
+        isEmpty: false
       }
     },
     methods: {
