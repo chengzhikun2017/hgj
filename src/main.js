@@ -21,6 +21,7 @@ import recordList from './components/views/record_list.vue'
 import nav from './components/containers/nav.vue'
 import protocol from './components/containers/protocol.vue'
 import creditcard from './components/containers/creditcard.vue'
+import bankcard from './components/containers/bankcard.vue'
 import formitem from './components/containers/formitem.vue'
 import formitem2 from './components/containers/formitem2.vue'
 import formitem3 from './components/containers/formitem3.vue'
@@ -29,6 +30,7 @@ import cricleicon from './components/containers/icon/cricleIcon.vue'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
 Vue.component('app-creditcard', creditcard)
+Vue.component('app-bankcard', bankcard)
 Vue.component('app-formitem', formitem)
 Vue.component('app-formitem2', formitem2)
 Vue.component('app-formitem3', formitem3)
@@ -56,65 +58,65 @@ Vue.config.productionTip = false
 Vue.directive('scroll-load', {
   bind: function(el, binding, vnode) {
     // console.log('vnode', vnode)
-      // var el = document.querySelector('.list-container-inner')
+    // var el = document.querySelector('.list-container-inner')
     var cfg = binding.value,
       sel = cfg.listSelector
-      // console.log('scoll load config', cfg)
+    // console.log('scoll load config', cfg)
     var listContainer,
       btt,
       H = screen.height + 50 //trigger height
-      // console.log('binding cfg', cfg.listSelector)
-      // console.log('el', listContainer)
+    // console.log('binding cfg', cfg.listSelector)
+    // console.log('el', listContainer)
     el.addEventListener('scroll', () => {
-        listContainer = document.querySelector(sel)
-        btt = listContainer.getBoundingClientRect().bottom
-          // console.log('btt scroll',btt)
-        if (btt < H) {
-          // cfg.getting = true
-          // cfg.get(cfg.crrtPage)
-          cfg.method()
-            // console.log('load more')
-            // console.dirxml(el)
-        }
-      }, false)
-      // console.log('cfg', this)
+      listContainer = document.querySelector(sel)
+      btt = listContainer.getBoundingClientRect().bottom
+      // console.log('btt scroll',btt)
+      if (btt < H) {
+        // cfg.getting = true
+        // cfg.get(cfg.crrtPage)
+        cfg.method()
+        // console.log('load more')
+        // console.dirxml(el)
+      }
+    }, false)
+    // console.log('cfg', this)
   }
 })
 Vue.directive('pull-refresh', {
   bind: function(el, binding, vnode) {
     var cfg = binding.value,
       containerTop = 0
-      // console.warn('config', cfg)
-      // console.warn('config', binding)
+    // console.warn('config', cfg)
+    // console.warn('config', binding)
     var touch = {
       start: null,
       end: null,
       last: null,
       crrt: null,
     }
-    var scrollTop,outer
+    var scrollTop, outer
     el.addEventListener('touchstart', (e) => {
       // console.log('$e',e.touches[0].clientY)
       e.stopPropagation()
-        // e.preventDefault()
+      // e.preventDefault()
       touch.start = e.touches[0].clientY
       touch.last = e.touches[0].clientY
-        // console.log('touch', touch)
+      // console.log('touch', touch)
     }, false)
     el.addEventListener('touchmove', (e) => {
       // e.stopPropagation()
       e.preventDefault()
       touch.crrt = e.touches[0].clientY
-        // console.log('touch', touch)
-      outer= e.currentTarget.parentElement
-      scrollTop =outer.scrollTop
+      // console.log('touch', touch)
+      outer = e.currentTarget.parentElement
+      scrollTop = outer.scrollTop
 
-        // console.log('scrollTop', scrollTop)
-        // do sth to containerTop
+      // console.log('scrollTop', scrollTop)
+      // do sth to containerTop
       if (scrollTop > 0) {
         // console.log('touch', touch.crrt, touch.last)
         var step = touch.crrt - touch.last
-        outer.scrollTop-=step
+        outer.scrollTop -= step
         touch.last = touch.crrt
         // console.log('step', step)
         return
@@ -126,7 +128,7 @@ Vue.directive('pull-refresh', {
           if (containerTop === 0) {
             // console.log('touch', touch.crrt, touch.last)
             var step = touch.crrt - touch.last
-            outer.scrollTop-=step
+            outer.scrollTop -= step
             touch.last = touch.crrt
             // console.log('step', step)
 
@@ -151,17 +153,17 @@ Vue.directive('pull-refresh', {
     }, false)
     el.addEventListener('touchend', (e) => {
       e.stopPropagation()
-        // e.preventDefault()
+      // e.preventDefault()
       touch.end = e.changedTouches[0].clientY
-        // console.log('touch', touch)  
-        // console.log('cfg', cfg)
-        // console.log('cfg', cfg.method)
+      // console.log('touch', touch)  
+      // console.log('cfg', cfg)
+      // console.log('cfg', cfg.method)
 
       el.style.transition = '.5s cubic-bezier(0.23, 0.86, 0.39, 0.78)'
-        // if(this.containerTop>0){
-        //  console.log('refresh')
-        //  this.getNew()
-        // }
+      // if(this.containerTop>0){
+      //  console.log('refresh')
+      //  this.getNew()
+      // }
       if (containerTop > 0) { //可以设置其他值控制下拉的幅度
 
         if (cfg.method) {
@@ -185,19 +187,19 @@ Vue.directive('pull-refresh', {
   }
 })
 //如何记录下位置
-Vue.directive('inner-scroll',{
-  bind:function(el,binding,vnode){
+Vue.directive('inner-scroll', {
+  bind: function(el, binding, vnode) {
     var cfg = binding.value,
       containerTop = 0
-      // console.warn('config', cfg)
-      // console.warn('config', binding)
+    // console.warn('config', cfg)
+    // console.warn('config', binding)
     var touch = {
       start: null,
       end: null,
       last: null,
       crrt: null,
     }
-    var scrollTop,outer
+    var scrollTop, outer
     // console.log('bindded v-inner-scroll')
     el.addEventListener('touchstart', (e) => {
       e.stopPropagation()
@@ -209,22 +211,22 @@ Vue.directive('inner-scroll',{
       e.preventDefault()
       // console.log('e',e)
       touch.crrt = e.touches[0].clientY
-      outer= e.currentTarget.parentElement
+      outer = e.currentTarget.parentElement
       // console.log('outer',outer)
-      scrollTop =outer.scrollTop
+      scrollTop = outer.scrollTop
       // console.log('outer.scrollTop',outer.scrollTop)
       // HGJ_VUE.$store.commit('XXXXXrecord_list',outer.scrollTop)
       //////// bus.marketListScrollTop=outer.scrollTop
       if (scrollTop > 0) {
         var step = touch.crrt - touch.last
-        outer.scrollTop-=step
+        outer.scrollTop -= step
         touch.last = touch.crrt
         return
       } else {
         if (touch.crrt <= touch.last) {
           if (containerTop === 0) {
             var step = touch.crrt - touch.last
-            outer.scrollTop-=step
+            outer.scrollTop -= step
             touch.last = touch.crrt
             return
           } else {
@@ -247,8 +249,6 @@ Vue.directive('inner-scroll',{
     }, false)
   }
 })
-
-
 
 
 
@@ -310,4 +310,6 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-export {HGJ_VUE} 
+export {
+  HGJ_VUE
+}

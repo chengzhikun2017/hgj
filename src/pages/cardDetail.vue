@@ -1,6 +1,6 @@
 <template>
   <div class="cardDetail" flex="dir:top">
-    <app-nav title="信用卡详情" flex-box="0"></app-nav>
+    <app-nav flex-box="0">信用卡详情</app-nav>
     <article flex-box="1">
       <div class="banner">
         <app-creditcard v-model="card1"></app-creditcard>

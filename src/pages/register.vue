@@ -1,6 +1,6 @@
 <template>
   <div class="register hgj-container" flex="dir:top">
-    <app-nav title="注册页" flex-box="0"></app-nav>
+    <app-nav flex-box="0">注册页</app-nav>
     <article flex-box="1">
       <div class="logo"></div>
       <div class="form">

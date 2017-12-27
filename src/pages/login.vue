@@ -1,6 +1,6 @@
 <template>
   <div class="login" flex="dir:top">
-    <app-nav title="登录页" flex-box="0"></app-nav>
+    <app-nav flex-box="0">登录页</app-nav>
     <article>
       <div class="logo"></div>
       <div class="form">

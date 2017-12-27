@@ -13,8 +13,9 @@ import login from '@/pages/login.vue'
 import signUp from '@/pages/signUp.vue'
 import plan from '@/pages/plan.vue'
 import cardDetail from '@/pages/cardDetail.vue'
-import addCard1 from '@/pages/addCard1.vue'
-import addCard2 from '@/pages/addCard2.vue'
+import addCreditCard1 from '@/pages/addCreditCard1.vue'
+import addCreditCard2 from '@/pages/addCreditCard2.vue'
+import addBankCard from '@/pages/addBankCard.vue'
 import planrecords from '@/pages/planrecords.vue'
 import payresult from '@/pages/payresult.vue'
 import activeAccount from '@/pages/activeAccount.vue'
@@ -23,6 +24,8 @@ import orderEdit from '@/pages/orderEdit.vue'
 import balance from '@/pages/balance.vue'
 import register from '@/pages/register.vue'
 import paybankcard from '@/pages/paybankcard.vue'
+import pushScore from '@/pages/pushScore.vue'
+import pushShare from '@/pages/pushShare.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -68,8 +71,9 @@ index = index.concat(
   newRoute('/signUp', 'signUp', signUp),
   newRoute('/plan', 'plan', plan),
   newRoute('/carddetail', 'cardDetail', cardDetail),
-  newRoute('/addcard1', 'addCard1', addCard1),
-  newRoute('/addcard2', 'addCard2', addCard2),
+  newRoute('/addCreditcard1', 'addCreditCard1', addCreditCard1),
+  newRoute('/addCreditcard2', 'addCreditCard2', addCreditCard2),
+  newRoute('/addBankCard', 'addBankCard', addBankCard),
   newRoute('/planrecords', 'planrecords', planrecords),
   newRoute('/payresult', 'payresult', payresult),
   newRoute('/activeaccount', 'activeAccount', activeAccount),
@@ -78,6 +82,8 @@ index = index.concat(
   newRoute('/balance', 'balance', balance),
   newRoute('/register', 'register', register),
   newRoute('/paybankcard', 'paybankcard', paybankcard),
+  newRoute('/pushScore', 'pushScore', pushScore),
+  newRoute('/pushShare', 'pushShare', pushShare),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),

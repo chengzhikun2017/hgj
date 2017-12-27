@@ -1,6 +1,6 @@
 <template>
   <div class="orderEdit hgj-container" flex="dir:top">
-    <app-nav title="账单/还款日修改" flex-box="0"></app-nav>
+    <app-nav flex-box="0">账单/还款日修改</app-nav>
     <article flex-box="1">
       <div class="banner">
         <app-creditcard v-model="card1"></app-creditcard>

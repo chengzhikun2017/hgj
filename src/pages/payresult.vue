@@ -1,6 +1,6 @@
 <template>
   <div class="payresult" flex="dir:top">
-    <app-nav title="支付成功" flex-box="0"></app-nav>
+    <app-nav flex-box="0">支付成功</app-nav>
     <article flex-box="1">
       <div class="bill">
         <div class="sign">

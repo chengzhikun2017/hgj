@@ -1,28 +1,29 @@
 <template>
-  <div class="pushScore" flex="dir:top">
-    <app-nav title="推广积分页面" flex-box="0"></app-nav>
+  <div class="pushScore hgj-container" flex="dir:top">
+    <app-nav flex-box="0">推广积分页面</app-nav>
     <article flex-box="1">
       <div class="banner"></div>
       <div class="pushScore-content">
-        <div class="title">
-          <span></span>
-          <h2>积分任务</h2>
-          <button>积分如何使用?</button>
+        <div class="title" flex="cross:center">
+          <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
+          <h2 flex-box="1">积分任务</h2>
+          <button flex-box="0">积分如何使用?</button>
         </div>
+        <div class="liner"></div>
         <div class="points">
-          <div class="pointItem">
+          <div class="pointItem" flex="main:justify">
             <span>分享链接浏览: <span class="data">36次</span></span>
             <span class="point">+36积分</span>
           </div>
-          <div class="pointItem">
+          <div class="pointItem" flex="main:justify">
             <span>分享被注册: <span class="data">10次</span></span>
             <span class="point">+10积分</span>
           </div>
-          <div class="pointItem">
+          <div class="pointItem" flex="main:justify">
             <span>微信分享朋友圈: <span class="data">10天</span></span>
             <span class="point">+10积分</span>
           </div>
-          <div class="pointItem">
+          <div class="pointItem" flex="main:justify">
             <span>升级签到: <span class="data">18天</span></span>
             <span class="point">+18积分</span>
           </div>
@@ -31,3 +32,61 @@
     </article>
   </div>
 </template>
+<script>
+  export default {
+    data () {
+      return {
+
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
+  .pushScore {
+    .banner {
+      height: 1.78rem;
+      background: white;
+    }
+    .pushScore-content {
+      margin-top: 0.1rem;
+      padding: 0 0.2rem;
+      background: white;
+      .title {
+        padding: 0.2rem 0;
+        h2 {
+          padding-left: 0.1rem;
+        }
+        button {
+          padding: 0.05rem 0.12rem;
+          border-radius: 0.03rem;
+          border: none;
+          outline: none;
+          font-size: 0.13rem;
+          line-height: 1;
+          color: white;
+          background-color: #53d769;
+        }
+      }
+      .liner {
+        border:1px dashed #d3d3d3;
+        height: 1px;
+        transform: scaleY(.5);
+      }
+      .points {
+        padding-top: 0.125rem;
+        padding-bottom: 0.175rem;
+        .pointItem {
+          padding: 0.075rem 0;
+          font-size: 0.14rem;
+          color: #a4a4a4;
+          .data {
+            color: #383838;
+          }
+          .point {
+            color: #f15151;
+          }
+        }
+      }
+    }
+  }
+</style>

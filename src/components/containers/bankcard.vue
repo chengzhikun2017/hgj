@@ -1,0 +1,122 @@
+<template>
+  <div class="bankcard">
+    <div class="card" :class="bgcolor">
+      <div class="floor" flex="main:justify">
+        <div class="logo"></div>
+        <span class="btn1" v-show="value.type === 'check'">结算卡</span>
+        <span class="btn1" v-show="value.type === 'uncheck'">设为结算卡</span>
+        <span class="btn1" v-show="value.type === 'edit'">编辑</span>
+      </div>
+      <div class="floor floor2" flex="main:justify">
+        <div class="left">
+          <span>{{value.name}}</span>
+          <span class="liner">|</span>
+          <span>卡片尾号：{{value.lastNo}}</span>
+        </div>
+        <span class="btn2" v-show="value.type === 'build'">建立还款计划</span>
+      </div>
+      <div class="floor">
+        <!-- <span v-if="value.type !== 'choose'" >账单日：每月{{value.billDate}}号 <span class="liner">|</span> 还款日：每月{{value.payDate}}号</span> -->
+        <span class="btn3" v-show="value.type === 'choose'">重新选择银行卡</span>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    props: {
+      value: {
+        type: Object,
+        default: (function () {
+          return {
+            type: 'build',
+            name: '韩**',
+            lastNo: '3638'
+          }
+        })()
+      },
+      bgcolor: {
+        type: String,
+        default: 'cardbg-blue'
+      }
+    },
+    data () {
+      return {
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
+  .bankcard {
+    .card {
+      box-sizing: border-box;
+      width: 100%;
+      height: 1.68rem;
+      padding: 0.2rem 0.15rem;
+      border-radius: 0.08rem;
+      .floor {
+        font-size: 0.13rem;
+        color: white;
+        .logo {
+          width: 0.5rem;
+          height: 0.25rem;
+        }
+        .liner {
+          padding:0 0.06rem;
+        }
+        &.floor2 {
+          box-sizing: border-box;
+          height: 0.67rem;
+          padding-top: 0.265rem;
+          padding-bottom: 0.15rem;
+          border-bottom: 1px dashed white;
+          margin-bottom: 0.15rem;
+        }
+      }
+      .btn1 {
+        display: block;
+        padding:0 0.2rem;
+        height: 0.25rem;
+        border-radius: 0.125rem;
+        background-color: #ffffff;
+        box-shadow: 0px 0.015rem 0.065rem 0 rgba(13, 13, 13, 0.26);
+        text-align: center;
+        line-height: 0.25rem;
+        font-size: 0.13rem;
+      }
+      .btn2 {
+        display: inline-block;
+        border:0.005rem solid white;
+        padding:0.025rem 0.16rem;
+        border-radius: 0.125rem;
+        background: transparent;
+        color: white;
+      }
+      .btn3 {
+        display: table;
+        margin:0 auto;
+        border-radius: 0.125rem;
+        padding: 0.06rem 0.3rem;
+        font-size: 0.13rem;
+        line-height: 1;
+        color: #f84c4b;
+        background-color: #ffffff;
+        box-shadow: 0px 0.015px 0.065px 0 rgba(13, 13, 13, 0.26);
+      }
+      &.cardbg-blue {
+        background-image: linear-gradient(to right, #64a6f8, #6767e8);
+        box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
+        .btn1 {
+          color: #676dea;
+        }
+      }
+      &.cardbg-lightpurple {
+        background-image: linear-gradient(to right, #d449ed, #9d25db);
+        box-shadow: 0px 26px 78px 0 rgba(13, 13, 13, 0.56);
+        .btn1 {
+          color: #9f26dc;
+        }
+      }
+    }
+  }
+</style>

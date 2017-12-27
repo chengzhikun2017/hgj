@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <app-nav title="注册页"></app-nav>
+    <app-nav >注册页</app-nav>
     <article>
       <div class="logo"></div>
       <div class="form">

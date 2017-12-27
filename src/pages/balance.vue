@@ -1,6 +1,6 @@
 <template>
   <div class="balance hgj-container" flex="dir:top">
-    <app-nav title="余额提现" flex-box="0"></app-nav>
+    <app-nav flex-box="0">余额提现</app-nav>
     <article flex-box="1">
       <div class="banner">
         <app-creditcard v-if="isEmpty" v-model="card1"></app-creditcard>
@@ -69,6 +69,8 @@
         },
         popFlag: true
       }
+    },
+    methods: {
     }
   }
 </script>
