@@ -3,7 +3,7 @@
     <app-nav flex-box="0">余额提现</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-creditcard v-if="!isEmpty" v-model="card1"></app-creditcard>
+        <app-creditcard v-if="!isEmpty" :card="card1"></app-creditcard>
         <div class="emptyCard" v-if="isEmpty" flex="dir:top main:center cross:center">
           <div class="note" flex="cross:center">
             <span class="icon-alert"></span>
@@ -61,11 +61,11 @@
     data () {
       return {
         card1: {
-          type: 'choose',
+          status: 'PLAN',
           name: '韩**',
-          lastNo: '3638',
+          cardNoAfter4: '3638',
           billDate: 3,
-          payDate: 13
+          repaymentDate: 13
         },
         popFlag: true,
         isEmpty: false

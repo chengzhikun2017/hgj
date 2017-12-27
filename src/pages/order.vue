@@ -3,7 +3,7 @@
     <app-nav>支付订单</app-nav>
     <article>
       <div class="banner">
-        <app-creditcard v-model="card1"></app-creditcard>
+        <app-creditcard :card="card1"></app-creditcard>
         <div class="plan">
           <div class="note">
             养成计划：
@@ -52,11 +52,11 @@
     data () {
       return {
         card1: {
-          type: 'none',
+          status: 'PLAN',
           name: '韩**',
-          lastNo: '3638',
+          cardNoAfter4: '3638',
           billDate: 3,
-          payDate: 13
+          repaymentDate: 13
         }
       }
     }

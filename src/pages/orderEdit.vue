@@ -3,7 +3,7 @@
     <app-nav flex-box="0">账单/还款日修改</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-creditcard v-model="card1"></app-creditcard>
+        <app-creditcard :card="card1"></app-creditcard>
       </div>
       <div class="orderEdit-content">
         <app-formitem label="账单日" :first="true"></app-formitem>
@@ -20,11 +20,11 @@
     data () {
       return {
         card1: {
-          type: 'none',
+          status: 'PLAN',
           name: '韩**',
-          lastNo: '3639',
+          cardNoAfter4: '3638',
           billDate: 3,
-          payDate: 13
+          repaymentDate: 13
         }
       }
     }
