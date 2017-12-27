@@ -14,8 +14,8 @@
     </nav>
 
     <article v-if="choose == 0" flex-box="1">
-      <div class="cardItem">
-        <app-creditcard v-model="card1"></app-creditcard>
+      <div v-for="item in cardListCC" class="cardItem">
+        <app-creditcard :card="item"></app-creditcard>
       </div>
       <!-- <div class="cardItem">
         <app-creditcard v-model="card2" bgcolor="cardbg-lightpurple"></app-creditcard>
@@ -25,11 +25,8 @@
       </div>
     </article>
     <article v-if="choose == 1" flex-box="1">
-      <div class="cardItem">
-        <app-bankcard v-model="card3"></app-bankcard>
-      </div>
-      <div class="cardItem">
-        <app-bankcard v-model="card4" bgcolor="cardbg-lightpurple"></app-bankcard>
+      <div v-for="item in cardListDC"  class="cardItem">
+        <app-bankcard :card="item"></app-bankcard>
       </div>
       <div class="mybutton">
         <button ><span class="icon-add"></span>添加银行卡</button>
@@ -47,37 +44,15 @@
   export default {
     data() {
       return {
-        choose: 0,
-        card1: {
-          type: 'build',
-          name: '韩**',
-          lastNo: '3638',
-          billDate: 3,
-          payDate: 13
-        },
-        card2: {
-          type: 'change',
-          name: '韩**',
-          lastNo: '3638',
-          billDate: 3,
-          payDate: 13
-        },
-        card3: {
-          type: 'check',
-          name: '韩**',
-          lastNo: '3638',
-        },
-        card4: {
-          type: 'uncheck',
-          name: '韩**',
-          lastNo: '3638',
-        }
+        choose: 0
       }
     },
     created(){
       this.$nextTick(()=>{
 
       this.cards_getListCC()
+      console.log("hello")
+      console.log(this.cardListCC)
       })
 
     },

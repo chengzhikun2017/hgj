@@ -3,21 +3,21 @@
     <div class="card" :class="bgcolor">
       <div class="floor" flex="main:justify">
         <div class="logo"></div>
-        <span class="btn1" v-show="value.type === 'check'">结算卡</span>
-        <span class="btn1" v-show="value.type === 'uncheck'">设为结算卡</span>
-        <span class="btn1" v-show="value.type === 'edit'">编辑</span>
+        <span class="btn1" v-show="card.status === 'check'">结算卡</span>
+        <span class="btn1" v-show="card.status === 'uncheck'">设为结算卡</span>
+        <span class="btn1" v-show="card.status === 'edit'">编辑</span>
       </div>
       <div class="floor floor2" flex="main:justify">
         <div class="left">
-          <span>{{value.name}}</span>
+          <span>{{card.name}}</span>
           <span class="liner">|</span>
-          <span>卡片尾号：{{value.lastNo}}</span>
+          <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
-        <span class="btn2" v-show="value.type === 'build'">建立还款计划</span>
+        <span class="btn2" v-show="card.status === 'build'">建立还款计划</span>
       </div>
       <div class="floor">
-        <!-- <span v-if="value.type !== 'choose'" >账单日：每月{{value.billDate}}号 <span class="liner">|</span> 还款日：每月{{value.payDate}}号</span> -->
-        <span class="btn3" v-show="value.type === 'choose'">重新选择银行卡</span>
+        <!-- <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：每月{{card.payDate}}号</span> -->
+        <span class="btn3" v-show="card.status === 'choose'">重新选择银行卡</span>
       </div>
     </div>
   </div>
@@ -25,16 +25,17 @@
 <script>
   export default {
     props: {
-      value: {
+      card: {
         type: Object,
         default: (function () {
           return {
-            type: 'build',
+            status: 'PLAN',
             name: '韩**',
-            lastNo: '3638'
+            cardNoAfter4: '3638'
           }
         })()
       },
+      // 颜色不能作为参数传入，考虑到数据接口并没有设计这块
       bgcolor: {
         type: String,
         default: 'cardbg-blue'

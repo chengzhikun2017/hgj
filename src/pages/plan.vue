@@ -3,7 +3,7 @@
     <app-nav flex-box="0">新建还款计划</app-nav>
     <article flex-box="1">
       <div class="photoDetail">
-        <app-creditcard v-model="card1"></app-creditcard>
+        <app-creditcard :card="card1"></app-creditcard>
       </div>
       <div class="form">
         <app-formitem label="还款金额">
@@ -96,11 +96,11 @@
         securityFee:'',
         securityFeeOpts:[500,1000,2000,4000],
         card1: {
-          type: 'change',
+          status: 'PLAN',
           name: '韩**',
-          lastNo: '3638',
+          cardNoAfter4: '3638',
           billDate: 3,
-          payDate: 13
+          repaymentDate: 13
         },
         popFlag: true
       }

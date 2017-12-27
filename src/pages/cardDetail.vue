@@ -3,7 +3,7 @@
     <app-nav flex-box="0">信用卡详情</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-creditcard v-model="card1"></app-creditcard>
+        <app-creditcard :card="card1"></app-creditcard>
       </div>
       <div class="content">
         <div class="planbox">
@@ -45,11 +45,11 @@
     data () {
       return {
         card1: {
-          type: 'edit',
+          status: 'PLAN',
           name: '韩**',
-          lastNo: '3638',
+          cardNoAfter4: '3638',
           billDate: 3,
-          payDate: 13
+          repaymentDate: 13
         }
       }
     }

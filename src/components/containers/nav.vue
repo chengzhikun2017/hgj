@@ -15,6 +15,7 @@
 </template>
 <script>
   import '@/css/flex.css'
+  import helper from '@/utils/helper.js'
   export default {
     props: {
       diyBack: {
@@ -29,7 +30,8 @@
       back(){//temp
         if(!this.diyBack) {
           // 默认方法
-          this.$router.go(-1)
+          // this.$router.go(-1)
+          helper.goPage(-1)
         } else {
           this.$emit('back')
         }
