@@ -25,8 +25,8 @@ import orderEdit from '@/pages/orderEdit.vue'
 import balance from '@/pages/balance.vue'
 import register from '@/pages/register.vue'
 import paybankcard from '@/pages/paybankcard.vue'
-import pushScore from '@/pages/pushScore.vue'
-import pushShare from '@/pages/pushShare.vue'
+import populizeScore from '@/pages/populizeScore.vue'
+import populizeShare from '@/pages/populizeShare.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -83,8 +83,8 @@ index = index.concat(
   newRoute('/balance', 'balance', balance),
   newRoute('/register', 'register', register),
   newRoute('/paybankcard', 'paybankcard', paybankcard),
-  newRoute('/pushScore', 'pushScore', pushScore),
-  newRoute('/pushShare', 'pushShare', pushShare),
+  newRoute('/populizeScore', 'populizeScore', populizeScore),
+  newRoute('/populizeShare', 'populizeShare', populizeShare),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),
@@ -97,7 +97,7 @@ basicRoutes = [{
   name: 'error_page',
   // redirect: '/cards',
   component: error_page
-},{
+}, {
   path: '*',
   name: 'cards',
   redirect: '/cards',
@@ -112,11 +112,11 @@ var router = new Router({
 })
 // console.log('router',router)
 // router.prototype.firstEnter=1
-router.beforeEach((to,from,next)=>{
+router.beforeEach((to, from, next) => {
   // console.log('router',to,from)
   // console.log('first enter app',router.firstEnter,router)
   // &&firstEnter===1
-  if(!from.name&&to.path!=='/cards'){
+  if (!from.name && to.path !== '/cards') {
     router.push('/cards')
     router.push(to.path)
     // router.prototype.firstEnter=0
