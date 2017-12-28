@@ -5,7 +5,8 @@ import {
 import {HGJ_VUE} from '../../main.js'
 const account = {
   state: {
-    phone: '13365225235',
+    // phone: '13365225235',
+    phone: null,
     captcha: '',
     verifyCode:'',
     userId:null,

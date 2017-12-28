@@ -71,7 +71,6 @@
           .then(res=>{
             this.hgjToast({
               content:'登录成功',
-
               cbEntered:()=>{
                 console.log('cbEntered')
                 this.router_willBackToIndex()
