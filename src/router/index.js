@@ -25,8 +25,8 @@ import orderEdit from '@/pages/orderEdit.vue'
 import balance from '@/pages/balance.vue'
 import register from '@/pages/register.vue'
 import paybankcard from '@/pages/paybankcard.vue'
-import pushScore from '@/pages/pushScore.vue'
-import pushShare from '@/pages/pushShare.vue'
+import populizeScore from '@/pages/populizeScore.vue'
+import populizeShare from '@/pages/populizeShare.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -83,8 +83,8 @@ index = index.concat(
   newRoute('/balance', 'balance', balance),
   newRoute('/register', 'register', register),
   newRoute('/paybankcard', 'paybankcard', paybankcard),
-  newRoute('/pushScore', 'pushScore', pushScore),
-  newRoute('/pushShare', 'pushShare', pushShare),
+  newRoute('/populizeScore', 'populizeScore', populizeScore),
+  newRoute('/populizeShare', 'populizeShare', populizeShare),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),

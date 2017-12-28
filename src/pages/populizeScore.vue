@@ -1,9 +1,9 @@
 <template>
-  <div class="pushScore hgj-container" flex="dir:top">
+  <div class="populizeScore hgj-container" flex="dir:top">
     <app-nav flex-box="0">推广积分页面</app-nav>
     <article flex-box="1">
       <div class="banner"></div>
-      <div class="pushScore-content">
+      <div class="populizeScore-content">
         <div class="title" flex="cross:center">
           <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
           <h2 flex-box="1">积分任务</h2>
@@ -42,12 +42,12 @@
   }
 </script>
 <style lang="scss" scoped>
-  .pushScore {
+  .populizeScore {
     .banner {
       height: 1.78rem;
       background: white;
     }
-    .pushScore-content {
+    .populizeScore-content {
       margin-top: 0.1rem;
       padding: 0 0.2rem;
       background: white;

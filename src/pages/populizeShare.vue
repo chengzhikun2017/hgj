@@ -1,9 +1,9 @@
 <template>
-  <div class="pushShare hgj-container" flex="dir:top">
+  <div class="populizeShare hgj-container" flex="dir:top">
     <app-nav flex-box="0">推广积分页面</app-nav>
     <article flex-box="1">
       <div class="banner"></div>
-      <div class="pushShare-content">
+      <div class="populizeShare-content">
         <div class="title" flex="cross:center">
           <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
           <h2 flex-box="1">分润记录</h2>
@@ -30,12 +30,12 @@
   }
 </script>
 <style lang="scss" scoped>
-  .pushShare {
+  .populizeShare {
     .banner {
       height: 1.78rem;
       background: white;
     }
-    .pushShare-content {
+    .populizeShare-content {
       margin-top: 0.1rem;
       padding: 0 0.2rem;
       background: white;
