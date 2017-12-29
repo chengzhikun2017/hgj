@@ -1,6 +1,6 @@
 <template>
   <div class="app-input">
-   <input :type="type" ref='input' :value='value' @input='onInput' :placeholder='placeholder' class="input__" @keyup.enter='onEnter($event)'>
+   <input :type="type" ref='input' :value='value'  :disabled='disabled' @input='onInput' :placeholder='placeholder' class="input__" @keyup.enter='onEnter($event)'>
    <div class="border"></div>
   </div>
 </template>
@@ -73,6 +73,9 @@ export default {
     font-size: inherit;
     display: inline-block;
     color: inherit;
+  }
+  input[disabled='disabled']{
+    color: #666;
   }
 }
 

@@ -83,13 +83,13 @@
       this.getCaptcha()
     },
     beforeRouteEnter(to,from,next){
-      console.log('to,from,next',to,from,next,)
-      console.log('/register/.test(from.name)',/register/.test(from.name))
+      // console.log('to,from,next',to,from,next,)
+      // console.log('/register/.test(from.name)',/register/.test(from.name))
       if(/register/.test(from.name)){
         next()
       }else{
-        console.log('',this)
-        helper.goPage('/register')
+        // console.log('',this)
+        helper.replaceRouter('/register')
       }
     },
     methods:{

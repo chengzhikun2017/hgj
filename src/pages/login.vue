@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="note" flex="main:justify">
-        <p>新用户注册</p>
+        <p @click='goSignUp'>新用户注册</p>
         <p>忘记密码？</p>
       </div>
     </article>
@@ -40,7 +40,7 @@
   export default {
     data () {
       return {
-        phone:'13816938525',
+        phone:'13365225235',
         pwd:'12345678',
         pwdInputType:"password",
       }
@@ -51,6 +51,9 @@
       },
     },
     methods:{
+      goSignUp(){
+        helper.goPage('/register')
+      },
       checkValid() {
         if (!this.phoneValid) {
           CR.inputWarn(this,'请输入正确的手机号','phoneInput')

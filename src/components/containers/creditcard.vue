@@ -5,7 +5,8 @@
         <div class="logo"></div>
         <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span>
         <span class="btn1" v-show="card.status === 'change'">换一张卡</span>
-        <span class="btn1" v-show="card.status === 'SUCCESS'">编辑</span>
+        <span class="btn1" v-show="card.status === 'SUCCESS'" @click='goEdit'>编辑</span>
+        <span class="btn1" v-show="card.status === 'SUCCESS'" @click='deleteConfirm'>删除</span>
       </div>
       <div class="floor floor2" flex="main:justify">
         <div class="left">
@@ -23,6 +24,8 @@
   </div>
 </template>
 <script>
+  import helper from './../../utils/helper.js'
+  import {mapActions} from 'vuex'
   export default {
     props: {
       card: {
@@ -42,6 +45,39 @@
         type: String,
         default: 'cardbg-blue'
       }
+    },
+    methods:{
+      deleteConfirm(){
+        this.hgjAlert({
+          content:'确认删除尾号为'+this.card.cardNoAfter4+'的信用卡',
+        options: [{
+          text: '确认',
+          callback: this.deleteCard
+        },{
+          text:'取消',
+        }],
+      })
+      },
+      deleteCard(){
+        console.log('delete')
+        this.$store.dispatch('addCardCC_delete',this.card.cardId)
+        .then(res=>{
+          // console.log('delete CC card res',res)
+        })
+      },
+      goEdit(){
+        let temp={
+          cardId:this.card.cardId,
+          billDate:this.card.billDate,
+          repaymentDate:this.card.repaymentDate,
+        }
+        let url=helper.urlConcat('/orderedit',this.card)
+        helper.goPage(url)
+      },
+      // ...mapActions([
+      //   'addCardCC_delete',
+      //   'cards_listCC',
+      //   ])
     },
     data () {
       return {

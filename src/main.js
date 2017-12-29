@@ -284,8 +284,6 @@ Vue.prototype.hgjHideLoading = () => {
 }
 
 router.beforeEach((to, from, next) => {
-  console.log('HGJ_VUE.$store.router.state', HGJ_VUE.$store.state)
-
   // next()
   // return
   let routerState = HGJ_VUE.$store.state.router

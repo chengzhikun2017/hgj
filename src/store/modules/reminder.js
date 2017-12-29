@@ -24,6 +24,8 @@ const reminder = {
   actions: {},
   mutations: {
     reminder_closeAlert(s) {
+      s.alert.content=null
+      s.alert.title=null
       s.alert.isShow = false
     },
     reminder_showAlert(s, alert) {

@@ -6,8 +6,9 @@
         <div class="portraiture" @click='goSignIn'>
           <img src="" alt="">
         </div>
-        <div class="name">韩鑫波</div>
-        <div class="phone">187-3512-3489</div>
+        <div class="name">{{userInfo.name||'未实名'}}</div>
+        <div class="phone">{{userInfo.phone||'未登录~~吗？'}}</div>
+        <!-- <div class="phone">{{phone}}</div> -->
         <div class="liner"></div>
         <div class="info" flex="main:center cross:center">
           <div class="item">
@@ -76,6 +77,14 @@ export default {
   methods:{
     goSignIn(){
       helper.goPage('/login')
+    },
+  },
+  computed:{
+    userInfo(){
+      return this.$store.state.account
+    },
+    phone(){
+      return this.$store.state.account.phone
     },
   },
   events: {},

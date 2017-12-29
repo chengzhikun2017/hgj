@@ -135,7 +135,6 @@
         'addCardCC_submit',
         'addCardCC_getCode',
         ])
-
     },
     created(){
       this.setYearOptions()
@@ -149,10 +148,14 @@
     },
     beforeRouteEnter(to,from,next){
       //todo:刷新此页面，进入addcard1
-      if(/addCreditcard1/.test(from.name)){
+      // console.log('%c from','color:blue',from)
+      if(/addCreditCard1/.test(from.name)){
+        // console.log('%c from cc card page1','color:yellow')
+
         next()
       }else{
-        helper.goPage('/addCreditcard1')
+        // console.log('%c redirect to add cc card page1','color:yellow')
+        helper.replaceRouter('/addCreditcard1')
       }
       next()
     },

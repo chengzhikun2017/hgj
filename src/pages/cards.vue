@@ -21,7 +21,7 @@
         <app-creditcard v-model="card2" bgcolor="cardbg-lightpurple"></app-creditcard>
       </div> -->
       <div class="mybutton">
-        <app-button @click.native='goAddCreditCard'><span class="icon-add"></span>添加银行卡</app-button>
+        <app-button class='add-bttn' @click.native='goAddCreditCard'><span class="icon-add"></span>添加银行卡</app-button>
       </div>
     </article>
     <article v-if="choose == 1" flex-box="1">
@@ -29,7 +29,7 @@
         <app-bankcard :card="item"></app-bankcard>
       </div>
       <div class="mybutton">
-        <button ><span class="icon-add"></span>添加银行卡</button>
+        <app-button class='add-bttn' @click.native='goAddDC'><span class="icon-add"></span>添加银行卡</app-button>
         <div class="others" flex="main:justify">
           <span>什么是结算卡？</span>
           <span>点击分享</span>
@@ -50,15 +50,16 @@
     created(){
       this.$nextTick(()=>{
 
-      this.cards_getListCC()
-      console.log("hello")
-      console.log(this.cardListCC)
+      // this.cards_getListCC()
       })
 
     },
     methods:{
       goAddCreditCard(){
         helper.goPage('/addCreditcard1')
+      },
+      goAddDC(){
+        helper.goPage('/addbankcard')
       },
       back(){//temp
         this.$router.go(-1)
@@ -132,7 +133,7 @@
       }
       .mybutton {
         padding: 0.2rem 0;
-        button {
+        .add-bttn {
           width: 100%;
           height: 0.44rem;
           border-radius: 0.44rem;

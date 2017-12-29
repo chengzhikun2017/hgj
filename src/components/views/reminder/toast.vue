@@ -76,6 +76,7 @@ export default {
   },
   methods:{
     afterLeave(){
+        console.log('this.toast.cbLeaved',this.toast.cbLeaved)
       this.cbLeaved()
     },
     afterEnter(){

@@ -3,9 +3,11 @@ import axios from 'axios'
 import store from '@/store'
 import {HGJ_VUE} from '../main.js'
 import helper from '../utils/helper.js'
+// const apiUrl='http://106.14.119.213:9009/api/'
+const apiUrl='/api'
 function handleUnlogin(res){
   HGJ_VUE.hgjAlert({
-    content:res.message,
+    title:res.message,
     options:[
       { text:'取消',color:'#ccc'},
       { text:'登录',callback:()=>{
@@ -24,15 +26,13 @@ function handleWrongCode(res){
 // console.log('HGJ_VUE',HGJ_VUE)
 console.log('process',process)
 export default function fetch(options,showloading=1) {
-    console.log('fetch options',options,HGJ_VUE)
   var fetchPromis=new Promise((resolve, reject) => {
     HGJ_VUE.hgjShowLoading()
     const instance = axios.create({
       // 超时时间设置
       timeout: 6000,
       // 请求的host设置
-      baseURL: 'http://106.14.119.213:9009/api/',
-      // baseURL: '/api',
+      baseURL: apiUrl,
       // 通过cookies进行认证
       withCredentials: true,
       // headers: {'Access-Control-Allow-Origin': "*"},
@@ -42,7 +42,7 @@ export default function fetch(options,showloading=1) {
         // status必然是200
         
         HGJ_VUE.hgjHideLoading()
-        console.log('responese',response)
+        console.log('responese to>>>%c'+options.url,'color:green','<<<',response)
         const res = response.data
           // 根据陶雨的基本标准，做error的错误封装
         if (res.error === 0) {
@@ -51,7 +51,7 @@ export default function fetch(options,showloading=1) {
           // let code=res.error
           switch(res.error){
             case 20006:handleUnlogin(res);break;
-            case 20040:resolve(res);break;
+            // case 20040:resolve(res);break;
             // case 20011:handleWrongCode(res);break;
             // case 20012:handleWrongCode(res);break;
             // case 20006:console.log('code 20006');break;
@@ -79,20 +79,20 @@ export function simpleFetch(options) {
       // 超时时间设置
       timeout: 6000,
       // 请求的host设置
-      // baseURL: 'http://106.14.119.213:9009/api/',
-      baseURL: '/api',
+      baseURL: apiUrl,
       // 通过cookies进行认证
       withCredentials: true,
       // headers: {'Access-Control-Allow-Origin': "*"},
     })
     instance(options).then(response => {
         // status必然是200
-        console.log('simpleFetch responese',response)
+        console.log('simpleFetch responese to>>>%c'+options.url,'color:green','<<<',response)
         const res = response
           // 根据陶雨的基本标准，做error的错误封
         if(res.status==200){
           resolve(res)
         }else{
+          HGJ_VUE.hgjAlert(res.message)
           reject(res.message)
         }
       })

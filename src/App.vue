@@ -8,7 +8,7 @@
     <app-toast></app-toast>
     <app-loading></app-loading>
     <button @click='test' id='test-bttn'> test</button>
-    <button @click='test2' id='test-bttn2'> test2</button>
+    <button @click='test2' id='test-bttn2'> 登出</button>
   </div>
 </template>
 
@@ -29,13 +29,26 @@ export default {
   },
   computed:{
   },
+  created(){
+    this.$nextTick(()=>{
+      this.account_checkSession().then(res=>{
+        if(res.data.data&&res.data.data.userId){
+          this.cards_getListCC()
+          this.cards_getListDC()
+        }else{
+          console.log('未登录')
+        }
+        console.log('res check session',res)
+      })
+    })
+  },
   methods:{
     test(){
-      console.log('vuex state',this.$store.state)
+      console.log('vuex state',this.$store.state,this.$store)
       return
-      this.router_setNewPath()
-      this.router_willBackToIndex()
-      router.go(-1)
+      // this.router_setNewPath()
+      // this.router_willBackToIndex()
+      // router.go(-1)
       // fetch()
       // this.testAlert()
     },
@@ -52,7 +65,8 @@ export default {
       // this.hzgAlert(alert)
     },
     test2(){
-      // this.pushRoutes(['/test1','/test2','/test3',])
+      this.account_logout()
+
     },
     pushRoutes(paths){
       let i=0
@@ -62,22 +76,19 @@ export default {
         i++
       }
     },
-    resetRoute(routeArr){//
-      router.go(-3,()=>{
-        console.warn('router go -3')
-      })
-      setTimeout(()=> {
-        this.pushRoutes(['/mine','/test1','/test3',])
-      }, 2000);
-    },
-    // ...mapMutations([
-    //   'router_willBackToIndex',
-    //   'router_setNewPath',
-    // ]),
-    ...mapMutations({
-      router_willBackToIndex:'router_willBackToIndex',
-      router_setNewPath:'router_setNewPath',
-    }),
+
+    ...mapMutations([
+      'router_willBackToIndex',
+      'router_setNewPath',
+    ]),
+    ...mapActions([
+      'account_checkSession',
+      'account_getUserInfo',
+      'account_logout',
+      'cards_getListCC',
+      'cards_getListDC',
+      ])
+
   },
 }
 </script>

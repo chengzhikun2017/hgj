@@ -23,6 +23,9 @@ export default class helper {
       callback()
     }
   }
+  static replaceRouter(path){
+    router.replace(path)
+  }
   static saveUserInfoToLocal(data){
     console.log('data')
     //save user info to localstorage

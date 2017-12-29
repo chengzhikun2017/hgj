@@ -116,13 +116,16 @@ var router = new Router({
 // router.prototype.firstEnter=1
 router.beforeEach((to,from,next)=>{
   console.log('router',to,from)
-  // console.log('first enter app',router.firstEnter,router)
-  // &&firstEnter===1
+  //todo:
+  //如果是注册页面
+  //或者绑定信用卡页面
+  //需要独立判断
+  //push进入的fullPath 替换step1 的页面
   if(!from.name&&to.path!==(config.routerRoot+'/cards')){
-    //todo: 使用replace
-    router.push(config.routerRoot+'/cards')
-    router.push(to.path)
-    // router.prototype.firstEnter=0
+    console.warn('%c','color:red','replace to cards page %c')
+    router.replace(config.routerRoot+'/cards',()=>{
+      router.push(to.fullPath)
+    })
     return
   }
   next()

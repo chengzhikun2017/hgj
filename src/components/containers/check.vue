@@ -41,7 +41,7 @@ export default {
   },
   methods:{
     onClick(e){
-      console.log('onClick',!this.checked)
+      // console.log('onClick',!this.checked)
       // this.$emit('select',e.target.value)
       this.$emit('input',!this.value) // v-model used on this component will register $on event listenr for parent component
       // this.$emit('change',e.target.value)

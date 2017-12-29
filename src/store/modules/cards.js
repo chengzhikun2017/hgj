@@ -33,7 +33,15 @@ const cards = {
         console.log('res',res)
         state.cardsListCC=res
       })
-    }
+    },
+    cards_getListDC({state}){
+       fetch({
+        url:'card/dc',
+      }).then(res=>{
+        console.log('%c res card dc list','color:red',res)
+        state.cardsListDC=res
+      })
+    },
   }
 }
 

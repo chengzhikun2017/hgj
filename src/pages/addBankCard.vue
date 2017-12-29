@@ -8,12 +8,21 @@
         <button class="btn">支持的银行</button>
       </div>
       <div class="addbankcard-content">
-        <app-formitem label="持卡人姓名" :first="true"></app-formitem>
-        <app-formitem label="储蓄卡卡号"></app-formitem>
-        <app-formitem label="预留手机号" :last="true"></app-formitem>
+        <app-formitem label="持卡人姓名" :first="true">
+          <app-input class='form-input' :placeholder='"请输入持卡人姓名"' v-model='name' :disabled='false'/>
+        </app-formitem>
+        <app-formitem label="持卡人身份证">
+          <app-input class='form-input' :placeholder='"请输入身份证号"' v-model='idCardNo' />
+        </app-formitem>
+        <app-formitem label="储蓄卡卡号">
+          <app-input class='form-input' :placeholder='"请输入储蓄卡卡号"' v-model='cardNo' />
+        </app-formitem>
+        <app-formitem label="预留手机号" :last="true">
+          <app-input class='form-input' :placeholder='"请输入银行预留手机号"' v-model='phone' />
+        </app-formitem>
       </div>
       <div class="mybutton">
-        <app-button>同意并绑定</app-button>
+        <app-button @click.native='submit'>同意并绑定</app-button>
         <div class="note">
           <app-protocol></app-protocol>
         </div>
@@ -22,12 +31,66 @@
   </div>
 </template>
 <script>
+  import {mapActions,mapMutations,mapGetters} from 'vuex'
+  import helper from '../utils/helper.js'
+
   export default {
     data () {
       return {
-
+        name:null,
+        idCardNo:null,
+        phone:null,
+        cardNo:null,
       }
-    }
+    },
+    methods:{
+      submit(){
+        //todo: 验证
+        this.addCardDC_setValue(this)
+        this.addCardDC_submit()
+      },
+      getValueFromStore(){
+        let info = this.$store.state.addCardDC.info
+        console.log('add bank card info ',info)
+        this.name=info.name
+        this.idCardNo=info.idCardNo
+        this.phone=info.phone
+        this.cardNo=info.cardNo
+        if(this.userInfo.name){
+          this.name=this.userInfo.name
+          this.idCardNo=this.userInfo.idCardNo
+        }
+      },
+      ...mapMutations([
+        'addCardDC_setValue',
+        ]),
+      ...mapActions([
+        'addCardDC_submit',
+        ])
+    },
+    watch:{
+      realNameVerified(v){
+        if(v){
+          this.name=this.userInfo.name
+          this.idCardNo=this.userInfo.idCardNo
+        }
+      },
+    },
+    computed:{
+      realNameVerified(){
+        return this.userInfo.isRealNamed
+      },
+      ...mapGetters({
+        userInfo:'account_userInfo'
+      })
+    },
+
+    created(){
+      this.getValueFromStore()
+    },
+    beforeDestroy(){
+      this.addCardDC_setValue(this)
+    },
   }
 </script>
 <style lang="scss" scoped>

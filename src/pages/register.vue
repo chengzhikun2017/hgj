@@ -21,6 +21,7 @@
 <script>
   import Regs from '../utils/reg.js'
   import {mapActions} from 'vuex'
+  import helper from './../utils/helper.js'
   // import API from '../api'
   // import accountAPI from '../api/account.js'
 
@@ -43,7 +44,7 @@
               // ],
             })
           }else{
-            this.$router.push('/signup')
+            helper.goPage('/signup')
           }
         })
       },
