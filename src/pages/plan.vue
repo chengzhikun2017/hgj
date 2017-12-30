@@ -10,7 +10,7 @@
           <app-input type="text" :placeholder='"请输入还款金额"' class='form-input' v-model='planAmount'/>
         </app-formitem>
         <app-formitem :last="true" label="选择开始时间">
-            <app-select v-model='startDay' :options='daysAvailable' :placeholder='"请选择开始日期"' />
+            <app-select v-model='startDay' :options='daysAvailable' :filter='dayPaser' :placeholder='"请选择开始日期"' />
         </app-formitem>
         <app-formitem :last="true" label="计划执行天数">
           <app-select v-model='duration' :options='durationAvailable' :placeholder='"请选择执行天数"' />
@@ -83,9 +83,12 @@
         planAmount:'',
         startDay:'',
         daysAvailable:[
-        {value:'3号'},
-        {value:'4号'},
-        {value:'5号'},
+        {value:'3'},
+        {value:'4'},
+        {value:'5'},
+        {value:'6'},
+        {value:'7'},
+        {value:'8'},
         ],
         duration:'',
         durationAvailable:[
@@ -106,6 +109,9 @@
       }
     },
     methods:{
+      dayPaser(v){
+        return v+'天'
+      },
       chooseSecurityFee(fee){
         this.securityFee=fee
       },

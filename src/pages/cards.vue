@@ -15,7 +15,7 @@
 
     <article v-if="choose == 0" flex-box="1">
       <div v-for="item in cardListCC" class="cardItem">
-        <app-creditcard :card="item"></app-creditcard>
+        <app-creditcard :card="item" @click.native='goCardDetail'></app-creditcard>
       </div>
       <!-- <div class="cardItem">
         <app-creditcard v-model="card2" bgcolor="cardbg-lightpurple"></app-creditcard>
@@ -55,6 +55,9 @@
 
     },
     methods:{
+      goCardDetail(){
+        helper.goPage('/cardDetail')
+      },
       goAddCreditCard(){
         helper.goPage('/addCreditcard1')
       },
