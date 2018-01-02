@@ -58,7 +58,6 @@ Vue.component('app-record-list', recordList)
 Vue.config.productionTip = false
 
 console.log('process',process.env)
-console.log('vue directive',Vue.directives)
 Vue.directive('scroll-load', {
   bind: function(el, binding, vnode) {
     // console.log('vnode', vnode)

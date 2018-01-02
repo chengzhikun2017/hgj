@@ -1,3 +1,4 @@
+import config from '../config.js'
 import Vue from 'vue'
 import Router from 'vue-router'
 import cards from '../pages/cards.vue'
@@ -40,7 +41,7 @@ Vue.use(Router)
  * @param  {[配置]} options   路由的配置，e.g. meta:{ keepAlive:true}
  * @return {[type]}           [description]
  */
-var rootPath = ''
+// var rootPath = ''
 var newRoute = function(paths, name, component, options) {
   // console.log('typeof paths', typeof paths)
   if (typeof paths === 'string') {
@@ -54,7 +55,7 @@ var newRoute = function(paths, name, component, options) {
     newRoute, i
   for (i = 0; i < l; i++) {
     newRoute = new Object({
-      path: rootPath + paths[i],
+      path: config.routerRoot + paths[i],
       name: name + '_' + i,
       component: component,
     })
@@ -115,7 +116,7 @@ routes = routes.concat(index.concat(
   route_test,
 ), basicRoutes)
 var router = new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: routes
 })
 // console.log('router',router)
