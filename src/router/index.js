@@ -1,4 +1,3 @@
-import config from '../config.js'
 import Vue from 'vue'
 import Router from 'vue-router'
 import cards from '../pages/cards.vue'
@@ -10,6 +9,7 @@ import test1 from '../pages/testPage/test1.vue'
 import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
 import error_page from '../pages/testPage/error.vue'
+
 import login from '@/pages/login.vue'
 import signUp from '@/pages/signUp.vue'
 import plan from '@/pages/plan.vue'
@@ -28,6 +28,9 @@ import paybankcard from '@/pages/paybankcard.vue'
 import populizeScore from '@/pages/populizeScore.vue'
 import populizeShare from '@/pages/populizeShare.vue'
 import introduce from '@/pages/introduce.vue'
+import editPwd from '@/pages/editPwd.vue'
+import forgetPwdStep1 from '@/pages/forgetPwdStep1.vue'
+import forgetPwdStep2 from '@/pages/forgetPwdStep2.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -37,7 +40,7 @@ Vue.use(Router)
  * @param  {[配置]} options   路由的配置，e.g. meta:{ keepAlive:true}
  * @return {[type]}           [description]
  */
-// var rootPath = config.routerRoot
+var rootPath = ''
 var newRoute = function(paths, name, component, options) {
   // console.log('typeof paths', typeof paths)
   if (typeof paths === 'string') {
@@ -51,7 +54,7 @@ var newRoute = function(paths, name, component, options) {
     newRoute, i
   for (i = 0; i < l; i++) {
     newRoute = new Object({
-      path: config.routerRoot + paths[i],
+      path: rootPath + paths[i],
       name: name + '_' + i,
       component: component,
     })
@@ -86,7 +89,10 @@ index = index.concat(
   newRoute('/paybankcard', 'paybankcard', paybankcard),
   newRoute('/populizeScore', 'populizeScore', populizeScore),
   newRoute('/populizeShare', 'populizeShare', populizeShare),
-  newRoute('/introduce', 'introduce', introduce)
+  newRoute('/introduce', 'introduce', introduce),
+  newRoute('/editPwd', 'editPwd', editPwd),
+  newRoute('/forgetPwdStep1', 'forgetPwdStep1', forgetPwdStep1),
+  newRoute('/forgetPwdStep2', 'forgetPwdStep2', forgetPwdStep2)
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),
@@ -94,40 +100,34 @@ route_test = route_test.concat(
   newRoute('/test2', 'test2', test2),
   newRoute('/test3', 'test3', test3),
 )
-basicRoutes = [
-// {
-//   path: '/*',
-//   name: 'error_page',
-//   // redirect: '/cards',
-//   component: error_page
-// },
-{
+basicRoutes = [{
+  path: '/*',
+  name: 'error_page',
+  // redirect: '/cards',
+  component: error_page
+}, {
   path: '*',
   name: 'cards',
-  redirect: config.routerRoot+'/cards',
+  redirect: '/cards',
   component: cards
 }]
 routes = routes.concat(index.concat(
   route_test,
 ), basicRoutes)
 var router = new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: routes
 })
 // console.log('router',router)
 // router.prototype.firstEnter=1
-router.beforeEach((to,from,next)=>{
-  console.log('router',to,from)
-  //todo:
-  //如果是注册页面
-  //或者绑定信用卡页面
-  //需要独立判断
-  //push进入的fullPath 替换step1 的页面
-  if(!from.name&&to.path!==(config.routerRoot+'/cards')){
-    console.warn('%c','color:red','replace to cards page %c')
-    router.replace(config.routerRoot+'/cards',()=>{
-      router.push(to.fullPath)
-    })
+router.beforeEach((to, from, next) => {
+  // console.log('router',to,from)
+  // console.log('first enter app',router.firstEnter,router)
+  // &&firstEnter===1
+  if (!from.name && to.path !== '/cards') {
+    router.push('/cards')
+    router.push(to.path)
+    // router.prototype.firstEnter=0
     return
   }
   next()
