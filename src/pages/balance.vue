@@ -23,7 +23,7 @@
       <div class="mybutton">
         <app-button>提交</app-button>
       </div>
-      <div class="popView" v-show="false">
+      <div class="popView" v-show="popFlag">
         <div class="popcontent">
           <div class="planbox">
             <header flex="cross:center">
@@ -94,6 +94,19 @@
     },
     computed:{
       cards(){
+        return [{
+          status: 'PLAN',
+          name: '韩**',
+          cardNoAfter4: '3638',
+          billDate: 3,
+          repaymentDate: 13
+        },{
+          status: 'PLAN',
+          name: '韩**',
+          cardNoAfter4: '3638',
+          billDate: 3,
+          repaymentDate: 13
+        }] 
         return this.$store.state.cards.cardsListDC
       }
     },
