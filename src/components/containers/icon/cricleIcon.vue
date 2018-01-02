@@ -1,6 +1,6 @@
 <template>
   <div class="cricleicon" :class="bgcolor" flex="main:center cross:center">
-    <span :class="icon" class="icon"></span>
+    <span :class="icon" class="icon" :style="'font-size: ' + size + ';'"></span>
   </div>
 </template>
 <script>
@@ -13,6 +13,10 @@
       bgcolor: {
         type: String,
         default: 'bg-red'
+      },
+      size: {
+        type: String,
+        default: '0.23rem'
       }
     },
     data () {
@@ -28,7 +32,6 @@
     border-radius: 50%;
     .icon {
       color: white;
-      font-size: 0.23rem;
     }
   }
 </style>

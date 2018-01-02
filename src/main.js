@@ -30,6 +30,7 @@ import formitem2 from './components/containers/formitem2.vue'
 import formitem3 from './components/containers/formitem3.vue'
 import record from './components/containers/record.vue'
 import cricleicon from './components/containers/icon/cricleIcon.vue'
+import share from './components/views/share'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
 Vue.component('app-creditcard', creditcard)
@@ -53,11 +54,14 @@ Vue.component('app-checkbox', checkbox)
 Vue.component('app-check', check)
 Vue.component('app-button', button)
 Vue.component('app-record-list', recordList)
+Vue.component('app-share', share)
+
+
 
 // Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
-console.log('process',process.env)
+console.log('process', process.env)
 Vue.directive('scroll-load', {
   bind: function(el, binding, vnode) {
     // console.log('vnode', vnode)
@@ -267,12 +271,15 @@ var HGJ_VUE = new Vue({
 Vue.prototype.hgjAlert = (alert) => {
   HGJ_VUE.$store.commit('reminder_showAlert', alert)
 }
-Vue.prototype.hgjToast = (toast,type) => {
+Vue.prototype.hgjToast = (toast, type) => {
   // console.log('toast', toast)
-  if(type!==undefined && typeof toast ==='string'){
-    let temp={}
-    temp={content:toast,type:type}
-    toast=temp
+  if (type !== undefined && typeof toast === 'string') {
+    let temp = {}
+    temp = {
+      content: toast,
+      type: type
+    }
+    toast = temp
   }
   HGJ_VUE.$store.commit('reminder_showToast', toast)
 }
