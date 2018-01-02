@@ -1,5 +1,5 @@
 <template>
-  <div class="formitem3" :class="{'first':first,'last':last}">
+  <div class="formitem3" :class="{'first':first,'last':last, 'full': long}">
     <div class="item" flex="cross:center main:justify">
       <slot name="icon" flex-box="0"></slot>
       <div class="formitem-content" flex-box="1">
@@ -32,6 +32,10 @@
         default: false
       },
       notePoint: {
+        type: Boolean,
+        default: false
+      },
+      long: {
         type: Boolean,
         default: false
       }
@@ -79,6 +83,9 @@
     };
     width: 100%;
     padding: 0 0.2rem;
+    &.full {
+      padding: 0;
+    }
     .item {
       height: 0.64rem;
     }

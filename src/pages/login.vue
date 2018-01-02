@@ -46,9 +46,20 @@
       }
     },
     computed:{
-      phoneValid(){
-        return Regs.phone(this.phone)
+      phoneValid () {
+        if (!Regs.phone(this.phone)) {
+          CR.inputWarn(this,'请输入正确的手机号','phoneInput')
+          return false
+        }
+        return true
       },
+      passwordValid () {
+        if (this.pwd.length < 6) {
+          CR.inputWarn(this,'密码不能小于6位','pwdInput')
+          return false
+        }
+        return true
+      }
     },
     methods:{
       goSignUp(){
@@ -56,13 +67,9 @@
       },
       checkValid() {
         if (!this.phoneValid) {
-          CR.inputWarn(this,'请输入正确的手机号','phoneInput')
-          // this.hgjToast({
-          //   content: '请输入正确的手机号',
-          //   cbEntered: () => {
-          //     this.$refs.phoneInput.focus()
-          //   }
-          // })
+          return false
+        }
+        if (!this.passwordValid) {
           return false
         }
         return true

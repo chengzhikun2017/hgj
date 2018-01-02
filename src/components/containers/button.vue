@@ -61,7 +61,7 @@ export default {
   border-radius: 0.22rem;
   background-image: linear-gradient(to right, #f86b4b 1%, #f84b4b);
   text-align: center;
-  box-shadow: 0 13/200rem 32/200rem 0 rgba(248, 77, 75, 0.36);
+  box-shadow: 0 0.065rem 0.16rem 0 rgba(248, 77, 75, 0.36);
   .text{
     font-size: 0.18rem;
     line-height: 0.44rem;

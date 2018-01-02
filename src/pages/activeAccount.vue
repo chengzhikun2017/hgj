@@ -34,7 +34,7 @@
       </div>
       <app-button @click.native='goActivePay'>付费马上激活</app-button>
       <app-button @click.native='goActiveFree'>免费激活</app-button>
-      <div class="popView" v-show="popFlag"  v-if='false'>
+     <!--  <div class="popView" v-show="popFlag"  v-if='true'>
         <div class="popcontent">
           <div class="planbox">
             <header flex="cross:center">
@@ -80,7 +80,8 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
+      <app-share v-model="popFlag"></app-share>
     </article>
   </div>
 </template>
