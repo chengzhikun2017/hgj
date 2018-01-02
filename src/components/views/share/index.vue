@@ -10,7 +10,7 @@
             <h2>分享</h2>
             <p></p>
           </div>
-          <span flex-box="0" @click="close">关闭</span>
+          <span flex-box="0" @click="close" class="close"><span class="icon-cancel"></span></span>
         </header>
         <div class="planbox-content">
           <div class="liner"></div>
@@ -102,6 +102,10 @@
           }
         }
       }
+    }
+    .close {
+      font-size: 0.25rem;
+      color: #a4a4a4;
     }
     .bluegreen {
       color: #51d59c;

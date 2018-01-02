@@ -34,19 +34,21 @@
                 <h2>选择提现银行卡</h2>
                 <p></p>
               </div>
-              <span flex-box="0" @click="popFlag=false">关闭</span>
+              <span flex-box="0" @click="popFlag=false" class="close"><span class="icon-cancel"></span></span>
             </header>
             <div class="planbox-content">
               <div class="liner"></div>
               <app-radio v-model='cardId' label='1' v-for='card in cards'>
-                <app-formitem3 :title="card.cardCode" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true">
+                <app-formitem3 :title="card.cardCode" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true" :long="true">
                   <div slot="icon">
                     <div class="myicon">
                       <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon>
                     </div>
                   </div>
+                  <div slot="action">
+                    <app-check :value='cardId==1' :type='1' class='check-icon' />
+                  </div>
                 </app-formitem3>
-                <app-check :value='cardId==1' :type='1' class='check-icon' />
               </app-radio>
               <p>使用新的银行卡</p>
 <!--               <app-radio v-model='cardId' label='2'>
@@ -143,6 +145,12 @@
         left: 0.2rem;
         right: 0.2rem;
         bottom: 0.2rem;
+        .liner {
+          margin-bottom: 0;
+        }
+        .myicon {
+          margin-right: 0.1rem;
+        }
       }
     }
     .emptyCard {
@@ -173,6 +181,10 @@
         text-align: center;
         color: #f84c4b;
       }
+    }
+    .close {
+      font-size: 0.25rem;
+      color: #a4a4a4;
     }
   }
 </style>

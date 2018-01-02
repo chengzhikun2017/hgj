@@ -47,9 +47,11 @@ export default {
 <style lang='scss' scoped>
 .app-input{
   display: block;
-  height: 0.2rem;
-  width:0.2rem;
+  /*height: 0.2rem;*/
+  /*width:0.2rem;*/
+  position: relative;
   font-size: 0px;
+  overflow: hidden;
 }
 /*.check{
   width:0.2rem;
