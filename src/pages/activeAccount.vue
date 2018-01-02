@@ -32,7 +32,9 @@
           </div>
         </app-formitem3>
       </div>
-      <div class="popView" v-show="popFlag">
+      <app-button @click.native='goActivePay'>付费马上激活</app-button>
+      <app-button @click.native='goActiveFree'>免费激活</app-button>
+      <div class="popView" v-show="popFlag"  v-if='false'>
         <div class="popcontent">
           <div class="planbox">
             <header flex="cross:center">
@@ -83,12 +85,28 @@
   </div>
 </template>
 <script>
+  import helper from '../utils/helper.js'
+  import {mapActions,mapMutations} from 'vuex'
   export default {
     data () {
       return {
         popFlag: true
       }
-    }
+    },
+    methods:{
+      goActivePay(){
+        this.order_createActive().then(res=>{
+          var url=helper.urlConcat('/paybankcard',{orderId:res.orderId})
+          helper.goPage(url)
+        })
+      },
+      goActiveFree(){
+        
+      },
+      ...mapActions([
+        'order_createActive',
+        ])
+    },
   }
 </script>
 <style lang="scss" scoped>

@@ -1,10 +1,12 @@
 <template>
   <div>
     推广
+    <span @click='goJihuo'>马上激活</span>
   </div>
 </template>
 
 <script>
+import helper from '../utils/helper.js'
 export default {
   data() {
     return {
@@ -14,7 +16,11 @@ export default {
       // its initial state.
     }
   },
-  methods:{},
+  methods:{
+    goJihuo(){
+      helper.goPage('/activeaccount')
+    },
+  },
   events: {},
   components: {}
 }

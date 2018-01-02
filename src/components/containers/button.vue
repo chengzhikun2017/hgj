@@ -1,6 +1,6 @@
 <template>
-  <div class="app-input" :class='{"disabled":disabled,"enabled":!disabled}' :style="{background:background}">
-    <span class='text' :style="{color:color}">
+  <div class="app-input" :class='{"disabled":disabled,"enabled":!disabled}' :style="{background:backgroundImg}">
+    <span class='text' :class="{'text1':type==1}" :style="{color:textColor}">
       <slot></slot>
     </span>
   </div>
@@ -17,14 +17,31 @@ export default {
       default:false
     },
     background:{
-      default:'linear-gradient(to right, #f86b4b 1%, #f84b4b)'
+      default:0,
     },
     color:{
       default:'#fff'
     },
+    type:{
+      default:0,
+    },
   },
   methods:{
 
+  },
+  computed:{
+    textColor(){
+      switch(this.type){
+        case 0:return '#fff';
+        case 1:return '#f84b4b';
+      }
+    },
+    backgroundImg(){
+      switch(this.type){
+        case 0:return 'linear-gradient(to right, #f86b4b 1%, #f84b4b)';
+        case 1:return 'white';
+      }
+    },
   },
   events: {},
   components: {},
@@ -50,6 +67,9 @@ export default {
     line-height: 0.44rem;
     font-weight: 500;
     color: #ffffff;
+  }
+  .text1{
+    color:red;
   }
 }
 </style>

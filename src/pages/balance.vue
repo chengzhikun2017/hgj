@@ -13,13 +13,17 @@
         </div>
       </div>
       <div class="balance-content">
-        <app-formitem label="提现金额" :first="true"></app-formitem>
-        <app-formitem label="联系手机号" :last="true"></app-formitem>
+        <app-formitem label="提现金额" :first="true">
+          <app-input class='form-input' :placeholder='"请输入~"' v-model='amount'/>
+        </app-formitem>
+        <app-formitem label="联系手机号" :last="true">
+          <app-input class='form-input' :placeholder='"请输入~"' v-model='phone'/>
+        </app-formitem>
       </div>
       <div class="mybutton">
-        <app-button>提交修改</app-button>
+        <app-button>提交</app-button>
       </div>
-      <div class="popView" v-show="popFlag">
+      <div class="popView" v-show="false">
         <div class="popcontent">
           <div class="planbox">
             <header flex="cross:center">
@@ -34,21 +38,30 @@
             </header>
             <div class="planbox-content">
               <div class="liner"></div>
-              <app-formitem3 title="工商银行" note="(尾号：3836)" :last="true">
+              <app-radio v-model='cardId' label='1' v-for='card in cards'>
+                <app-formitem3 :title="card.cardCode" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true">
+                  <div slot="icon">
+                    <div class="myicon">
+                      <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon>
+                    </div>
+                  </div>
+                </app-formitem3>
+                <app-check :value='cardId==1' :type='1' class='check-icon' />
+              </app-radio>
+              <p>使用新的银行卡</p>
+<!--               <app-radio v-model='cardId' label='2'>
+                <app-formitem3 title="招商银行" note="(尾号：3318)" :last="true">
+                  <div slot="icon">
+                    <span class="icon-plan"></span>
+                  </div>
+                </app-formitem3>
+                <app-check :value='cardId==2' :type='1' class='check-icon' />
+              </app-radio> -->
+              <!-- <app-formitem3 title="光大银行" note="(尾号：5658)" :last="true">
                 <div slot="icon">
                   <span class="icon-plan"></span>
                 </div>
-              </app-formitem3>
-              <app-formitem3 title="招商银行" note="(尾号：3318)" :last="true">
-                <div slot="icon">
-                  <span class="icon-plan"></span>
-                </div>
-              </app-formitem3>
-              <app-formitem3 title="光大银行" note="(尾号：5658)" :last="true">
-                <div slot="icon">
-                  <span class="icon-plan"></span>
-                </div>
-              </app-formitem3>
+              </app-formitem3> -->
             </div>
           </div>
         </div>
@@ -60,6 +73,7 @@
   export default {
     data () {
       return {
+        cardId:null,
         card1: {
           status: 'PLAN',
           name: '韩**',
@@ -67,15 +81,30 @@
           billDate: 3,
           repaymentDate: 13
         },
+        amount:null,
+        phone:null,
         popFlag: true,
         isEmpty: false
       }
     },
+    created(){
+      console.log('this',this.$s)
+    },
     methods: {
-    }
+    },
+    computed:{
+      cards(){
+        return this.$store.state.cards.cardsListDC
+      }
+    },
   }
 </script>
 <style lang="scss" scoped>
+  .check-icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
   article {
     position: relative;
     .banner {

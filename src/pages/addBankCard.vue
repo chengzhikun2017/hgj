@@ -47,7 +47,10 @@
       submit(){
         //todo: 验证
         this.addCardDC_setValue(this)
-        this.addCardDC_submit()
+        this.addCardDC_submit().then(res=>{
+          this.hgjToast('绑定成功')
+          helper.goPage(-1)
+        })
       },
       getValueFromStore(){
         let info = this.$store.state.addCardDC.info

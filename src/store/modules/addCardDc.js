@@ -52,8 +52,6 @@ const addCardDC = {
       })
       promise.then(res=>{
         dispatch('cards_getListDC')
-        HGJ_VUE.hgjToast('绑定成功')
-        helper.goPage(-1)
       })
       return promise
     },

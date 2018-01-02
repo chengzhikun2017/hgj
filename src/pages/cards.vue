@@ -21,7 +21,7 @@
         <app-creditcard v-model="card2" bgcolor="cardbg-lightpurple"></app-creditcard>
       </div> -->
       <div class="mybutton">
-        <app-button class='add-bttn' @click.native='goAddCreditCard'><span class="icon-add"></span>添加银行卡</app-button>
+        <app-button class='add-bttn' :type='1' @click.native='goAddCreditCard'><span class="icon-add"></span>添加银行卡</app-button>
       </div>
     </article>
     <article v-if="choose == 1" flex-box="1">

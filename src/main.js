@@ -9,8 +9,8 @@ import axios from 'axios'
 import store from './store'
 import select from './components/containers/select.vue'
 import input from './components/containers/input.vue'
+import radio from './components/containers/input/radio.vue'
 
-// import radio from './components/containers/radio.vue'
 import checkbox from './components/containers/checkbox.vue'
 import button from './components/containers/button.vue'
 import bttn_choose from './components/containers/button/bttn_choose.vue'
@@ -45,6 +45,7 @@ Vue.component('app-select', select)
 Vue.component('bttn-choose', bttn_choose)
 Vue.component('bttn-code', bttn_code)
 Vue.component('app-input', input)
+Vue.component('app-radio', radio)
 Vue.component('app-alert', alert)
 Vue.component('app-loading', loading)
 Vue.component('app-toast', toast)
@@ -57,7 +58,7 @@ Vue.component('app-record-list', recordList)
 Vue.config.productionTip = false
 
 console.log('process',process.env)
-
+console.log('vue directive',Vue.directives)
 Vue.directive('scroll-load', {
   bind: function(el, binding, vnode) {
     // console.log('vnode', vnode)

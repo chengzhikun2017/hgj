@@ -1,8 +1,11 @@
 <template>
   <div class="app-input">
     <div class="container" @click='onClick'>
-      <div class="outer-line" @click='onClick'>
+      <div class="outer-line" @click='onClick' v-if='type==0'>
         <div class="inner-circle" v-if='value'></div>
+      </div>
+      <div class="outer-line outer-line2" :class="{'outer-line2-active':value}" @click='onClick' v-if='type==1'>
+        <i class="icon-check icon-down"></i>
       </div>
     </div>
   </div>
@@ -16,35 +19,20 @@ export default {
   },
   props:{
     value:{},
-    // value:{},//v-model  directive binding.value
-    // disabled:{
-    //   default:false,
-    // },
-    // placeholder:{
-    //   default:'请输入',
-    // },
-    // filter:{
-    //   default :null,
-    // },
-    // onSubmit:{
-    //   default:null
-    // },
+    type:{
+      default:0,
+    },
   },
   computed:{
-    // parsedValue(){
-    //   if(this.filter){
-    //     return this.filter(this.value)
-    //   }else{
-    //     return this.value
-    //   }
+    // checkType(){
+    //   if(!this.type){
+    //     return 'circle'
+    //   }else
     // },
   },
   methods:{
     onClick(e){
-      // console.log('onClick',!this.checked)
-      // this.$emit('select',e.target.value)
-      this.$emit('input',!this.value) // v-model used on this component will register $on event listenr for parent component
-      // this.$emit('change',e.target.value)
+      this.$emit('input',!this.value) 
     },
   },
   mounted(){
@@ -63,10 +51,11 @@ export default {
   width:0.2rem;
   font-size: 0px;
 }
-.check{
+/*.check{
   width:0.2rem;
   height: 0.2rem;
 }
+*/
 .container{
   padding:0.03rem;
   border-radius: 50%;
@@ -81,6 +70,20 @@ export default {
   border: solid 1px #999999;
   border-radius: 50%;
   position: relative;
+}
+
+.outer-line2{
+  background: #fff;
+  width: 0.23rem;
+  height: 0.23rem;
+  .icon-check{
+    font-size: 0.23rem;
+    color:#fff;
+  }
+}
+.outer-line2-active{
+  background: #3fe0a9;
+  border: 0;
 }
 .inner-circle{
   position: absolute;

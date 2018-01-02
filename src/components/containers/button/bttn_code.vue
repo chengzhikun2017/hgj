@@ -16,9 +16,6 @@ export default {
     }
   },
   props:{
-    clickMethod:{
-      // default:()=>{}
-    },
     validateMethod:{
       required:true
     },

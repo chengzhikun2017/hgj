@@ -6,6 +6,7 @@ import router from './modules/router'
 import account from './modules/account'
 import addCardCC from './modules/addCardCC'
 import addCardDC from './modules/addCardDC'
+import order from './modules/order'
 import cards from './modules/cards'
 
 Vue.use(Vuex)
@@ -19,7 +20,7 @@ const store = new Vuex.Store({
     addCardCC,
     addCardDC,
     cards,
-
+    order,
   }
 })
 

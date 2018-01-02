@@ -1,10 +1,12 @@
 <template>
   <div class="bttn-choose" :class="{'deactived':!actived}" >
+
     <slot></slot>
   </div>
 </template>
 
 <script>
+//todo: 整合成 radio
   export default {
     data() {
       return {
