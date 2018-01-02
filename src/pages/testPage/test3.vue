@@ -8,10 +8,9 @@
     <app-radio label='11111' v-model='radio'>
       11111
       <app-check :value="radio==='11111'"></app-check>
-      
     </app-radio>
     <app-radio label='11111' v-model='radio2'></app-radio>
-
+      
   </div>
 </template>
 
@@ -19,8 +18,8 @@
 export default {
   data() {
     return {
-      radio:'00000',
-      radio2:'232',
+      radio: '00000',
+      radio2: '232',
     }
   },
   methods:{},

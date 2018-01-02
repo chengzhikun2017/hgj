@@ -40,7 +40,6 @@ Vue.component('app-formitem3', formitem3)
 Vue.component('app-record', record)
 Vue.component('app-cricleicon', cricleicon)
 
-Vue.config.productionTip = false
 Vue.component('app-select', select)
 Vue.component('bttn-choose', bttn_choose)
 Vue.component('bttn-code', bttn_code)
