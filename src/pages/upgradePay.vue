@@ -1,7 +1,7 @@
 <template>
   <div>
-    <app-nav flex-box="0">请选择支付方式</app-nav>
-   
+    <app-nav flex-box="0">付费升级</app-nav>
+    
   </div>
 </template>
 

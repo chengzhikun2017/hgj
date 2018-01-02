@@ -11,6 +11,8 @@ import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
 import error_page from '../pages/testPage/error.vue'
 
+import upgrade_free from '../pages/upgradeFree.vue'
+
 import login from '@/pages/login.vue'
 import signUp from '@/pages/signUp.vue'
 import plan from '@/pages/plan.vue'
@@ -41,7 +43,6 @@ Vue.use(Router)
  * @param  {[配置]} options   路由的配置，e.g. meta:{ keepAlive:true}
  * @return {[type]}           [description]
  */
-// var rootPath = ''
 var newRoute = function(paths, name, component, options) {
   // console.log('typeof paths', typeof paths)
   if (typeof paths === 'string') {
@@ -93,7 +94,8 @@ index = index.concat(
   newRoute('/introduce', 'introduce', introduce),
   newRoute('/editPwd', 'editPwd', editPwd),
   newRoute('/forgetPwdStep1', 'forgetPwdStep1', forgetPwdStep1),
-  newRoute('/forgetPwdStep2', 'forgetPwdStep2', forgetPwdStep2)
+  newRoute('/forgetPwdStep2', 'forgetPwdStep2', forgetPwdStep2),
+  newRoute('/upgrade_free', 'upgrade_free', upgrade_free),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),

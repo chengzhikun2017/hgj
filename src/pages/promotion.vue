@@ -30,7 +30,8 @@
         <p class="share-detail">推广总收入：<span>2371.92元</span></p>
       </div>
     </div>
-    <app-button @click='share' style='width:80%;margin: 0 auto;'>分享有礼</app-button>
+    <app-button @click.native='share' style='width:80%;margin: 0 auto;'>分享有礼</app-button>
+    <app-button @click.native='goJihuo' style='width:80%;margin: 0 auto;'>马上激活</app-button>
 
   </div>
 </template>
@@ -48,10 +49,10 @@ export default {
   },
   methods:{
     upgradePay(){
-      helper.goPage('/')
+      helper.goPage('/pay')
     },
     upgradeFree(){
-      helper.goPage('/')
+      helper.goPage('/upgrade_free')
     },
     share(){
       

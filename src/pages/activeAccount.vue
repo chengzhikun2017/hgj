@@ -3,9 +3,9 @@
     <app-nav flex-box="0">激活账户</app-nav>
     <article flex-box="1">
       <div class="banner">
-        
+        您的账户尚未激活
       </div>
-      <div class="activeaccount-content">
+      <!-- <div class="activeaccount-content">
         <p class="info">完成下面任务，更轻松完成（感觉怪怪的）</p>
         <app-formitem3 title="分享" note="已被浏览10次" :first="true">
           <div class="header" slot="icon">
@@ -31,9 +31,9 @@
             未完成>
           </div>
         </app-formitem3>
-      </div>
-      <app-button @click.native='goActivePay'>付费马上激活</app-button>
-      <app-button @click.native='goActiveFree'>免费激活</app-button>
+      </div> -->
+      <app-button @click.native='goActivePay' style='width:80%;margin:0.1rem auto;'>付费马上激活</app-button>
+      <app-button @click.native='goActiveFree' style='width:80%;margin:0.1rem auto;'>免费激活</app-button>
      <!--  <div class="popView" v-show="popFlag"  v-if='true'>
         <div class="popcontent">
           <div class="planbox">
@@ -98,11 +98,11 @@
       goActivePay(){
         this.order_createActive().then(res=>{
           var url=helper.urlConcat('/paybankcard',{orderId:res.orderId})
-          helper.goPage(url)
+          helper.goPage('/pay')
         })
       },
       goActiveFree(){
-        
+        helper.goPage('/upgrade_free')
       },
       ...mapActions([
         'order_createActive',
