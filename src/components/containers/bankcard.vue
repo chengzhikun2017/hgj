@@ -17,7 +17,8 @@
       </div>
       <div class="floor">
         <!-- <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：每月{{card.payDate}}号</span> -->
-        <span class="btn3" v-show="card.status === 'choose'">重新选择银行卡</span>
+        <!-- <span class="btn3" v-show="card.status === 'choose'">重新选择银行卡</span> -->
+        <slot name="floor"></slot>
       </div>
     </div>
   </div>
