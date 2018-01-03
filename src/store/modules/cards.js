@@ -16,6 +16,12 @@ const cards = {
     }
   },
   mutations: {
+    cards_clearListCC(s){
+      s.cardsListCC=[]
+    },
+    cards_clearListDC(s){
+      s.cardsListDC=[]
+    },
   },
   actions: {
     cards_getInfo({},cardNo){

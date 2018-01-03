@@ -6,15 +6,8 @@ import helper from '../utils/helper.js'
 // const apiUrl='http://106.14.119.213:9009/api/'
 const apiUrl='/api'
 function handleUnlogin(res){
-  HGJ_VUE.hgjAlert({
-    title:res.message,
-    options:[
-      { text:'取消',color:'#ccc'},
-      { text:'登录',callback:()=>{
-        helper.goPage('/login')
-      }},
-    ]
-  })
+  helper.unloginRemind()
+ 
 }
 function handleWrongCode(res){
   // HGJ_VUE.hgjToast({

@@ -5,11 +5,34 @@ import {
 import {HGJ_VUE} from '../../main.js'
 const order = {
   state: {
-    
+    products:[],
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    order_clearProductList(s){
+      s.products=[]
+    }
+  },
   actions: {
+    order_productsListGet({state},){
+      console.log('----')
+      fetch({
+        url:'/product/list'
+      }).then(res=>{
+        console.log('product list res',res)
+        state.products=res
+      })
+    },
+    order_createUpgrade({},productId){
+      var promise=fetch({
+        url:'order/createLevelUpgradeOrder',
+        params:{
+          productId,
+          
+        },
+      })
+      return promise
+    },
     order_unspayGetCode({},{orderId,cardId}){
       var promise=fetch({
         url:'order/unspay/sendValidateCode',

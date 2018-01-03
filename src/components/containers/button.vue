@@ -1,6 +1,6 @@
 <template>
-  <div class="app-input" :class='{"disabled":disabled,"enabled":!disabled}' :style="{background:backgroundImg}">
-    <span class='text' :class="{'text1':type==1}" :style="{color:textColor}">
+  <div class="app-input" :class='{"disabled":disabled,"enabled":!disabled}' :style="{background:backgroundImg,boxShadow:boxShadow}">
+    <span class='text' :class="{'text1':type==1}" :style="{color:textColor} ">
       <slot></slot>
     </span>
   </div>
@@ -42,6 +42,12 @@ export default {
         case 1:return 'white';
       }
     },
+    boxShadow(){
+      switch(this.type){
+        case 0:return '0 0.065rem 0.16rem 0 rgba(248, 77, 75, 0.36)';
+        case 1:return '0 0.065rem 0.16rem 0 rgba(13, 13, 13, 0.56)';
+      }
+    },
   },
   events: {},
   components: {},
@@ -59,9 +65,9 @@ export default {
   width: 100%;
   height: 0.44rem;
   border-radius: 0.22rem;
-  background-image: linear-gradient(to right, #f86b4b 1%, #f84b4b);
+  /*background-image: linear-gradient(to right, #f86b4b 1%, #f84b4b);*/
   text-align: center;
-  box-shadow: 0 0.065rem 0.16rem 0 rgba(248, 77, 75, 0.36);
+  /*box-shadow: 0 0.065rem 0.16rem 0 rgba(248, 77, 75, 0.36);*/
   .text{
     font-size: 0.18rem;
     line-height: 0.44rem;

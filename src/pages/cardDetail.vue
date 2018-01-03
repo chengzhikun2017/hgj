@@ -3,7 +3,7 @@
     <app-nav flex-box="0">信用卡详情</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-creditcard :card="card1"></app-creditcard>
+        <app-creditcard :card="cardInfo"></app-creditcard>
       </div>
       <div class="content">
         <div class="planbox">
@@ -32,7 +32,7 @@
             </app-formitem2>
           </div>
           <div class="footer">
-            <app-button>开启还款计划</app-button>
+            <app-button @click.native='goNewPlan'>开启还款计划</app-button>
           </div>
         </div>
       </div>
@@ -41,18 +41,24 @@
 </template>
 <script>
   import '@/css/components.scss'
+  import helper from '../utils/helper.js'
   export default  {
     data () {
       return {
-        card1: {
-          status: 'PLAN',
-          name: '韩**',
-          cardNoAfter4: '3638',
-          billDate: 3,
-          repaymentDate: 13
-        }
+        
       }
-    }
+    },
+    methods:{
+      goNewPlan(){
+        let url=helper.urlConcat('/plan',this.cardInfo)
+        helper.goPage(url)
+      },
+    },
+    computed:{
+      cardInfo(){
+        return this.$route.query
+      },
+    },
   }
 </script>
 <style lang="scss" scoped>

@@ -10,7 +10,7 @@ import test1 from '../pages/testPage/test1.vue'
 import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
 import error_page from '../pages/testPage/error.vue'
-
+import user_setting from '../pages/userSetting.vue'
 import upgrade_free from '../pages/upgradeFree.vue'
 
 import login from '@/pages/login.vue'
@@ -26,6 +26,7 @@ import activeAccount from '@/pages/activeAccount.vue'
 import order from '@/pages/order.vue'
 import orderEdit from '@/pages/orderEdit.vue'
 import balance from '@/pages/balance.vue'
+import balancePage from '../pages/balancePage.vue'
 import register from '@/pages/register.vue'
 import paybankcard from '@/pages/paybankcard.vue'
 import populizeScore from '@/pages/populizeScore.vue'
@@ -43,6 +44,7 @@ Vue.use(Router)
  * @param  {[配置]} options   路由的配置，e.g. meta:{ keepAlive:true}
  * @return {[type]}           [description]
  */
+// var rootPath = ''
 var newRoute = function(paths, name, component, options) {
   // console.log('typeof paths', typeof paths)
   if (typeof paths === 'string') {
@@ -96,6 +98,8 @@ index = index.concat(
   newRoute('/forgetPwdStep1', 'forgetPwdStep1', forgetPwdStep1),
   newRoute('/forgetPwdStep2', 'forgetPwdStep2', forgetPwdStep2),
   newRoute('/upgrade_free', 'upgrade_free', upgrade_free),
+  newRoute('/user_setting', 'user_setting', user_setting),
+  newRoute('/balance_page', 'balance_page', balancePage),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),
@@ -103,17 +107,19 @@ route_test = route_test.concat(
   newRoute('/test2', 'test2', test2),
   newRoute('/test3', 'test3', test3),
 )
-basicRoutes = [{
+basicRoutes = [ 
+// {
+//   path: '*',
+//   name: 'cards',
+//   redirect: '/hgj/cards',
+//   component: cards
+// },
+{
   path: '/*',
   name: 'error_page',
   // redirect: '/cards',
   component: error_page
-}, {
-  path: '*',
-  name: 'cards',
-  redirect: '/cards',
-  component: cards
-}]
+},]
 routes = routes.concat(index.concat(
   route_test,
 ), basicRoutes)
@@ -127,8 +133,9 @@ router.beforeEach((to, from, next) => {
   // console.log('router',to,from)
   // console.log('first enter app',router.firstEnter,router)
   // &&firstEnter===1
-  if (!from.name && to.path !== '/cards') {
-    router.push('/cards')
+  let indexPath=config.routerRoot+'/cards'
+  if (!from.name && to.path !== indexPath) {
+    router.push(indexPath)
     router.push(to.path)
     // router.prototype.firstEnter=0
     return

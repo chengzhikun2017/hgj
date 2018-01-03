@@ -1,5 +1,5 @@
 <template>
-  <div class="app-loading" v-if='isLoading' @click='reminder_hideLoading'>
+  <div class="app-loading" v-if='isLoading>0' @click='reminder_hideLoading'>
     <div class="loading-container">
       <div class="loading">
         <div class="loading-icon"></div>
@@ -74,7 +74,7 @@ export default {
   position: fixed;
   top: 0.5rem;bottom: 0;
   right:0;left:0;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0);
 }
 .loading-container{
   /*border:1px solid red;*/
