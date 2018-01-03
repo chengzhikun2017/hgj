@@ -1,6 +1,6 @@
 <template>
   <div class="app-input">
-   <input :type="type" ref='input' :value='value'  :disabled='disabled' @input='onInput' :placeholder='placeholder' class="input__" @keyup.enter='onEnter($event)'>
+   <input :type="type" ref="input" :value="value" :maxlength="maxlength"  :disabled="disabled" @input="onInput" :placeholder="placeholder" class="input__" @keyup.enter="onEnter($event)">
    <div class="border"></div>
   </div>
 </template>
@@ -14,6 +14,10 @@ export default {
   props:{
     type:{
       default:'text',
+    },
+    maxlength: {
+      type: Number,
+      default: 50
     },
     value:{},//v-model  directive binding.value
     disabled:{
