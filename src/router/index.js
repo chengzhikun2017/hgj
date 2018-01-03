@@ -23,7 +23,6 @@ import addBankCard from '@/pages/addBankCard.vue'
 import planrecords from '@/pages/planrecords.vue'
 import payresult from '@/pages/payresult.vue'
 import activeAccount from '@/pages/activeAccount.vue'
-import order from '@/pages/order.vue'
 import orderEdit from '@/pages/orderEdit.vue'
 import balance from '@/pages/balance.vue'
 import balancePage from '../pages/balancePage.vue'
@@ -86,7 +85,6 @@ index = index.concat(
   newRoute('/planrecords', 'planrecords', planrecords),
   newRoute('/payresult', 'payresult', payresult),
   newRoute('/activeaccount', 'activeAccount', activeAccount),
-  newRoute('/order', 'order', order),
   newRoute('/orderedit', 'orderEdit', orderEdit),
   newRoute('/balance', 'balance', balance),
   newRoute('/register', 'register', register),
@@ -107,19 +105,20 @@ route_test = route_test.concat(
   newRoute('/test2', 'test2', test2),
   newRoute('/test3', 'test3', test3),
 )
-basicRoutes = [ 
-// {
-//   path: '*',
-//   name: 'cards',
-//   redirect: '/hgj/cards',
-//   component: cards
-// },
-{
-  path: '/*',
-  name: 'error_page',
-  // redirect: '/cards',
-  component: error_page
-},]
+basicRoutes = [
+  // {
+  //   path: '*',
+  //   name: 'cards',
+  //   redirect: '/hgj/cards',
+  //   component: cards
+  // },
+  {
+    path: '/*',
+    name: 'error_page',
+    // redirect: '/cards',
+    component: error_page
+  },
+]
 routes = routes.concat(index.concat(
   route_test,
 ), basicRoutes)
@@ -133,7 +132,7 @@ router.beforeEach((to, from, next) => {
   // console.log('router',to,from)
   // console.log('first enter app',router.firstEnter,router)
   // &&firstEnter===1
-  let indexPath=config.routerRoot+'/cards'
+  let indexPath = config.routerRoot + '/cards'
   if (!from.name && to.path !== indexPath) {
     router.push(indexPath)
     router.push(to.path)
