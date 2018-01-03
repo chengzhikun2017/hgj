@@ -15,7 +15,7 @@
 
     <article v-if="choose == 0" flex-box="1">
       <div v-for="item in cardListCC" class="cardItem">
-        <app-creditcard :card="item" @click.native='goCardDetail'></app-creditcard>
+        <app-creditcard :card="item" @click.native='goCardDetail(item)'></app-creditcard>
       </div>
       <!-- <div class="cardItem">
         <app-creditcard v-model="card2" bgcolor="cardbg-lightpurple"></app-creditcard>
@@ -29,7 +29,7 @@
         <app-bankcard :card="item"></app-bankcard>
       </div>
       <div class="mybutton">
-        <app-button class='add-bttn' @click.native='goAddDC'><span class="icon-add"></span>添加银行卡</app-button>
+        <app-button class='add-bttn':type='1'  @click.native='goAddDC'><span class="icon-add"></span>添加银行卡</app-button>
         <div class="others" flex="main:justify">
           <span>什么是结算卡？</span>
           <span>点击分享</span>
@@ -41,6 +41,7 @@
 <script>
   import helper from '../utils/helper.js'
   import {mapMutations,mapActions,mapGetters} from 'vuex'
+  import CR from '../utils/commonRemind.js'
   export default {
     data() {
       return {
@@ -50,18 +51,25 @@
     created(){
       this.$nextTick(()=>{
 
-      // this.cards_getListCC()
       })
-
     },
     methods:{
-      goCardDetail(){
-        helper.goPage('/cardDetail')
+      goCardDetail(item){
+        let url=helper.urlConcat('/cardDetail',item)
+        helper.goPage(url)
       },
       goAddCreditCard(){
+        if(!this.isLoged){
+          CR.unloginRemind()
+          return
+        }
         helper.goPage('/addCreditcard1')
       },
       goAddDC(){
+        if(!this.isLoged){
+          CR.unloginRemind()
+          return
+        }
         helper.goPage('/addbankcard')
       },
       back(){//temp
@@ -77,6 +85,9 @@
       // cardListCC(){
       //   return this.$store.state.cards.cardListCC
       // },
+      isLoged(){
+        return this.$store.state.account.isLoged
+      },
       ...mapGetters({
         cardListCC:'cards_listCC',
         cardListDC:'cards_listDC',

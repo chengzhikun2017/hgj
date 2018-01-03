@@ -3,15 +3,16 @@
     <app-nav flex-box="0">我的</app-nav>
     <article flex-box="1">
       <div class="myInfo">
-        <div class="portraiture" @click='goSignIn'>
+        <div class="portraiture" @click='onClickAvatar'>
           <img src="" alt="">
         </div>
-        <div class="name">{{userInfo.name||'未实名'}}</div>
-        <div class="phone">{{userInfo.phone||'未登录~~吗？'}}</div>
+        <div class="name" v-if='!userInfo.isLoged'>{{'未登录'}}</div>
+        <div class="name" v-if='userInfo.isLoged'>{{userInfo.name||'未实名'}}</div>
+        <div class="phone">{{userInfo.phone||''}}</div>
         <!-- <div class="phone">{{phone}}</div> -->
         <div class="liner"></div>
         <div class="info" flex="main:center cross:center">
-          <div class="item">
+          <div class="item" @click='viewBalance'>
             <p>3638.00 <span class="yuan">元</span></p>
             <div class="label">余额</div>
           </div>
@@ -23,6 +24,9 @@
             <p>500.00<span class="yuan">元</span></p>
             <div class="label">已冻结保证金</div>
           </div>
+        </div>
+        <div v-if='userInfo.isLoged' @click='goSetting'style="position:absolute;top:0.55rem;right:0.1rem;font-size: 0.12rem;color:#ccc;text-decoration: underline">
+          用户设置
         </div>
       </div>
       <div class="mine-content">
@@ -58,6 +62,7 @@
             <span class="icon-go"></span>
           </div>
         </app-formitem3>
+
       </div>
     </article>
   </div>
@@ -75,8 +80,23 @@ export default {
     }
   },
   methods:{
+    viewBalance(){
+      helper.goPage('/balance_page')
+    },
     goSignIn(){
       helper.goPage('/login')
+    },
+    onClickAvatar(){
+      if(this.userInfo){
+
+      }else{
+        helper.goPage('/login')
+      }
+      helper.goPage('/login')
+      
+    },
+    goSetting(){
+        helper.goPage('/user_setting')
     },
   },
   computed:{

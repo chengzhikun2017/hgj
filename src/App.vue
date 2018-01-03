@@ -33,8 +33,10 @@ export default {
     this.$nextTick(()=>{
       this.account_checkSession().then(res=>{
         if(res.data.data&&res.data.data.userId){
-          this.cards_getListCC()
-          this.cards_getListDC()
+          // this.cards_getListCC()
+          // this.cards_getListDC()
+          // this.order_productsListGet()
+          helper.getInitialInfo()
         }else{
           console.log('未登录')
         }
@@ -87,6 +89,7 @@ export default {
       'account_logout',
       'cards_getListCC',
       'cards_getListDC',
+      'order_productsListGet',
       ])
 
   },

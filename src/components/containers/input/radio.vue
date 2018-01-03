@@ -9,12 +9,11 @@
     </div>
   </div> -->
   <div class="box-radio__" ref='container'>
-    <input type="radio" ref='radio' :checked='value===label' :value="'test_value'" class="radio__" :name="name" :id="id"  @change='onChange'>
     <label :for="id" class="content-radio__">
-      
       <slot>
       </slot>
     </label>
+    <input type="radio" ref='radio' :checked='value===label' :value="'test_value'" class="radio__" :name="name" :id="id"  @change='onChange'>
   </div>
 </template>
 
@@ -28,7 +27,7 @@ export default {
         {value:2,},
         {value:3,},
       ],
-      label:null,
+      // label:null,
       name:null,
       // note: changing this line won't causes changes
       // with hot-reload because the reloaded component
@@ -37,7 +36,8 @@ export default {
     }
   },
   props:{
-    value:{}
+    value:{},
+    label:{},
   },
   created(){
 
@@ -46,7 +46,7 @@ export default {
     console.log('context',this.$vnode.data.model.expression)
     // console.log('this.$refs.container',this.$refs.container)
     // console.log('this.$refs.container lable',this.$refs.container.getAttribute('label'))
-    this.label=this.$refs.container.getAttribute('label')
+    // this.label=this.$refs.container.getAttribute('label')
     this.name=this.$vnode.data.model.expression
     //inspect change by click event
     //emit input value
@@ -92,7 +92,9 @@ export default {
   min-height: 0.1rem;
   height: 100%;
 }
-
+.container{
+  position: relative;
+}
 .content-radio__{
   /*border:2px solid yellow;*/
   position: relative;  

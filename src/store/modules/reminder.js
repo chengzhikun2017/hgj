@@ -56,10 +56,10 @@ const reminder = {
       }
     },
     reminder_hideLoading(s){
-      s.isLoading=false
+      s.isLoading--
     },
     reminder_showLoading(s,loadingText){
-      s.isLoading=true
+      s.isLoading++
       if(!loadingText){
         loadingText='请稍后'
       }

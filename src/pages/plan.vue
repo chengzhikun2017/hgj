@@ -3,7 +3,7 @@
     <app-nav flex-box="0">新建还款计划</app-nav>
     <article flex-box="1">
       <div class="photoDetail">
-        <app-creditcard :card="card1"></app-creditcard>
+        <app-creditcard :card="cardInfo"></app-creditcard>
       </div>
       <div class="form">
         <app-formitem label="还款金额">
@@ -98,14 +98,7 @@
         ],
         securityFee:'',
         securityFeeOpts:[500,1000,2000,4000],
-        card1: {
-          status: 'PLAN',
-          name: '韩**',
-          cardNoAfter4: '3638',
-          billDate: 3,
-          repaymentDate: 13
-        },
-        popFlag: true
+        popFlag: false,
       }
     },
     methods:{
@@ -114,6 +107,11 @@
       },
       chooseSecurityFee(fee){
         this.securityFee=fee
+      },
+    },
+    computed:{
+      cardInfo(){
+        return this.$route.query
       },
     },
   }

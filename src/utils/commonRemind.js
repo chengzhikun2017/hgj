@@ -1,3 +1,4 @@
+import {HGJ_VUE} from '../main.js'
 class commonRemind {
   static inputWarn(vm, content, refName) {
     vm.hgjToast({
@@ -8,6 +9,17 @@ class commonRemind {
         // vm.$refs[refName].focus()
       },
       type:'normal',
+    })
+  }
+  static unloginRemind(){
+    HGJ_VUE.hgjAlert({
+      title:'请登录',
+      options:[
+        { text:'取消',color:'#ccc'},
+        { text:'登录',callback:()=>{
+          helper.goPage('/login')
+        }},
+      ]
     })
   }
 }

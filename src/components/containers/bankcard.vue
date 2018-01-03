@@ -3,9 +3,11 @@
     <div class="card" :class="bgcolor">
       <div class="floor" flex="main:justify">
         <div class="logo"></div>
-        <span class="btn1" v-show="card.status === 'check'">结算卡</span>
-        <span class="btn1" v-show="card.status === 'uncheck'">设为结算卡</span>
-        <span class="btn1" v-show="card.status === 'edit'">编辑</span>
+        <span class="btn1" v-show="card.settlementStatus === 'SUCCESS'">结算卡</span>
+        <span class="btn1" v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
+        <span class="btn1" v-show="card.settlementStatus === 'FAILED'">设为结算卡失败</span>
+        <span class="btn1" v-show="card.settlementStatus === 'FAILED'">重新设置为结算卡</span>
+        <!-- <span class="btn1" v-show="card.settlementStatus === 'edit'">编辑</span> -->
       </div>
       <div class="floor floor2" flex="main:justify">
         <div class="left">
@@ -24,6 +26,8 @@
   </div>
 </template>
 <script>
+  import helper from '../../utils/helper.js'
+  import {mapMutations,mapActions} from 'vuex'
   export default {
     props: {
       card: {
@@ -45,7 +49,17 @@
     data () {
       return {
       }
-    }
+    },
+    methods:{
+      bindSC(){
+        this.addCardDC_bindSC(card.cardId).then(
+          
+          )
+      },
+      ...mapActions([
+        'addCardDC_bindSC',
+        ])
+    },
   }
 </script>
 <style lang="scss" scoped>

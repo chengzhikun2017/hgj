@@ -55,6 +55,20 @@ const addCardDC = {
       })
       return promise
     },
+    addCardDC_bindSC({},cardId){
+      var promise= simpleFetch({
+        url:'card/bindSC',
+        // method:'post',
+        params:{
+          cardId,
+        }
+      })
+      //todo: 本地维护数据
+      promise.then(res=>{
+        dispatch('cards_getListDC')
+      })
+      return promise
+    },
   }
 }
 

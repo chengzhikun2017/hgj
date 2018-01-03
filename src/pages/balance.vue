@@ -38,7 +38,7 @@
             </header>
             <div class="planbox-content">
               <div class="liner"></div>
-              <app-radio v-model='cardId' label='1' v-for='card in cards'>
+              <app-radio v-model='cardId' :label='card.cardId' v-for='card in cards' :key='card.cardId'>
                 <app-formitem3 :title="card.cardCode" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true" :long="true">
                   <div slot="icon">
                     <div class="myicon">
@@ -46,11 +46,11 @@
                     </div>
                   </div>
                   <div slot="action">
-                    <app-check :value='cardId==1' :type='1' class='check-icon' />
+                    <app-check :value='cardId==card.cardId' :type='1' class='check-icon' />
                   </div>
                 </app-formitem3>
               </app-radio>
-              <p>使用新的银行卡</p>
+              <div @click='payNewDC'>使用新的银行卡</div>
 <!--               <app-radio v-model='cardId' label='2'>
                 <app-formitem3 title="招商银行" note="(尾号：3318)" :last="true">
                   <div slot="icon">
@@ -72,6 +72,7 @@
   </div>
 </template>
 <script>
+  import helper from '../utils/helper.js'
   export default {
     data () {
       return {
@@ -90,9 +91,14 @@
       }
     },
     created(){
-      console.log('this',this.$s)
     },
     methods: {
+      payNewDC(){
+        let url=helper.urlConcat('/addbankcard',{
+
+        })
+        helper.goPage(url)
+      },
     },
     computed:{
       cards(){
@@ -101,13 +107,15 @@
           name: '韩**',
           cardNoAfter4: '3638',
           billDate: 3,
-          repaymentDate: 13
+          repaymentDate: 13,
+          cardId:1,
         },{
           status: 'PLAN',
           name: '韩**',
           cardNoAfter4: '3638',
           billDate: 3,
-          repaymentDate: 13
+          repaymentDate: 13,
+          cardId:2,
         }] 
         return this.$store.state.cards.cardsListDC
       }
