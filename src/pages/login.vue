@@ -69,10 +69,12 @@
         helper.goPage('/register')
       },
       checkValid() {
-        if (!this.phoneValid) {
+        if (!Regs.phone(this.phone)) {
+          CR.inputWarn(this,'请输入正确的手机号','phoneInput')
           return false
         }
-        if (!this.passwordValid) {
+        if (this.pwd.length < 6) {
+          CR.inputWarn(this,'密码不能小于6位','pwdInput')
           return false
         }
         return true

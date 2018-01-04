@@ -9,13 +9,13 @@
       <div class="form">
         <app-formitem label="持卡人姓名" :first="true">
           <!-- <app-input class='form-input' :placeholder='"请输入持卡人姓名"' v-model='name' :disabled='realNameVerified'/> -->
-          <app-input class='form-input' :placeholder='"请输入持卡人姓名"' v-model='name' :disabled='false'/>
+          <app-input class='form-input' :placeholder='"请输入持卡人姓名"' v-model='name' ref="formname" :disabled='false'/>
         </app-formitem>
         <app-formitem label="信用卡卡号" >
-          <app-input class='form-input' type="number" :maxlength="19" :placeholder='"请输入信用卡卡号"' v-model='cardNo'/>
+          <app-input class='form-input' type="number" :maxlength="19" :placeholder='"请输入信用卡卡号"' ref="formcreditcard" v-model='cardNo'/>
         </app-formitem>
         <app-formitem label="身份证号码" :last="true">
-          <app-input class='form-input' :placeholder='"请输入身份证号码"' :maxlength="18" v-model='idCardNo' :disabled='realNameVerified'/>
+          <app-input class='form-input' :placeholder='"请输入身份证号码"' :maxlength="18" v-model='idCardNo' ref="formidcard" :disabled='realNameVerified'/>
         </app-formitem>
         <div class="mybutton">
           <app-button @click.native='nextStep'>下一步</app-button>
@@ -27,6 +27,8 @@
 <script>
   import '@/css/flex.css'
   import helper from '../utils/helper.js'
+  import CR from '@/utils/commonRemind.js'
+  import Regs from '@/utils/reg.js'
   import {mapMutations,mapActions,mapGetters} from 'vuex'
   export default {
     data () {
@@ -36,12 +38,27 @@
         idCardNo:'',
       }
     },
+    computed: {
+    },
     methods:{
-      nextStep(){
-        if(this.cardNo&&this.cardNo.length<6){
-          this.hgjToast('请输入正确的卡号')
-          return
+      checkValid () {
+        if (!this.name) {
+          CR.inputWarn(this,'请输入姓名','formname')
+          return false
         }
+        if (!Regs.bankCard(this.cardNo)) {
+          CR.inputWarn(this,'请输入正确的信用卡号','formcreditcard')
+          return false
+        }
+        if (!Regs.idCardNoUtil.checkIdCardNo(this.idCardNo)) {
+          CR.inputWarn(this,'请输入正确的身份证','formidcard')
+          return false
+        }
+        return true
+      },
+      nextStep (){
+        if(!this.checkValid()) return
+
         //todo: 验证有效性，有效后下一步
         this.cards_getInfo(this.cardNo).then(res=>{
           if(res.type){

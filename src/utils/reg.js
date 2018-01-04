@@ -22,7 +22,10 @@ export default class Regs {
     return reg.test(v)
   }
   // 银行卡，信用卡验证
-  static bankCard(v) {}
+  static bankCard(v) {
+    let reg = /^\d{15,19}$/
+    return reg.test(v)
+  }
   // 身份证验证
   static idCardNoUtil = {
     /*省,直辖市代码表*/
