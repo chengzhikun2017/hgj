@@ -38,6 +38,7 @@
 
 <script>
 import helper from '../utils/helper.js'
+import {mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -49,7 +50,16 @@ export default {
   },
   methods:{
     upgradePay(){
-      helper.goPage('/pay')
+      var productId=this.$store.state.order.products[0].productId
+      this.order_createActive().then(res=>{
+        var orderId=res.orderId
+        let url =helper.urlConcat('/pay',{
+          orderId:orderId
+        })
+        helper.goPage(url)
+      })
+      return
+      
     },
     upgradeFree(){
       helper.goPage('/upgrade_free')
@@ -60,9 +70,13 @@ export default {
     goJihuo(){
       helper.goPage('/activeaccount')
     },
+    ...mapActions([
+      'order_createActive',
+      ])
   },
   events: {},
-  components: {}
+  components: {},
+
 }
 </script>
 

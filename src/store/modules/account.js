@@ -6,7 +6,8 @@ import {HGJ_VUE} from '../../main.js'
 import helper from '../../utils/helper.js'
 class defaultAccountInfo {
   constructor(props) {
-    this.phone= null
+    // this.phone= null
+    this.phone= '13365225235'
     this.captcha= ''
     this.verifyCode=''
     this.userId=null
@@ -86,9 +87,9 @@ const account = {
           qudao:'',
         }
       })
-      // promise.then(res=>{
-
-      // })
+      promise.then(res=>{
+        //save to local
+      })
       return promise
     },
     account_login({state,dispatch},{phone,pwd}){
@@ -119,10 +120,7 @@ const account = {
             content:'已登出',
             cbEntered:()=>{
               helper.resetInitialInfo()
-              // dispatch('account_logoutReset')
-              // commit('router_willBackToIndex')
-              // commit('cards_clearListCC')
-              // commit('cards_clearListDC')
+              commit('router_willBackToIndex')
               helper.goPage(-1)
             },
           })
@@ -152,6 +150,10 @@ const account = {
           state.name = res.name
           state.idCardNo = res.idCardNo
         }
+        if(res.userId){
+          state.userId=res.userId
+          state.isLoged=true
+        }
       })
     },
     account_realNameVerify({state},{name,idCardNo}){
@@ -178,13 +180,14 @@ const account = {
         },
       })
     },
-    account_findPwd(){
-      fetch({
+    account_findPwd({},{phone,code,password}){
+      console.log('%cfind pwd','color:red')
+      return fetch({
         url:'account/findPwd',
         params:{
-          phone:null,
-          code:null,
-          password:null,
+          phone,
+          code,
+          password,
         },
       })
     },

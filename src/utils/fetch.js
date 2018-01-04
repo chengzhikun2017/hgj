@@ -82,9 +82,10 @@ export function simpleFetch(options) {
         console.log('simpleFetch responese to>>>%c'+options.url,'color:green','<<<',response)
         const res = response
           // 根据陶雨的基本标准，做error的错误封
-        if(res.status==200){
+        if(res.data.error==0){
           resolve(res)
         }else{
+          console.log('options',options)
           HGJ_VUE.hgjAlert(res.message)
           reject(res.message)
         }

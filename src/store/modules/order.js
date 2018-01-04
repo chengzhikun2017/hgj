@@ -14,6 +14,18 @@ const order = {
     }
   },
   actions: {
+    order_pay({},{payType,orderId,cardId,verCode,}){
+      var promise=fetch({
+        url:'order/pay',
+        params:{
+          payType,
+          orderId,
+          cardId,
+          verCode,
+        },
+      })
+      return promise
+    },
     order_productsListGet({state},){
       console.log('----')
       fetch({
@@ -43,7 +55,7 @@ const order = {
       })
       return promise
     },
-    order_unspayPay({},){
+    order_unspayPay({},{orderId,cardId,name,idCardNo,cardNo,phone,}){
       var promise=fetch({
         url:'order/unspay/preparePay',
         params:{

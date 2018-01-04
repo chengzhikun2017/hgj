@@ -1,6 +1,6 @@
 <template>
   <div class="register hgj-container" flex="dir:top">
-    <app-nav flex-box="0">注册页</app-nav>
+    <app-nav flex-box="0">{{title}}</app-nav>
     <article flex-box="1">
       <div class="logo"></div>
       <div class="form">
@@ -12,7 +12,7 @@
           <app-input v-model='phone' ref='phoneInput' class='login-input' :placeholder='"请输入手机号"'></app-input>
         </div>
         <div class="mybutton">
-          <app-button @click.native='goSignUp'>下一步</app-button>
+          <app-button @click.native='nextStep'>下一步</app-button>
         </div>
       </div>
     </article>
@@ -32,6 +32,14 @@
       }
     },
     methods:{
+      nextStep(){
+        if(this.pageType==='findPwd'){
+          this.goFindPwd()
+        }
+        if(this.pageType==='signup'){
+          this.goSignUp()
+        }
+      },
       goSignUp(){
         this.isPhoneRegisted(this.phone).then(res=>{
           // console.log('res,account_isPhoneRegister',res)
@@ -48,11 +56,46 @@
           }
         })
       },
+      goFindPwd(){
+        this.isPhoneRegisted(this.phone).then(res=>{
+          console.log('res,account_isPhoneRegister',res)
+          if(res.status===0){
+            this.hgjAlert({
+              title:'账号不存在，是否前往注册',
+              // todo
+              options:[
+                {
+                  text:'注册',callback:()=>{
+                    helper.goPage('/register')
+                }},{
+                  text:'取消',callback:()=>{
+                }},
+              ],
+            })
+          }else{
+            helper.goPage('/forgetPwdStep2')
+          }
+        })
+      },
       ...mapActions({
         isPhoneRegisted:'account_isPhoneRegister'
       })
     },
     computed:{
+      pageType(){
+        if(/forgetPwdStep/.test(this.$route.path)){
+          return 'findPwd'
+        }else{
+          return 'signup'
+        }
+      },
+      title(){
+        // console.log('this.$route',this.$route)
+        if(this.pageType==='findPwd'){
+          return '忘记密码'
+        }
+        return '注册页'
+      },
       phoneValid(){
         // this.$store.commit('account_setPhone',this.phone)
         return Regs.phone(this.phone)

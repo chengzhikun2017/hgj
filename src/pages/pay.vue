@@ -12,13 +12,16 @@
         </div>
       </div>
       <div class="order-content">
-        <app-formitem3 title="信用卡付款" note="激活使用信用卡，付款99折，无需网银！" :first="true" :notePoint="true">
-          <div class="header" slot="icon">
-            <span class="icon icon-creditcard red"></span>
-          </div>
-          <div class="content" slot="action">
-          </div>
-        </app-formitem3>
+        <app-radio v-model='payWay' :label='0'>
+          <app-formitem3 title="信用卡付款" note="激活使用信用卡，付款99折，无需网银！" :first="true" :notePoint="true">
+            <div class="header" slot="icon">
+              <span class="icon icon-creditcard red"></span>
+            </div>
+            <div class="content" slot="action">
+              <app-check :type='1' :value='payWay===0'/>
+            </div>
+          </app-formitem3>
+        </app-radio>
         <app-formitem3 title="微信支付" note="需要微信客户端打开">
           <div class="header" slot="icon">
             <span class="icon icon-wechat green"></span>
@@ -33,33 +36,79 @@
           <div class="content" slot="action">
           </div>
         </app-formitem3>
-        <app-formitem3 title="储蓄卡快捷支付" note="绑卡就送苍老师限量版资源" :last="true">
-          <div class="header" slot="icon">
-            <span class="icon icon-bankcard blue"></span>
-          </div>
-          <div class="content" slot="action">
-          </div>
-        </app-formitem3>
+        <app-radio v-model='payWay' :label='3'>
+          <app-formitem3 title="储蓄卡快捷支付" note="绑卡就送苍老师限量版资源" :last="true">
+            <div class="header" slot="icon">
+              <span class="icon icon-bankcard blue"></span>
+            </div>
+            <div class="content" slot="action">
+              <app-check :type='1' :value='payWay===3'/>
+            </div>
+          </app-formitem3>
+        </app-radio>
+
         <div class="mybutton">
-          <app-button>确认支付</app-button>
+          <app-button @click.native='goPay'>确认</app-button>
         </div>
+
       </div>
     </article>
   </div>
 </template>
 <script>
+  import helper from '../utils/helper.js'
   export default {
     data () {
       return {
+        payWay:null,
         card1: {
           status: 'PLAN',
           name: '韩**',
           cardNoAfter4: '3638',
           billDate: 3,
           repaymentDate: 13
-        }
+        },
+        cardId:null,
+        payWays:[
+          {
+            title:'',
+            note:'',
+            icon:'',
+            iconClass:'',
+            value:0
+          },
+        ],
       }
-    }
+    },
+    computed:{
+      orderId(){
+        return this.$route.query.orderId
+      },
+      cardsDC(){
+        return this.$store.state.cards.cardsListDC
+      },
+    },
+    created(){
+      
+      if(!this.$route.query.orderId){
+        console.log('%cno orderId','color:red')
+      }
+    },
+    methods:{
+      goPay(){
+        if(this.payWay==0){
+          console.log('CC pay')
+        }
+        if(this.payWay==3){
+          let orderId=this.orderId
+          let url=helper.urlConcat('/paybankcard_old',{
+            orderId,
+          })
+          helper.goPage(url)
+          
+        }
+      },
+    },
   }
 </script>
 <style lang="scss" scoped>

@@ -27,7 +27,7 @@ export default class helper {
   }
 
   static replaceRouter(path){
-    router.replace(path)
+    router.replace(config.routerRoot+path)
   }
 
   static saveUserInfoToLocal(data){
