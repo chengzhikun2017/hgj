@@ -27,11 +27,10 @@ const order = {
       return promise
     },
     order_productsListGet({state},){
-      console.log('----')
       fetch({
         url:'/product/list'
       }).then(res=>{
-        console.log('product list res',res)
+        // console.log('product list res',res)
         state.products=res
       })
     },

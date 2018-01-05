@@ -14,6 +14,7 @@ import user_setting from '../pages/userSetting.vue'
 import upgrade_free from '../pages/upgradeFree.vue'
 import paybankcard_old from '../pages/paybankcard_old.vue'
 
+
 import login from '@/pages/login.vue'
 import signUp from '@/pages/signUp.vue'
 import plan from '@/pages/plan.vue'

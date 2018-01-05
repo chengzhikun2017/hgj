@@ -43,7 +43,7 @@ export default {
 
   },
   mounted(){
-    console.log('context',this.$vnode.data.model.expression)
+    // console.log('context',this.$vnode.data.model.expression)
     // console.log('this.$refs.container',this.$refs.container)
     // console.log('this.$refs.container lable',this.$refs.container.getAttribute('label'))
     // this.label=this.$refs.container.getAttribute('label')

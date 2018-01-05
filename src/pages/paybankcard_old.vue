@@ -33,8 +33,8 @@
             <app-check :value='cardId==card.cardId' :type='1' class='check-icon' />
           </div>
         </app-formitem3>
-        <p @click='newCardPay'>使用新卡</p>
       </app-radio>
+      <p @click='newCardPay'>使用新卡</p>
     </article>
   </div>
 </template>
@@ -78,7 +78,7 @@
         return true
       },  
       getCode(countdown) {
-        console.log('orderId,cardId',this.orderId,this.cardId)
+        // console.log('orderId,cardId',this.orderId,this.cardId)
         // return
         this.order_unspayPay({
           orderId:this.orderId,
@@ -88,14 +88,13 @@
           // cardNo:this.cardNo,
           // phone:this.phone,
         }).then(res=>{
-          console.log('bindCardAndGetCode res',res)
+          // console.log('bindCardAndGetCode res',res)
         })
         return
         this.order_unspayGetCode({
           orderId: this.orderId,
           cardId: this.cardId,
         }).then(res => {
-          console.log('res', res)
           countdown()
         })
       },
@@ -126,7 +125,6 @@
           return {}
         }else{
           return this.cardsDC.find(item=>{
-            console.log('item card',item,item.cardId==this.cardId)
             return item.cardId==this.cardId
           })
         }
@@ -139,7 +137,7 @@
           verCode:this.code,
         }
         this.order_pay(params).then(res=>{
-          console.log('res',res)
+          // console.log('res',res)
         })
       },
       orderId(){
