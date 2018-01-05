@@ -11,6 +11,7 @@
           <p>10天 / 5%保证金</p>
         </div>
       </div>
+        <div>{{productInfo}}</div>
       <div class="order-content">
         <app-radio v-model='payWay' :label='0'>
           <app-formitem3 title="信用卡付款" note="激活使用信用卡，付款99折，无需网银！" :first="true" :notePoint="true">
@@ -81,6 +82,28 @@
       }
     },
     computed:{
+      productInfo(){
+        // if(!this.productId){
+        //   return null
+        // }
+        var products=this.$store.state.order.products
+        if(products.length==0){
+          return ''
+        }
+        var productInfo=products.find(item=>{
+          return item.productId==this.productId
+        })
+        var isUpgrade
+        if(this.productId==20000){ 
+          isUpgrade=''
+        }else{
+          isUpgrade='升级'
+        }
+        return '购买服务：'+isUpgrade+productInfo.name+' 支付：'+(productInfo.fee/100).toFixed(0)+'元'
+      },
+      productId(){
+        return this.$route.query.productId
+      },
       orderId(){
         return this.$route.query.orderId
       },
@@ -89,7 +112,8 @@
       },
     },
     created(){
-      
+      var products=this.$store.state.order.products
+      console.log('products',products)
       if(!this.$route.query.orderId){
         console.log('%cno orderId','color:red')
       }

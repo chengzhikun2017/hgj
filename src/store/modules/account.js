@@ -15,6 +15,14 @@ class defaultAccountInfo {
     this.name=null
     this.idCardNo=null
     this.isLoged=false
+    this.jf=0
+    this.money=0
+    this.qrcodeUrl=''
+    this.userId=null
+    this.unfreezeMoney=0
+    this.freezeMoney=0
+    this.isActive=0
+    this.level=0
   }
 }
 const account = {
@@ -35,14 +43,18 @@ const account = {
       s.verifyCode=code
     },
     account_reset(s){
-      s.phone= null
-      s.captcha= ''
-      s.verifyCode=''
-      s.userId=null
-      s.isRealNamed=false
-      s.name=null
-      s.idCardNo=null
-      s.isLoged=false
+      var info=new defaultAccountInfo()
+      for(let key in info){
+        s[key]=info[key]
+      }
+      // s.phone= null
+      // s.captcha= ''
+      // s.verifyCode=''
+      // s.userId=null
+      // s.isRealNamed=false
+      // s.name=null
+      // s.idCardNo=null
+      // s.isLoged=false
     },
   },
   actions: {
@@ -145,6 +157,9 @@ const account = {
       fetch({
         url:'profile/info',
       }).then(res=>{
+        for(let key in res){
+          state[key]=res[key]
+        }
         if(res.name&&res.idCardNo){
           state.isRealNamed = true
           state.name = res.name

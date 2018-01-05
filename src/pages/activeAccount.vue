@@ -96,13 +96,10 @@
     },
     methods:{
       goActivePay(){
-        this.order_createActive().then(res=>{
-          var url=helper.urlConcat('/paybankcard',{orderId:res.orderId})
-          helper.goPage('/pay')
-        })
+        helper.goBuy('active')
       },
       goActiveFree(){
-        helper.goPage('/upgrade_free')
+        helper.goBuyFree('active')
       },
       ...mapActions([
         'order_createActive',

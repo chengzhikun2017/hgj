@@ -8,6 +8,7 @@ class defaultInfo{
     this.idCardNo=null
     this.phone=null
     this.cardNo='6214852109847213'
+    // '6217850800002045332'
   }
 }
 const addCardDC = {

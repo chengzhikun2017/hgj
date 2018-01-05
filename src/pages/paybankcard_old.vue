@@ -67,8 +67,18 @@
       //   })
         
       // },
+
       payOrder(){
-        
+        let params={
+          payType:'UNSPAY',
+          orderId:this.orderId,
+          cardId:this.cardId,
+          verCode:this.code,
+        }
+        this.order_pay(params).then(res=>{
+          this.order_getStatusAfterPay(this.orderId)
+          // console.log('res',res)
+        })
       },
       isValidated(){
         if(this.cardId===null){
@@ -83,20 +93,16 @@
         this.order_unspayPay({
           orderId:this.orderId,
           cardId:this.cardId,
-          // name:this.name,
-          // idCardNo:this.idCardNo,
-          // cardNo:this.cardNo,
-          // phone:this.phone,
         }).then(res=>{
-          // console.log('bindCardAndGetCode res',res)
-        })
-        return
-        this.order_unspayGetCode({
-          orderId: this.orderId,
-          cardId: this.cardId,
-        }).then(res => {
           countdown()
         })
+        // return
+        // this.order_unspayGetCode({
+        //   orderId: this.orderId,
+        //   cardId: this.cardId,
+        // }).then(res => {
+        //   countdown()
+        // })
       },
       newCardPay(){
         let path=helper.urlConcat('/paybankcard',{
@@ -111,7 +117,8 @@
         'order_unspayPay',
         'order_unspayGetCode',
         'order_pay',
-        'addCardDC_submit'
+        'addCardDC_submit',
+        'order_getStatusAfterPay',
         ])
     },
     created(){
@@ -129,17 +136,7 @@
           })
         }
       },
-      pay(){
-        let params={
-          payType:'UNSPAY',
-          orderId:this.orderId,
-          cardId:this.cardId,
-          verCode:this.code,
-        }
-        this.order_pay(params).then(res=>{
-          // console.log('res',res)
-        })
-      },
+
       orderId(){
         return this.$route.query.orderId
       },

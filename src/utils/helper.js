@@ -26,6 +26,46 @@ export default class helper {
     }
   }
 
+  // 'upgrade','active'
+  // free,pay
+  static goBuyFree(type){
+    this.goPayPage('/pay_free',type)
+  }
+
+  static goBuy(type){
+    this.goPayPage('/pay',type)
+  }
+
+  // '/pay'
+  // '/pay_free'
+  static goPayPage(src,type){
+    var crrtLv=HGJ_VUE.$store.state.account.level
+    if(type==='active'){
+      let productId,products=HGJ_VUE.$store.state.order.products
+      productId=products[0].productId;
+      HGJ_VUE.$store.dispatch('order_createActive').then(res=>{
+        var orderId=res.orderId
+        let url =helper.urlConcat(src,{
+          orderId,
+          productId,
+        })
+        helper.goPage(url)
+      })
+    }else if(type==='upgrade'){
+      let productId,products=HGJ_VUE.$store.state.order.products
+      productId=products[crrtLv+1].productId;
+      HGJ_VUE.$store.dispatch('order_createUpgrade',productId).then(res=>{
+        var orderId=res.orderId
+        let url =helper.urlConcat(src,{
+          orderId,
+          productId,
+        })
+        helper.goPage(url)
+      })
+    }
+
+  }
+
   static replaceRouter(path){
     router.replace(config.routerRoot+path)
   }

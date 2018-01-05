@@ -11,7 +11,7 @@ import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
 import error_page from '../pages/testPage/error.vue'
 import user_setting from '../pages/userSetting.vue'
-import upgrade_free from '../pages/upgradeFree.vue'
+import pay_free from '../pages/payFree.vue'
 import paybankcard_old from '../pages/paybankcard_old.vue'
 
 
@@ -98,7 +98,7 @@ index = index.concat(
   newRoute('/editPwd', 'editPwd', editPwd),
   newRoute('/forgetPwdStep1', 'forgetPwdStep1', register),
   newRoute('/forgetPwdStep2', 'forgetPwdStep2', signUp),
-  newRoute('/upgrade_free', 'upgrade_free', upgrade_free),
+  newRoute('/pay_free', 'pay_free', pay_free),
   newRoute('/user_setting', 'user_setting', user_setting),
   newRoute('/balance_page', 'balance_page', balancePage),
 )
