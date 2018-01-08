@@ -3,7 +3,7 @@ import axios from 'axios'
 import store from '@/store'
 import {HGJ_VUE} from '../main.js'
 import helper from '../utils/helper.js'
-// const apiUrl='http://106.14.119.213:9009/api/'
+// const apiUrl='https://hgj.wd577.cn/api'
 const apiUrl='/api'
 function handleUnlogin(res){
   helper.unloginRemind()
@@ -20,10 +20,12 @@ function handleWrongCode(res){
 console.log('process',process)
 export default function fetch(options,showloading=1) {
   var fetchPromis=new Promise((resolve, reject) => {
-    HGJ_VUE.hgjShowLoading()
+    if(showloading){
+      HGJ_VUE.hgjShowLoading()
+    }
     const instance = axios.create({
       // 超时时间设置
-      timeout: 6000,
+      // timeout: 6000,
       // 请求的host设置
       baseURL: apiUrl,
       // 通过cookies进行认证
@@ -33,8 +35,9 @@ export default function fetch(options,showloading=1) {
 
     instance(options).then(response => {
         // status必然是200
-        
-        HGJ_VUE.hgjHideLoading()
+        if(showloading){
+          HGJ_VUE.hgjHideLoading()
+        }
         console.log('responese to>>>%c'+options.url,'color:green','<<<',response)
         const res = response.data
           // 根据陶雨的基本标准，做error的错误封装
@@ -54,7 +57,9 @@ export default function fetch(options,showloading=1) {
         }
       })
       .catch(err => {
-        HGJ_VUE.hgjHideLoading()
+        if(showloading){
+          HGJ_VUE.hgjHideLoading()
+        }
         // 加载失败：超时，无响应，无对应资源
         // 通过store数据驱动，做错误提示
         // store.dispatch('error', err)

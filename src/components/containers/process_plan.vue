@@ -1,12 +1,12 @@
 <template>
   <div class="record">
-    <div class="cardtitle" flex="main:justify cross:center">
+    <!-- <div class="cardtitle" flex="main:justify cross:center">
       <img src="" alt="">
       <span class="lastno">尾号：{{planInfo.cardNoAfter4}}</span>
-    </div>
-    <div class="liner">
+    </div> -->
+    <!-- <div class="liner"> -->
       
-    </div>
+    <!-- </div> -->
     <div class="record-content" flex="main:justify">
       <div class="left">
         <div class="money">
@@ -35,12 +35,7 @@
       },
       record: {
         type: Object,
-        default: {
-          // lastNo: '8888',
-          money: 98.4,
-          time: '2017-12-19 / 21:42',
-          status: 'success' // doing, success
-        }
+        default: {},
       }
     },
     data () {

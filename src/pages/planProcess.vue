@@ -2,9 +2,9 @@
   <div class="planrecords" flex="dir:top">
     <app-nav flex-box="0">计划执行记录</app-nav>
     <article flex-box="1">
-      <ul class="recordlist">
-        <li class="recorditem" v-for='record in recordList'>
-          <app-record :record="record" :planInfo='planInfo'></app-record>
+      <ul class="processList">
+        <li class="recorditem" v-for='process in processList'>
+          <app-process :process="process" :planInfo='planInfo'></app-process>
         </li>
         <!-- <li class="recorditem">
           <app-record :record="record2"></app-record>
@@ -15,10 +15,11 @@
 </template>
 <script>
   import {mapActions} from 'vuex'
+  import processPlan from '../components/containers/process_plan.vue'
   export default {
     data () {
       return {
-        recordList:[],
+        processList:[],
         record1: {
           lastNo: '8888',
           money: 98.4,
@@ -33,10 +34,13 @@
         }
       }
     },
+    components:{
+      'app-process':processPlan,
+    },
     methods:{
       getRecords(){
         this.plan_list(this.planInfo.planId).then(res=>{
-          this.recordList=res
+          this.processList=res
         })
       },
       ...mapActions([
@@ -60,7 +64,7 @@
     article {
       overflow: auto;
       background: #f3f3f3;
-      .recordlist {
+      .processList {
         .recorditem {
           display: block;
           padding-bottom: 0.1rem;

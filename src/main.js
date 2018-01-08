@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import config from './config.js'
 import helper from './utils/helper.js'
+import TimeUtil from './utils/time.js'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -61,6 +62,12 @@ Vue.component('app-share', share)
 Vue.config.productionTip = false
 
 console.log('process', process.env)
+Vue.filter('moneyFilter',(v)=>{
+  return (v/100).toFixed(2)+'元'
+})
+Vue.filter('timePlanRecordFilter',(v)=>{
+  return TimeUtil.getTimeString(v)
+})
 Vue.directive('scroll-load', {
   bind: function(el, binding, vnode) {
     // console.log('vnode', vnode)

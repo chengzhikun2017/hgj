@@ -7,12 +7,17 @@
     </div>
     <select class="select__" ref='select'  :disabled='disabled' @change='handleValueChange($event)' @select='testSelect($event)' >
       <option disabled selected value>-请选择-</option>
-      <option v-for='item in options' :value="item.value" :key='item.value'>{{item.value}}</option>
+      <option v-for='item in options' :value="item.value" :key='item.value'>{{optsFilter(item.value)}}</option>
     </select>
   </div>
 </template>
 
 <script>
+/*
+2018-01-07：
+prefter --> $emit('input',{value:v,lable:str})
+由于本项目已使用多处，故增加 optionFilter作为替代方案
+ */
 export default {
   data() {
     return {
@@ -33,6 +38,9 @@ export default {
     filter:{
       default :false,
     },
+    optionFilter:{
+      default:false
+    },
     cb:{
       default:null
     },
@@ -50,10 +58,17 @@ export default {
     },
   },
   methods:{
-   
+    optsFilter(v){
+      if(this.optionFilter){
+        return this.optionFilter(v)
+      }else{
+        return v
+      }
+    },
     handleValueChange(e){
       // this.$emit('select',e.target.value)
-      this.$emit('input',e.target.value) // v-model used on this component will register $on event listenr for parent component
+      // this.$emit('input',e.target.value) 
+      this.$emit('input',e.target.value) 
       // this.$emit('change',e.target.value)
       if(this.cb){
         this.cb()

@@ -50,10 +50,10 @@
           CR.inputWarn(this,'请输入正确的信用卡号','formcreditcard')
           return false
         }
-        if (!Regs.idCardNoUtil.checkIdCardNo(this.idCardNo)) {
-          CR.inputWarn(this,'请输入正确的身份证','formidcard')
-          return false
-        }
+        // if (!Regs.idCardNoUtil.checkIdCardNo(this.idCardNo)) {
+        //   CR.inputWarn(this,'请输入正确的身份证','formidcard')
+        //   return false
+        // }
         return true
       },
       nextStep (){

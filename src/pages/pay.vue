@@ -3,15 +3,15 @@
     <app-nav>支付订单</app-nav>
     <article>
       <div class="banner">
-        <app-creditcard :card="card1"></app-creditcard>
-        <div class="plan">
+        <!-- <app-creditcard :card="card1"></app-creditcard> -->
+        <!-- <div class="plan">
           <div class="note">
             养成计划：
           </div>
           <p>10天 / 5%保证金</p>
-        </div>
+        </div> -->
       </div>
-        <div>{{productInfo}}</div>
+        <div>{{productDscrp}}</div>
       <div class="order-content">
         <app-radio v-model='payWay' :label='0'>
           <app-formitem3 title="信用卡付款" note="激活使用信用卡，付款99折，无需网银！" :first="true" :notePoint="true">
@@ -57,6 +57,7 @@
   </div>
 </template>
 <script>
+  import {mapActions} from 'vuex'
   import helper from '../utils/helper.js'
   export default {
     data () {
@@ -69,6 +70,7 @@
           billDate: 3,
           repaymentDate: 13
         },
+        orderStatus:{},
         cardId:null,
         payWays:[
           {
@@ -82,24 +84,42 @@
       }
     },
     computed:{
-      productInfo(){
+      productDscrp() {
         // if(!this.productId){
         //   return null
         // }
-        var products=this.$store.state.order.products
-        if(products.length==0){
+        // var products = this.$store.state.order.products
+        if (!this.productInfo) {
           return ''
         }
-        var productInfo=products.find(item=>{
-          return item.productId==this.productId
-        })
-        var isUpgrade
-        if(this.productId==20000){ 
-          isUpgrade=''
-        }else{
-          isUpgrade='升级'
+        var productInfo = this.productInfo
+        var orderDecrp = ''
+        if(productInfo.productId===10000){
+          return '智能还卡 '+ '支付：' +(productInfo.fee / 100).toFixed(0) + '元'
         }
-        return '购买服务：'+isUpgrade+productInfo.name+' 支付：'+(productInfo.fee/100).toFixed(0)+'元'
+        if (productInfo) {
+          var isUpgrade
+          if (this.productId == 20000) {
+            isUpgrade = ''
+          } else {
+            isUpgrade = '升级'
+          }
+          orderDecrp = '购买服务：' + isUpgrade + productInfo.name + ' '
+          return orderDecrp + '支付：' + (productInfo.fee / 100).toFixed(0) + '元'
+        }
+
+
+      },
+      productInfo(){
+        if(this.productId){
+          var products = this.$store.state.order.products
+          return products.find(item => {
+            return item.productId == this.productId
+          })
+        }else if(this.orderStatus){
+          return this.orderStatus
+        }
+
       },
       productId(){
         return this.$route.query.productId
@@ -117,8 +137,18 @@
       if(!this.$route.query.orderId){
         console.log('%cno orderId','color:red')
       }
+      if(!this.productId){
+        this.getOrderStatus()
+      }
     },
     methods:{
+
+      getOrderStatus(){//todo:从上一页获取订单描述
+        this.order_status(this.orderId).then(res=>{
+          console.log('order status ',res)
+          this.orderStatus=res
+        })
+      },
       goPay(){
         if(this.payWay==0){
           console.log('CC pay')
@@ -132,6 +162,9 @@
           
         }
       },
+      ...mapActions([
+        'order_status',
+        ])
     },
   }
 </script>

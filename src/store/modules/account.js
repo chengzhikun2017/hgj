@@ -100,6 +100,7 @@ const account = {
         }
       })
       promise.then(res=>{
+        state.isLoged=true
         //save to local
       })
       return promise
@@ -195,9 +196,9 @@ const account = {
         },
       })
     },
-    account_findPwd({},{phone,code,password}){
+    account_findPwd({state,dispatch},{phone,code,password}){
       console.log('%cfind pwd','color:red')
-      return fetch({
+      var promise = fetch({
         url:'account/findPwd',
         params:{
           phone,
@@ -205,6 +206,10 @@ const account = {
           password,
         },
       })
+      promise.then(res=>{
+        dispatch('account_getUserInfo')
+      })
+      return promise
     },
   }
 }

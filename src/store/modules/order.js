@@ -128,6 +128,21 @@ const order = {
       })
       return promise
     },
+    order_createPlan({},{cardId,fee,period,startDate,endDate,percent,}){
+      var promise=fetch({
+        url:'order/createRepaymentPlanOrder',
+        params:{
+          cardId,
+          fee,
+          period,
+          startDate,
+          endDate,
+          percent,
+        },
+      })
+      
+      return promise
+    },
   }
 }
 

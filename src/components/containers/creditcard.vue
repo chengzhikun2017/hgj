@@ -14,7 +14,7 @@
           <span class="liner">|</span>
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
-        <span class="btn2" v-show="card.status === 'PLAN'" @click='goNewPlan'>建立还款计划</span>
+        <span class="btn2" v-show="card.planStatus === ''" @click.stop='goNewPlan'>建立还款计划</span>
       </div>
       <div class="floor">
         <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：每月{{card.repaymentDate}}号</span>
