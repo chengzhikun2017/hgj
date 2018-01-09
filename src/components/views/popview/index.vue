@@ -1,11 +1,13 @@
 <template>
-  <div class="popview">
+  <div class="popview" v-show="value">
     <div class="popcontainer">
       <div class="popbox">
-        <div class="popheader" flex>
-          <div class="icon"></div>
-          <div class="title">标题</div>
-          <div class="close">
+        <div class="popheader" flex="cross:center">
+          <slot name="icon" flex-box="0">
+            
+          </slot>
+          <div class="title" flex-box="1">{{title}}</div>
+          <div class="close" flex-box="0" @click="close">
             <span class="icon-cancel"></span>
           </div>
         </div>
@@ -22,11 +24,23 @@
 <script>
   export default {
     props: {
-      
+      value: {
+        type: Boolean,
+        default: false
+      },
+      title: {
+        type: String,
+        default: '标题'
+      }
     },
     data () {
       return {
 
+      }
+    },
+    methods: {
+      close () {
+        this.$emit('input', false)
       }
     }
   }
@@ -49,7 +63,18 @@
         border-radius: 0.1rem;
         padding:0.2rem 0.15rem;
         .popheader {
-
+          .title {
+            font-size: 0.19rem;
+            color: #383838;
+            font-weight: 700;
+          }
+          .close {
+            color: #a4a4a4;
+            font-size: 0.25rem;
+            span {
+              display: block;
+            }
+          }
         }
       }
     }
