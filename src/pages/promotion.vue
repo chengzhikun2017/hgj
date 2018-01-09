@@ -38,6 +38,7 @@
 
 <script>
 import helper from '../utils/helper.js'
+import {mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -48,21 +49,57 @@ export default {
     }
   },
   methods:{
-    upgradePay(){
-      helper.goPage('/pay')
+    activePay(){
+      helper.goBuy('active')
+    },
+    activeFree(){
+      helper.goBuyFree('active')
     },
     upgradeFree(){
-      helper.goPage('/upgrade_free')
+      helper.goBuyFree('upgrade')
     },
+    upgradePay(){
+      helper.goBuy('upgrade')
+    },
+    // goUpgrade(src){
+    //   var crrtLv=this.$store.state.account.level
+    //   var productId=this.$store.state.order.products[crrtLv+1].productId
+    //   this.order_createUpgrade().then(res=>{
+    //     var orderId=res.orderId
+    //     let url =helper.urlConcat(src,{
+    //       orderId,
+    //       productId,
+    //     })
+    //     helper.goPage(url)
+    //   })
+    // },
+    // goActive(src){
+    //   this.order_createActive().then(res=>{
+    //     var orderId=res.orderId
+    //     let url =helper.urlConcat(src,{
+    //       orderId,
+    //     })
+    //     helper.goPage(url)
+    //   })
+    // },
     share(){
       
     },
     goJihuo(){
       helper.goPage('/activeaccount')
     },
+    ...mapActions([
+      'order_createActive',
+      ])
+  },
+  computed:{
+    crrtLv(){
+      return this.$store.state.account.level
+    },
   },
   events: {},
-  components: {}
+  components: {},
+
 }
 </script>
 

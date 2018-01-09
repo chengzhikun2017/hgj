@@ -7,8 +7,8 @@
         </span>
       </span>
       <div class="tabs" flex-box="1" flex="main:center">
-        <span :class="{'active': choose == 0}" @click="choose=0">我的信用卡(3)</span>
-        <span :class="{'active': choose == 1}" @click="choose=1">我的储蓄卡(0)</span>
+        <span :class="{'active': choose == 0}" @click="choose=0">我的信用卡{{numCC}}</span>
+        <span :class="{'active': choose == 1}" @click="choose=1">我的储蓄卡{{numDC}}</span>
       </div>
       <span class="side" flex-box="0"></span>
     </nav>
@@ -88,6 +88,13 @@
       isLoged(){
         return this.$store.state.account.isLoged
       },
+      numDC(){
+        return '('+this.$store.state.cards.cardsListDC.length+')'
+      },
+      numCC(){
+        return '('+this.$store.state.cards.cardsListCC.length+')'
+      },
+
       ...mapGetters({
         cardListCC:'cards_listCC',
         cardListDC:'cards_listDC',

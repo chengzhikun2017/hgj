@@ -25,7 +25,7 @@
       </div>
       <div class="note" flex="main:justify">
         <p @click='goSignUp'>新用户注册</p>
-        <p>忘记密码？</p>
+        <p @click='goForgetPwd'>忘记密码？</p>
       </div>
     </article>
   </div>
@@ -62,6 +62,9 @@
       }
     },
     methods:{
+      goForgetPwd(){
+        helper.goPage('/forgetPwdStep1')
+      },
       goSignUp(){
         helper.goPage('/register')
       },
@@ -102,7 +105,7 @@
         } else {
           this.pwdInputType = "text"
         }
-        this.$refs.pwdInput.focus()
+        this.$refs.pwdInput.$refs.input.focus()
       },
       ...mapActions([
         'account_login'

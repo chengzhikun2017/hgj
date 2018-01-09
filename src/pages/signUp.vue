@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <app-nav >注册页</app-nav>
+    <app-nav >{{title}}</app-nav>
     <article>
       <div class="logo"></div>
       <div class="form">
@@ -32,7 +32,8 @@
           <span class="icon-eye icon-pwd-type" @click='togglePwdType' :class='{"icon-pwd-hide":pwdInputType=="password"}'></span>
         </div>
         <div class="mybutton">
-          <app-button @click.native='signUp'>注册并登录</app-button>
+          <app-button @click.native='signUp' v-if='pageType==="signup"'>注册并登录</app-button>
+          <app-button @click.native='findPwd' v-if='pageType==="findPwd"'>提交修改</app-button>
         </div>
       </div>
       <div class="protocol">
@@ -47,11 +48,12 @@
   import helper from '../utils/helper.js'
   import Regs from '../utils/reg.js'
   import router from '../router'
+  // import config from './config.js'
   export default {
     data () {
       return {
         check: true,
-        verifyCode:'',
+        verifyCode:'000000',
         pwd:'',
         pwdInputType:"password",
         codeBttnMsg:'获取验证码',
@@ -66,6 +68,13 @@
     //   clearInterval(this.countdownTimer)
     // },
     computed:{
+      pageType(){
+        if(/forgetPwdStep/.test(this.$route.path)){
+          return 'findPwd'
+        }else{
+          return 'signup'
+        }
+      },
       captchaValid(){
         return this.captcha&&this.captcha.length===4
       },
@@ -75,41 +84,87 @@
       verifyCodeValid(){
         return /\d{6}/.test(this.verifyCode)
       },
-      
+      title(){
+        // console.log('this.$route',this.$route)
+        if(this.pageType==='findPwd'){
+          return '忘记密码'
+        }
+        return '注册页'
+      },
+      // submitText(){
+      //   if(this.pageType==='findPwd'){
+      //     return '提交修改密码'
+      //   }
+      //   return '注册并登录'
+      // },
     },
     watch:{
     },
     created(){
+        // console.log('this.$route',this.$route)
       this.getCaptcha()
     },
     beforeRouteEnter(to,from,next){
       // console.log('to,from,next',to,from,next,)
       // console.log('/register/.test(from.name)',/register/.test(from.name))
-      if(/register/.test(from.name)){
+      let path=to.path
+      if(/register/.test(from.name)&&/signup/.test(path)){
+        next()
+      }else if(/forgetPwdStep1/.test(from.name)&&/forgetPwdStep2/.test(path)){
         next()
       }else{
-        // console.log('',this)
-        helper.replaceRouter('/register')
+        if(/signup/.test(path)){
+          helper.replaceRouter('/register')
+        }else if(/forgetPwdStep2/.test(path)){
+          helper.replaceRouter('/forgetPwdStep1')
+        }
+        
       }
     },
+
     methods:{
-      signUp(){
+      checkValid(){
         if(!this.verifyCodeValid){
           // 使用callback 定位对应的输入框 调用 commomRemind
-          this.hgjToast('请输入正确的六位验证码',2)
-          return
+          this.hgjToast('请输入正确的六位验证码',1)
+          return false
         }
         if(!this.pwdValid){
           // 使用callback 定位对应的输入框 commomRemind
-          this.hgjToast('请按要求输入密码',2)
+          this.hgjToast('请按要求输入密码',1)
+          return false
+        }
+        return true
+      },
+      findPwd(){
+        console.log('find pwd')
+        if(!this.checkValid()){
+          return
+        }
+        this.account_findPwd({
+          phone:this.$store.state.account.phone,
+          code:this.verifyCode,
+          password:this.pwd,
+        }).then(res=>{
+          console.log('res account_findPwd',res)
+          
+          // return
+
+          return
+          if('success'){
+            this.router_willBackToIndex()
+            helper.goPage(-1)
+          }
+        })
+      },
+      signUp(){
+        if(!this.checkValid()){
           return
         }
         this.account_signUp({
           password:this.pwd,
           code:this.verifyCode,
         }).then(res=>{
-          console.log('res sign up',res)
-          // helper.saveUserInfoToLocal(res.data)
           this.router_willBackToIndex()
           helper.goPage(-1)
         })
@@ -120,26 +175,8 @@
         }else{
           this.pwdInputType="text"
         }
-        this.$refs.pwdInput.focus()
+        this.$refs.pwdInput.$refs.input.focus()
       },
-      // countdownGetCode(){
-      //   // this.getCodeRecently=true
-      //   let remainSec=5
-      //   this.codeBttnMsg=remainSec+'s后获取'
-      //   remainSec--
-      //   let timer=setInterval(()=>{
-      //     if(remainSec==0){
-      //       this.codeBttnMsg='重新获取'
-      //       clearInterval(timer)
-      //       this.countdownTimer=null
-      //       return
-      //     }
-      //     this.codeBttnMsg=remainSec+'s后获取'
-      //     remainSec--
-      //   },1000)
-      //   this.countdownTimer=timer
-      //   return timer
-      // },
 
       getCaptcha(){
         //todo: 万一没有手机号
@@ -163,18 +200,7 @@
           countdown()
         })
       },
-      getVerifyCode(){
-        // // if(this.countdownTimer){
-        // //   return
-        // // }
-        // if(!this.captchaValid){
-        //   this.hgjToast('请输入正确的图片验证码',1)
-        //   return false
-        // }
-        // // this.countdownGetCode()
-        // this.account_getVerifyCode(this.captcha)
-        // console.log('get code')
-      },
+
       ...mapMutations([
         'account_setCaptcha',
         'account_setVerifyCode',
@@ -183,6 +209,7 @@
       ...mapActions([
         'account_getCaptcha',
         'account_getVerifyCode',
+        'account_findPwd',
         'account_signUp',
       ])
     },
@@ -218,30 +245,6 @@
       margin-top: 0.2rem;
     }
   } 
-  .input{
-    position: relative;
-    .code-bttn{
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        display: flex;
-        align-items:center;
-        justify-content: center;
-        margin:auto 0;
-        height: 0.28rem;
-        width: 0.85rem;
-        font-size: 0.14rem;
-        border:0px solid #d3d3d3;
-        border-left-width: 1px;
-        line-height: 1.86;
-        text-align: center;
-        color: #383838;
-    }
-    .code-bttn-disabled{
-      color:#f84f4b;
-    }
 
-  }
 
 </style>

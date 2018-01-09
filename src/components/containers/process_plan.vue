@@ -1,27 +1,27 @@
 <template>
   <div class="record">
-    <div class="cardtitle" flex="main:justify cross:center">
-      <!-- <img src="" alt=""> -->
-      <span>{{record.cardCode}}</span>
-      <span class="lastno">尾号：{{record.cardNoAfter4}}</span>
-    </div>
-    <div class="liner">
+    <!-- <div class="cardtitle" flex="main:justify cross:center">
+      <img src="" alt="">
+      <span class="lastno">尾号：{{planInfo.cardNoAfter4}}</span>
+    </div> -->
+    <!-- <div class="liner"> -->
       
-    </div>
+    <!-- </div> -->
     <div class="record-content" flex="main:justify">
       <div class="left">
         <div class="money">
-          金额：{{record.taskFee|moneyFilter}} 
+          金额：{{process.fee|moneyFilter}} 
         </div>
         <div class="time">
-          {{record.planTime|timePlanRecordFilter}}
+          {{process.planTime|timePlanRecordFilter}}
         </div>
       </div>
       <div class="right">
-        <button v-if="record.status === 'SUCCESS'">执行成功</button>
-        <button v-if="record.status === 'DOING'">执行中</button>
-        <button v-if="record.status === 'FAILED'">执行失败</button>
-        <button v-if="record.status === 'CREATE'">等待执行</button>
+        <p style="font-size: 0.12rem">类型：{{process.type}}</p>
+        <button v-if="process.status === 'SUCCESS'">执行成功</button>
+        <button v-if="process.status === 'DOING'">执行中</button>
+        <button v-if="process.status === 'FAILED'">执行失败</button>
+        <button v-if="process.status === 'CREATE'">等待执行</button>
       </div>
     </div>
   </div>
@@ -29,14 +29,13 @@
 <script>
   export default {
     props: {
-      record: {
+      planInfo:{
         type: Object,
-        default: {
-          // lastNo: '8888',
-          money: 98.4,
-          time: '2017-12-19 / 21:42',
-          status: 'success' // doing, success
-        }
+        default:{},
+      },
+      process: {
+        type: Object,
+        default: {},
       }
     },
     data () {

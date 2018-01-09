@@ -5,6 +5,9 @@
     <div @click='logout'>登出</div>
     <div @click='goModifyPwd'>修改密码</div>
     <div>实名认证</div>
+    <hr>
+    我的分享二维码：
+    <img :src="qrSrc">
   </div>
 </template>
 
@@ -30,6 +33,11 @@ export default {
     ...mapActions([
       'account_logout',
       ])
+  },
+  computed:{
+    qrSrc(){
+      return this.$store.state.account.qrcodeUrl
+    },
   },
   events: {},
   components: {}

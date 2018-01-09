@@ -7,7 +7,9 @@ import account from './modules/account'
 import addCardCC from './modules/addCardCC'
 import addCardDC from './modules/addCardDC'
 import order from './modules/order'
+import plan from './modules/plan'
 import cards from './modules/cards'
+import balance from './modules/balance'
 
 Vue.use(Vuex)
 
@@ -21,6 +23,8 @@ const store = new Vuex.Store({
     addCardDC,
     cards,
     order,
+    plan,
+    balance,
   }
 })
 

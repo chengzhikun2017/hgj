@@ -11,7 +11,9 @@ import test2 from '../pages/testPage/test2.vue'
 import test3 from '../pages/testPage/test3.vue'
 import error_page from '../pages/testPage/error.vue'
 import user_setting from '../pages/userSetting.vue'
-import upgrade_free from '../pages/upgradeFree.vue'
+import pay_free from '../pages/payFree.vue'
+import paybankcard_old from '../pages/paybankcard_old.vue'
+
 
 import login from '@/pages/login.vue'
 import signUp from '@/pages/signUp.vue'
@@ -21,6 +23,7 @@ import addCreditCard1 from '@/pages/addCreditCard1.vue'
 import addCreditCard2 from '@/pages/addCreditCard2.vue'
 import addBankCard from '@/pages/addBankCard.vue'
 import planrecords from '@/pages/planrecords.vue'
+import planProcess from '@/pages/planProcess.vue'
 import payresult from '@/pages/payresult.vue'
 import activeAccount from '@/pages/activeAccount.vue'
 import orderEdit from '@/pages/orderEdit.vue'
@@ -32,8 +35,8 @@ import populizeScore from '@/pages/populizeScore.vue'
 import populizeShare from '@/pages/populizeShare.vue'
 import introduce from '@/pages/introduce.vue'
 import editPwd from '@/pages/editPwd.vue'
-import forgetPwdStep1 from '@/pages/forgetPwdStep1.vue'
-import forgetPwdStep2 from '@/pages/forgetPwdStep2.vue'
+// import forgetPwdStep1 from '@/pages/forgetPwdStep1.vue'
+// import forgetPwdStep2 from '@/pages/forgetPwdStep2.vue'
 Vue.use(Router)
 /**
  * 针对某一个组件创建路由数组（多个路由）
@@ -83,19 +86,21 @@ index = index.concat(
   newRoute('/addCreditcard2', 'addCreditCard2', addCreditCard2),
   newRoute('/addBankCard', 'addBankCard', addBankCard),
   newRoute('/planrecords', 'planrecords', planrecords),
+  newRoute('/planprocess', 'planProcess', planProcess),
   newRoute('/payresult', 'payresult', payresult),
   newRoute('/activeaccount', 'activeAccount', activeAccount),
   newRoute('/orderedit', 'orderEdit', orderEdit),
   newRoute('/balance', 'balance', balance),
   newRoute('/register', 'register', register),
   newRoute('/paybankcard', 'paybankcard', paybankcard),
+  newRoute('/paybankcard_old', 'paybankcard_old', paybankcard_old),
   newRoute('/populizeScore', 'populizeScore', populizeScore),
   newRoute('/populizeShare', 'populizeShare', populizeShare),
   newRoute('/introduce', 'introduce', introduce),
   newRoute('/editPwd', 'editPwd', editPwd),
-  newRoute('/forgetPwdStep1', 'forgetPwdStep1', forgetPwdStep1),
-  newRoute('/forgetPwdStep2', 'forgetPwdStep2', forgetPwdStep2),
-  newRoute('/upgrade_free', 'upgrade_free', upgrade_free),
+  newRoute('/forgetPwdStep1', 'forgetPwdStep1', register),
+  newRoute('/forgetPwdStep2', 'forgetPwdStep2', signUp),
+  newRoute('/pay_free', 'pay_free', pay_free),
   newRoute('/user_setting', 'user_setting', user_setting),
   newRoute('/balance_page', 'balance_page', balancePage),
 )
@@ -135,7 +140,7 @@ router.beforeEach((to, from, next) => {
   let indexPath = config.routerRoot + '/cards'
   if (!from.name && to.path !== indexPath) {
     router.push(indexPath)
-    router.push(to.path)
+    router.push(to.fullPath)
     // router.prototype.firstEnter=0
     return
   }

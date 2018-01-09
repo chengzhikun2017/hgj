@@ -7,11 +7,9 @@ const cards = {
   },
   getters: {
     cards_listCC(s){
-      console.log('s',s)
       return s.cardsListCC
     },
     cards_listDC(s){
-      console.log('s',s)
       return s.cardsListDC
     }
   },
@@ -36,7 +34,6 @@ const cards = {
        fetch({
         url:'card/cc',
       }).then(res=>{
-        console.log('res',res)
         state.cardsListCC=res
       })
     },
@@ -44,7 +41,6 @@ const cards = {
        fetch({
         url:'card/dc',
       }).then(res=>{
-        console.log('%c res card dc list','color:red',res)
         state.cardsListDC=res
       })
     },

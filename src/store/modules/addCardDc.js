@@ -4,10 +4,11 @@ import helper from '../../utils/helper.js'
 class defaultInfo{
   constructor(props) {
     this.name=null
+    // this.idCardNo=null
     this.idCardNo=null
-    //6214852109847213
     this.phone=null
-    this.cardNo=null
+    this.cardNo='6214852109847213'
+    // '6217850800002045332'
   }
 }
 const addCardDC = {

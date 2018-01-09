@@ -4,9 +4,11 @@
       <div class="floor" flex="main:justify">
         <div class="logo"></div>
         <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span>
-        <span class="btn1" v-show="card.status === 'change'">换一张卡</span>
-        <span class="btn1" v-show="card.status === 'SUCCESS'" @click='goEdit'>编辑</span>
-        <span class="btn1" v-show="card.status === 'SUCCESS'" @click='deleteConfirm'>删除</span>
+        <span class="" v-show="card.status === 'DOING'">绑定中</span>
+        <span class="" v-show="card.status === 'FAILED'">绑定失败</span>
+        <span class="btn1" v-show="card.status === 'FAILED'">重新绑定</span>
+        <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='goEdit'>编辑</span>
+        <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='deleteConfirm'>删除</span>
       </div>
       <div class="floor floor2" flex="main:justify">
         <div class="left">
@@ -14,7 +16,7 @@
           <span class="liner">|</span>
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
-        <span class="btn2" v-show="card.status === 'PLAN'" @click='goNewPlan'>建立还款计划</span>
+        <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span>
       </div>
       <div class="floor">
         <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：每月{{card.repaymentDate}}号</span>

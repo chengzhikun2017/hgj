@@ -5,7 +5,8 @@
       <div class="banner">
         <app-creditcard :card="cardInfo"></app-creditcard>
       </div>
-      <div class="content">
+      <div style="font-size: 0.15rem;text-align: right;" v-if='hasPlan' @click='viewPlanRecords'>查看历史计划</div>
+      <div class="content" v-if='crrtPlan'>
         <div class="planbox">
           <header flex="cross:center">
             <span class="icon" flex="main:center cross:center" flex-box="0">
@@ -15,44 +16,93 @@
               <h2>计划执行记录</h2>
               <p>当前计划</p>
             </div>
+            <span @click='endPlan'>终止计划</span>
           </header>
-          <div class="planbox-content">
+          <div class="planbox-content" >
             <div class="liner"></div>
             <app-formitem2 label="计划还款：">
-              <span class="msg">2000.00元</span>
+              <span class="msg">{{crrtPlan.taskFee|moneyFilter}}</span>
             </app-formitem2>
              <app-formitem2 label="计划时间：">
-              <span class="msg">8天</span>
+              <span class="msg">{{1+(crrtPlan.endDate-crrtPlan.beginDate)/24/3600000}}天</span>
             </app-formitem2>
             <app-formitem2 label="保证金：">
-              <span class="msg">20%</span>
+              <span class="msg">{{crrtPlan.securityFee|moneyFilter}}</span>
             </app-formitem2>
-            <app-formitem2 label="每期费用：">
-              <span class="msg">85.00元</span>
+            <app-formitem2 label="服务费用：">
+              <span class="msg">{{crrtPlan.serviceFee|moneyFilter}}</span>
             </app-formitem2>
           </div>
           <div class="footer">
-            <app-button @click.native='goNewPlan'>开启还款计划</app-button>
+            <app-button @click.native='viewPlanDetail' v-if='crrtPlan'>查看还款计划</app-button>
           </div>
         </div>
       </div>
+      <app-button style='width:80%;margin: 0 auto;' @click.native='goNewPlan' v-if='!crrtPlan'>开启还款计划</app-button>
     </article>
   </div>
 </template>
 <script>
   import '@/css/components.scss'
+  import {mapActions} from 'vuex'
   import helper from '../utils/helper.js'
   export default  {
     data () {
       return {
-        
+        crrtPlan:null,
+        hasPlan:false,
+        polling:null,
       }
     },
     methods:{
+      viewPlanRecords(){
+        let url=helper.urlConcat('/planrecords',{cardId:this.cardInfo.cardId})
+        helper.goPage(url)
+      },
+      viewPlanDetail(){
+        let url=helper.urlConcat('/planprocess',this.crrtPlan)
+        helper.goPage(url)
+      },
       goNewPlan(){
         let url=helper.urlConcat('/plan',this.cardInfo)
         helper.goPage(url)
       },
+      planReview(){
+        this.plan_viewLatest(this.cardInfo.cardId).then(res=>{
+          console.log('plan review',res)
+          if (res[0]) {
+            if (res[0].status === 'DOING') {
+              this.crrtPlan = res[0]
+            }
+            this.hasPlan=true
+          }
+        })
+      },
+      endPlan(){
+        this.plan_end(this.crrtPlan.planId).then(res=>{
+          this.polling=setInterval(()=>{
+            this.plan_endStatus(res.actionId).then(res=>{
+              if(res.status==='SUCCESS'||res.status==='FAILED'){
+                clearInterval(this.polling)
+                this.planReview()
+                this.hgjAlert({
+                  title:res.statusRemark,
+                })
+
+              }
+            })
+          },300)
+        })
+      },
+      ...mapActions([
+        'plan_review',
+        'plan_end',
+        'plan_endStatus',
+        'plan_viewLatest',
+        ])
+    },
+    created(){
+      this.planReview()
     },
     computed:{
       cardInfo(){

@@ -16,7 +16,7 @@
       </app-formitem>
       <app-formitem label="验证码" :last="true">
         <app-input class='form-input code-input' :placeholder='"请输入~~"' v-model='code' />
-        <bttn-code :validateMethod='isValidated' :getCodeMethod='getCode'></bttn-code>
+        <bttn-code :validateMethod='isValidated' :getCodeMethod='bindCardAndGetCode'></bttn-code>
       </app-formitem>
       <div class="myprotocol">
         <app-protocol></app-protocol>
@@ -36,11 +36,11 @@
         // name:null,
         name:'黄树栋',
         // cardNo:null,
-        cardNo:6214852109847213,
+        cardNo:'6214852109847213',
         phone:13816938525,
         // phone:null,
         // idCardNo:null,
-        idCardNo:321282199201264216,
+        idCardNo:'321282199201264216',
         code:null,
       }
     },
@@ -51,18 +51,29 @@
         return true
       },
       bindCardAndGetCode(){
-        this.addCardDC_setValue(this)
-        //validate infomation
-        return new Promise((resolve,reject)=>{
-          this.addCardDC_submit().then(res=>{
-            resolve(res)
-          })
+        // this.addCardDC_setValue(this)
+        // //validate infomation
+        // return new Promise((resolve,reject)=>{
+        //   this.addCardDC_submit().then(res=>{
+        //     resolve(res)
+        //   })
+        // })
+        this.order_unspayPay({
+          orderId:this.orderId,
+          // cardId:this.cardId,
+          name:this.name,
+          idCardNo:this.idCardNo,
+          cardNo:this.cardNo,
+          phone:this.phone,
+        }).then(res=>{
+          console.log('bindCardAndGetCode res',res)
         })
         
       },
       getCode(countdown){
-        this.bindCardForGetCode().then(res=>{
-          console.log('get code',res)
+
+        // this.bindCardForGetCode().then(res=>{
+        //   console.log('get code',res)
           this.order_unspayGetCode({
             orderId:this.orderId,
             cardId:res.cardId,
@@ -70,7 +81,7 @@
             console.log('res',res)
             countdown()
           }) 
-        })
+        // })
 
       },
       ...mapMutations([

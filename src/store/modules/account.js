@@ -6,7 +6,8 @@ import {HGJ_VUE} from '../../main.js'
 import helper from '../../utils/helper.js'
 class defaultAccountInfo {
   constructor(props) {
-    this.phone= null
+    // this.phone= null
+    this.phone= '13365225235'
     this.captcha= ''
     this.verifyCode=''
     this.userId=null
@@ -14,6 +15,14 @@ class defaultAccountInfo {
     this.name=null
     this.idCardNo=null
     this.isLoged=false
+    this.jf=0
+    this.money=0
+    this.qrcodeUrl=''
+    this.userId=null
+    this.unfreezeMoney=0
+    this.freezeMoney=0
+    this.isActive=0
+    this.level=0
   }
 }
 const account = {
@@ -34,14 +43,18 @@ const account = {
       s.verifyCode=code
     },
     account_reset(s){
-      s.phone= null
-      s.captcha= ''
-      s.verifyCode=''
-      s.userId=null
-      s.isRealNamed=false
-      s.name=null
-      s.idCardNo=null
-      s.isLoged=false
+      var info=new defaultAccountInfo()
+      for(let key in info){
+        s[key]=info[key]
+      }
+      // s.phone= null
+      // s.captcha= ''
+      // s.verifyCode=''
+      // s.userId=null
+      // s.isRealNamed=false
+      // s.name=null
+      // s.idCardNo=null
+      // s.isLoged=false
     },
   },
   actions: {
@@ -86,9 +99,10 @@ const account = {
           qudao:'',
         }
       })
-      // promise.then(res=>{
-
-      // })
+      promise.then(res=>{
+        state.isLoged=true
+        //save to local
+      })
       return promise
     },
     account_login({state,dispatch},{phone,pwd}){
@@ -119,10 +133,7 @@ const account = {
             content:'已登出',
             cbEntered:()=>{
               helper.resetInitialInfo()
-              // dispatch('account_logoutReset')
-              // commit('router_willBackToIndex')
-              // commit('cards_clearListCC')
-              // commit('cards_clearListDC')
+              commit('router_willBackToIndex')
               helper.goPage(-1)
             },
           })
@@ -147,10 +158,17 @@ const account = {
       fetch({
         url:'profile/info',
       }).then(res=>{
+        for(let key in res){
+          state[key]=res[key]
+        }
         if(res.name&&res.idCardNo){
           state.isRealNamed = true
           state.name = res.name
           state.idCardNo = res.idCardNo
+        }
+        if(res.userId){
+          state.userId=res.userId
+          state.isLoged=true
         }
       })
     },
@@ -178,15 +196,20 @@ const account = {
         },
       })
     },
-    account_findPwd(){
-      fetch({
+    account_findPwd({state,dispatch},{phone,code,password}){
+      console.log('%cfind pwd','color:red')
+      var promise = fetch({
         url:'account/findPwd',
         params:{
-          phone:null,
-          code:null,
-          password:null,
+          phone,
+          code,
+          password,
         },
       })
+      promise.then(res=>{
+        dispatch('account_getUserInfo')
+      })
+      return promise
     },
   }
 }

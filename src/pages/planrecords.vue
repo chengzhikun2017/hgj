@@ -3,20 +3,23 @@
     <app-nav flex-box="0">计划执行记录</app-nav>
     <article flex-box="1">
       <ul class="recordlist">
-        <li class="recorditem">
-          <app-record :record="record1"></app-record>
+        <li class="recorditem" v-for='record in recordList'>
+          <app-record :record="record" @click.native='viewPlanDetail(record)'></app-record>
         </li>
-        <li class="recorditem">
+        <!-- <li class="recorditem">
           <app-record :record="record2"></app-record>
-        </li>
+        </li> -->
       </ul>
     </article>
   </div>
 </template>
 <script>
+  import {mapActions} from 'vuex'
+  import helper from '../utils/helper.js'
   export default {
     data () {
       return {
+        recordList:[],
         record1: {
           lastNo: '8888',
           money: 98.4,
@@ -30,7 +33,29 @@
           btnType: 'doing' // doing, success
         }
       }
-    }
+    },
+    methods:{
+      getRecords(){
+        this.plan_review(this.cardInfo.cardId).then(res=>{
+          this.recordList=res
+        })
+      },
+      viewPlanDetail(record){
+        let url=helper.urlConcat('/planprocess',record)
+        helper.goPage(url)
+      }, 
+      ...mapActions([
+        'plan_review',
+        ])
+    },
+    created(){
+      this.getRecords()
+    },
+    computed:{
+      cardInfo(){
+        return this.$route.query
+      },
+    },
   }
 </script>
 <style lang="scss" scoped>

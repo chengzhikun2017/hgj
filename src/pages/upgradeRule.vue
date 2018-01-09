@@ -13,7 +13,7 @@ export default {
   },
   methods:{},
   events: {},
-  components: {}
+  components: {},
 }
 </script>
 
