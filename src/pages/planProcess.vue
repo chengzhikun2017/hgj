@@ -1,6 +1,7 @@
 <template>
   <div class="planrecords" flex="dir:top">
     <app-nav flex-box="0">计划执行记录</app-nav>
+
     <article flex-box="1">
       <ul class="processList">
         <li class="recorditem" v-for='process in processList'>
@@ -20,35 +21,24 @@
     data () {
       return {
         processList:[],
-        record1: {
-          lastNo: '8888',
-          money: 98.4,
-          time: '2017-12-19 / 21:42',
-          btnType: 'success' // doing, success
-        },
-        record2: {
-          lastNo: '8848',
-          money: 98.43,
-          time: '2017-11-19 / 21:42',
-          btnType: 'doing' // doing, success
-        }
+       
       }
     },
     components:{
       'app-process':processPlan,
     },
     methods:{
-      getRecords(){
-        this.plan_list(this.planInfo.planId).then(res=>{
+      getProcess(){
+        this.plan_process(this.planInfo.planId).then(res=>{
           this.processList=res
         })
       },
       ...mapActions([
-        'plan_list',
+        'plan_process',
         ])
     },
-    created(){
-      this.getRecords()
+    mounted(){
+      this.getProcess()
     },
     computed:{
       planInfo(){

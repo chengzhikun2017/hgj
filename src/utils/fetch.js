@@ -16,7 +16,6 @@ function handleWrongCode(res){
   // })
   HGJ_VUE.hgjAlert(res.message)
 }
-// console.log('HGJ_VUE',HGJ_VUE)
 console.log('process',process)
 export default function fetch(options,showloading=1) {
   var fetchPromis=new Promise((resolve, reject) => {
@@ -25,7 +24,7 @@ export default function fetch(options,showloading=1) {
     }
     const instance = axios.create({
       // 超时时间设置
-      // timeout: 6000,
+      timeout: 30000,
       // 请求的host设置
       baseURL: apiUrl,
       // 通过cookies进行认证

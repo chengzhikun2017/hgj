@@ -4,7 +4,7 @@
     <article flex-box="1">
       <ul class="recordlist">
         <li class="recorditem" v-for='record in recordList'>
-          <app-record :record="record" :planInfo='planInfo'></app-record>
+          <app-record :record="record" @click.native='viewPlanDetail(record)'></app-record>
         </li>
         <!-- <li class="recorditem">
           <app-record :record="record2"></app-record>
@@ -15,6 +15,7 @@
 </template>
 <script>
   import {mapActions} from 'vuex'
+  import helper from '../utils/helper.js'
   export default {
     data () {
       return {
@@ -35,19 +36,23 @@
     },
     methods:{
       getRecords(){
-        this.plan_list(this.planInfo.planId).then(res=>{
+        this.plan_review(this.cardInfo.cardId).then(res=>{
           this.recordList=res
         })
       },
+      viewPlanDetail(record){
+        let url=helper.urlConcat('/planprocess',record)
+        helper.goPage(url)
+      }, 
       ...mapActions([
-        'plan_list',
+        'plan_review',
         ])
     },
     created(){
       this.getRecords()
     },
     computed:{
-      planInfo(){
+      cardInfo(){
         return this.$route.query
       },
     },

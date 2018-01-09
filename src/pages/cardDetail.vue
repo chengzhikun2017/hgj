@@ -56,10 +56,11 @@
     },
     methods:{
       viewPlanRecords(){
-        helper.goPage('/planrecords')
+        let url=helper.urlConcat('/planrecords',{cardId:this.cardInfo.cardId})
+        helper.goPage(url)
       },
       viewPlanDetail(){
-        let url=helper.urlConcat('/planrecords',this.crrtPlan)
+        let url=helper.urlConcat('/planprocess',this.crrtPlan)
         helper.goPage(url)
       },
       goNewPlan(){
@@ -83,6 +84,7 @@
             this.plan_endStatus(res.actionId).then(res=>{
               if(res.status==='SUCCESS'||res.status==='FAILED'){
                 clearInterval(this.polling)
+                this.planReview()
                 this.hgjAlert({
                   title:res.statusRemark,
                 })

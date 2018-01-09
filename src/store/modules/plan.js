@@ -29,6 +29,8 @@ const plan = {
         url: 'plan/review',
         params: {
           cardId,
+          page:1,
+          limit:24,//最多显示两年内的记录？
         },
       }, false)
       return promise
@@ -44,13 +46,13 @@ const plan = {
       }, false)
       return promise
     },
-    plan_list({}, planId) {
+    plan_process({}, planId) {
       var promise = fetch({
         url: 'plan/processList',
         params: {
           planId,
         },
-      }, false)
+      },)
       return promise
     },
     plan_end({},planId){
@@ -59,7 +61,7 @@ const plan = {
         params: {
           planId,
         },
-      }, false)
+      })
       return promise
     },
     plan_endStatus({},actionId){

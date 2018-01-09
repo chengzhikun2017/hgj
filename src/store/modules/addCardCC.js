@@ -26,6 +26,7 @@ const addCardCC = {
       // idCardNo:'321282199201264216',//：身份证
       // // cardNo:'4514617650886304',//：卡号 visa
       // cardNo:'6259960047813225',//：卡号 ABC
+      // cardNo:'6225757525926177',//：卡号 CMB
       // year:null,//：卡片有效期年
       // month:null,//：卡片有效期月
       // fullYear:2019,

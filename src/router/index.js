@@ -23,6 +23,7 @@ import addCreditCard1 from '@/pages/addCreditCard1.vue'
 import addCreditCard2 from '@/pages/addCreditCard2.vue'
 import addBankCard from '@/pages/addBankCard.vue'
 import planrecords from '@/pages/planrecords.vue'
+import planProcess from '@/pages/planProcess.vue'
 import payresult from '@/pages/payresult.vue'
 import activeAccount from '@/pages/activeAccount.vue'
 import orderEdit from '@/pages/orderEdit.vue'
@@ -85,6 +86,7 @@ index = index.concat(
   newRoute('/addCreditcard2', 'addCreditCard2', addCreditCard2),
   newRoute('/addBankCard', 'addBankCard', addBankCard),
   newRoute('/planrecords', 'planrecords', planrecords),
+  newRoute('/planprocess', 'planProcess', planProcess),
   newRoute('/payresult', 'payresult', payresult),
   newRoute('/activeaccount', 'activeAccount', activeAccount),
   newRoute('/orderedit', 'orderEdit', orderEdit),

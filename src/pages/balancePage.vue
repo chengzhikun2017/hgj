@@ -2,6 +2,7 @@
   <div>
     <app-nav flex-box="0">我的钱包</app-nav>
     <button @click='balanceWidthdraw'>提现</button>
+    <button @click='balanceWidthdraw'>提现记录</button>
   </div>
 </template>
 

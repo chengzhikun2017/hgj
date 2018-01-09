@@ -1,8 +1,9 @@
 <template>
   <div class="record">
     <div class="cardtitle" flex="main:justify cross:center">
-      <img src="" alt="">
-      <span class="lastno">尾号：{{planInfo.cardNoAfter4}}</span>
+      <!-- <img src="" alt=""> -->
+      <span>{{record.cardCode}}</span>
+      <span class="lastno">尾号：{{record.cardNoAfter4}}</span>
     </div>
     <div class="liner">
       
@@ -10,14 +11,13 @@
     <div class="record-content" flex="main:justify">
       <div class="left">
         <div class="money">
-          金额：{{record.fee|moneyFilter}} 
+          金额：{{record.taskFee|moneyFilter}} 
         </div>
         <div class="time">
           {{record.planTime|timePlanRecordFilter}}
         </div>
       </div>
       <div class="right">
-        <p style="font-size: 0.12rem">类型：{{record.type}}</p>
         <button v-if="record.status === 'SUCCESS'">执行成功</button>
         <button v-if="record.status === 'DOING'">执行中</button>
         <button v-if="record.status === 'FAILED'">执行失败</button>
@@ -29,10 +29,6 @@
 <script>
   export default {
     props: {
-      planInfo:{
-        type: Object,
-        default:{},
-      },
       record: {
         type: Object,
         default: {

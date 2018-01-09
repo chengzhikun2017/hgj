@@ -10,18 +10,18 @@
     <div class="record-content" flex="main:justify">
       <div class="left">
         <div class="money">
-          金额：{{record.fee|moneyFilter}} 
+          金额：{{process.fee|moneyFilter}} 
         </div>
         <div class="time">
-          {{record.planTime|timePlanRecordFilter}}
+          {{process.planTime|timePlanRecordFilter}}
         </div>
       </div>
       <div class="right">
-        <p style="font-size: 0.12rem">类型：{{record.type}}</p>
-        <button v-if="record.status === 'SUCCESS'">执行成功</button>
-        <button v-if="record.status === 'DOING'">执行中</button>
-        <button v-if="record.status === 'FAILED'">执行失败</button>
-        <button v-if="record.status === 'CREATE'">等待执行</button>
+        <p style="font-size: 0.12rem">类型：{{process.type}}</p>
+        <button v-if="process.status === 'SUCCESS'">执行成功</button>
+        <button v-if="process.status === 'DOING'">执行中</button>
+        <button v-if="process.status === 'FAILED'">执行失败</button>
+        <button v-if="process.status === 'CREATE'">等待执行</button>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
         type: Object,
         default:{},
       },
-      record: {
+      process: {
         type: Object,
         default: {},
       }
