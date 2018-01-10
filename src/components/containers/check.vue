@@ -5,7 +5,7 @@
         <div class="inner-circle" v-if='value'></div>
       </div>
       <div class="outer-line outer-line2" :class="{'outer-line2-active':value}" @click='onClick' v-if='type==1'>
-        <i class="icon-check icon-down"></i>
+        <i class="icon-check icon-checked"></i>
       </div>
     </div>
   </div>

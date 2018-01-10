@@ -23,6 +23,7 @@ class defaultAccountInfo {
     this.freezeMoney=0
     this.isActive=0
     this.level=0
+    this.freePlanTimes=0
   }
 }
 const account = {

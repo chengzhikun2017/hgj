@@ -30,7 +30,7 @@ const plan = {
         params: {
           cardId,
           page:1,
-          limit:24,//最多显示两年内的记录？
+          limit:24,//最多显示两年内的记录？不行 存在终止的。
         },
       }, false)
       return promise

@@ -19,7 +19,7 @@ function handleWrongCode(res){
 console.log('process',process)
 export default function fetch(options,showloading=1) {
   var fetchPromis=new Promise((resolve, reject) => {
-    if(showloading){
+    if(showloading&&HGJ_VUE){
       HGJ_VUE.hgjShowLoading()
     }
     const instance = axios.create({
@@ -34,7 +34,7 @@ export default function fetch(options,showloading=1) {
 
     instance(options).then(response => {
         // status必然是200
-        if(showloading){
+        if(showloading&&HGJ_VUE){
           HGJ_VUE.hgjHideLoading()
         }
         console.log('responese to>>>%c'+options.url,'color:green','<<<',response)
@@ -56,7 +56,7 @@ export default function fetch(options,showloading=1) {
         }
       })
       .catch(err => {
-        if(showloading){
+        if(showloading&&HGJ_VUE){
           HGJ_VUE.hgjHideLoading()
         }
         // 加载失败：超时，无响应，无对应资源

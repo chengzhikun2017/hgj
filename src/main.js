@@ -77,18 +77,19 @@ Vue.directive('scroll-load', {
     // console.log('scoll load config', cfg)
     var listContainer,
       btt,
-      H = screen.height + 50 //trigger height
+      H = screen.height*devicePixelRatio + 150 //trigger height
+      console.log('H',screen.height,H)
     // console.log('binding cfg', cfg.listSelector)
     // console.log('el', listContainer)
     el.addEventListener('scroll', () => {
       listContainer = document.querySelector(sel)
       btt = listContainer.getBoundingClientRect().bottom
-      // console.log('btt scroll',btt)
+      console.log('btt scroll',btt)
       if (btt < H) {
         // cfg.getting = true
         // cfg.get(cfg.crrtPage)
         cfg.method()
-        // console.log('load more')
+        // console.log('load more',cfg.method)
         // console.dirxml(el)
       }
     }, false)
@@ -182,6 +183,7 @@ Vue.directive('pull-refresh', {
         if (cfg.method) {
           if (cfg.method instanceof Function) {
             cfg.method()
+            console.log('refresh')
           } else {
             console.warn('method is not a function')
           }
@@ -245,7 +247,6 @@ Vue.directive('inner-scroll', {
           } else {
             containerTop -= 0.025;
             el.style.paddingTop = containerTop + 'rem'
-
           }
         } else {
           // e.stopPropagation()

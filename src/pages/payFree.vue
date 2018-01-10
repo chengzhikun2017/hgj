@@ -1,7 +1,8 @@
 <template>
   <div>
     <app-nav flex-box="0">{{title}}</app-nav>
-    <div class="lv-treatment" style='border:1px solid red;'>
+    <h1 style="text-align: center;padding:0.1rem">{{canBuyFree?'':'距离免费升级还差成功分享15次'}}</h1>
+    <div class="lv-treatment" v-if='!canBuyFree' style='border:1px solid red;'>
       <h3 class="sub-title">
         当前等级（保时捷）权益
       </h3>
@@ -17,35 +18,39 @@
       <p class="treatment-detail">2.享受最高达35%的分润。</p>
       <p class="treatment-detail">3.享受多至两级的再次分润。</p>
     </div>
-    <div>{{canBuyFree?'可以升级':'不可以免费升级'}}</div>
+
+    <hr>
     <div class="activeaccount-content">
       <!-- <p class="info"></p> -->
-      <p class="info">完成下面任务，即可免费升级</p>
-      <app-formitem3 title="分享" note="已被浏览10次" :first="true">
-        <div class="header" slot="icon">
-          <app-cricleicon></app-cricleicon>
-        </div>
-        <div class="content" slot="action">
-          去分享>
-        </div>
-      </app-formitem3>
-      <app-formitem3 title="了解养成计划" note="详细了解养成计划">
-        <div class="header" slot="icon">
-          <app-cricleicon></app-cricleicon>
-        </div>
-        <div class="content" slot="action">
-          未完成>
-        </div>
-      </app-formitem3>
-      <app-formitem3 title="实名计划" note="请完成您的实名认证" :last="true">
-        <div class="header" slot="icon">
-          <app-cricleicon></app-cricleicon>
-        </div>
-        <div class="content" slot="action">
-          未完成>
-        </div>
-      </app-formitem3>
-      <app-button style='width:80%; margin: 0.1rem auto;' @click.native='pay'>立即升级</app-button>
+      <p class="info" v-if='!canBuyFree'>完成下面任务，即可免费升级</p>
+      <p class="info" v-if='canBuyFree'>可以继续完成下面任务，获取更多免费机会</p>
+      <div>
+        <app-formitem3 title="分享" note="已被浏览10次" :first="true">
+          <div class="header" slot="icon">
+            <app-cricleicon></app-cricleicon>
+          </div>
+          <div class="content" slot="action">
+            去分享>
+          </div>
+        </app-formitem3>
+        <app-formitem3 title="了解养成计划" note="详细了解养成计划">
+          <div class="header" slot="icon">
+            <app-cricleicon></app-cricleicon>
+          </div>
+          <div class="content" slot="action">
+            未完成>
+          </div>
+        </app-formitem3>
+        <app-formitem3 title="实名计划" note="请完成您的实名认证" :last="true">
+          <div class="header" slot="icon">
+            <app-cricleicon></app-cricleicon>
+          </div>
+          <div class="content" slot="action">
+            未完成>
+          </div>
+        </app-formitem3>
+      </div>
+      <app-button style='width:80%; margin: 0.1rem auto;' @click.native='pay' v-if='canBuyFree'>立即升级</app-button>
       <!-- <app-button style='width:80%; margin: 0.1rem auto;' @click.native='go'>马上升级</app-button> -->
     </div>
   </div>
@@ -134,5 +139,27 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
+  .treatment-detail{
+    font-size: 0.15rem;
+  }
+  .lv-treatment{
+    padding:0.05rem 0.15rem;
+  }
+  .activeaccount-content {
+    padding-top: 0.2rem;
+    .info {
+      border-top: 1px solid #d3d3d3;
+      font-size: 0.14rem;
+      color: #a4a4a4;
+      padding:0.13rem 0.2rem;
+      background: white;
+    }
+    .header {
+      padding-right: 0.15rem;
+    }
+    .content {
+      font-size: 0.13rem;
+      color: #a4a4a4;
+    }
+  }
 </style>

@@ -16,6 +16,7 @@
           <span class="liner">|</span>
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
+        <span class="btn2" v-if="card.planStatus == 'DOING'" >执行中</span>
         <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span>
       </div>
       <div class="floor">
@@ -51,7 +52,7 @@
     methods:{
       goNewPlan(){
         let url=helper.urlConcat('/plan',this.card)
-        helper.goPage(url)
+        helper.goNewPlanPage(this.card)
       },
       deleteConfirm(){
         this.hgjAlert({

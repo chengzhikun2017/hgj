@@ -29,10 +29,6 @@
 <script>
   export default {
     props: {
-      planInfo:{
-        type: Object,
-        default:{},
-      },
       process: {
         type: Object,
         default: {},

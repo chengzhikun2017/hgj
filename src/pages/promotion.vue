@@ -31,7 +31,7 @@
       </div>
     </div>
     <app-button @click.native='share' style='width:80%;margin: 0 auto;'>分享有礼</app-button>
-    <app-button @click.native='goJihuo' style='width:80%;margin: 0 auto;'>马上激活</app-button>
+    <!-- <app-button @click.native='goJihuo' style='width:80%;margin: 0 auto;'>马上激活</app-button> -->
 
   </div>
 </template>
@@ -85,9 +85,9 @@ export default {
     share(){
       
     },
-    goJihuo(){
-      helper.goPage('/activeaccount')
-    },
+    // goJihuo(){
+    //   helper.goPage('/activeaccount')
+    // },
     ...mapActions([
       'order_createActive',
       ])

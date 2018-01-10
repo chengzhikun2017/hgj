@@ -35,7 +35,13 @@ export default class helper {
   static goBuy(type){
     this.goPayPage('/pay',type)
   }
-
+  static goNewPlanPage(card){
+    if(!HGJ_VUE.$store.state.account.isActive){
+      this.goPage('/activeaccount')
+      return
+    }
+    this.goPage(this.urlConcat('/plan',card))
+  }
   // '/pay'
   // '/pay_free'
   static goPayPage(src,type){

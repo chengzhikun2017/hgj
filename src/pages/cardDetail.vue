@@ -64,8 +64,7 @@
         helper.goPage(url)
       },
       goNewPlan(){
-        let url=helper.urlConcat('/plan',this.cardInfo)
-        helper.goPage(url)
+        helper.goNewPlanPage(this.cardInfo)
       },
       planReview(){
         this.plan_viewLatest(this.cardInfo.cardId).then(res=>{

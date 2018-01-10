@@ -1,6 +1,6 @@
 <template>
   <div class="planrecords" flex="dir:top">
-    <app-nav flex-box="0">计划执行记录</app-nav>
+    <app-nav flex-box="0">智能还卡记录</app-nav>
     <article flex-box="1">
       <ul class="recordlist">
         <li class="recorditem" v-for='record in recordList'>

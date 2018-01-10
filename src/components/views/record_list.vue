@@ -3,11 +3,11 @@
     <!-- <div v-loading='loading' element-loading-text='请稍后'></div> -->
     <div class="list-container" :style="{marginTop:top+'rem'}"  v-scroll-load='{method:getmore,listSelector:".list-container-inner"}' >
       <div class="list-container-inner" v-pull-refresh='{method:getNew}' v-inner-scroll>
-        <div class="list-top" v-if='records.length>0'>——释放刷新——</div>
-        <div class="list-top" v-if='records.length===0&&!loading'>无数据</div>
+        <div class="list-top" v-if='list.length>0'>——释放刷新——</div>
+        <div class="list-top" v-if='list.length===0&&!loading'>无数据</div>
         <div class="list-top" v-if='loading'>刷新中</div>
         <slot></slot>
-        <div class="list-bottom" v-if='allGet'>————我是有底线的————</div>
+        <div class="list-bottom" v-if='noMore'>————我是有底线的————</div>
       </div>
     </div>
     <!-- <remind :remind='remind'></remind> -->
@@ -17,29 +17,22 @@
 <script>
   // import publicFun from '../../js/public.js'
   // import bus from '../../bus.js'
+  import fetch from '../../utils/fetch.js'
   export default {
     data() {
       return {
-        response: null,
+        // response: null,
         loading: false,
-        records: [],
+        // records: [],
+        list:[],
         crrtPage:0,
-        ttlPage:null,
-        getting:false,
-        allGet:false,
-        remind: {
-          isShow: false,
-          remindMsg: 'remind',
-          self_: this,
-          remindOpts: [{
-            msg: '确定',
-          }, ],
-        },
+        loading:false,
+        noMore:false,
     }
   },
   props:{
     cfg:{
-    
+      
     },
     top:{
       default:0.4
@@ -51,46 +44,59 @@
   },
   methods:{
     getmore(){
-      if( this.crrtPage <= this.ttlPage && this.getting === false){
+      if( !this.noMore&& this.loading === false){
         // console.warn('get!!')
         this.get()
       }
     },
     getNew(){
-      if(this.getting==true){
+      if(this.loading==true){
         return
       }else{
-        this.getting==true
-        this.records=[]
-        this.ttlPage=null
+        this.loading==true
+        this.list=[]
+        // this.ttlPage=null
         this.crrtPage=1
-        this.allGet=false
+        this.noMore=false
         this.get()
       }
     },
-    //getting
+    //loading
     //ttlPage
     //crrtPage
-    //allGet
+    //noMore
     //limit
     //[status]
     //
     //uncertain parameters
     //url
     get() {
-      if (this.getting) {
+      if (this.loading) {
         return
       }
-      if (this.ttlPage) {
-        if (this.allGet) {
-          return
-        }
+      if (this.noMore) {
+        return
       }
-      // var url = publicFun.urlConcat(this.cfg.url, {
-      //   limit: this.cfg.limit || 8,
-      //   page: this.crrtPage,
-      // })
-      this.getting = true
+      console.log('loading record list')
+      this.loading = true
+      fetch({
+        url: this.cfg.url,
+        params: Object.assign({
+          page: this.crrtPage,
+          limit: 8,
+        }, this.cfg.params, ),
+      }).then(res => {
+        this.loading = false
+        this.crrtPage++
+        // if(res.length===0){
+        if(res.length<4){
+          this.noMore=true
+        }
+        
+        this.list = this.list.concat(res)
+        this.$emit('input', this.list)
+
+      })
       // publicFun.get(url, this, () => {
       //   var data = this.response.body
       //   console.log('data brokerage rcd', data.data)
@@ -100,11 +106,11 @@
       //   if (this.ttlPage > this.crrtPage) {
       //     this.crrtPage++
       //   } else {
-      //     this.allGet = true
+      //     this.noMore = true
       //   }
-      //   this.getting = false
+      //   this.loading = false
       // }, () => {
-      //   this.getting = false
+      //   this.loading = false
       // })
     },
     onScroll(e){
@@ -119,11 +125,11 @@
 <style lang='scss' scoped>
 
   .record-list{
-    .icon-avator{
-      font-size: 0.3rem;
-    }
     .list-container{
+      overflow: scroll;
+      height: 6rem;
       margin-top: 0.4rem;
+      border:1px solid red;
       /*.list-container-inner{*/
         /*}*/
       }

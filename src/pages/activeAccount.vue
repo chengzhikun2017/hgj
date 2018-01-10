@@ -3,7 +3,10 @@
     <app-nav flex-box="0">激活账户</app-nav>
     <article flex-box="1">
       <div class="banner">
-        您的账户尚未激活
+        <p>激活账户说明：</p>
+        <p>1.激活后可以使用智能还卡服务</p>
+        <p>2.首次使用智能还卡免服务费</p>
+        <p>3.未激活不影响推广分享收益</p>
       </div>
       <!-- <div class="activeaccount-content">
         <p class="info">完成下面任务，更轻松完成（感觉怪怪的）</p>
