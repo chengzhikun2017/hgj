@@ -22,8 +22,8 @@
         </div>
         <app-formitem :last="true" label="选择保证金">
           <!-- | -->
-          <p v-if='loadingPlanOpts'>loading...</p>
-          <p v-if='!planOpts.length&&!loadingPlanOpts'>请填写以上信息</p>
+          <p class="security-text" v-if='loadingPlanOpts'>loading...</p>
+          <p class="security-text" v-if='!planOpts.length&&!loadingPlanOpts'>请填写以上信息</p>
           <!-- <app-button v-if='!planOpts.length' @click.native='getPlanOpts'>获取</app-button> -->
           <bttn-choose style='margin:0 0.05rem'  :actived='item.securityFee===choosedPlan.securityFee'  v-for='item in planOpts' @click.native='choosePlan(item)' :key='item.percent' v-if='planOpts.length'>{{(item.securityFee/100).toFixed(0)}}</bttn-choose>
          
@@ -59,10 +59,11 @@
               <span class="msg">{{choosedPlan.securityFee|moneyFilter}}</span>
             </app-formitem2>
             <app-formitem2 label="服务费：">
-              <span class="msg">{{choosedPlan.serviceFee|moneyFilter}}</span>
+              <span class="msg" :class="{'free-service':serviceFree}">{{choosedPlan.serviceFee|moneyFilter}}</span>
+              <!-- <span class="msg">{{choosedPlan.serviceFee|moneyFilter}}</span> -->
             </app-formitem2>
             <app-formitem2 label="总计：">
-              <span class="msg red"><span class="total">{{((choosedPlan.serviceFee+choosedPlan.securityFee)/100).toFixed(2)}}</span>元</span>
+              <span class="msg red"><span class="total">{{(ttlFee/100).toFixed(2)}}</span>元</span>
             </app-formitem2>
             <div class="liner"></div>
             <app-formitem2 label="还款时间：">
@@ -73,7 +74,7 @@
             </app-formitem2>
           </div>
           <div class="footer">
-            <app-button @click.native='createPlan'>开启还款计划</app-button>
+            <app-button @click.native='createPlan'>支付并开启还款计划</app-button>
           </div>
         </div>
       </div>
@@ -85,7 +86,7 @@
 //可选天数，还款日-startDay
   import '@/css/flex.css'
   import '@/css/components.scss'
-  import {mapActions} from 'vuex'
+  import {mapActions,mapMutations} from 'vuex'
   import helper from '../utils/helper.js'
   export default {
     data () {
@@ -131,6 +132,10 @@
         this.choosedPlan={}
       },
       viewPlan(){
+        if(!this.allFilled&&this.choosedPlan.percent){
+          this.hgjToast('请先填写信息',1)
+          return
+        }
         this.popFlag=true
       },
       lazyGetPlanOpts(){
@@ -192,6 +197,7 @@
       },
       createPlan(){
         if(!this.$store.state.account.isActive){
+          this.hgjToast('账户尚未激活')
           helper.goPage('/activeaccount')
           return
         }
@@ -205,10 +211,25 @@
         }
         this.order_createPlan(params).then(res=>{
           console.log('res orderId',res.orderId)
-          let url=helper.urlConcat('/pay',{
-            orderId:res.orderId
+          // let url=helper.urlConcat('/pay',{
+          //   orderId:res.orderId
+          // })
+          // helper.goPage(url)
+          this.order_pay({
+            payType:'HELIPAY_CC',
+            orderId:res.orderId,
+            cardId:this.cardInfo.cardId
+          }).then(res=>{
+            console.log('res order pay',res)
+            this.hgjToast('提交成功')
+            this.router_willBackToIndex()
+            //维护card list 数据
+            this.cards_updatePlanStatus({
+              cardId:this.cardInfo.cardId,
+              status:'DOING',
+            })
+            helper.goPage(-1)
           })
-          helper.goPage(url)
         })
       },
       calcStartDaysAvailable(){
@@ -219,9 +240,16 @@
         }
         this.startDaysAvailable=dateArr
       },
+      ...mapMutations([
+        'router_willBackToIndex',
+        'cards_updatePlanStatus',
+        ]),
       ...mapActions([
         'plan_calc',
+        'order_pay',
+        'cards_getListCC',
         'order_createPlan',
+        'account_getUserInfo',
         ])
     },
     created(){
@@ -231,10 +259,17 @@
       this.startDay=this.earlistStartDay
     },
     computed:{
+      ttlFee(){
+        let service=this.serviceFree?0:this.choosedPlan.serviceFee
+        return service+this.choosedPlan.securityFee
+      },
       allFilled(){
         let t=this
         let allFilled=t.planAmount>100&&t.duration&&t.startDay
         return !!allFilled
+      },
+      serviceFree(){
+        return this.$store.state.account.freePlanTimes
       },
       planAmountFee(){
         return this.planAmount*100||0
@@ -309,6 +344,13 @@
   }
 </script>
 <style lang="scss" scoped>
+  .free-service{
+    text-decoration: line-through;
+  }
+  .security-text{
+    font-size: 0.14rem;
+    color: #a4a4a4;
+  }
   .plan {
     width: 100%;
     height: 100%;

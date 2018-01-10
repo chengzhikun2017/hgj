@@ -11,6 +11,7 @@
     </app-radio>
     <app-radio label='11111' v-model='radio2'></app-radio>
     <div class="box" >
+    <img src="/static/img/zhlogo.png" height="66" width="66">
     <div v-inner-scroll>
       <p>1</p>
       <p>1</p>

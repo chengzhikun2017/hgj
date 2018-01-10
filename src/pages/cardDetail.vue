@@ -44,7 +44,7 @@
 </template>
 <script>
   import '@/css/components.scss'
-  import {mapActions} from 'vuex'
+  import {mapActions,mapMutations} from 'vuex'
   import helper from '../utils/helper.js'
   export default  {
     data () {
@@ -83,16 +83,23 @@
             this.plan_endStatus(res.actionId).then(res=>{
               if(res.status==='SUCCESS'||res.status==='FAILED'){
                 clearInterval(this.polling)
+                this.crrtPlan=null
                 this.planReview()
+                this.cards_updatePlanStatus({
+                  cardId:this.cardInfo.cardId,
+                  status:'FAILED',
+                })
                 this.hgjAlert({
                   title:res.statusRemark,
                 })
-
               }
             })
           },300)
         })
       },
+      ...mapMutations([
+        'cards_updatePlanStatus',
+        ]),
       ...mapActions([
         'plan_review',
         'plan_end',
