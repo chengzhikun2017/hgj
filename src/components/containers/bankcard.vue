@@ -2,7 +2,9 @@
   <div class="bankcard">
     <div class="card" :class="bgcolor">
       <div class="floor" flex="main:justify">
-        <div class="logo"></div>
+        <div class="logo" flex-box="1">
+          <img :src="'/static/img/title/'+card.cardCode+'.png'" alt="">
+        </div>
         <span class="btn1" v-show="card.settlementStatus === 'SUCCESS'">结算卡</span>
         <span class="btn1" v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
         <span class="btn1" v-show="card.settlementStatus === 'FAILED'">设为结算卡失败</span>
@@ -36,7 +38,8 @@
           return {
             status: 'PLAN',
             name: '韩**',
-            cardNoAfter4: '3638'
+            cardNoAfter4: '3638',
+            cardCode: 'ABC'
           }
         })()
       },

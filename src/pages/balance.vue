@@ -19,22 +19,23 @@
         <app-formitem label="联系手机号" :last="true">
           <app-input class='form-input' :placeholder='"请输入~"' v-model='phone'/>
         </app-formitem>
-        <img src="static/img/zhlogo.png" alt="">
+        <img src="/static/img/zxlogo.png" alt="">
       </div>
       <div class="mybutton">
         <app-button>提交</app-button>
       </div>
       <app-popview v-model="popFlag" title="选择银行卡" class="chooseCardsPopView planbox">
         <div slot="icon" class="popicon">
-          <app-cricleicon icon="icon-bankcard" size="0.28rem"></app-cricleicon>
+          <app-cricleicon icon="icon-bankcard" size="0.28rem" circle="small"></app-cricleicon>
         </div>
         <div slot="content" class="chooseCardsContent planbox-content">
           <div class="liner"></div>
           <app-radio v-model='cardId' :label='card.cardId' v-for='card in cards' :key='card.cardId'>
-            <app-formitem3 :title="card.cardCode" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true" :long="true">
+            <app-formitem3 :title="cards_dict[card.cardCode]" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true" :long="true">
               <div slot="icon">
                 <div class="myicon">
-                  <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon>
+                  <!-- <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon> -->
+                  <img :src="'/static/img/logo/'+card.cardCode+'.png'" alt="">
                 </div>
               </div>
               <div slot="action">
@@ -45,43 +46,12 @@
           <div @click='payNewDC'>使用新的银行卡</div>
         </div>
       </app-popview>
-     <!--  <div class="popView" v-show="popFlag">
-        <div class="popcontent">
-          <div class="planbox">
-            <header flex="cross:center">
-              <div class="myicon">
-                <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon>
-              </div>
-              <div class="title" flex="dir:top main:center" flex-box="1">
-                <h2>选择提现银行卡</h2>
-                <p></p>
-              </div>
-              <span flex-box="0" @click="popFlag=false" class="close"><span class="icon-cancel"></span></span>
-            </header>
-            <div class="planbox-content">
-              <div class="liner"></div>
-              <app-radio v-model='cardId' :label='card.cardId' v-for='card in cards' :key='card.cardId'>
-                <app-formitem3 :title="card.cardCode" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true" :long="true">
-                  <div slot="icon">
-                    <div class="myicon">
-                      <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon>
-                    </div>
-                  </div>
-                  <div slot="action">
-                    <app-check :value='cardId==card.cardId' :type='1' class='check-icon' />
-                  </div>
-                </app-formitem3>
-              </app-radio>
-              <div @click='payNewDC'>使用新的银行卡</div>
-            </div>
-          </div>
-        </div>
-      </div>  -->
     </article>
   </div>
 </template>
 <script>
   import helper from '../utils/helper.js'
+  import {mapGetters} from 'vuex'
   export default {
     data () {
       return {
@@ -91,7 +61,8 @@
           name: '韩**',
           cardNoAfter4: '3638',
           billDate: 3,
-          repaymentDate: 13
+          repaymentDate: 13,
+          cardCode: 'ABC'
         },
         amount:null,
         phone:null,
@@ -110,6 +81,9 @@
       },
     },
     computed:{
+      ...mapGetters([
+        'cards_dict'
+      ]),
       cards(){
         return [{
           status: 'PLAN',
@@ -118,6 +92,7 @@
           billDate: 3,
           repaymentDate: 13,
           cardId:1,
+          cardCode: 'ABC'
         },{
           status: 'PLAN',
           name: '韩**',
@@ -125,91 +100,82 @@
           billDate: 3,
           repaymentDate: 13,
           cardId:2,
+          cardCode: 'CIB'
         }] 
         return this.$store.state.cards.cardsListDC
       }
     },
   }
 </script>
-<style lang="scss" scoped>
-  .check-icon{
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  article {
-    position: relative;
-    .banner {
-      padding: 0.15rem 0.2rem;
-      background-image: linear-gradient(to top, #2c2c33, #3d404b);
-    }
-    .mybutton {
+<style lang="scss">
+  .balance {
+    .check-icon{
       position: absolute;
-      left: 0;
       right: 0;
-      bottom: 0;
-      padding: 0.3rem 0.2rem;
+      top: 0;
     }
-    .chooseCardsPopView {
-      .popicon {
-        margin-right: 0.1rem;
+    article {
+      position: relative;
+      .banner {
+        padding: 0.15rem 0.2rem;
+        background-image: linear-gradient(to top, #2c2c33, #3d404b);
       }
-      .chooseCardsContent {
-
-      }
-    }
-    .popView {
-      position: fixed;
-      top:0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, .8);
-      .popcontent {
+      .mybutton {
         position: absolute;
-        left: 0.2rem;
-        right: 0.2rem;
-        bottom: 0.2rem;
-        .liner {
-          margin-bottom: 0;
-        }
-        .myicon {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0.3rem 0.2rem;
+      }
+      .chooseCardsPopView {
+        .popicon {
           margin-right: 0.1rem;
         }
-      }
-    }
-    .emptyCard {
-      width: 100%;
-      height: 1.68rem;
-      border: 1px dashed white;
-      border-radius: 0.08rem;
-      .note {
-        padding-bottom: 0.1rem;
-        color: #a4a4a4;
-        font-size: 0.14rem;
-        .icon-alert {
-          margin-right: 0.085rem;
+        .chooseCardsContent {
+          .liner {
+            margin-bottom: 0;
+          }
+          .myicon {
+            margin-right: 0.1rem;
+            img {
+              width: 0.34rem;
+            }
+          }
         }
-        p {
-          display: inline-block;
-          font-size: 0.12rem;
+      }
+      .emptyCard {
+        width: 100%;
+        height: 1.68rem;
+        border: 1px dashed white;
+        border-radius: 0.08rem;
+        .note {
+          padding-bottom: 0.1rem;
           color: #a4a4a4;
+          font-size: 0.14rem;
+          .icon-alert {
+            margin-right: 0.085rem;
+          }
+          p {
+            display: inline-block;
+            font-size: 0.12rem;
+            color: #a4a4a4;
+          }
+        }
+        .btn3 {
+          width: 1.94rem;
+          height: 0.25rem;
+          border-radius: 0.125rem;
+          background: white;
+          font-size: 0.13rem;
+          line-height: 0.25rem;
+          text-align: center;
+          color: #f84c4b;
         }
       }
-      .btn3 {
-        width: 1.94rem;
-        height: 0.25rem;
-        border-radius: 0.125rem;
-        background: white;
-        font-size: 0.13rem;
-        line-height: 0.25rem;
-        text-align: center;
-        color: #f84c4b;
+      .close {
+        font-size: 0.25rem;
+        color: #a4a4a4;
       }
-    }
-    .close {
-      font-size: 0.25rem;
-      color: #a4a4a4;
     }
   }
 </style>
