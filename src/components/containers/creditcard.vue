@@ -2,7 +2,9 @@
   <div class="creditcard">
     <div class="card" :class="bgcolor">
       <div class="floor" flex="main:justify">
-        <div class="logo"></div>
+        <div class="logo" flex-box="1">
+          <img :src="'/static/img/title/'+card.cardCode+'.png'" alt="">
+        </div>
         <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span>
         <span class="" v-show="card.status === 'DOING'">绑定中</span>
         <span class="" v-show="card.status === 'FAILED'">绑定失败</span>
@@ -39,7 +41,8 @@
             name: '韩**',
             cardNoAfter4: '3638',
             billDate: 3,
-            repaymentDate: 13
+            repaymentDate: 13,
+            cardCode: 'ABC'
           }
         })()
       },
@@ -105,6 +108,9 @@
         .logo {
           width: 0.5rem;
           height: 0.25rem;
+          img {
+            height: 0.24rem;
+          }
         }
         .liner {
           padding:0 0.06rem;
@@ -121,6 +127,7 @@
     .btn1 {
       display: block;
       padding:0 0.2rem;
+      margin-left: 0.1rem;
       height: 0.25rem;
       border-radius: 0.125rem;
       background-color: #ffffff;
