@@ -7,7 +7,7 @@
     </div>
     <select class="select__" ref='select'  :disabled='disabled' @change='handleValueChange($event)' @select='testSelect($event)' >
       <option disabled selected value>-请选择-</option>
-      <option v-for='item in options' :value="item.value" :key='item.value'>{{optsFilter(item.value)}}</option>
+      <option v-for='item in options' :value="item.value" :key='item.value.toString()'>{{optsFilter(item.value)}}</option>
     </select>
   </div>
 </template>
@@ -47,6 +47,7 @@ export default {
   },
   computed:{
     parsedValue(){
+      // console.log('value',this.value,this.value.day)
       if(!this.value){
         return null
       }

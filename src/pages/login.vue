@@ -40,8 +40,8 @@
   export default {
     data () {
       return {
-        phone:'13365225235',
-        pwd:'12345678',
+        phone:'',
+        pwd:'',
         pwdInputType:"password",
       }
     },

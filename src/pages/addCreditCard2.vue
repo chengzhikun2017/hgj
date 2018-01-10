@@ -6,7 +6,9 @@
         <app-formitem label="信用卡有效期" :first="true">
           <app-select :options='yearOptions':filter='yearPaser' :placeholder='"年份"' v-model='fullYear' class='expire-select'/>
           <span>/</span>
-          <app-select :options='monthOptions':filter='monthPaser' :placeholder='"月份"'v-model='fullMonth' class='expire-select'/>
+          <!-- :filter='monthPaser' -->
+          {{fullMonth}}
+          <app-select :options='monthOptions' :placeholder='"月份"'v-model='fullMonth' class='expire-select'/>
         </app-formitem>
         <app-formitem label="卡背后三位数字" >
           <app-input class='form-input' :placeholder="'请输入相应信息'" v-model='cvv2' :type='"number"'/>

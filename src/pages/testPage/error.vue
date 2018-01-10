@@ -1,10 +1,12 @@
 <template>
   <div>
     页面不翼而飞~
+
   </div>
 </template>
 
 <script>
+import helper from '../../utils/helper.js'
 export default {
   data() {
     return {
@@ -16,7 +18,20 @@ export default {
   },
   methods:{},
   events: {},
-  components: {}
+  components: {},
+  created(){
+    this.hgjAlert({
+      title:"返回首页",
+      options:[
+      {
+        text:'确定',
+        callback:()=>{
+          helper.goPage('/cards')
+        },
+      }
+      ],
+    })
+  },
 }
 </script>
 

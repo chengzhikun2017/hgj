@@ -25,7 +25,7 @@ export default class helper {
       callback()
     }
   }
-
+  
   // 'upgrade','active'
   // free,pay
   static goBuyFree(type){

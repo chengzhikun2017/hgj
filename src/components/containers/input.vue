@@ -79,6 +79,7 @@ export default {
   }
   input[disabled='disabled']{
     color: #666;
+    background: transparent;
   }
 }
 

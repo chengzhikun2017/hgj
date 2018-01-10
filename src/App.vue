@@ -13,7 +13,7 @@
     <app-toast></app-toast>
     <app-loading></app-loading>
     <button @click='test' id='test-bttn'> test</button>
-    <button @click='test2' id='test-bttn2'> 登出</button>
+    <!-- <button @click='test2' id='test-bttn2'> 登出</button> -->
   </div>
 </template>
 
@@ -104,7 +104,7 @@ export default {
 <style>
 #test-bttn{
   position: fixed;
-  bottom: 1rem;
+  bottom: 0.5rem;
   right:0.1rem;
   z-index: 999999;
 }#test-bttn2{

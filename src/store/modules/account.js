@@ -7,7 +7,7 @@ import helper from '../../utils/helper.js'
 class defaultAccountInfo {
   constructor(props) {
     // this.phone= null
-    this.phone= '13365225235'
+    this.phone= ''
     this.captcha= ''
     this.verifyCode=''
     this.userId=null

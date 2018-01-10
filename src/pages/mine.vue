@@ -8,7 +8,7 @@
         </div>
         <div class="name" v-if='!userInfo.isLoged'>{{'未登录'}}</div>
         <div class="name" v-if='userInfo.isLoged'>{{userInfo.name||'未实名'}}</div>
-        <div class="phone">{{userInfo.phone||''}}</div>
+        <!-- <div class="phone">{{userInfo.phone||''}}</div> -->
         <!-- <div class="phone">{{phone}}</div> -->
         <div class="liner"></div>
         <div class="info" flex="main:center cross:center">

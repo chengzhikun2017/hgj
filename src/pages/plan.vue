@@ -6,7 +6,6 @@
         <app-creditcard :card="cardInfo"></app-creditcard>
       </div>
       <div class="form">
-
         <app-formitem  label="选择开始时间">
             <app-select v-model='startDay' :options='startDaysAvailable' :filter='dayPaser' :optionFilter='startOptsPaser' :placeholder='"请选择开始日期"' />
         </app-formitem>
@@ -26,9 +25,7 @@
           <p class="security-text" v-if='!planOpts.length&&!loadingPlanOpts'>请填写以上信息</p>
           <!-- <app-button v-if='!planOpts.length' @click.native='getPlanOpts'>获取</app-button> -->
           <bttn-choose style='margin:0 0.05rem'  :actived='item.securityFee===choosedPlan.securityFee'  v-for='item in planOpts' @click.native='choosePlan(item)' :key='item.percent' v-if='planOpts.length'>{{(item.securityFee/100).toFixed(0)}}</bttn-choose>
-         
         </app-formitem>
-
       </div>
       <app-protocol></app-protocol>
       <div class="mybutton">
@@ -88,6 +85,7 @@
   import '@/css/components.scss'
   import {mapActions,mapMutations} from 'vuex'
   import helper from '../utils/helper.js'
+  import TimeUtil from '../utils/time.js'
   export default {
     data () {
       return {
@@ -99,7 +97,7 @@
         choosedPlan:{},
         planOpts:[],
         popFlag: false,
-        nowDate:new Date(),
+        nowDate:new Date(2018,0,10),
         getPlanOptsTimer:null,
       }
     },
@@ -132,7 +130,7 @@
         this.choosedPlan={}
       },
       viewPlan(){
-        if(!this.allFilled&&this.choosedPlan.percent){
+        if(!this.allFilled||!this.choosedPlan.percent){
           this.hgjToast('请先填写信息',1)
           return
         }
@@ -153,7 +151,7 @@
         let fee=this.planAmountFee,
         startDate=this.startDate,
         endDate=this.endDate
-        console.log('fee,startDate,endDate',fee,startDate,endDate)
+        // console.log('fee,startDate,endDate',fee,startDate,endDate)
         // return
         this.plan_calc({
           fee,
@@ -180,17 +178,14 @@
         return v+'天'
       },
       startOptsPaser(v){
-        return v+'号'
+        v=new Date(v)
+        return v.getMonth()+1+'月'+v.getDate()+'日'
       },
       dayPaser(v){
-        // console.log('dayPaser this',this,this.today)
-        // return v+'号'
-        if(this.isPlanInCrrtMonth){
-          // this.hgjToast('创建当月还款计划')
-          var month=(this.today.month).toString().padStart(2,0)
-          var dateString=this.today.year+'-'+month+'-'
-        }
-        return dateString+v
+        let date =new Date(Number(v))
+        let month =(date.getMonth()+1).toString().padStart(2,0)
+        let day =(date.getDate()).toString().padStart(2,0)
+        return `${date.getFullYear()}-${month}-${day}`
       },
       choosePlan(plan){
         this.choosedPlan=plan
@@ -234,9 +229,28 @@
       },
       calcStartDaysAvailable(){
         var dateArr=[],day=this.earlistStartDay
-        while(day<=this.cardInfo.repaymentDate-2){
-          dateArr.push({value:day})
-          day++
+        //var billDateStamp=this.billDateStamp
+        let month=this.today.month,year=this.today.year
+        if(this.isRepamentSameMonth){//&&this.isPlanInCrrtMonth
+          while(day<=this.cardInfo.repaymentDate-2){
+            dateArr.push({value:day})
+            day++
+          }
+        }else{
+          // console.log('TimeUtil.dayQtyOfMonth()',TimeUtil.getStampByDate(TimeUtil.dayQtyOfMonth()),TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1))
+          while(day<=TimeUtil.getStampByDate(TimeUtil.dayQtyOfMonth())){
+            // let date=month+'-'+day
+            dateArr.push({value:day})
+            day+=86400000
+          }
+          // day=1
+          while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1)){
+            // dateArr.push({value:{day,month:(new Date()).getMonth()+2}})
+            // let date=month+1+'-'+day
+            dateArr.push({value:day})
+            // dateArr.push({value:date})
+            day+=86400000
+          }
         }
         this.startDaysAvailable=dateArr
       },
@@ -286,19 +300,26 @@
         if(!this.startDay||!this.duration){
           return null
         }
-        let v=Number(this.startDay)+Number(this.duration)-1
+        let v=Number(this.startDay)+(Number(this.duration)-1)*86400000
         return this.dayPaser(v)
       },
       durationAvailable(){
         if(this.startDay){
           let opts=[]
-          let maxD=this.cardInfo.repaymentDate-this.startDay
-          let day=2
-          while(day<=maxD){
-            opts.push({value:day})
-            day++
+          let day=Number(this.startDay)+86400000
+          let duration=2
+          let lastDay=this.startDaysAvailable[this.startDaysAvailable.length-1].value
+          // console.log('duration',duration)
+          // console.log('day',new Date(this.startDay))
+          // console.log('lastDay',new Date(lastDay))
+          while(day<=lastDay&&duration<=30){
+            // console.log('duration',duration)
+            opts.push({value:duration})
+            duration++
+            day+=86400000
           }
-          this.duration=day-1
+          // console.log('duration opts',opts)
+          this.duration=duration-1
           return opts
         }else{
           return []
@@ -311,7 +332,7 @@
           return '请选择执行天数'
         }
       },
-      today(){
+      today(){//2400时刷新 | 提交时检测 today
         var today={}
         today.day=this.nowDate.getDate()
         today.month=this.nowDate.getMonth()+1
@@ -319,23 +340,51 @@
         return today
       },
       earlistStartDay(){
-        if(this.isPlanInCrrtMonth){
-          if(this.today.day<this.cardInfo.billDate){
-            return this.cardInfo.billDate
+        var now=this.today
+        if(this.isRepamentSameMonth){
+          if(this.isPlanInCrrtMonth){
+            if(now.day<this.cardInfo.billDate){
+              return TimeUtil.getStampByDate(this.cardInfo.billDate)
+            }else{
+              return TimeUtil.getStampByDate(Number(now.day)+1)
+            }
           }else{
-            return this.today.day+1
+            return TimeUtil.getStampByDate(this.cardInfo.billDate,1)
           }
+          
         }else{
-          // return this.cardInfo.billDate
+          if(this.isPlanInCrrtMonth){
+            return TimeUtil.getStampByDate(Number(now.day)+1)
+          }else{
+            if(now.day<this.cardInfo.billDate){
+              return TimeUtil.getStampByDate(this.cardInfo.billDate)
+            }else{
+              return TimeUtil.getStampByDate(Number(now.day)+1)
+            }
+          }
         }
-
       },
-      isPlanInCrrtMonth(){
-        if(this.today.day<this.cardInfo.repaymentDate){
+      billDateStamp(){
+        return 
+      },
+      isRepamentSameMonth(){
+        if(this.cardInfo.repaymentDate<this.cardInfo.billDate){
           return true
         }else{
           return false
         }
+      },
+      isPlanInCrrtMonth() {
+        if (this.today.day < this.cardInfo.repaymentDate-2) {
+          return true
+        } else {
+          return false
+        }
+        // if (this.isRepamentSameMonth) {
+         
+        // }else{
+
+        // }
       },
       cardInfo(){
         return this.$route.query

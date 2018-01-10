@@ -64,7 +64,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/hgj/',
+    // assetsPublicPath: '/hgj/',
+    assetsPublicPath: '/',
 
     /**
      * Source Maps

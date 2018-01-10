@@ -46,9 +46,25 @@ function getTimeString(AdDate, AiStart = 0, AiEnd, cfg = {}) {
   }
   return sNow.slice(AiStart, AiEnd);
 };
+function dayQtyOfMonth(stamp=new Date()){
+  var time=new Date(stamp)
+  var month=time.getMonth(),year=time.getFullYear(),date=time.getDate()
+  var nextMonth=new Date(year,month+1,1)
+  var thisMonth=new Date(year,month,1)
+  var miliSecond=nextMonth.getTime()-thisMonth.getTime()
+  var qty=miliSecond/24/3600000
+  return qty
+}
+function getStampByDate(date,monthAdd=0){
+  let now=new Date()
+  let newDate=new Date(now.getFullYear(),now.getMonth()+monthAdd,Number(date))
+  return newDate.getTime()
+}
 var TimeUtil = {}
 TimeUtil.getTimeString = getTimeString
+TimeUtil.dayQtyOfMonth = dayQtyOfMonth
+TimeUtil.getStampByDate = getStampByDate
 export {
-  getTimeString
+  getTimeString,dayQtyOfMonth,getStampByDate
 }
 export default TimeUtil

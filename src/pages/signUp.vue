@@ -53,7 +53,7 @@
     data () {
       return {
         check: true,
-        verifyCode:'000000',
+        verifyCode:'',
         pwd:'',
         pwdInputType:"password",
         codeBttnMsg:'获取验证码',
@@ -180,7 +180,7 @@
 
       getCaptcha(){
         //todo: 万一没有手机号
-        let url=helper.urlConcat('account/captcha',{
+        let url=helper.urlConcat('/account/captcha',{
           phone:this.$store.state.account.phone,
           v:(new Date()).getTime()
         })

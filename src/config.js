@@ -1,4 +1,5 @@
 var config={
-  routerRoot:'/hgj',
+  // routerRoot:'/hgj',
+  routerRoot:'',
 }
 export default config
