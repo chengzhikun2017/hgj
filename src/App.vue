@@ -1,7 +1,12 @@
 <template>
   <div id="app" >
   <!-- <div class="test" @click='test'></div> -->
-    <router-view/>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive" />
+      <p>kaiwanxiao</p>
+    </keep-alive>
+
+    <router-view v-if="!$route.meta.keepAlive" />
     
     <foot-nav></foot-nav>
     <app-alert></app-alert>

@@ -74,7 +74,11 @@ var routes = [],
   route_test = [],
   index = []
 index = index.concat(
-  newRoute('/cards', 'cards', cards),
+  newRoute('/cards', 'cards', cards, {
+    meta: {
+      keepAlive: true //需要被缓存
+    }
+  }),
   newRoute('/mine', 'mine', mine),
   newRoute('/promotion', 'promotion', promotion),
   newRoute('/pay', 'pay', pay),

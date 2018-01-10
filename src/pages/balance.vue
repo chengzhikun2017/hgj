@@ -19,11 +19,33 @@
         <app-formitem label="联系手机号" :last="true">
           <app-input class='form-input' :placeholder='"请输入~"' v-model='phone'/>
         </app-formitem>
+        <img src="static/img/zhlogo.png" alt="">
       </div>
       <div class="mybutton">
         <app-button>提交</app-button>
       </div>
-      <div class="popView" v-show="popFlag">
+      <app-popview v-model="popFlag" title="选择银行卡" class="chooseCardsPopView planbox">
+        <div slot="icon" class="popicon">
+          <app-cricleicon icon="icon-bankcard" size="0.28rem"></app-cricleicon>
+        </div>
+        <div slot="content" class="chooseCardsContent planbox-content">
+          <div class="liner"></div>
+          <app-radio v-model='cardId' :label='card.cardId' v-for='card in cards' :key='card.cardId'>
+            <app-formitem3 :title="card.cardCode" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true" :long="true">
+              <div slot="icon">
+                <div class="myicon">
+                  <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon>
+                </div>
+              </div>
+              <div slot="action">
+                <app-check :value='cardId==card.cardId' :type='1' class='check-icon' />
+              </div>
+            </app-formitem3>
+          </app-radio>
+          <div @click='payNewDC'>使用新的银行卡</div>
+        </div>
+      </app-popview>
+     <!--  <div class="popView" v-show="popFlag">
         <div class="popcontent">
           <div class="planbox">
             <header flex="cross:center">
@@ -51,23 +73,10 @@
                 </app-formitem3>
               </app-radio>
               <div @click='payNewDC'>使用新的银行卡</div>
-<!--               <app-radio v-model='cardId' label='2'>
-                <app-formitem3 title="招商银行" note="(尾号：3318)" :last="true">
-                  <div slot="icon">
-                    <span class="icon-plan"></span>
-                  </div>
-                </app-formitem3>
-                <app-check :value='cardId==2' :type='1' class='check-icon' />
-              </app-radio> -->
-              <!-- <app-formitem3 title="光大银行" note="(尾号：5658)" :last="true">
-                <div slot="icon">
-                  <span class="icon-plan"></span>
-                </div>
-              </app-formitem3> -->
             </div>
           </div>
         </div>
-      </div> 
+      </div>  -->
     </article>
   </div>
 </template>
@@ -140,6 +149,14 @@
       right: 0;
       bottom: 0;
       padding: 0.3rem 0.2rem;
+    }
+    .chooseCardsPopView {
+      .popicon {
+        margin-right: 0.1rem;
+      }
+      .chooseCardsContent {
+
+      }
     }
     .popView {
       position: fixed;
