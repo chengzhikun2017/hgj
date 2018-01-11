@@ -3,7 +3,7 @@
     <app-nav flex-box="0">余额提现</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-creditcard v-if="!isEmpty" :card="card1"></app-creditcard>
+        <app-bankcard v-if="!isEmpty" :card="choosedCardInfo"></app-bankcard>
         <div class="emptyCard" v-if="isEmpty" flex="dir:top main:center cross:center">
           <div class="note" flex="cross:center">
             <span class="icon-alert"></span>
@@ -16,13 +16,13 @@
         <app-formitem label="提现金额" :first="true">
           <app-input class='form-input' :placeholder='"请输入~"' v-model='amount'/>
         </app-formitem>
-        <app-formitem label="联系手机号" :last="true">
+       <!--  <app-formitem label="联系手机号" :last="true">
           <app-input class='form-input' :placeholder='"请输入~"' v-model='phone'/>
-        </app-formitem>
-        <img src="/static/img/zxlogo.png" alt="">
+        </app-formitem> -->
+        <!-- <img src="/static/img/zxlogo.png" alt=""> -->
       </div>
       <div class="mybutton">
-        <app-button>提交</app-button>
+        <app-button @click.native='submit'>提交</app-button>
       </div>
       <app-popview v-model="popFlag" title="选择银行卡" class="chooseCardsPopView planbox">
         <div slot="icon" class="popicon">
@@ -31,19 +31,10 @@
         <div slot="content" class="chooseCardsContent planbox-content">
           <div class="liner"></div>
           <app-radio v-model='cardId' :label='card.cardId' v-for='card in cards' :key='card.cardId'>
-            <app-formitem3 :title="cards_dict[card.cardCode]" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true" :long="true">
-              <div slot="icon">
-                <div class="myicon">
-                  <!-- <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon> -->
-                  <img :src="'/static/img/logo/'+card.cardCode+'.png'" alt="">
-                </div>
-              </div>
-              <div slot="action">
-                <app-check :value='cardId==card.cardId' :type='1' class='check-icon' />
-              </div>
-            </app-formitem3>
+            <app-carditem :card='card' :choosedCardId='cardId'></app-carditem>
           </app-radio>
-          <div @click='payNewDC'>使用新的银行卡</div>
+          <div @click='addNewDC' >使用新的银行卡</div>
+          <div @click='popFlag=false'>确认选择</div>
         </div>
       </app-popview>
     </article>
@@ -51,57 +42,86 @@
 </template>
 <script>
   import helper from '../utils/helper.js'
-  import {mapGetters} from 'vuex'
+  import {mapGetters,mapActions} from 'vuex'
   export default {
     data () {
       return {
         cardId:null,
-        card1: {
-          status: 'PLAN',
-          name: '韩**',
-          cardNoAfter4: '3638',
-          billDate: 3,
-          repaymentDate: 13,
-          cardCode: 'ABC'
-        },
+        // card1: {
+        //   status: 'PLAN',
+        //   name: '韩**',
+        //   cardNoAfter4: '3638',
+        //   billDate: 3,
+        //   repaymentDate: 13,
+        //   cardCode: 'ABC'
+        // },
         amount:null,
-        phone:null,
+        // phone:null,
         popFlag: true,
-        isEmpty: false
+        // isEmpty: false
       }
     },
     created(){
     },
+    beforeDestroy(){
+      //存入store
+    },
     methods: {
-      payNewDC(){
+      submit(){
+        this.balance_cashApply({
+          cardId:this.cardId,
+          fee:this.amount
+        })
+      },
+      addNewDC(){
         let url=helper.urlConcat('/addbankcard',{
-
+          willGoBack:1
         })
         helper.goPage(url)
       },
+      ...mapActions([
+        'balance_cashApply',
+        ])
+    },
+    mounted(){
+      this.cardId=this.cards[0].cardId
     },
     computed:{
       ...mapGetters([
         'cards_dict'
       ]),
+      isEmpty(){
+        if(!this.cardId){
+          return true
+        }else{
+          return false
+        }
+      },
+      choosedCardInfo(){
+        if(!this.cardId){
+          return null
+        }else{
+          return this.cards.find(item=>item.cardId===this.cardId)
+        }
+      },
       cards(){
-        return [{
-          status: 'PLAN',
-          name: '韩**',
-          cardNoAfter4: '3638',
-          billDate: 3,
-          repaymentDate: 13,
-          cardId:1,
-          cardCode: 'ABC'
-        },{
-          status: 'PLAN',
-          name: '韩**',
-          cardNoAfter4: '3638',
-          billDate: 3,
-          repaymentDate: 13,
-          cardId:2,
-          cardCode: 'CIB'
-        }] 
+        // return [{
+        //   status: 'PLAN',
+        //   name: '韩**',
+        //   cardNoAfter4: '3638',
+        //   billDate: 3,
+        //   repaymentDate: 13,
+        //   cardId:1,
+        //   cardCode: 'ABC'
+        // },{
+        //   status: 'PLAN',
+        //   name: '韩**',
+        //   cardNoAfter4: '3638',
+        //   billDate: 3,
+        //   repaymentDate: 13,
+        //   cardId:2,
+        //   cardCode: 'CIB'
+        // }] 
         return this.$store.state.cards.cardsListDC
       }
     },
@@ -130,17 +150,6 @@
       .chooseCardsPopView {
         .popicon {
           margin-right: 0.1rem;
-        }
-        .chooseCardsContent {
-          .liner {
-            margin-bottom: 0;
-          }
-          .myicon {
-            margin-right: 0.1rem;
-            img {
-              width: 0.34rem;
-            }
-          }
         }
       }
       .emptyCard {

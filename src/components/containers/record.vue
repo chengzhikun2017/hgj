@@ -1,8 +1,8 @@
 <template>
   <div class="record">
     <div class="cardtitle" flex="main:justify cross:center">
-      <!-- <img src="" alt=""> -->
-      <span>{{record.cardCode}}</span>
+      <img :src="'https://apimg.alipay.com/combo.png?d=cashier&t='+record.cardCode" alt="">
+      <!-- <span>{{record.cardCode}}</span> -->
       <span class="lastno">尾号：{{record.cardNoAfter4}}</span>
     </div>
     <div class="liner">
@@ -11,7 +11,7 @@
     <div class="record-content" flex="main:justify">
       <div class="left">
         <div class="money">
-          金额：{{record.taskFee|moneyFilter}} 
+          <i class="icon-cricle-yuan"></i>金额：{{record.taskFee|moneyFilter}} 
         </div>
         <div class="time">
           {{record.planTime|timePlanRecordFilter}}
@@ -60,6 +60,9 @@
       height: 1px;
       border: 1px dashed #d3d3d3;
       margin:0.15rem 0;
+    }
+    .icon-cricle-yuan{
+      margin-right: 0.05rem;
     }
     .record-content {
       .left {

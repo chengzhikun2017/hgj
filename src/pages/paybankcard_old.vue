@@ -22,24 +22,25 @@
       <div class="mybutton">
         <app-button @click.native='payOrder'>支付</app-button>
       </div>
-      <app-radio v-model='cardId' :label='card.cardId' v-for='card in cardsDC' :key='card.cardId'>
-        <app-formitem3 :title="card.cardCode" :note="'(尾号：'+card.cardNoAfter4+')'" :last="true" :long="true">
-          <div slot="icon">
-            <div class="myicon">
-              <app-cricleicon icon="icon-bankcard" bgcolor="bg-red"></app-cricleicon>
-            </div>
-          </div>
-          <div slot="action">
-            <app-check :value='cardId==card.cardId' :type='1' class='check-icon' />
-          </div>
-        </app-formitem3>
-      </app-radio>
-      <p @click='newCardPay'>使用新卡</p>
+      <app-popview v-model="popFlag" title="选择银行卡" class="chooseCardsPopView planbox">
+        <div slot="icon" class="popicon">
+          <app-cricleicon icon="icon-bankcard" size="0.28rem" circle="small"></app-cricleicon>
+        </div>
+        <div slot="content" class="chooseCardsContent planbox-content">
+          <div class="liner"></div>
+          <app-radio v-model='cardId' :label='card.cardId' v-for='card in cardsDC' :key='card.cardId'>
+            <app-carditem :card='card' :choosedCardId='cardId'></app-carditem>
+          </app-radio>
+          <div @click='newCardPay' >使用新的银行卡</div>
+          <div @click='popFlag=false'>确认选择</div>
+        </div>
+      </app-popview>
     </article>
   </div>
 </template>
 <script>
   import helper from '../utils/helper.js'
+  import Regs from '../utils/reg.js'
   import {mapActions,mapMutations} from 'vuex'
   export default {
     data () {
@@ -48,6 +49,7 @@
         name:'黄树栋',
         cardId:null,
         // cardNo:null,
+        popFlag:true,
         cardNo:6214852109847213,
         phone:13816938525,
         // phone:null,
@@ -57,18 +59,10 @@
       }
     },
     methods:{
-      // bindCardAndGetCode(){
-      //   this.addCardDC_setValue(this)
-      //   //validate infomation
-      //   return new Promise((resolve,reject)=>{
-      //     this.addCardDC_submit().then(res=>{
-      //       resolve(res)
-      //     })
-      //   })
-        
-      // },
-
       payOrder(){
+        if(!this.checkValid()){
+          return
+        }
         let params={
           payType:'UNSPAY',
           orderId:this.orderId,
@@ -85,8 +79,16 @@
           this.hgjToast('请选择支付的银行卡','warning')
           return false
         }
+
         return true
-      },  
+      }, 
+      checkValid(){
+         if(!this.codeValid){
+          this.hgjToast('请输入6位验证码','warning')
+          return false
+        }
+        return true
+      }, 
       getCode(countdown) {
         // console.log('orderId,cardId',this.orderId,this.cardId)
         // return
@@ -96,13 +98,6 @@
         }).then(res=>{
           countdown()
         })
-        // return
-        // this.order_unspayGetCode({
-        //   orderId: this.orderId,
-        //   cardId: this.cardId,
-        // }).then(res => {
-        //   countdown()
-        // })
       },
       newCardPay(){
         let path=helper.urlConcat('/paybankcard',{
@@ -116,8 +111,8 @@
       ...mapActions([
         'order_unspayPay',
         'order_unspayGetCode',
-        'order_pay',
         'addCardDC_submit',
+        'order_pay',
         'order_getStatusAfterPay',
         ])
     },
@@ -125,6 +120,9 @@
       if(!this.$route.query.orderId){
         //提示重新创建订单
       }
+    },
+    mounted(){
+      this.cardId=this.cardsDC[0].cardId
     },
     computed:{
       cardInfo(){
@@ -136,7 +134,9 @@
           })
         }
       },
-
+      codeValid(){
+        return Regs.code6(this.code)
+      },  
       orderId(){
         return this.$route.query.orderId
       },

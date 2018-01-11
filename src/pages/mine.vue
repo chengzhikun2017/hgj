@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="mine-content">
-        <app-formitem3 title="计划执行记录" note="" :first="true">
+        <app-formitem3 title="我的计划" note="" @click.native='viewPlanRecords' :first="true">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-red" icon="icon-date"></app-cricleicon>
           </div>
@@ -97,6 +97,9 @@ export default {
     },
     goSetting(){
         helper.goPage('/user_setting')
+    },
+    viewPlanRecords(){
+      helper.goPage('/planrecords')
     },
   },
   computed:{

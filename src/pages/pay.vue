@@ -13,7 +13,7 @@
       </div>
         <div>{{productDscrp}}</div>
       <div class="order-content">
-        <app-radio v-model='payWay' :label='0'>
+        <!-- <app-radio v-model='payWay' :label='0'>
           <app-formitem3 title="信用卡付款" note="激活使用信用卡，付款99折，无需网银！" :first="true" :notePoint="true">
             <div class="header" slot="icon">
               <span class="icon icon-creditcard red"></span>
@@ -22,21 +22,24 @@
               <app-check :type='1' :value='payWay===0'/>
             </div>
           </app-formitem3>
-        </app-radio>
-        <app-formitem3 title="微信支付" note="需要微信客户端打开">
+        </app-radio> -->
+        <!-- <app-formitem3 title="微信支付" note="需要微信客户端打开">
           <div class="header" slot="icon">
             <span class="icon icon-wechat green"></span>
           </div>
           <div class="content" slot="action">
           </div>
-        </app-formitem3>
-        <app-formitem3 title="余额支付" note="充值送充气娃娃！">
-          <div class="header" slot="icon">
-            <span class="icon icon-money orange"></span>
-          </div>
-          <div class="content" slot="action">
-          </div>
-        </app-formitem3>
+        </app-formitem3> -->
+        <app-radio v-model='payWay' :label='2'>
+          <app-formitem3 title="余额支付" :note="'余额'+balance+'元'">
+            <div class="header" slot="icon">
+              <span class="icon icon-money orange"></span>
+            </div>
+            <div class="content" slot="action">
+              <app-check :type='1' :value='payWay===2'/>
+            </div>
+          </app-formitem3>
+        </app-radio>
         <app-radio v-model='payWay' :label='3'>
           <app-formitem3 title="储蓄卡快捷支付" note="绑卡就送苍老师限量版资源" :last="true">
             <div class="header" slot="icon">
@@ -84,6 +87,10 @@
       }
     },
     computed:{
+      balance(){
+        let fee=this.$store.state.account.unfreezeMoney/100
+        return fee.toFixed(2)
+      },
       productDscrp() {
         // if(!this.productId){
         //   return null
@@ -149,9 +156,35 @@
           this.orderStatus=res
         })
       },
+      payBalance(){
+        let params={
+          payType:'ACCOUNT_BALANCE',
+          orderId:this.orderId,
+          cardId:this.cardId,
+          verCode:this.code,
+        }
+        this.order_pay(params).then(res=>{
+          this.order_getStatusAfterPay(this.orderId)
+          console.log('res',res)
+        })
+      },
+      payBalanceConfirm(){
+        this.hgjAlert({
+          title:'使用余额支付',
+          options: [{
+            text: '确认',
+            callback: () => {
+              this.payBalance()
+            }
+          }, {
+            text: '取消',
+          }]
+        })
+        
+      },
       goPay(){
-        if(this.payWay==0){
-          console.log('CC pay')
+        if(this.payWay==2){
+          this.payBalanceConfirm()
         }
         if(this.payWay==3){
           let orderId=this.orderId
@@ -164,6 +197,8 @@
       },
       ...mapActions([
         'order_status',
+        'order_pay',
+        'order_getStatusAfterPay',
         ])
     },
   }

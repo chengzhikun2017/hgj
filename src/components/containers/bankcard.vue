@@ -55,9 +55,15 @@
     },
     methods:{
       bindSC(){
-        this.addCardDC_bindSC(card.cardId).then(
-          
-          )
+        this.hgjAlert({
+          title:'设为结算卡',
+          options:[{text:'确定',callback:()=>{
+            this.addCardDC_bindSC(this.card.cardId).then(res=>{
+              this.hgjToast('已设为结算卡')
+            })
+          }},{text:'取消'}]
+        })
+        
       },
       ...mapActions([
         'addCardDC_bindSC',

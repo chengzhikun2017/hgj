@@ -1,16 +1,15 @@
 <template>
   <div  class="record-list" >
-    <!-- <div v-loading='loading' element-loading-text='请稍后'></div> -->
-    <div class="list-container" :style="{marginTop:top+'rem'}"  v-scroll-load='{method:getmore,listSelector:".list-container-inner"}' >
+    <div class="list-top" v-if='list.length>0'>——下拉释放刷新——</div>
+    <div class="list-top" v-if='list.length===0&&!loading'>无数据</div>
+    <div class="list-top" v-if='loading'>刷新中</div>
+    <div class="list-container" :style='{height:height}' v-scroll-load='{method:getmore,listSelector:".list-container-inner"}' >
       <div class="list-container-inner" v-pull-refresh='{method:getNew}' v-inner-scroll>
-        <div class="list-top" v-if='list.length>0'>——释放刷新——</div>
-        <div class="list-top" v-if='list.length===0&&!loading'>无数据</div>
-        <div class="list-top" v-if='loading'>刷新中</div>
         <slot></slot>
         <div class="list-bottom" v-if='noMore'>————我是有底线的————</div>
+        <div class="list-bottom" v-if='!noMore'>————加载中————</div>
       </div>
     </div>
-    <!-- <remind :remind='remind'></remind> -->
   </div>
 </template>
 
@@ -21,12 +20,9 @@
   export default {
     data() {
       return {
-        // response: null,
         loading: false,
-        // records: [],
         list:[],
         crrtPage:0,
-        loading:false,
         noMore:false,
     }
   },
@@ -34,13 +30,19 @@
     cfg:{
       
     },
-    top:{
-      default:0.4
-    },
+    // top:{
+    //   default:0.4
+    // },
   },
   created(){
     // this.url=this.config.url
     this.getNew()
+  },
+  computed:{
+    height(){
+      let height=window.screen.height/100-0.44
+      return height+'rem'
+    },
   },
   methods:{
     getmore(){
@@ -77,7 +79,7 @@
       if (this.noMore) {
         return
       }
-      console.log('loading record list')
+      console.log('loading record list',this.cfg.params)
       this.loading = true
       fetch({
         url: this.cfg.url,
@@ -123,23 +125,29 @@
 </script>
 
 <style lang='scss' scoped>
-
   .record-list{
+    position: relative;
     .list-container{
+      transform:translateY(0);
       overflow: scroll;
-      height: 6rem;
-      margin-top: 0.4rem;
-      border:1px solid red;
-      /*.list-container-inner{*/
-        /*}*/
+      /*height: 6rem;*/
+      /*z-index: 2;*/
+      background: transparent;
       }
     }
     .list-top{
       position: absolute;
       top: 0.2rem;
-      font-size: 0.14rem;
+      font-size: 0.12rem;
       width: 100%;
       overflow: visible;
       text-align: center;
+      /*z-index: 0;*/
+    }
+    .list-bottom{
+      text-align: center;
+      font-size: 0.12rem;
+      height: 0.16rem;
+      margin: 0.1rem;
     }
   </style>

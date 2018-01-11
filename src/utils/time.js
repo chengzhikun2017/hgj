@@ -6,6 +6,7 @@
  * @param  {object} cfg     connectorDate,connectorTime,
  * @return {String}         [description]
  */
+import config from '../config.js'
 function getTimeString(AdDate, AiStart = 0, AiEnd, cfg = {}) {
   if (AiEnd == undefined) {
     if (cfg.connectorDate === 'char') {
@@ -46,7 +47,7 @@ function getTimeString(AdDate, AiStart = 0, AiEnd, cfg = {}) {
   }
   return sNow.slice(AiStart, AiEnd);
 };
-function dayQtyOfMonth(stamp=new Date()){
+function dayQtyOfMonth(stamp=config.nowDate){
   var time=new Date(stamp)
   var month=time.getMonth(),year=time.getFullYear(),date=time.getDate()
   var nextMonth=new Date(year,month+1,1)
@@ -56,7 +57,7 @@ function dayQtyOfMonth(stamp=new Date()){
   return qty
 }
 function getStampByDate(date,monthAdd=0){
-  let now=new Date()
+  let now=config.nowDate
   let newDate=new Date(now.getFullYear(),now.getMonth()+monthAdd,Number(date))
   return newDate.getTime()
 }

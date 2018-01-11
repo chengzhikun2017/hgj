@@ -2,17 +2,12 @@
   <div class="planrecords" flex="dir:top">
     <app-nav flex-box="0">智能还卡记录</app-nav>
     <article flex-box="1">
-      <ul class="recordlist">
-        <li class="recorditem" v-for='record in recordList'>
-          <app-record :record="record" @click.native='viewPlanDetail(record)'></app-record>
-        </li>
-        <!-- <li class="recorditem">
-          <app-record :record="record2"></app-record>
-        </li> -->
-      </ul>
+      <app-record-list :cfg='cfg' v-model='recordList'>
+        <app-record :record="record" @click.native='viewPlanDetail(record)' v-for='record in recordList' :key='record.planId' class="recorditem"></app-record>
+      </app-record-list>
     </article>
   </div>
-</template>
+</template>   
 <script>
   import {mapActions} from 'vuex'
   import helper from '../utils/helper.js'
@@ -20,41 +15,38 @@
     data () {
       return {
         recordList:[],
-        record1: {
-          lastNo: '8888',
-          money: 98.4,
-          time: '2017-12-19 / 21:42',
-          btnType: 'success' // doing, success
-        },
-        record2: {
-          lastNo: '8848',
-          money: 98.43,
-          time: '2017-11-19 / 21:42',
-          btnType: 'doing' // doing, success
-        }
       }
     },
     methods:{
-      getRecords(){
-        this.plan_review(this.cardInfo.cardId).then(res=>{
-          this.recordList=res
-        })
-      },
+      // getRecords(){
+      //   this.plan_review(this.cardInfo.cardId).then(res=>{
+      //     this.recordList=res
+      //   })
+      // },
       viewPlanDetail(record){
         let url=helper.urlConcat('/planprocess',record)
         helper.goPage(url)
       }, 
-      ...mapActions([
-        'plan_review',
-        ])
+      // ...mapActions([
+      //   'plan_review',
+      //   ])
     },
     created(){
-      this.getRecords()
+      // this.getRecords()
     },
     computed:{
-      cardInfo(){
-        return this.$route.query
+      cfg() {
+        return {
+          url: 'plan/review',
+          params: {
+            cardId: this.$route.query.cardId,
+            limit: 5,
+          },
+        }
       },
+      // cardId(){
+      //   return this.$route.query.cardId||null
+      // },
     },
   }
 </script>
@@ -65,11 +57,9 @@
     article {
       overflow: auto;
       background: #f3f3f3;
-      .recordlist {
-        .recorditem {
-          display: block;
-          padding-bottom: 0.1rem;
-        }
+      .recorditem {
+        display: block;
+        margin-bottom: 0.1rem;
       }
     }
   }

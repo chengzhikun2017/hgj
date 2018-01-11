@@ -1,4 +1,5 @@
 import fetch from '../../utils/fetch.js'
+import {simpleFetch} from '../../utils/fetch.js'
 import {HGJ_VUE} from '../../main.js'
 import helper from '../../utils/helper.js'
 class defaultInfo{
@@ -57,7 +58,7 @@ const addCardDC = {
       return promise
     },
     addCardDC_bindSC({},cardId){
-      var promise= simpleFetch({
+      var promise= fetch({
         url:'card/bindSC',
         // method:'post',
         params:{

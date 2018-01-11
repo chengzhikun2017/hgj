@@ -21,6 +21,10 @@ export default class Regs {
     let reg = /.{8,}/
     return reg.test(v)
   }
+  static code6(v){
+    let reg = /\d{6}/
+    return reg.test(v)
+  }
   // 银行卡，信用卡验证
   static bankCard(v) {
     let reg = /^\d{15,19}$/

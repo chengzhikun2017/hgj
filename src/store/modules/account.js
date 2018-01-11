@@ -124,6 +124,16 @@ const account = {
       return loginPromise
     },
     account_logout({commit,dispatch}){
+      HGJ_VUE.hgjAlert({
+        title:'退出登录',
+        options:[
+        {text:'确认',callback:()=>{
+
+        }},{
+          text:'取消',
+        }
+        ],
+      })
       var promise=simpleFetch({
         url:'account/logout',
       })
@@ -140,7 +150,7 @@ const account = {
           })
         }
       })
-      return promise
+      // return promise
     },
     account_checkSession({commit,dispatch}){
       var promise= simpleFetch({

@@ -33,6 +33,7 @@ import record from './components/containers/record.vue'
 import cricleicon from './components/containers/icon/cricleIcon.vue'
 import share from './components/views/share'
 import popview from './components/views/popview'
+import carditem from './components/containers/cardItem.vue'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
 Vue.component('app-creditcard', creditcard)
@@ -57,6 +58,7 @@ Vue.component('app-button', button)
 Vue.component('app-record-list', recordList)
 Vue.component('app-share', share)
 Vue.component('app-popview', popview)
+Vue.component('app-carditem', carditem)
 
 
 

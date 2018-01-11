@@ -86,6 +86,7 @@
   import {mapActions,mapMutations} from 'vuex'
   import helper from '../utils/helper.js'
   import TimeUtil from '../utils/time.js'
+  import config from './../config.js'
   export default {
     data () {
       return {
@@ -97,7 +98,7 @@
         choosedPlan:{},
         planOpts:[],
         popFlag: false,
-        nowDate:new Date(2018,0,10),
+        nowDate:config.nowDate,
         getPlanOptsTimer:null,
       }
     },
@@ -232,24 +233,32 @@
         //var billDateStamp=this.billDateStamp
         let month=this.today.month,year=this.today.year
         if(this.isRepamentSameMonth){//&&this.isPlanInCrrtMonth
-          while(day<=this.cardInfo.repaymentDate-2){
-            dateArr.push({value:day})
-            day++
+          if(this.isPlanInCrrtMonth){
+            while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2)){
+              dateArr.push({value:day})
+              day+=86400000
+            }
+          }else{
+            while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1)){
+              dateArr.push({value:day})
+              day+=86400000
+            }
           }
         }else{
-          // console.log('TimeUtil.dayQtyOfMonth()',TimeUtil.getStampByDate(TimeUtil.dayQtyOfMonth()),TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1))
-          while(day<=TimeUtil.getStampByDate(TimeUtil.dayQtyOfMonth())){
-            // let date=month+'-'+day
-            dateArr.push({value:day})
-            day+=86400000
-          }
-          // day=1
-          while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1)){
-            // dateArr.push({value:{day,month:(new Date()).getMonth()+2}})
-            // let date=month+1+'-'+day
-            dateArr.push({value:day})
-            // dateArr.push({value:date})
-            day+=86400000
+          if(this.isPlanInCrrtMonth){
+            while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2)){
+              dateArr.push({value:day})
+              day+=86400000
+            }
+          }else{
+            while(day<=TimeUtil.getStampByDate(TimeUtil.dayQtyOfMonth())){
+              dateArr.push({value:day})
+              day+=86400000
+            }
+            while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1)){
+              dateArr.push({value:day})
+              day+=86400000
+            }
           }
         }
         this.startDaysAvailable=dateArr
@@ -308,6 +317,9 @@
           let opts=[]
           let day=Number(this.startDay)+86400000
           let duration=2
+          if(this.startDaysAvailable.length<1){
+            return[]
+          }
           let lastDay=this.startDaysAvailable[this.startDaysAvailable.length-1].value
           // console.log('duration',duration)
           // console.log('day',new Date(this.startDay))
