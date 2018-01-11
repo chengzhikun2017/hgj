@@ -106,7 +106,6 @@
         font-size: 0.13rem;
         color: white;
         .logo {
-          width: 0.5rem;
           height: 0.25rem;
           img {
             height: 0.24rem;
