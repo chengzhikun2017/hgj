@@ -98,7 +98,8 @@
         choosedPlan:{},
         planOpts:[],
         popFlag: false,
-        nowDate:config.nowDate,
+        // nowDate:config.nowDate,
+        nowDate:new Date(),
         getPlanOptsTimer:null,
       }
     },
@@ -125,7 +126,10 @@
       clearTimeout(this.getPlanOptsTimer)
     },
     methods:{
-
+      countDownMilis(){
+        let now=new Date()
+        // let 
+      },
       resetPlan(){
         this.planOpts=[]
         this.choosedPlan={}
@@ -263,6 +267,13 @@
         }
         this.startDaysAvailable=dateArr
       },
+      reInit(){
+        this.nowDate=new Date()
+        this.$nextTick(()=>{
+          this.startDay=this.earlistStartDay
+          this.calcStartDaysAvailable()
+        })
+      },
       ...mapMutations([
         'router_willBackToIndex',
         'cards_updatePlanStatus',
@@ -276,6 +287,13 @@
         ])
     },
     created(){
+      // setTimeout(()=> {
+      //   this.nowDate=new Date(2018,1,5)
+      //   this.$nextTick(()=>{
+      //     this.startDay=this.earlistStartDay
+      //     this.calcStartDaysAvailable()
+      //   })
+      // }, 3330);
     },
     mounted(){
       this.calcStartDaysAvailable()
@@ -351,14 +369,19 @@
         today.year=this.nowDate.getFullYear()
         return today
       },
+      nowDay(){
+        return this.nowDate.getDate()
+      },
       earlistStartDay(){
         var now=this.today
+        // var nowDay=this.nowDay
+        var nowDay=now.day
         if(this.isRepamentSameMonth){
           if(this.isPlanInCrrtMonth){
-            if(now.day<this.cardInfo.billDate){
+            if(nowDay<this.cardInfo.billDate){
               return TimeUtil.getStampByDate(this.cardInfo.billDate)
             }else{
-              return TimeUtil.getStampByDate(Number(now.day)+1)
+              return TimeUtil.getStampByDate(Number(nowDay)+1)
             }
           }else{
             return TimeUtil.getStampByDate(this.cardInfo.billDate,1)
@@ -366,12 +389,12 @@
           
         }else{
           if(this.isPlanInCrrtMonth){
-            return TimeUtil.getStampByDate(Number(now.day)+1)
+            return TimeUtil.getStampByDate(Number(nowDay)+1)
           }else{
-            if(now.day<this.cardInfo.billDate){
+            if(nowDay<this.cardInfo.billDate){
               return TimeUtil.getStampByDate(this.cardInfo.billDate)
             }else{
-              return TimeUtil.getStampByDate(Number(now.day)+1)
+              return TimeUtil.getStampByDate(Number(nowDay)+1)
             }
           }
         }

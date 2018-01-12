@@ -7,6 +7,7 @@
  * @return {String}         [description]
  */
 import config from '../config.js'
+import {HGJ_VUE} from '../main.js'
 function getTimeString(AdDate, AiStart = 0, AiEnd, cfg = {}) {
   if (AiEnd == undefined) {
     if (cfg.connectorDate === 'char') {
@@ -47,7 +48,12 @@ function getTimeString(AdDate, AiStart = 0, AiEnd, cfg = {}) {
   }
   return sNow.slice(AiStart, AiEnd);
 };
-function dayQtyOfMonth(stamp=config.nowDate){
+function dayQtyOfMonth(stamp){
+  if(stamp===undefined){
+    // stamp=HGJ_VUE.__isDev?config.nowDate:new Date()
+    // stamp=config.nowDate
+    stamp=new Date()
+  }
   var time=new Date(stamp)
   var month=time.getMonth(),year=time.getFullYear(),date=time.getDate()
   var nextMonth=new Date(year,month+1,1)
@@ -57,7 +63,9 @@ function dayQtyOfMonth(stamp=config.nowDate){
   return qty
 }
 function getStampByDate(date,monthAdd=0){
-  let now=config.nowDate
+  // let now=HGJ_VUE.__isDev?config.nowDate:new Date()
+  // let now=config.nowDate
+  let now=new Date()
   let newDate=new Date(now.getFullYear(),now.getMonth()+monthAdd,Number(date))
   return newDate.getTime()
 }

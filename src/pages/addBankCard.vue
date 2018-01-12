@@ -54,7 +54,7 @@
       },
       getValueFromStore(){
         let info = this.$store.state.addCardDC.info
-        console.log('add bank card info ',info)
+        console.log('add bank card info',info)
         this.name=info.name
         this.idCardNo=info.idCardNo
         this.phone=info.phone
