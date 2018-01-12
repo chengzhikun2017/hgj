@@ -14,6 +14,9 @@
     </nav>
 
     <article v-if="choose == 0" flex-box="1">
+      <div v-if="cardListCC.length === 0" class="empty">
+        <img src="/static/img/creditcard.png" alt="">
+      </div>
       <div v-for="item in cardListCC" class="cardItem">
         <app-creditcard :card="item" @click.native='goCardDetail(item)'></app-creditcard>
       </div>
@@ -25,6 +28,9 @@
       </div>
     </article>
     <article v-if="choose == 1" flex-box="1">
+      <div v-if="cardListDC.length === 0" class="empty">
+        <img src="/static/img/bankcard.png" alt="">
+      </div>
       <div v-for="item in cardListDC"  class="cardItem">
         <app-bankcard :card="item"></app-bankcard>
       </div>
@@ -149,6 +155,13 @@
     article {
       padding: 0.2rem;
       background: linear-gradient(to top, #2c2c33, #3d404b);
+      .empty {
+        padding:1.58rem 0 1rem;
+        text-align: center;
+        img {
+          width: 60%;
+        }
+      }
       .cardItem {
         margin-bottom: 0.1rem;
       }

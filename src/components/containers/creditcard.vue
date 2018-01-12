@@ -18,8 +18,10 @@
           <span class="liner">|</span>
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
-        <span class="btn2" v-if="card.planStatus == 'DOING'" >执行中</span>
-        <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span>
+        <span class="btn2" v-if="card.planStatus == 'SUCCESS'" >绑卡成功</span>
+        <span class="btn2" v-if="card.planStatus == 'FAILED'" >绑卡失败</span>
+        <span class="btn2" v-if="card.planStatus == 'DOING'" >正在处理中</span>
+        <!-- <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span> -->
       </div>
       <div class="floor">
         <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：每月{{card.repaymentDate}}号</span>
@@ -42,7 +44,8 @@
             cardNoAfter4: '3638',
             billDate: 3,
             repaymentDate: 13,
-            cardCode: 'ABC'
+            cardCode: 'ABC',
+            planStatus: 'SUCCESS'
           }
         })()
       },
@@ -106,7 +109,6 @@
         font-size: 0.13rem;
         color: white;
         .logo {
-          width: 0.5rem;
           height: 0.25rem;
           img {
             height: 0.24rem;
