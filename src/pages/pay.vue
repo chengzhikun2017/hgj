@@ -1,8 +1,8 @@
 <template>
-  <div class="order">
-    <app-nav>支付订单</app-nav>
-    <article>
-      <div class="banner" flex="main:center cross:center">
+  <div class="order" flex="dir:top">
+    <app-nav flex-box="0">支付订单</app-nav>
+    <article flex-box="1">
+      <div class="banner" flex="dir:top main:center cross:center">
         <!-- <app-creditcard :card="card1"></app-creditcard> -->
         <!-- <div class="plan">
           <div class="note">
@@ -10,9 +10,9 @@
           </div>
           <p>10天 / 5%保证金</p>
         </div> -->
-        <!-- <span>支付金额</span> -->
-        <!-- <div><span>money</span>元</div> -->
-        <p>{{productDscrp}}</p>
+        <span class="paymoney">支付金额</span>
+        <div class="money">{{(productInfo.fee / 100).toFixed(0)}}<span>元</span></div>
+        <!-- <p>{{productDscrp}}</p> -->
 
       </div>
       <div class="order-content">
@@ -224,21 +224,21 @@
         width: 100%;
         height: 1.78rem;
         background-image: linear-gradient(to right, #4b8cf8 1%, #884bf8);
-        font-size: 0.16rem;
-        color: white;
-        .plan {
-          text-align: center;
-          padding-top: 0.2rem;
-          .note {
-            font-size: 0.13rem;
-            color: white;
-            line-height: 1;
-            padding-bottom: 0.1rem;
-          }
-          p {
-            color: #f84f4b;
+        .paymoney {
+          padding: 0.07rem 0.14rem;
+          border:1px solid white;
+          border-radius: 0.03rem;
+          font-size: 0.13rem;
+          color: white;
+          line-height: 1;
+        }
+        .money {
+          margin-top: 0.15rem;
+          font-size: 0.34rem;
+          line-height: 1;
+          color:white;
+          span {
             font-size: 0.18rem;
-            line-height: 1;
           }
         }
       }
