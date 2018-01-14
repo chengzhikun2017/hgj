@@ -49,7 +49,7 @@
         name:'黄树栋',
         cardId:null,
         // cardNo:null,
-        popFlag:true,
+        popFlag:false,
         cardNo:6214852109847213,
         phone:13816938525,
         // phone:null,
@@ -70,7 +70,11 @@
           verCode:this.code,
         }
         this.order_pay(params).then(res=>{
-          this.order_getStatusAfterPay(this.orderId)
+          this.order_getStatusAfterPay(this.orderId).then(status=>{
+            if(status==='SUCCESS'&&res.productId==20000){
+              this.account_setActived()
+            }
+          })
           // console.log('res',res)
         })
       },
@@ -79,7 +83,6 @@
           this.hgjToast('请选择支付的银行卡','warning')
           return false
         }
-
         return true
       }, 
       checkValid(){

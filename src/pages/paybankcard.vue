@@ -50,6 +50,9 @@
         //todo: 判断 是否第一次获取
         return true
       },
+      pay(){
+        
+      },
       bindCardAndGetCode(){
         // this.addCardDC_setValue(this)
         // //validate infomation

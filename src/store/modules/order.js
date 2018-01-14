@@ -15,40 +15,44 @@ const order = {
     }
   },
   actions: {
-    order_getStatusAfterPay({commit,dispatch},orderId,onSucc){
+    order_getStatusAfterPay({commit,dispatch},orderId){
       var i=0
-      var timer=setInterval(()=>{
-        dispatch('order_status',orderId).then(res=>{
-          console.log('res order_getStatusAfterPay',res)
-          i++
-          let status=res.status
-          if(status!=='DOING'&&status!=='NOTPAY'&&status!=='REFUND_DOING'){
-            clearInterval(timer)
-            if(status==='SUCCESS'||status==='REFUND'){
-              HGJ_VUE.hgjAlert({
-                title:res.statusRemark,
-                options:[{
-                  text:'确定',callback:()=>{
-                    commit('router_backToIndex')
-                    helper.goPage(-1)
-                  },
-                }]
-              })
-              return
+      var promise= new Promise((resolve,reject)=>{
+        var timer=setInterval(()=>{
+          dispatch('order_status',orderId).then(res=>{
+            console.log('res order_getStatusAfterPay',res)
+            i++
+            let status=res.status
+            if(status!=='DOING'&&status!=='NOTPAY'&&status!=='REFUND_DOING'){
+              clearInterval(timer)
+              resolve(status)
+              if(status==='SUCCESS'||status==='REFUND'){
+                HGJ_VUE.hgjAlert({
+                  title:res.statusRemark,
+                  options:[{
+                    text:'确定',callback:()=>{
+                      commit('router_willBackToIndex')
+                      helper.goPage(-1)
+                    },
+                  }]
+                })
+                return 
+              }
+              if(status==='FAILED'){
+                HGJ_VUE.hgjAlert({
+                  title:res.statusRemark,
+                  options:[{
+                    text:'确定',callback:()=>{},
+                  }]
+                })
+                return
+              }
             }
-            if(status==='FAILED'){
-              HGJ_VUE.hgjAlert({
-                title:res.statusRemark,
-                options:[{
-                  text:'确定',callback:()=>{},
-                }]
-              })
-              return
-            }
-            
-          }
-        })
-      },300)
+          })
+        },300)
+      })
+      return promise
+
       // NOTPAY:      未支付
       // SUCCESS:     支付成功
       // DOING:       正在处理中
@@ -68,7 +72,7 @@ const order = {
       })
       return promise
     },
-    order_pay({},{payType,orderId,cardId,verCode,}){
+    order_pay({dispatch},{payType,orderId,cardId,verCode,}){
       var promise=fetch({
         url:'order/pay',
         params:{
@@ -93,7 +97,6 @@ const order = {
         url:'order/createLevelUpgradeOrder',
         params:{
           productId,
-          
         },
       })
       return promise

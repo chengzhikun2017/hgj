@@ -63,7 +63,7 @@
   </div>
 </template>
 <script>
-  import {mapActions} from 'vuex'
+  import {mapActions,mapMutations} from 'vuex'
   import helper from '../utils/helper.js'
   export default {
     data () {
@@ -167,7 +167,11 @@
           verCode:this.code,
         }
         this.order_pay(params).then(res=>{
-          this.order_getStatusAfterPay(this.orderId)
+          this.order_getStatusAfterPay(this.orderId).then(status=>{
+            if(status==='SUCCESS'&&this.productId==20000){
+              this.account_setActived()
+            }
+          })
           console.log('res',res)
         })
       },
@@ -198,6 +202,9 @@
           
         }
       },
+      ...mapMutations([
+        'account_setActived',
+        ]),
       ...mapActions([
         'order_status',
         'order_pay',

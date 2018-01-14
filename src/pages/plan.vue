@@ -87,7 +87,7 @@
           <span class="msg">{{startDate}} 至 {{endDate}}</span>
         </app-formitem2>
          <app-formitem2 label="还款周期：">
-          <span class="msg">{{choosedPlan.duration}}天/保证金{{choosedPlan.securityFee/100}}元/{{choosedPlan.period}}期还完</span>
+          <span class="msg">{{choosedPlan.days}}天/保证金{{choosedPlan.securityFee/100}}元/{{choosedPlan.period}}期还完</span>
         </app-formitem2>
         <!-- <div @click='addNewDC' >使用新的银行卡</div> -->
         <!-- <div @click='popFlag=false'>确认选择</div> -->
@@ -284,7 +284,7 @@ export default {
           endDate: this.endDate,
         }
         this.order_createPlan(params).then(res=>{
-          console.log('res orderId',res.orderId)
+          // console.log('res orderId',res.orderId)
           // let url=helper.urlConcat('/pay',{
           //   orderId:res.orderId
           // })
@@ -293,15 +293,22 @@ export default {
             payType:'HELIPAY_CC',
             orderId:res.orderId,
             cardId:this.cardInfo.cardId
-          }).then(res=>{
-            console.log('res order pay',res)
-            this.hgjToast('提交成功')
-            this.router_willBackToIndex()
+          }).then(response=>{
+            // this.order_getStatusAfterPay(this.orderId)
+            console.log('res order pay',response)
+            
             //维护card list 数据
-            this.cards_updatePlanStatus({
-              cardId:this.cardInfo.cardId,
-              status:'DOING',
+            this.order_getStatusAfterPay(res.orderId).then(status=>{
+              console.log('%c status','color:red',status)
+              if(status==='SUCCESS'){
+                this.cards_updatePlanStatus({
+                  cardId:this.cardInfo.cardId,
+                  status:'DOING',
+                })
+              }
             })
+
+
             helper.goPage(-1)
           })
         })
@@ -355,6 +362,7 @@ export default {
       ...mapActions([
         'plan_calc',
         'order_pay',
+        'order_getStatusAfterPay',
         'cards_getListCC',
         'order_createPlan',
         'account_getUserInfo',

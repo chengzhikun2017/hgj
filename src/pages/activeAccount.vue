@@ -94,7 +94,7 @@
   export default {
     data () {
       return {
-        popFlag: true
+        popFlag: false,
       }
     },
     methods:{
