@@ -93,7 +93,7 @@
         <!-- <div @click='popFlag=false'>确认选择</div> -->
       </div>
       <div slot="footer" class="mybutton">
-        <app-button @click.native='createPlan'>支付并开启还款计划</app-button>
+        <app-button @click.native='confirmCreatePlan'>支付并开启还款计划</app-button>
       </div>
     </app-popview>
   </div>
@@ -253,19 +253,35 @@ export default {
       choosePlan(plan){
         this.choosedPlan=plan
       },
-      createPlan(){
+      confirmCreatePlan(){
         if(!this.$store.state.account.isActive){
           this.hgjToast('账户尚未激活')
           helper.goPage('/activeaccount')
           return
         }
-        let params={
-          cardId:this.cardInfo.cardId,
-          fee:this.planAmountFee,
-          period:this.choosedPlan.period,
-          percent:this.choosedPlan.percent,
-          startDate:this.startDate,
-          endDate:this.endDate,
+
+        this.hgjAlert({
+          title:'确认支付',
+          options:[
+          {
+            text:'确认',callback:()=>{
+              this.createPlan()
+            },
+          },{
+            text:'取消',
+          },
+          ],
+        })
+
+      },
+      createPlan(){
+        let params = {
+          cardId: this.cardInfo.cardId,
+          fee: this.planAmountFee,
+          period: this.choosedPlan.period,
+          percent: this.choosedPlan.percent,
+          startDate: this.startDate,
+          endDate: this.endDate,
         }
         this.order_createPlan(params).then(res=>{
           console.log('res orderId',res.orderId)
