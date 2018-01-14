@@ -18,7 +18,7 @@
               <h2>计划执行记录</h2>
               <p>当前计划</p>
             </div>
-            <span @click='endPlan' v-if='crrtPlan' class='confirmEndPlan'>终止计划</span>
+            <span  @click='confirmEndPlan' v-if='crrtPlan' class='endplan'>终止计划</span>
           </header>
           <div class="liner"></div>
           <div class="planbox-content" v-if='crrtPlan'>

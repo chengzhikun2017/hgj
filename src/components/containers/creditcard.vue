@@ -21,8 +21,8 @@
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
         <span v-if='type===0'>
-          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" >创建计划</span>
-          <span class="btn2" v-if="card.planStatus == 'FAILED'" >创建计划</span>
+          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" @click.stop='goNewPlan'>创建计划</span>
+          <span class="btn2" v-if="card.planStatus == 'FAILED'"  @click.stop='goNewPlan'>创建计划</span>
           <span class="btn2" v-if="card.planStatus == 'DOING'" >计划执行中</span>
         </span>
         <span v-if='type===2'>
@@ -83,6 +83,7 @@
     methods:{
       goNewPlan(){
         let url=helper.urlConcat('/plan',this.card)
+        console.log('go new plan',url)
         helper.goNewPlanPage(this.card)
       },
       deleteConfirm(){
