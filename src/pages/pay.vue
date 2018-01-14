@@ -1,7 +1,7 @@
 <template>
-  <div class="order">
-    <app-nav>支付订单</app-nav>
-    <article>
+  <div class="order" flex="dir:top">
+    <app-nav flex-box="0">支付订单</app-nav>
+    <article flex-box="1">
       <div class="banner" flex="dir:top main:center cross:center">
         <!-- <app-creditcard :card="card1"></app-creditcard> -->
         <!-- <div class="plan">
