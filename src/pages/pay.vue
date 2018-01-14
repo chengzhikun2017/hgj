@@ -2,7 +2,7 @@
   <div class="order">
     <app-nav>支付订单</app-nav>
     <article>
-      <div class="banner">
+      <div class="banner" flex="main:center cross:center">
         <!-- <app-creditcard :card="card1"></app-creditcard> -->
         <!-- <div class="plan">
           <div class="note">
@@ -10,8 +10,11 @@
           </div>
           <p>10天 / 5%保证金</p>
         </div> -->
+        <!-- <span>支付金额</span> -->
+        <!-- <div><span>money</span>元</div> -->
+        <p>{{productDscrp}}</p>
+
       </div>
-        <div>{{productDscrp}}</div>
       <div class="order-content">
         <!-- <app-radio v-model='payWay' :label='0'>
           <app-formitem3 title="信用卡付款" note="激活使用信用卡，付款99折，无需网银！" :first="true" :notePoint="true">
@@ -211,9 +214,11 @@
       background: #f3f3f3;
       overflow: auto;
       .banner {
-        padding: 0.15rem 0.2rem;
-        background-image: -webkit-gradient(linear, left bottom, left top, from(#2c2c33), to(#3d404b));
-        background-image: linear-gradient(to top, #2c2c33, #3d404b); 
+        width: 100%;
+        height: 1.78rem;
+        background-image: linear-gradient(to right, #4b8cf8 1%, #884bf8);
+        font-size: 0.16rem;
+        color: white;
         .plan {
           text-align: center;
           padding-top: 0.2rem;

@@ -24,32 +24,7 @@
       <!-- <p class="info"></p> -->
       <p class="info" v-if='!canBuyFree'>完成下面任务，即可免费升级</p>
       <p class="info" v-if='canBuyFree'>可以继续完成下面任务，获取更多免费机会</p>
-      <div>
-        <app-formitem3 title="分享" note="已被浏览10次" :first="true">
-          <div class="header" slot="icon">
-            <app-cricleicon></app-cricleicon>
-          </div>
-          <div class="content" slot="action">
-            去分享>
-          </div>
-        </app-formitem3>
-        <app-formitem3 title="了解养成计划" note="详细了解养成计划">
-          <div class="header" slot="icon">
-            <app-cricleicon></app-cricleicon>
-          </div>
-          <div class="content" slot="action">
-            未完成>
-          </div>
-        </app-formitem3>
-        <app-formitem3 title="实名计划" note="请完成您的实名认证" :last="true">
-          <div class="header" slot="icon">
-            <app-cricleicon></app-cricleicon>
-          </div>
-          <div class="content" slot="action">
-            未完成>
-          </div>
-        </app-formitem3>
-      </div>
+      <app-menulist v-model="menulistData"></app-menulist>
       <app-button style='width:80%; margin: 0.1rem auto;' @click.native='pay' v-if='canBuyFree'>立即升级</app-button>
       <!-- <app-button style='width:80%; margin: 0.1rem auto;' @click.native='go'>马上升级</app-button> -->
     </div>
@@ -61,6 +36,47 @@ import {mapActions} from 'vuex'
 export default {
   data() {
     return {
+      menulistData: [
+        {
+          title: '分享',
+          icon: 'icon-share',
+          note: '已被浏览10次',
+          position: -1,
+          notePoint: false,
+          long: false,
+          actionName: '去分享',
+          action: function () {
+            alert("hello1")
+            return
+          }
+        },
+        {
+          title: '了解养成计划',
+          icon: 'icon-date',
+          note: '详细了解养成计划',
+          position: 0,
+          notePoint: false,
+          long: false,
+          actionName: '未完成',
+          action: function () {
+            alert("hello2")
+            return
+          }
+        },
+        {
+          title: '实名计划',
+          icon: 'icon-person',
+          note: '请完成您的实名认证',
+          position: 1,
+          notePoint: false,
+          long: false,
+          actionName: '未完成',
+          action: function () {
+            alert("hello3")
+            return
+          }
+        }
+      ]
     }
   },
   computed:{

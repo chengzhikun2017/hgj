@@ -34,6 +34,8 @@ import cricleicon from './components/containers/icon/cricleIcon.vue'
 import share from './components/views/share'
 import popview from './components/views/popview'
 import carditem from './components/containers/cardItem.vue'
+import menuitem from './components/containers/menuItem.vue'
+import menulist from './components/views/menuList.vue'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
 Vue.component('app-creditcard', creditcard)
@@ -41,6 +43,8 @@ Vue.component('app-bankcard', bankcard)
 Vue.component('app-formitem', formitem)
 Vue.component('app-formitem2', formitem2)
 Vue.component('app-formitem3', formitem3)
+Vue.component('app-menuitem', menuitem)
+Vue.component('app-menulist', menulist)
 Vue.component('app-record', record)
 Vue.component('app-cricleicon', cricleicon)
 
@@ -66,11 +70,11 @@ Vue.component('app-carditem', carditem)
 Vue.config.productionTip = false
 
 console.log('process', process.env)
-Vue.__isDev=process.env.NODE_ENV==='development'
-Vue.filter('moneyFilter',(v)=>{
-  return (v/100).toFixed(2)+'元'
+Vue.__isDev = process.env.NODE_ENV === 'development'
+Vue.filter('moneyFilter', (v) => {
+  return (v / 100).toFixed(2) + '元'
 })
-Vue.filter('timePlanRecordFilter',(v)=>{
+Vue.filter('timePlanRecordFilter', (v) => {
   return TimeUtil.getTimeString(v)
 })
 Vue.directive('scroll-load', {
@@ -82,14 +86,14 @@ Vue.directive('scroll-load', {
     // console.log('scoll load config', cfg)
     var listContainer,
       btt,
-      H = screen.height*devicePixelRatio + 150 //trigger height
-      console.log('H',screen.height,H)
+      H = screen.height * devicePixelRatio + 150 //trigger height
+    console.log('H', screen.height, H)
     // console.log('binding cfg', cfg.listSelector)
     // console.log('el', listContainer)
     el.addEventListener('scroll', () => {
       listContainer = document.querySelector(sel)
       btt = listContainer.getBoundingClientRect().bottom
-      console.log('btt scroll',btt)
+      console.log('btt scroll', btt)
       if (btt < H) {
         // cfg.getting = true
         // cfg.get(cfg.crrtPage)
