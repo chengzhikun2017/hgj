@@ -4,9 +4,9 @@
       <app-menuitem v-for="item in value"
         :title="item.title"
         :icon="item.icon"
-        :position="item.position"
-        :notePoint="item.notePoint"
-        :long="item.long"
+        :position="!item.position ? 0 : item.position"
+        :notePoint="!item.notePoint ? false : true"
+        :long="!item.long ? false: true"
         :note="item.note"
         :actionName="item.actionName"
         :action="item.action" >
