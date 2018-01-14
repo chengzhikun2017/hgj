@@ -31,10 +31,27 @@
   </div>
 </template>
 <script>
+//todo 隔月还款
+
+//todo 刷新功能
+
+//todo 按钮
+//刷新按钮
+//删除按钮 // 不在其中
+//编辑按钮 
+//计划执行中 绑卡状态
+//
+// 
+//
   import helper from './../../utils/helper.js'
   import {mapActions} from 'vuex'
   export default {
     props: {
+      type:{
+        default:0,
+        //0 全部显示
+        //1 
+      },
       card: {
         type: Object,
         default: (function () {
