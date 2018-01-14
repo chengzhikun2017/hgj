@@ -18,9 +18,11 @@
           <span class="liner">|</span>
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
-        <span class="btn2" v-if="card.planStatus == 'SUCCESS'" >绑卡成功</span>
-        <span class="btn2" v-if="card.planStatus == 'FAILED'" >绑卡失败</span>
-        <span class="btn2" v-if="card.planStatus == 'DOING'" >正在处理中</span>
+        <span v-if='type===0'>
+          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" >绑卡成功</span>
+          <span class="btn2" v-if="card.planStatus == 'FAILED'" >绑卡失败</span>
+          <span class="btn2" v-if="card.planStatus == 'DOING'" >正在处理中</span>
+        </span>
         <!-- <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span> -->
       </div>
       <div class="floor">
@@ -50,7 +52,7 @@
       type:{
         default:0,
         //0 全部显示
-        //1 
+        //1 不显示任何操作按钮
       },
       card: {
         type: Object,
