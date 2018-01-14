@@ -3,10 +3,11 @@
     <app-nav flex-box="0">信用卡详情</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-creditcard :card="cardInfo"></app-creditcard>
+        <app-creditcard :type='2' :card="cardInfo"></app-creditcard>
       </div>
-      <div style="font-size: 0.15rem;text-align: right;" v-if='hasPlan' @click='viewPlanRecords'>查看历史计划</div>
-      <div class="content" v-if='crrtPlan'>
+      <!-- v-if='hasPlan' -->
+      <div class="plan-record"   @click='viewPlanRecords'>查看历史计划</div>
+      <div class="content" >
         <div class="planbox">
           <header flex="cross:center">
             <span class="icon" flex="main:center cross:center" flex-box="0">
@@ -17,31 +18,34 @@
               <h2>计划执行记录</h2>
               <p>当前计划</p>
             </div>
-            <span @click='endPlan'>终止计划</span>
+            <span @click='endPlan' v-if='crrtPlan' class='confirmEndPlan'>终止计划</span>
           </header>
-          <div class="planbox-content" >
-            <div class="liner"></div>
+          <div class="liner"></div>
+          <div class="planbox-content" v-if='crrtPlan'>
             <app-formitem2 label="计划还款：">
-              <span class="msg">{{crrtPlan.taskFee|moneyFilter}}</span>
-            </app-formitem2>
-             <app-formitem2 label="计划时间：">
-              <span class="msg">{{1+(crrtPlan.endDate-crrtPlan.beginDate)/24/3600000}}天</span>
-            </app-formitem2>
-            <app-formitem2 label="保证金：">
-              <span class="msg">{{crrtPlan.securityFee|moneyFilter}}</span>
-            </app-formitem2>
-            <app-formitem2 label="服务费用：">
-              <span class="msg">{{crrtPlan.serviceFee|moneyFilter}}</span>
-            </app-formitem2>
-          </div>
-          <div class="footer">
-            <app-button @click.native='viewPlanDetail' v-if='crrtPlan'>查看还款计划</app-button>
-          </div>
-        </div>
-      </div>
-      <app-button style='width:80%;margin: 0 auto;' @click.native='goNewPlan' v-if='!crrtPlan'>开启还款计划</app-button>
-    </article>
+            <span class="msg">{{crrtPlan.taskFee|moneyFilter}}</span>
+          </app-formitem2>
+          <app-formitem2 label="计划时间：">
+          <span class="msg">{{1+(crrtPlan.endDate-crrtPlan.beginDate)/24/3600000}}天</span>
+        </app-formitem2>
+        <app-formitem2 label="保证金：">
+        <span class="msg">{{crrtPlan.securityFee|moneyFilter}}</span>
+      </app-formitem2>
+      <app-formitem2 label="服务费用：">
+      <span class="msg">{{crrtPlan.serviceFee|moneyFilter}}</span>
+    </app-formitem2>
   </div>
+  <div class="planbox-content" v-if='!crrtPlan'>
+    <p class="noplan-text">当前暂无执行计划</p>
+  </div>
+  <div class="footer">
+    <app-button class='plan-bttn' @click.native='viewPlanDetail' v-if='crrtPlan'>查看还款计划</app-button>
+    <app-button class='plan-bttn'  @click.native='goNewPlan' v-if='!crrtPlan'>开启还款计划</app-button>
+  </div>
+</div>
+</div>
+</article>
+</div>
 </template>
 <script>
   import '@/css/components.scss'
@@ -76,6 +80,14 @@
             }
             this.hasPlan=true
           }
+        })
+      },
+      confirmEndPlan(){
+        this.hgjAlert({
+          title:'终止计划',
+          options:[{text:'确定',callback:()=>{
+            this.endPlan()
+          }},{text:'取消'}]
         })
       },
       endPlan(){
@@ -119,6 +131,22 @@
   }
 </script>
 <style lang="scss" scoped>
+  .plan-record{
+    font-size: 0.16rem;
+    padding:0 0.15rem;
+    padding-top: 0.15rem;
+    color:#559BC5;
+    text-align: right;
+  }
+  .endplan{
+    position:absolute;
+    top: 0.05rem;
+    right: 0.05rem;
+    padding:0.05rem;
+    font-size: 0.14rem;
+    color:#96929A;
+    text-decoration: underline;
+  }
   .cardDetail  {
     width: 100%;
     height: 100%;

@@ -5,12 +5,14 @@
         <div class="logo" flex-box="1">
           <img :src="'/static/img/title/'+card.cardCode+'.png'" alt="">
         </div>
-        <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span>
-        <span class="" v-show="card.status === 'DOING'">绑定中</span>
-        <span class="" v-show="card.status === 'FAILED'">绑定失败</span>
-        <span class="btn1" v-show="card.status === 'FAILED'">重新绑定</span>
-        <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='goEdit'>编辑</span>
-        <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='deleteConfirm'>删除</span>
+        <span v-if='type===2||type===0'>
+          <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span>
+          <span class="btn1" v-show="card.status === 'DOING'" @click='cards_listCC'>绑定中，点击刷新</span>
+          <span class="" v-show="card.status === 'FAILED'">绑定失败</span>
+          <span class="btn1" v-show="card.status === 'FAILED'">重新绑定</span>
+          <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='goEdit'>编辑</span>
+
+        </span>
       </div>
       <div class="floor floor2" flex="main:justify">
         <div class="left">
@@ -19,9 +21,12 @@
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
         <span v-if='type===0'>
-          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" >绑卡成功</span>
-          <span class="btn2" v-if="card.planStatus == 'FAILED'" >绑卡失败</span>
-          <span class="btn2" v-if="card.planStatus == 'DOING'" >正在处理中</span>
+          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" >暂无计划</span>
+          <span class="btn2" v-if="card.planStatus == 'FAILED'" >计划失败</span>
+          <span class="btn2" v-if="card.planStatus == 'DOING'" >计划执行中</span>
+        </span>
+        <span v-if='type===2'>
+          <span class="icon-question" v-show="card.status === 'SUCCESS'" @click.stop='deleteConfirm'>删除</span>
         </span>
         <!-- <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span> -->
       </div>
@@ -53,6 +58,7 @@
         default:0,
         //0 全部显示
         //1 不显示任何操作按钮
+        //2 显示删除，不显示计划状态（信用卡详情页）
       },
       card: {
         type: Object,
@@ -106,10 +112,10 @@
         let url=helper.urlConcat('/orderedit',this.card)
         helper.goPage(url)
       },
-      // ...mapActions([
-      //   'addCardCC_delete',
-      //   'cards_listCC',
-      //   ])
+      ...mapActions([
+        // 'addCardCC_delete',
+        'cards_listCC',
+        ])
     },
     data () {
       return {
