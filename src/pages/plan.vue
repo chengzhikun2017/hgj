@@ -63,11 +63,11 @@
         </app-radio>
       </div>
     </app-popview>
-    <app-popview v-model="popFlag" title="您的还款计划" class="planRepaymentPopView planbox">
+    <app-popview v-model="popFlag" title="您的还款计划" class="planRepaymentPopView">
       <div slot="icon" class="popicon">
         <app-cricleicon icon="icon-plan" bgcolor="bg-blue" size="0.22rem" circle="small"></app-cricleicon>
       </div>
-      <div slot="content" class="planRepaymentsContent planbox-content">
+      <div slot="content" class="planRepaymentsContent">
         <div class="liner"></div>
         <app-formitem2 label="计划还款：">
           <span class="msg">{{planAmountFee|moneyFilter}}</span>
@@ -642,6 +642,35 @@ computed:{
       }
     }
     .planRepaymentPopView {
+      .liner {
+        width: 100%;
+        height: 1px;
+        margin: 0.15rem 0;
+        border:1px dashed #d3d3d3;
+        transform: scaleY(.5);
+      }
+      .planRepaymentsContent {
+        .noplan-text{
+          font-size: 0.14rem;
+          text-align: center;
+          color: #a4a4a4;
+          line-height: 1;
+          margin-top: 0.6rem;
+        }
+        .msg {
+          color: #383838;
+          font-size: 0.14rem;
+          line-height: 1;
+          vertical-align: bottom;
+          .total {
+            font-size: 0.28rem;
+            line-height: 1;
+          }
+        }
+        .red {
+          color: #f84c4b;
+        }
+      }
       .popicon {
         margin-right: 0.1rem;
       }
