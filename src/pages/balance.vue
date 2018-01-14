@@ -64,7 +64,7 @@
     created(){
     },
     beforeDestroy(){
-      //存入store
+      //todo: 存入store
     },
     methods: {
       submit(){

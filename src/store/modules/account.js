@@ -128,28 +128,28 @@ const account = {
         title:'退出登录',
         options:[
         {text:'确认',callback:()=>{
-
+          var promise=simpleFetch({
+            url:'account/logout',
+          })
+          promise.then(res=>{
+            console.log('res log out',res)
+            if(res.data.error===0){
+              HGJ_VUE.hgjToast({
+                content:'已登出',
+                cbEntered:()=>{
+                  helper.resetInitialInfo()
+                  commit('router_willBackToIndex')
+                  helper.goPage(-1)
+                },
+              })
+            }
+          })
         }},{
           text:'取消',
         }
         ],
       })
-      var promise=simpleFetch({
-        url:'account/logout',
-      })
-      promise.then(res=>{
-        console.log('res log out',res)
-        if(res.data.error===0){
-          HGJ_VUE.hgjToast({
-            content:'已登出',
-            cbEntered:()=>{
-              helper.resetInitialInfo()
-              commit('router_willBackToIndex')
-              helper.goPage(-1)
-            },
-          })
-        }
-      })
+
       // return promise
     },
     account_checkSession({commit,dispatch}){

@@ -66,6 +66,7 @@ Vue.component('app-carditem', carditem)
 Vue.config.productionTip = false
 
 console.log('process', process.env)
+Vue.__isDev=process.env.NODE_ENV==='development'
 Vue.filter('moneyFilter',(v)=>{
   return (v/100).toFixed(2)+'元'
 })
