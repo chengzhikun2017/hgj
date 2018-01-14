@@ -21,8 +21,8 @@
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
         <span v-if='type===0'>
-          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" >暂无计划</span>
-          <span class="btn2" v-if="card.planStatus == 'FAILED'" >计划失败</span>
+          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" >创建计划</span>
+          <span class="btn2" v-if="card.planStatus == 'FAILED'" >创建计划</span>
           <span class="btn2" v-if="card.planStatus == 'DOING'" >计划执行中</span>
         </span>
         <span v-if='type===2'>
