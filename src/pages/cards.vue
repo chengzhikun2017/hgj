@@ -155,6 +155,7 @@
     article {
       padding: 0.2rem;
       background: linear-gradient(to top, #2c2c33, #3d404b);
+      overflow: auto;
       .empty {
         padding:1.58rem 0 1rem;
         text-align: center;
