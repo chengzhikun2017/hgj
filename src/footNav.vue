@@ -1,6 +1,5 @@
 <template>
-  <div id="footNavVue" v-if='showFootNav'>
-    <div class="container">
+  <div id="footNavVue" v-if='showFootNav'class="container">
       <span class="cell left-cell" :class="{'active':activeIndex===0}" @click='clickNav(0)'>
         <div class="_icon-box icon left-icon">
           <i class="icon-wallet icon"></i>
@@ -18,7 +17,6 @@
       <div class="share-bttn" @click='clickNav(1)'>
         <i class="icon-share share-icon"></i>
       </div>
-    </div>
   </div>
 </template>
 
@@ -88,6 +86,7 @@ export default {
   left: 0;
   font-size: 0.11rem;
   color:#999;
+  z-index: 9999;
   .share-bttn{
     width: 0.54rem;
     height: 0.41rem;
@@ -113,12 +112,15 @@ export default {
 
     /*border:1px solid red;*/
   }
+  .cell:active{
+    background: #fff;
+  }
   .left-cell{
-    margin-left: 0.65rem;
+    padding-left: 0.65rem;
   }
   .right-cell{
     text-align: right;
-    margin-right: 0.65rem;
+    padding-right: 0.65rem;
   }
   .active{
     color:#f84b4b;

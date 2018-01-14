@@ -56,7 +56,9 @@ const reminder = {
       }
     },
     reminder_hideLoading(s){
-      s.isLoading--
+      if(s.isLoading>0){
+       s.isLoading--
+      }
     },
     reminder_showLoading(s,loadingText){
       s.isLoading++

@@ -1,14 +1,12 @@
 <template>
-  <div id="app" >
-  <!-- <div class="test" @click='test'></div> -->
+  <div id="app" :class="{'show-foot':showFootNav}">
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive" />
-      <p>kaiwanxiao</p>
     </keep-alive>
 
     <router-view v-if="!$route.meta.keepAlive" />
     
-    <foot-nav></foot-nav>
+    <foot-nav ref='footNav'></foot-nav>
     <app-alert></app-alert>
     <app-toast></app-toast>
     <app-loading></app-loading>
@@ -33,6 +31,13 @@ export default {
     // console.log('app store',this.$store)
   },
   computed:{
+    showFootNav(){
+      let path=this.$route.path
+      let navPaths=this.$store.state.router.navPaths
+      let isFootNavPath=navPaths.indexOf(path)>=0
+      // let isShowFootNavPath=this.showFootNavPaths.indexOf(path)>=0
+      return isFootNavPath
+    },
   },
   created(){
     this.$nextTick(()=>{
@@ -102,6 +107,9 @@ export default {
 </script>
 
 <style>
+.show-foot{
+  padding-bottom: 0.5rem;
+}
 #test-bttn{
   position: fixed;
   bottom: 0.5rem;
