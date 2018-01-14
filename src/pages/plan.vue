@@ -34,48 +34,39 @@
 
       </div>
     </article>
-    <div class="popView" v-show="popFlag">
-      <div class="popcontent">
-        <div class="planbox">
-          <header flex="cross:center">
-            <span class="icon" flex="main:center cross:center" flex-box="0">
-              <app-cricleicon bgcolor="bg-blue"></app-cricleicon>
-            </span>
-            <div class="title" flex="dir:top main:center" flex-box="1">
-              <h2>您的还款计划</h2>
-              <p></p>
-            </div>
-            <span flex-box="0" @click="popFlag=false">关闭</span>
-          </header>
-          <div class="planbox-content">
-            <div class="liner"></div>
-            <app-formitem2 label="计划还款：">
-              <span class="msg">{{planAmountFee|moneyFilter}}</span>
-            </app-formitem2>
-             <app-formitem2 label="保证金：">
-              <span class="msg">{{choosedPlan.securityFee|moneyFilter}}</span>
-            </app-formitem2>
-            <app-formitem2 label="服务费：">
-              <span class="msg" :class="{'free-service':serviceFree}">{{choosedPlan.serviceFee|moneyFilter}}</span>
-              <!-- <span class="msg">{{choosedPlan.serviceFee|moneyFilter}}</span> -->
-            </app-formitem2>
-            <app-formitem2 label="总计：">
-              <span class="msg red"><span class="total">{{(ttlFee/100).toFixed(2)}}</span>元</span>
-            </app-formitem2>
-            <div class="liner"></div>
-            <app-formitem2 label="还款时间：">
-              <span class="msg">{{startDate}} 至 {{endDate}}</span>
-            </app-formitem2>
-             <app-formitem2 label="还款周期：">
-              <span class="msg">{{duration}}天/保证金{{choosedPlan.securityFee/100}}元/{{choosedPlan.period}}期还完</span>
-            </app-formitem2>
-          </div>
-          <div class="footer">
-            <app-button @click.native='createPlan'>支付并开启还款计划</app-button>
-          </div>
-        </div>
+    <app-popview v-model="popFlag" title="您的还款计划" class="planRepaymentPopView planbox">
+      <div slot="icon" class="popicon">
+        <app-cricleicon icon="icon-plan" bgcolor="bg-blue" size="0.22rem" circle="small"></app-cricleicon>
       </div>
-    </div>
+      <div slot="content" class="planRepaymentsContent planbox-content">
+        <div class="liner"></div>
+        <app-formitem2 label="计划还款：">
+          <span class="msg">{{planAmountFee|moneyFilter}}</span>
+        </app-formitem2>
+         <app-formitem2 label="保证金：">
+          <span class="msg">{{choosedPlan.securityFee|moneyFilter}}</span>
+        </app-formitem2>
+        <app-formitem2 label="服务费：">
+          <span class="msg" :class="{'free-service':serviceFree}">{{choosedPlan.serviceFee|moneyFilter}}</span>
+          <!-- <span class="msg">{{choosedPlan.serviceFee|moneyFilter}}</span> -->
+        </app-formitem2>
+        <app-formitem2 label="总计：">
+          <span class="msg red"><span class="total">{{(ttlFee/100).toFixed(2)}}</span>元</span>
+        </app-formitem2>
+        <div class="liner"></div>
+        <app-formitem2 label="还款时间：">
+          <span class="msg">{{startDate}} 至 {{endDate}}</span>
+        </app-formitem2>
+         <app-formitem2 label="还款周期：">
+          <span class="msg">{{duration}}天/保证金{{choosedPlan.securityFee/100}}元/{{choosedPlan.period}}期还完</span>
+        </app-formitem2>
+        <!-- <div @click='addNewDC' >使用新的银行卡</div> -->
+        <!-- <div @click='popFlag=false'>确认选择</div> -->
+      </div>
+      <div slot="footer" class="mybutton">
+        <app-button @click.native='createPlan'>支付并开启还款计划</app-button>
+      </div>
+    </app-popview>
   </div>
 </template>
 <script>
@@ -405,6 +396,9 @@
   }
 </script>
 <style lang="scss" scoped>
+
+
+
   .free-service{
     text-decoration: line-through;
   }
@@ -422,6 +416,7 @@
         background: black;
         overflow: hidden;
       }
+      
       .form {
         padding-bottom: 0.2rem;
       }
@@ -440,23 +435,12 @@
         }
       }
     }
-    .popView {
-      position: fixed;
-      top:0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, .8);
-      .popcontent {
-        position: absolute;
-        left: 0.2rem;
-        right: 0.2rem;
-        bottom: 0.2rem;
-        .planbox {
-          .icon {
-            margin-right: 0.1rem;
-          }
-        }
+    .planRepaymentPopView {
+      .popicon {
+        margin-right: 0.1rem;
+      }
+      .mybutton {
+        margin:0.45rem 0 0;
       }
     }
   }
