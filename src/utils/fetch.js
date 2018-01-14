@@ -16,7 +16,7 @@ function handleWrongCode(res){
   // })
   HGJ_VUE.hgjAlert(res.message)
 }
-console.log('process',process)
+// console.log('process',process)
 export default function fetch(options,showloading=1) {
   var fetchPromis=new Promise((resolve, reject) => {
     if(showloading&&HGJ_VUE){
@@ -70,7 +70,8 @@ export default function fetch(options,showloading=1) {
   })
   return fetchPromis
 }
-export function simpleFetch(options) {
+function simpleFetch(options) {
+    console.log('------------simpleFetch')
   return new Promise((resolve, reject) => {
     const instance = axios.create({
       // 超时时间设置
@@ -83,7 +84,7 @@ export function simpleFetch(options) {
     })
     instance(options).then(response => {
         // status必然是200
-        console.log('simpleFetch responese to>>>%c'+options.url,'color:green','<<<',response)
+        console.log('simpleFetch responese to>>>%c'+options.url,'color:blue','<<<',response)
         const res = response
           // 根据陶雨的基本标准，做error的错误封
         if(res.data.error==0){
@@ -101,3 +102,4 @@ export function simpleFetch(options) {
       })
   })
 }
+export {simpleFetch}

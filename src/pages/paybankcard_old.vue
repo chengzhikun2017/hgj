@@ -2,7 +2,7 @@
   <div class="paybankcard hgj-container" flex="dir:top">
     <app-nav flex-box="0">储蓄卡支付</app-nav>
     <div class="banner">
-      <app-creditcard v-if="cardId!==null" :card="cardInfo"></app-creditcard>
+      <app-bankcard  :type='1' v-if="cardId!==null" :card="cardInfo"></app-bankcard>
       <div class="emptyCard" v-if="cardId===null" flex="dir:top main:center cross:center">
         <div class="note" flex="cross:center">
           <span class="icon-alert"></span>
@@ -10,6 +10,7 @@
         </div>
         <div class="btn3">选择银行卡</div>
       </div>
+      <app-button class="rechoose" :type='1'@click.native='chooseCard' >重新选择银行卡</app-button>
     </div>
     <article flex-box="1">
       <app-formitem label="验证码" :last="true">
@@ -32,7 +33,6 @@
             <app-carditem :card='card' :choosedCardId='cardId'></app-carditem>
           </app-radio>
           <div @click='newCardPay' >使用新的银行卡</div>
-          <div @click='popFlag=false'>确认选择</div>
         </div>
       </app-popview>
     </article>
@@ -108,6 +108,9 @@
         })
         helper.goPage(path)
       },
+      chooseCard(){
+        this.popFlag=true
+      },
       ...mapMutations([
         // 'addCardDC_setValue',
         ]),
@@ -159,6 +162,18 @@
     }
     .mybutton {
       padding:0 0.2rem;
+    }
+  }
+  .banner{
+    position: relative;
+    .rechoose{
+      position: absolute;
+      bottom: 0.15rem;
+      width: 60%;
+      left: 0;right: 0;
+      margin:0 auto;
+      height: 0.3rem;
+      font-size: 0.15rem;
     }
   }
   

@@ -7,8 +7,9 @@ class defaultInfo{
     this.name=null
     // this.idCardNo=null
     this.idCardNo=null
-    this.phone=null
-    this.cardNo='6214852109847213'
+    this.phone=13816938525
+    // this.cardNo='6214852109847213'
+    this.cardNo='6217850800002045332'
     // '6217850800002045332'
   }
 }
@@ -30,7 +31,7 @@ const addCardDC = {
     },
   },
   actions: {
-    addCardCC_delete({state,dispatch},cardId){
+    addCardDC_delete({state,dispatch},cardId){
       var promise=simpleFetch({
         url:'card/delCardDC',
         // method:'post',

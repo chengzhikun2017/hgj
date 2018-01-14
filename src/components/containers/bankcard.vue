@@ -11,6 +11,7 @@
           <span class="btn1" v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
           <span class="btn1" v-show="card.settlementStatus === 'FAILED'">设为结算卡失败</span>
           <span class="btn1" v-show="card.settlementStatus === 'FAILED'">重新设置为结算卡</span>
+          <span class="btn1" v-show="true" @click='deleteCard'>删除</span>
         </span>
         <!-- <span class="btn1" v-show="card.settlementStatus === 'edit'">编辑</span> -->
       </div>
@@ -70,8 +71,19 @@
         })
         
       },
+      deleteCard(){
+        this.hgjAlert({
+          title:'删除尾号为：'+this.card.cardNoAfter4+'的储蓄卡',
+          options:[{text:'确定',callback:()=>{
+            this.addCardDC_delete(this.card.cardId).then(res=>{
+              this.hgjToast('已删除')
+            })
+          }},{text:'取消'}]
+        })
+      },
       ...mapActions([
         'addCardDC_bindSC',
+        'addCardDC_delete',
         ])
     },
   }

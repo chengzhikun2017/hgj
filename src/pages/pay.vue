@@ -194,6 +194,18 @@
           this.payBalanceConfirm()
         }
         if(this.payWay==3){
+          if(this.cardsDC.length===0){
+            this.hgjAlert({
+              content:'未绑定储蓄卡，是否使用新卡支付',
+              options:[{text:'确认',callback:()=>{
+                let url=helper.urlConcat('/paybankcard',{
+                  orderId:this.orderId
+                })
+                helper.goPage(url)
+              }},{text:'取消'}],
+            })
+            return
+          }
           let orderId=this.orderId
           let url=helper.urlConcat('/paybankcard_old',{
             orderId,

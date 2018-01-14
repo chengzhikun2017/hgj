@@ -29,6 +29,7 @@
 </template>
 <script>
   import helper from '../utils/helper.js'
+  import regs from '../utils/reg.js'
   import {mapActions,mapMutations} from 'vuex'
   export default {
     data () {
@@ -36,7 +37,7 @@
         // name:null,
         name:'黄树栋',
         // cardNo:null,
-        cardNo:'6214852109847213',
+        cardNo:'6217850800002045332',
         phone:13816938525,
         // phone:null,
         // idCardNo:null,
@@ -50,10 +51,39 @@
         //todo: 判断 是否第一次获取
         return true
       },
-      pay(){
-        
+      checkValid(){
+        if(!this.cardId){
+          //
+          this.hgjToast('尚未获取验证码','warning')
+          return false
+        }
+        if(!regs.code6(this.code)){
+          //
+          this.hgjToast('请输入正确的验证码','warning')
+          return false
+        }
+        return true
       },
-      bindCardAndGetCode(){
+      pay(){
+        if(!this.checkValid()){
+          return
+        }
+        let params={
+          payType:'UNSPAY',
+          orderId:this.orderId,
+          cardId:this.cardId,
+          verCode:this.code,
+        }
+        this.order_pay(params).then(res=>{
+          this.order_getStatusAfterPay(this.orderId).then(status=>{
+            if(status==='SUCCESS'&&res.productId==20000){
+              this.account_setActived()
+            }
+          })
+          // console.log('res',res)
+        })
+      },
+      bindCardAndGetCode(countdown){
         // this.addCardDC_setValue(this)
         // //validate infomation
         // return new Promise((resolve,reject)=>{
@@ -70,30 +100,30 @@
           phone:this.phone,
         }).then(res=>{
           console.log('bindCardAndGetCode res',res)
+          this.cardId=res.cardId
+          countdown()
         })
         
       },
-      getCode(countdown){
-
-        // this.bindCardForGetCode().then(res=>{
-        //   console.log('get code',res)
-          this.order_unspayGetCode({
-            orderId:this.orderId,
-            cardId:res.cardId,
-          }).then(res=>{
-            console.log('res',res)
-            countdown()
-          }) 
-        // })
-
-      },
+      // getCode(countdown){
+      //     this.order_unspayGetCode({
+      //       orderId:this.orderId,
+      //       cardId:res.cardId,
+      //     }).then(res=>{
+      //       console.log('res',res)
+      //       countdown()
+      //     }) 
+      // },
       ...mapMutations([
         'addCardDC_setValue',
         ]),
       ...mapActions([
         'order_unspayPay',
         'order_unspayGetCode',
-        'addCardDC_submit'
+        'addCardDC_submit',
+        'order_pay',
+        'order_getStatusAfterPay',
+
         ])
     },
     computed:{

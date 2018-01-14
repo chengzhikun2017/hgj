@@ -2,8 +2,8 @@
   <div>
     <app-nav flex-box="0">推广</app-nav>
     <div class="lv-box">
-      <p class="crrt-lv">当前级别：大众</p>
-      <p class="next-lv">下一级别：保时捷</p>
+      <p class="crrt-lv">当前级别：{{crrtLvText}}</p>
+      <p class="next-lv" v-if='nextLvText'>下一级别：{{nextLvText}}</p>
       <!-- <p class="next-lv">下一级别：劳斯莱斯捷</p> -->
     </div>
     <div class="lv-treatment">
@@ -95,6 +95,24 @@ export default {
   computed:{
     crrtLv(){
       return this.$store.state.account.level
+    },
+    crrtLvText(){
+      switch(this.crrtLv){
+        case 0:return '无级别';break;
+        case 1:return '股东';break;
+        case 2:return '劳斯莱斯';break;
+        case 3:return '保时捷';break;
+        case 4:return '大众';break;
+      }
+    },
+    nextLvText(){
+      switch(this.crrtLv){
+        case 0:return '大众';break;
+        case 1:return null;break;
+        case 2:return null;break;
+        case 3:return '劳斯莱斯';break;
+        case 4:return '保时捷';break;
+      }
     },
   },
   events: {},
