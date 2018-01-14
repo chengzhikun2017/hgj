@@ -1,7 +1,7 @@
 <template>
   <div class="menuList">
     <div v-if="choose == 'list_item1'">
-      <app-menuitem v-for="item in value"
+      <app-menuitem v-for="(item, index) in value"
         :title="item.title"
         :icon="item.icon"
         :position="!item.position ? 0 : item.position"
@@ -9,7 +9,8 @@
         :long="!item.long ? false: true"
         :note="item.note"
         :actionName="item.actionName"
-        :action="item.action" >
+        :action="item.action"
+        :key="index" >
       </app-menuitem>
     </div>
   </div>
