@@ -2,9 +2,7 @@
   <div class="addbankcard hgj-container" flex="dir:top">
     <app-nav flex-box="0">添加储蓄卡</app-nav>
     <article flex-box="1">
-      <div class="banner">
-        <img src="/static/img/bannerbank.jpg" alt="">
-      </div>
+      <div class="banner"></div>
       <div class="chooseBank" flex="main:justify cross:center">
         <span>请绑定您本人的储蓄卡</span>
         <button class="btn">支持的银行</button>
@@ -104,9 +102,6 @@
       .banner {
         height: 1.78rem;
         background: white;
-        img {
-          width: 100%;
-        }
       }
       .chooseBank {
         padding:0 0.2rem;

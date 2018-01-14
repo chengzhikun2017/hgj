@@ -3,7 +3,7 @@
     <app-nav flex-box="0">添加信用卡</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <img src="/static/img/bannercredit.jpg" alt="">
+        
       </div>
       <p class="note">请绑定您本人的信用卡</p>
       <div class="form">
@@ -131,9 +131,6 @@
       .banner {
         height: 1.78rem;
         background: white;
-        img {
-          width: 100%;
-        }
       }
       .note {
         font-size: 0.13rem;
