@@ -51,6 +51,8 @@
         this.addCardDC_setValue(this)
         this.addCardDC_submit().then(res=>{
           this.hgjToast('绑定成功')
+          this.cardNo=null
+          this.phone=null
           helper.goPage(-1)
         })
       },

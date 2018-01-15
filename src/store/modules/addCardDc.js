@@ -16,6 +16,12 @@ class defaultInfo{
 const addCardDC = {
   state: {
     info:new defaultInfo(),
+    // info:{
+    //   name:null,
+    //   idCardNo:null,
+    //   phone:null,
+    //   cardNo:null,
+    // },
   },
   getters: {},
   mutations: {
@@ -27,7 +33,16 @@ const addCardDC = {
       }
     },
     addCardDC_resetValue(s,){
+      console.log('%c addCardDC_resetValue', 'color:red')
       s.info=new defaultInfo()
+      // for(let key in info){
+      //   console.log('key info',info[key],key)
+      //   s.info[key]=info[key]
+      // }
+      // s.info.name=null
+      // s.info.idCardNo=null
+      // s.info.phone=null
+      // s.info.cardNo=null
     },
   },
   actions: {

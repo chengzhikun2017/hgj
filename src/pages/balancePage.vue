@@ -41,6 +41,22 @@ export default {
       this.account_getUserInfo({showLoading:true})
     },
     balanceWidthdraw(){
+      if(this.cardsListDC.length===0){
+        this.hgjAlert({
+          title:'未绑定储蓄卡',
+          content:'返回"卡包"页面绑定储蓄卡',
+          options:[{
+            text:'确定',
+            callback:()=>{
+              this.router_willBackToIndex()
+              this.router_setNewPath(['/cards'])
+              helper.goPage(-1)
+
+            },
+          }]
+        })
+        return 
+      }
       helper.goPage('/balance')
     },
     confirmSecurityWidthDraw(){
@@ -96,6 +112,9 @@ export default {
   computed:{
     cardIdSC(){
       return this.$store.state.cards.cardIdSC
+    },
+    cardsListDC(){
+      return this.$store.state.cards.cardsListDC
     },
     balance() {
       let fee = this.userInfo.money / 100

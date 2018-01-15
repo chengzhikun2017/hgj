@@ -69,6 +69,8 @@
           this.hgjToast('绑定成功')
           this.router_willBackToIndex()
           this.router_setNewPath(['/cards'])
+          this.addCardCC_resetValue()
+          this.getValueFromStore()
           helper.goPage(-1)
           // this.
         })
@@ -130,6 +132,7 @@
 
       ...mapMutations([
         'addCardCC_setValue',
+        'addCardCC_resetValue',
         'router_willBackToIndex',
         'router_setNewPath',
         ]),

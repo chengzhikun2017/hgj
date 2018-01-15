@@ -92,6 +92,9 @@
         console.log('delete')
         this.$store.dispatch('addCardCC_delete',this.card.cardId)
         .then(res=>{
+          this.router_willBackToIndex()
+          this.router_setNewPath(['/cards'])
+          helper.goPage(-1)
           // console.log('delete CC card res',res)
         })
       },
@@ -104,6 +107,10 @@
         let url=helper.urlConcat('/orderedit',this.card)
         helper.goPage(url)
       },
+      ...mapActions([
+        'router_willBackToIndex',
+        'router_setNewPath',
+        ]),
       ...mapActions([
         // 'addCardCC_delete',
         'cards_listCC',
