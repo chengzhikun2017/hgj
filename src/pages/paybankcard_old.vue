@@ -25,11 +25,11 @@
       <div class="mybutton">
         <app-button @click.native='payOrder'>支付</app-button>
       </div>
-      <app-popview v-model="popFlag" title="选择银行卡" class="chooseCardsPopView planbox">
+      <app-popview v-model="popFlag" title="选择银行卡" class="chooseCardsPopView">
         <div slot="icon" class="popicon">
           <app-cricleicon icon="icon-bankcard" size="0.28rem" circle="small"></app-cricleicon>
         </div>
-        <div slot="content" class="chooseCardsContent planbox-content">
+        <div slot="content" class="chooseCardsContent">
           <div class="liner"></div>
           <app-radio v-model='cardId' :label='card.cardId' v-for='card in cardsDC' :key='card.cardId'>
             <app-carditem :card='card' :choosedCardId='cardId'></app-carditem>
@@ -165,6 +165,15 @@
     }
     .mybutton {
       padding:0 0.2rem;
+    }
+    .chooseCardsPopView {
+      .liner {
+        width: 100%;
+        height: 1px;
+        margin: 0.15rem 0;
+        border:1px dashed #d3d3d3;
+        transform: scaleY(.5);
+      }
     }
   }
 

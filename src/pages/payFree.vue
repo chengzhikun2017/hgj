@@ -46,8 +46,7 @@ export default {
           long: false,
           actionName: '去分享',
           action: function () {
-            alert("hello1")
-            return
+            console.log('hello1')
           }
         },
         {
@@ -59,8 +58,7 @@ export default {
           long: false,
           actionName: '未完成',
           action: function () {
-            alert("hello2")
-            return
+            console.log('hello2')
           }
         },
         {
@@ -72,8 +70,7 @@ export default {
           long: false,
           actionName: '未完成',
           action: function () {
-            alert("hello3")
-            return
+            console.log('hello3')
           }
         }
       ]
