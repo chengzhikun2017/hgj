@@ -81,9 +81,10 @@
       font-size: 0.14rem;
       color: #383838;
       .icon-question {
+        padding:0.01rem;
         font-size: 0.12rem;
         color: #888;
-        border: 1px solid #ccc;
+        border: 2px solid #888;
         border-radius: 50%;
       }
     }
