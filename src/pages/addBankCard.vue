@@ -24,10 +24,10 @@
         </app-formitem>
       </div>
       <div class="mybutton">
-        <app-button @click.native='submit'>同意并绑定</app-button>
         <div class="note">
           <app-protocol></app-protocol>
         </div>
+        <app-button @click.native='submit'>同意并绑定</app-button>
       </div>
     </article>
   </div>
@@ -130,7 +130,7 @@
         margin-top: 0.86rem;
         padding:0 0.2rem;
         .note {
-          margin-top: 0.15rem;
+          margin-bottom: 0.15rem;
         }
       }
     }

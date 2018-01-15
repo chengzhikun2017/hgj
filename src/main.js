@@ -36,6 +36,7 @@ import popview from './components/views/popview'
 import carditem from './components/containers/cardItem.vue'
 import menuitem from './components/containers/menuItem.vue'
 import menulist from './components/views/menuList.vue'
+import popPhoto from './components/views/popview/photo.vue'
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
 Vue.component('app-creditcard', creditcard)
@@ -47,7 +48,6 @@ Vue.component('app-menuitem', menuitem)
 Vue.component('app-menulist', menulist)
 Vue.component('app-record', record)
 Vue.component('app-cricleicon', cricleicon)
-
 Vue.component('app-select', select)
 Vue.component('bttn-choose', bttn_choose)
 Vue.component('bttn-code', bttn_code)
@@ -62,6 +62,7 @@ Vue.component('app-button', button)
 Vue.component('app-record-list', recordList)
 Vue.component('app-share', share)
 Vue.component('app-popview', popview)
+Vue.component('app-popphoto', popPhoto)
 Vue.component('app-carditem', carditem)
 
 
@@ -89,8 +90,7 @@ Vue.directive('scroll-load', {
       H = screen.height * devicePixelRatio + 150 //trigger height
       listContainer = document.querySelector(sel)
       containerHeight = listContainer.getBoundingClientRect().height
-      // console.log('H', screen.height, H)
-      // console.log('btt scroll', btt,listContainer.getBoundingClientRect())
+      console.log('containerHeight', containerHeight,'H', H,containerHeight<H)
       if(containerHeight<H){
         cfg.method()
       }
@@ -107,11 +107,8 @@ Vue.directive('scroll-load', {
     vnode.context.$nextTick(()=>{
       listContainer = document.querySelector(sel)
       btt = listContainer.getBoundingClientRect().bottom
-      console.log('H', screen.height, H)
-      console.log('btt scroll', btt,listContainer.getBoundingClientRect())
-      if(listContainer.getBoundingClientRect().height<H){
-        cfg.method()
-      }
+      // console.log('H', screen.height, H)
+      // console.log('btt scroll', btt,listContainer.getBoundingClientRect())
     })
 
     // console.log('binding cfg', cfg.listSelector)

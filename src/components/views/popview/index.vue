@@ -7,8 +7,11 @@
             
           </slot>
           <div class="title" flex-box="1">{{title}}</div>
-          <div class="close" flex-box="0" @click="close">
+          <div v-if="closeType === 'icon'" class="close" flex-box="0" @click="close">
             <span class="icon-cancel"></span>
+          </div>
+          <div v-if="closeType === 'font'" class="close2" flex-box="0" @click="close">
+            完成
           </div>
         </div>
         <slot name="content" class="popcontent">
@@ -31,6 +34,10 @@
       title: {
         type: String,
         default: '标题'
+      },
+      closeType: {
+        type: String,
+        default: 'font' // 'icon'
       }
     },
     data () {
@@ -74,6 +81,9 @@
             span {
               display: block;
             }
+          }
+          .close2 {
+            color: #888;
           }
         }
       }

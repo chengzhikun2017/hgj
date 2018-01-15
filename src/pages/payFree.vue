@@ -27,11 +27,14 @@
       <app-menulist v-model="menulistData"></app-menulist>
       <app-button style='width:80%; margin: 0.1rem auto;' @click.native='pay' v-if='canBuyFree'>立即升级</app-button>
       <!-- <app-button style='width:80%; margin: 0.1rem auto;' @click.native='go'>马上升级</app-button> -->
+      <!-- {{ Regs.idCardNoUtil.checkIdCardNo("330382199202235931") }} -->
+      <span @click="ceshi">测试</span>
     </div>
   </div>
 </template>
 
 <script>
+import Regs from '@/utils/reg.js'
 import {mapActions,mapMutations} from 'vuex'
 export default {
   data() {
@@ -120,7 +123,7 @@ export default {
       return productInfo
     },
   },
-  methods:{
+  methods: {
     checkValid(){
       if(!this.canBuyFree){
         // this.hgjToast(`还需要${this.needJf}积分`,'warning')

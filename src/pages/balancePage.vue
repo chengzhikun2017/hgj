@@ -73,7 +73,7 @@ export default {
               helper.goPage(-1)
 
             },
-          }]
+          },{text:'取消'}]
         })
         return
       }

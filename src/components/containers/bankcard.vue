@@ -10,7 +10,6 @@
           <span class="btn1" v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
           <span class="btn1" v-show="card.settlementStatus === 'FAILED'">设为结算卡失败</span>
           <span class="btn1" v-show="card.settlementStatus === 'FAILED'">重新设置为结算卡</span>
-          <span class="" v-show="true" @click='deleteCard'>删除</span>
         </span>
         <!-- <span class="btn1" v-show="card.settlementStatus === 'edit'">编辑</span> -->
       </div>
@@ -20,8 +19,14 @@
           <span class="liner">|</span>
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
+        <div class="right">
+          <span class="delete" @click='deleteCard' v-if='type==0'>
+            <img src="/static/img/delete.png" alt="">
+          </span>
+        </div>
       </div>
       <div class="floor">
+        <span class="cardtype" v-if='type!==2'>储蓄卡</span>
         <!-- <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：每月{{card.payDate}}号</span> -->
         <!-- <span class="btn3" v-show="card.status === 'choose'">重新选择银行卡</span> -->
         <slot name="floor"></slot>
@@ -98,6 +103,18 @@
       .floor {
         font-size: 0.13rem;
         color: white;
+        .right {
+          .delete {
+            img {
+              width: 0.24rem;
+            }
+          }
+        }
+        .cardtype {
+          font-size: 0.2rem;
+          font-weight: 700;
+        }
+        
         .logo {
           height: 0.25rem;
           img {
@@ -108,6 +125,7 @@
           padding:0 0.06rem;
         }
         &.floor2 {
+          line-height: 0.24rem;
           box-sizing: border-box;
           height: 0.67rem;
           padding-top: 0.265rem;

@@ -3,7 +3,7 @@
     <app-nav flex-box="0">余额提现</app-nav>
     <article flex-box="1">
       <div class="banner-card-choosed">
-        <app-bankcard :type='1' v-if="!isEmpty" :card="choosedCardInfo"></app-bankcard>
+        <app-bankcard :type='2' v-if="!isEmpty" :card="choosedCardInfo"></app-bankcard>
         <div class="emptyCard" v-if="isEmpty" flex="dir:top main:center cross:center">
           <div class="note" flex="cross:center">
             <span class="icon-alert"></span>
@@ -25,13 +25,13 @@
         <!-- <img src="/static/img/zxlogo.png" alt=""> -->
       </div>
       <div class="mybutton">
-        <app-button @click.native='submit'>提交</app-button>
+        <app-button @click.native='confirmSubmit'>提交</app-button>
       </div>
-      <app-popview v-model="popFlag" title="选择银行卡" class="chooseCardsPopView planbox">
+      <app-popview v-model="popFlag" title="选择银行卡" class="chooseCardsPopView">
         <div slot="icon" class="popicon">
           <app-cricleicon icon="icon-bankcard" size="0.28rem" circle="small"></app-cricleicon>
         </div>
-        <div slot="content" class="chooseCardsContent planbox-content">
+        <div slot="content" class="chooseCardsContent">
           <div class="liner"></div>
           <app-radio v-model='cardId' :label='card.cardId' v-for='card in cards' :key='card.cardId'>
             <app-carditem :card='card' :choosedCardId='cardId'></app-carditem>
@@ -70,11 +70,51 @@
       //todo: 存入store
     },
     methods: {
+      confirmSubmit(){
+        if(!this.checkValid()){
+          return
+        }
+        if(this.amount<100){
+          this.hgjAlert({
+            title:'金额低于100元',
+            content:'需收取2元提现手续费',
+            options:[{text:'继续',callback:()=>{
+              this.submit()
+            }},{text:'取消'}],
+          })
+        }else{
+          // let amount=this.amount
+          this.hgjAlert({
+            title:'提现'+Number(this.amount).toFixed(2)+"元",
+            options:[{text:'继续',callback:()=>{
+              this.submit()
+            }},{text:'取消'}],
+          })
+        }
+
+      },
       submit(){
         this.balance_cashApply({
           cardId:this.cardId,
-          fee:this.amount
+          fee:this.amount*100,
+          moneyType:'MONEY',
+        }).then(res=>{
+          this.hgjToast('提现成功')
+          let feeMinus=this.amount*100
+          this.$store.state.account.money-=feeMinus
         })
+      },
+      checkValid(){
+        if(!this.amount){
+          this.hgjToast('请填写提现金额',1)
+          return false
+        }
+        if(this.amount<10){
+          this.hgjToast('提现金额最低10元',1)
+          return false
+        }
+
+        return true
       },
       addNewDC(){
         let url=helper.urlConcat('/addbankcard',{
@@ -151,6 +191,13 @@
       .chooseCardsPopView {
         .popicon {
           margin-right: 0.1rem;
+        }
+        .liner {
+          width: 100%;
+          height: 1px;
+          margin: 0.15rem 0;
+          border:1px dashed #d3d3d3;
+          transform: scaleY(.5);
         }
       }
       .emptyCard {

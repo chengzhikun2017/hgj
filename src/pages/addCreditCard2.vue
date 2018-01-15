@@ -4,14 +4,16 @@
     <article flex-box="1">
       <div class="form">
         <app-formitem label="信用卡有效期" :first="true">
-          <app-select :options='yearOptions':filter='yearPaser' :placeholder='"年份"' v-model='fullYear' class='expire-select'/>
-          <span>/</span>
-          <!-- :filter='monthPaser' -->
-          {{fullMonth}}
-          <app-select :options='monthOptions' :placeholder='"月份"'v-model='fullMonth' class='expire-select'/>
+          <div class="datechoose" flex="main:justify cross:center">
+            <app-select :options='yearOptions' :filter='yearPaser' :placeholder='"年份"' v-model='fullYear' class='expire-select'/>
+            <span class="cuteliner">/</span>
+            <!-- :filter='monthPaser' -->
+            <!-- {{fullMonth}} -->
+            <app-select :options='monthOptions' :placeholder='"月份"' v-model='fullMonth' class='expire-select'/>
+          </div>
         </app-formitem>
-        <app-formitem label="卡背后三位数字" >
-          <app-input class='form-input' :placeholder="'请输入相应信息'" v-model='cvv2' :type='"number"'/>
+        <app-formitem label="卡背后三位数字" :qa="readme" :isQ="true">
+          <app-input class='form-input' :placeholder="'请输入相应信息'" v-model='cvv2' :type='"number"' />
         </app-formitem>
         <app-formitem label="账单日" >
           <app-select class='form-input' :options='billDateOpts' :filter='dayPaser' :placeholder="'请选择账单日'" v-model='billDate'/>
@@ -40,6 +42,7 @@
         </div>
       </div>
     </article>
+    <app-popphoto v-model="photoShow" :imgUrl="imgurl"></app-popphoto>
   </div>
 </template>
 <script>
@@ -60,9 +63,16 @@
         monthOptions:[],
         billDateOpts:[],
         repaymentDateOpts:[],
+
+        photoShow: false,
+        imgurl: '/static/img/creditreadme1.jpg'
       }
     },
     methods:{
+      readme () {
+        this.photoShow  = true
+        return true;
+      },
       submit(){
         this.addCardCC_setValue(this)
         this.addCardCC_submit().then(res=>{
@@ -162,7 +172,6 @@
         // console.log('%c redirect to add cc card page1','color:yellow')
         helper.replaceRouter('/addCreditcard1')
       }
-      next()
     },
   }
 </script>
@@ -188,9 +197,17 @@
         padding:0 0.2rem;
       }
     }
-    .expire-select{
-      border:1px solid red;
-      width: 0.35rem;
+    .datechoose {
+      width: 0.8rem;
+      .cuteliner {
+        padding:0 0.1rem;
+        color: rgb(166, 166, 166);
+      }
+      .expire-select{
+        /*border:1px solid red;*/
+        width: 0.3rem;
+      }
     }
+   
   } 
 </style>

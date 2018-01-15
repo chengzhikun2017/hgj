@@ -21,12 +21,14 @@
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
         <span v-if='type===0'>
-          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" @click.stop='goNewPlan'>创建计划</span>
-          <span class="btn2" v-if="card.planStatus == 'FAILED'"  @click.stop='goNewPlan'>创建计划</span>
+          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" @click.stop='goNewPlan'>绑卡成功</span>
+          <span class="btn2" v-if="card.planStatus == 'FAILED'"  @click.stop='goNewPlan'>绑卡失败</span>
           <span class="btn2" v-if="card.planStatus == 'DOING'" >计划执行中</span>
         </span>
         <span v-if='type===2'>
-          <span class="icon-question" v-show="card.status === 'SUCCESS'" @click.stop='deleteConfirm'>删除</span>
+          <span v-show="card.status === 'SUCCESS'" class="delete" @click.stop='deleteConfirm'>
+            <img src="/static/img/delete.png" alt="">
+          </span>
         </span>
         <!-- <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span> -->
       </div>
@@ -143,11 +145,17 @@
         }
         &.floor2 {
           box-sizing: border-box;
+          line-height: 0.24rem;
           height: 0.67rem;
           padding-top: 0.265rem;
           padding-bottom: 0.15rem;
           border-bottom: 1px dashed white;
           margin-bottom: 0.15rem;
+          .delete {
+            img {
+              width: 0.24rem;
+            }
+          }
         }
       }
     .btn1 {
@@ -164,11 +172,13 @@
       color: #676dea;
     }
     .btn2 {
-      display: inline-block;
       border:0.005rem solid white;
-      padding:0.025rem 0.16rem;
+      padding:0.036rem 0.16rem;
+      font-size: 0.13rem;
+      line-height: 1;
       border-radius: 0.125rem;
       background: transparent;
+      vertical-align:middle;
       color: white;
     }
     .btn3 {
