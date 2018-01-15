@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-nav flex-box="0">推广</app-nav>
+    <app-nav flex-box="0" :showBack="false">推广</app-nav>
     <div class="lv-box">
       <p class="crrt-lv">当前级别：{{crrtLvText}}</p>
       <p class="next-lv" v-if='nextLvText'>下一级别：{{nextLvText}}</p>
