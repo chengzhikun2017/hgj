@@ -77,21 +77,46 @@ Vue.filter('moneyFilter', (v) => {
 Vue.filter('timePlanRecordFilter', (v) => {
   return TimeUtil.getTimeString(v)
 })
+Vue.filter('timePlanRecordFilter', (v) => {
+  return TimeUtil.getTimeString(v)
+})
 Vue.directive('scroll-load', {
+  update:function(el, binding, vnode) {
+    var cfg = binding.value,
+      sel = cfg.listSelector
+    var listContainer,
+      containerHeight,
+      H = screen.height * devicePixelRatio + 150 //trigger height
+      listContainer = document.querySelector(sel)
+      containerHeight = listContainer.getBoundingClientRect().height
+      // console.log('H', screen.height, H)
+      // console.log('btt scroll', btt,listContainer.getBoundingClientRect())
+      if(containerHeight<H){
+        cfg.method()
+      }
+  },
   bind: function(el, binding, vnode) {
-    // console.log('vnode', vnode)
+    console.log('vnode', vnode)
     // var el = document.querySelector('.list-container-inner')
     var cfg = binding.value,
       sel = cfg.listSelector
-    // console.log('scoll load config', cfg)
     var listContainer,
       btt,
       H = screen.height * devicePixelRatio + 150 //trigger height
-    console.log('H', screen.height, H)
+    
+    vnode.context.$nextTick(()=>{
+      listContainer = document.querySelector(sel)
+      btt = listContainer.getBoundingClientRect().bottom
+      console.log('H', screen.height, H)
+      console.log('btt scroll', btt,listContainer.getBoundingClientRect())
+      if(listContainer.getBoundingClientRect().height<H){
+        cfg.method()
+      }
+    })
+
     // console.log('binding cfg', cfg.listSelector)
     // console.log('el', listContainer)
     el.addEventListener('scroll', () => {
-      listContainer = document.querySelector(sel)
       btt = listContainer.getBoundingClientRect().bottom
       console.log('btt scroll', btt)
       if (btt < H) {

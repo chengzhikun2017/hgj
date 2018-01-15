@@ -43,7 +43,6 @@ const order = {
                 })
                 return 
               }
-
               if(status==='FAILED'){
                 HGJ_VUE.hgjAlert({
                   title:res.statusRemark,

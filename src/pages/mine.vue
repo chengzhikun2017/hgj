@@ -17,10 +17,10 @@
             <div class="label">余额</div>
           </div>
           <div class="item">
-            <p>568</p>
+            <p>{{jifen}}</p>
             <div class="label">积分</div>
           </div>
-          <div class="item">
+          <div class="item" @click='viewBalance'>
             <p>{{securityFee}}<span class="yuan">元</span></p>
             <div class="label">保证金</div>
           </div>
@@ -118,7 +118,9 @@ export default {
       let fee = this.userInfo.money / 100
       return fee.toFixed(2)
     },
-
+    jifen(){
+      return this.userInfo.jf
+    },
     securityFee(){
       let fee=(this.userInfo.unfreezeMoney+this.userInfo.freezeMoney)/100
       return fee.toFixed(2)

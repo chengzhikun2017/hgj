@@ -4,8 +4,8 @@
     <div class="alert" :class="{'alert-higher':alert.content}">
       <div class="alert-msg">{{alert.title}}</div>
       <div class="alert-msg-description" v-if='alert.content'>{{alert.content}}</div>
-      <div class="ctrl-box">
-        <div class="ctrl-btn" :style='{color:item.color}' v-for='item in alert.options'  @click.once='close(item.callback)'>{{item.text}}
+      <div class="ctrl-box" >
+        <div  class="ctrl-btn" :style='{color:item.color}' v-for='item in alert.options'  @click.once='close(item.callback)'>{{item.text}}
           <a  class="href" v-show='item.href' :href="item.href"  @click.once='close(item.callback)'>
           </a>
         </div>
@@ -117,7 +117,8 @@
         width: 100%;
         .ctrl-btn{
           text-decoration: none;
-          width: 100%;
+          /*width: 100%;*/
+          flex-grow:1;
           height: 0.4rem;
           line-height: 0.4rem;
           font-size: 0.16rem;

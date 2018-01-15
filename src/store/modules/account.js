@@ -168,10 +168,14 @@ const account = {
       })
       return promise
     },
-    account_getUserInfo({state}){
+    account_getUserInfo({state},params){
+
+      if(params==undefined||params.showLoading==undefined){
+        var showLoading=false
+      }
       fetch({
         url:'profile/info',
-      }).then(res=>{
+      },showLoading).then(res=>{
         for(let key in res){
           state[key]=res[key]
         }

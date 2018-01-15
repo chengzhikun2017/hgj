@@ -1,5 +1,5 @@
 <template>
-  <div class="app-loading" v-if='isLoading>0' @click='reminder_hideLoading'>
+  <div class="app-loading" v-if='isLoading>0' >
     <div class="loading-container">
       <div class="loading">
         <div class="loading-icon"></div>

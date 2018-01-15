@@ -6,6 +6,7 @@ const cards = {
   state: {
     cardsListCC: [],
     cardsListDC: [],
+    cardIdSC:null,
     cardsDict: {
       'ICBC': '工商银行',
       'ABC': '农业银行',
@@ -65,22 +66,24 @@ const cards = {
         },
       })
     },
-    cards_getListCC({
-      state
-    }) {
+    cards_getListCC({state}) {
       fetch({
         url: 'card/cc',
       }).then(res => {
         state.cardsListCC = res
       })
     },
-    cards_getListDC({
-      state
-    }) {
+    cards_getListDC({state}) {
       fetch({
         url: 'card/dc',
       }).then(res => {
         state.cardsListDC = res
+        for(let i=0;i<res.length;i++){
+          if(res[i].settlementStatus==='SUCCESS'){
+            state.cardIdSC=res[i].cardId
+            break;
+          }
+        }
       })
     },
   }

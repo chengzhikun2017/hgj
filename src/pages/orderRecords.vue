@@ -6,7 +6,7 @@
         <div class="order-record" v-for='record in recordList'>
           <p>{{record.subject}}</p>
           <p>{{record.statusRemark}}</p>
-          <p>{{record.tradeNo}}</p>
+          <p>tradeNo：{{record.tradeNo}}</p>
           <p>{{record.createTime}}</p>
         </div>
       </app-record-list>

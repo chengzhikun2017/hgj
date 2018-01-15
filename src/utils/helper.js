@@ -102,6 +102,12 @@ export default class helper {
       case 20001: account.level=4; break;
       case 20002: account.level=3; break;
       case 20003: account.level=2; break;
+      case 10000:handleNewPlan(); break;
+    }
+    function handleNewPlan(){
+      setTimeout(()=> {
+        HGJ_VUE.$store.dispatch('account_getUserInfo')
+      }, 2000);
     }
   }
 

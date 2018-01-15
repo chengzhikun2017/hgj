@@ -13,6 +13,7 @@ import error_page from '../pages/testPage/error.vue'
 import user_setting from '../pages/userSetting.vue'
 import pay_free from '../pages/payFree.vue'
 import orderRecords from '../pages/orderRecords.vue'
+import balanceRecords from '../pages/balanceRecords.vue'
 import paybankcard_old from '../pages/paybankcard_old.vue'
 
 
@@ -109,6 +110,7 @@ index = index.concat(
   newRoute('/user_setting', 'user_setting', user_setting),
   newRoute('/balance_page', 'balance_page', balancePage),
   newRoute('/orderRecords', 'orderRecords', orderRecords),
+  newRoute('/balanceRecords', 'balanceRecords', balanceRecords),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),

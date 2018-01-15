@@ -55,12 +55,15 @@ const plan = {
       },)
       return promise
     },
-    plan_end({},planId){
+    plan_end({dispatch},planId){
       var promise = fetch({
         url: 'plan/end',
         params: {
           planId,
         },
+      })
+      promise.then(res=>{
+        dispatch('account_getUserInfo')
       })
       return promise
     },

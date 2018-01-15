@@ -1,6 +1,6 @@
 <template>
   <div id="footNavVue" v-if='showFootNav' class="container" flex>
-      <span class="cell left-cell" :class="{'active':activeIndex===0}" @click='clickNav(0)' flex-box="0">
+      <span class="cell left-cell" :class="{'active':activeIndex===0}" @click='clickNav(0)' flex-box="1">
         <div class="_icon-box icon left-icon">
           <i class="icon-wallet icon"></i>
           <p class="text">卡包</p>
@@ -12,7 +12,7 @@
         </div>
       </span>
       <!-- <span class="cell" :class="{'active':activeIndex===1}" @click='clickNav(1)'>分享</span> -->
-      <span class="cell right-cell" :class="{'active':activeIndex===2}" @click='clickNav(2)' flex-box="0">
+      <span class="cell right-cell" :class="{'active':activeIndex===2}" @click='clickNav(2)' flex-box="1">
         <div class="_icon-box">
           <i class="icon-person icon right-icon"></i>
           <p class="text">我的</p>
@@ -125,9 +125,9 @@ export default {
   .right-cell{
     text-align: right;
     padding-right: 0.65rem;
-    position: absolute;
-    right: 0;
-    top: 0;
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*top: 0;*/
   }
   .active{
     color:#f84b4b;

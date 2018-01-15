@@ -2,8 +2,8 @@
   <div class="balance hgj-container" flex="dir:top">
     <app-nav flex-box="0">余额提现</app-nav>
     <article flex-box="1">
-      <div class="banner">
-        <app-bankcard v-if="!isEmpty" :card="choosedCardInfo"></app-bankcard>
+      <div class="banner-card-choosed">
+        <app-bankcard :type='1' v-if="!isEmpty" :card="choosedCardInfo"></app-bankcard>
         <div class="emptyCard" v-if="isEmpty" flex="dir:top main:center cross:center">
           <div class="note" flex="cross:center">
             <span class="icon-alert"></span>
@@ -11,6 +11,9 @@
           </div>
           <div class="btn3">选择银行卡</div>
         </div>
+        <app-button class="card-choose-bttn" :type='1'@click.native='chooseCard' >
+          重新选择银行卡
+        </app-button>
       </div>
       <div class="balance-content">
         <app-formitem label="提现金额" :first="true">
@@ -57,7 +60,7 @@
         // },
         amount:null,
         // phone:null,
-        popFlag: true,
+        popFlag: false,
         // isEmpty: false
       }
     },
@@ -79,6 +82,7 @@
         })
         helper.goPage(url)
       },
+      
       ...mapActions([
         'balance_cashApply',
         ])
@@ -136,10 +140,7 @@
     }
     article {
       position: relative;
-      .banner {
-        padding: 0.15rem 0.2rem;
-        background-image: linear-gradient(to top, #2c2c33, #3d404b);
-      }
+
       .mybutton {
         position: absolute;
         left: 0;

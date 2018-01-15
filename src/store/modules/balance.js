@@ -13,22 +13,25 @@ const balance = {
 
   },
   actions: {
-    balance_cashApply({},{fee,cardId}){
+    balance_cashApply({},{fee,cardId,moneyType}){
+      // moneyType=moneyType||'UNFREEZE_MONEY'
       var promise=fetch({
         url:'cash/apply',
         params:{
-          moneyType:'UNFREEZE_MONEY',
+          moneyType:moneyType,
+          // moneyType:'UNFREEZE_MONEY',
           fee,
           cardId,
         },
       })
       return promise
     },
-    balance_applyRecord({},{}){
+    balance_applyRecord({},{moneyType}){
+      moneyType=moneyType||null
       var promise=fetch({
         url:'cash/records',
         params:{
-          moneyType:'MONEY',
+          moneyType:moneyType,
           page:1,
           limit:9999,
         },

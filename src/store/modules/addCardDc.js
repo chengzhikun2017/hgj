@@ -58,7 +58,7 @@ const addCardDC = {
       })
       return promise
     },
-    addCardDC_bindSC({},cardId){
+    addCardDC_bindSC({dispatch},cardId){
       var promise= fetch({
         url:'card/bindSC',
         // method:'post',

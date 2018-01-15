@@ -73,6 +73,7 @@
     //uncertain parameters
     //url
     get() {
+      console.log(' get more')
       if (this.loading) {
         return
       }
@@ -90,11 +91,9 @@
       }).then(res => {
         this.loading = false
         this.crrtPage++
-        // if(res.length===0){
-        if(res.length<4){
+        if(res.length<=0){
           this.noMore=true
         }
-        
         this.list = this.list.concat(res)
         this.$emit('input', this.list)
 
@@ -133,6 +132,9 @@
       /*height: 6rem;*/
       /*z-index: 2;*/
       background: transparent;
+      .list-container-inner{
+        background: transparent;
+      }
       }
     }
     .list-top{
