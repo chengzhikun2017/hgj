@@ -1,7 +1,7 @@
 <template>
   <div class="formitem" :class="{'first':first,'last':last}">
     <div class="item" flex="cross:center main:justify">
-      <span class="label" flex-box="0">{{label}}</span>
+      <span class="label" flex-box="0">{{label}} <span v-if="isQ" class="icon-question" @click="qa"></span></span>
       <slot ></slot>
     </div>
   </div>
@@ -20,6 +20,16 @@
       last: {
         type: Boolean,
         default: false
+      },
+      isQ: {
+        type: Boolean,
+        default: false
+      },
+      qa: {
+        type: Function,
+        default: function () {
+          return false
+        }
       }
     },
     data () {
@@ -70,6 +80,12 @@
     .label {
       font-size: 0.14rem;
       color: #383838;
+      .icon-question {
+        font-size: 0.12rem;
+        color: #888;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+      }
     }
     .item{
       position: relative;
