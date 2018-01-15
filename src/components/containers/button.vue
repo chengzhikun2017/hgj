@@ -1,5 +1,5 @@
 <template>
-  <div class="app-input" :class='{"disabled":disabled,"enabled":!disabled}' :style="{background:backgroundImg,boxShadow:boxShadow}">
+  <div class="app-button" :class='{"disabled":disabled,"enabled":!disabled}' :style="{background:backgroundImg,boxShadow:boxShadow}">
     <span class='text' :class="{'text1':type==1}" :style="{color:textColor} ">
       <slot></slot>
     </span>
@@ -61,18 +61,22 @@ export default {
 .enabled:active{
   opacity: 0.8;
 }
-.app-input{
+.app-button{
   width: 100%;
   height: 0.44rem;
   border-radius: 0.22rem;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  font-size: 0.18rem;
   /*background-image: linear-gradient(to right, #f86b4b 1%, #f84b4b);*/
   text-align: center;
   /*box-shadow: 0 0.065rem 0.16rem 0 rgba(248, 77, 75, 0.36);*/
   .text{
-    font-size: 0.18rem;
-    line-height: 0.44rem;
+    /*line-height: 0.44rem;*/
     font-weight: 500;
     color: #ffffff;
+    font-size:inherit;
   }
   .text1{
     color:red;

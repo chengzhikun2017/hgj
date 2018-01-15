@@ -34,6 +34,9 @@ const account = {
     },
   },
   mutations: {
+    account_setActived(s){
+      s.isActive=true
+    },
     account_setPhone(s, phone) {
       s.phone = phone
     },

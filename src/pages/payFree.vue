@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions,mapMutations} from 'vuex'
 export default {
   data() {
     return {
@@ -141,9 +141,17 @@ export default {
         orderId:this.orderId,
       }).then(res=>{
         this.order_getStatusAfterPay(this.orderId)
+        this.order_getStatusAfterPay(this.orderId ).then(status=>{
+          if(status==='SUCCESS'&&this.productId==20000){
+            this.account_setActived()
+          }
+        })
         console.log('res pay free',res)
       })
     },
+    ...mapMutations([
+      'account_setActived',
+      ]),
     ...mapActions([
       'order_pay',
       'order_getStatusAfterPay',

@@ -5,10 +5,14 @@
         <div class="logo" flex-box="1">
           <img :src="'/static/img/title/'+card.cardCode+'.png'" alt="">
         </div>
-        <span class="btn1" v-show="card.settlementStatus === 'SUCCESS'">结算卡</span>
-        <span class="btn1" v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
-        <span class="btn1" v-show="card.settlementStatus === 'FAILED'">设为结算卡失败</span>
-        <span class="btn1" v-show="card.settlementStatus === 'FAILED'">重新设置为结算卡</span>
+        <span v-if='type==0'>
+
+          <span class="btn1" v-show="card.settlementStatus === 'SUCCESS'">结算卡</span>
+          <span class="btn1" v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
+          <span class="btn1" v-show="card.settlementStatus === 'FAILED'">设为结算卡失败</span>
+          <span class="btn1" v-show="card.settlementStatus === 'FAILED'">重新设置为结算卡</span>
+          <span class="btn1" v-show="true" @click='deleteCard'>删除</span>
+        </span>
         <!-- <span class="btn1" v-show="card.settlementStatus === 'edit'">编辑</span> -->
       </div>
       <div class="floor floor2" flex="main:justify">
@@ -17,7 +21,6 @@
           <span class="liner">|</span>
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
-        <span class="btn2" v-show="card.status === 'build'">建立还款计划</span>
       </div>
       <div class="floor">
         <!-- <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：每月{{card.payDate}}号</span> -->
@@ -32,6 +35,9 @@
   import {mapMutations,mapActions} from 'vuex'
   export default {
     props: {
+      type:{
+        default:0,
+      },
       card: {
         type: Object,
         default: (function () {
@@ -65,8 +71,19 @@
         })
         
       },
+      deleteCard(){
+        this.hgjAlert({
+          title:'删除尾号为：'+this.card.cardNoAfter4+'的储蓄卡',
+          options:[{text:'确定',callback:()=>{
+            this.addCardDC_delete(this.card.cardId).then(res=>{
+              this.hgjToast('已删除')
+            })
+          }},{text:'取消'}]
+        })
+      },
       ...mapActions([
         'addCardDC_bindSC',
+        'addCardDC_delete',
         ])
     },
   }
