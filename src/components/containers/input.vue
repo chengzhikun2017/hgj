@@ -1,6 +1,6 @@
 <template>
   <div class="app-input">
-   <input :type="type" ref="input" :value="value" :maxlength="maxlength"  :disabled="disabled" @input="onInput" :placeholder="placeholder" class="input__" @keyup.enter="onEnter($event)">
+   <input :type="type" ref="input" :value="value" :maxlength="maxlength"  :disabled="disabled" @input="onInput" :placeholder="placeholder" class="input__" @keyup.enter="onEnter($event)" :style='disabledStyle'>
    <div class="border"></div>
   </div>
 </template>
@@ -23,6 +23,9 @@ export default {
     disabled:{
       default:false,
     },
+    disabledColor:{
+      default:'#666',
+    },
     placeholder:{
       default:'请输入',
     },
@@ -39,6 +42,11 @@ export default {
         return this.filter(this.value)
       }else{
         return this.value
+      }
+    },
+    disabledStyle(){
+      return {
+        color:this.disabledColor,
       }
     },
   },

@@ -3,10 +3,10 @@
     <app-nav flex-box="0">储蓄卡支付</app-nav>
     <article flex-box="1">
       <app-formitem label="姓名" :first="true">
-        <app-input class='form-input' :placeholder='"请输入~~"' v-model='name'/>
+        <app-input class='form-input' :placeholder='"请输入~~"' v-model='name' :disabled='isRealNamed'/>
       </app-formitem>
       <app-formitem label="身份证号" >
-        <app-input class='form-input' :placeholder='"请输入~~"' v-model='idCardNo'/>
+        <app-input class='form-input' :placeholder='"请输入~~"' v-model='idCardNo' :disabled='isRealNamed'/>
       </app-formitem>
       <app-formitem label="银行卡号">
         <app-input class='form-input' :placeholder='"请输入~~"' v-model='cardNo'/>
@@ -35,13 +35,13 @@
     data () {
       return {
         // name:null,
-        name:'黄树栋',
+        name:'',
         // cardNo:null,
-        cardNo:'6217850800002045332',
-        phone:13816938525,
+        cardNo:'',
+        phone:null,
         // phone:null,
         // idCardNo:null,
-        idCardNo:'321282199201264216',
+        idCardNo:'',
         code:null,
       }
     },
@@ -131,6 +131,21 @@
       orderId(){
         return this.$route.query.orderId
       },
+      isRealNamed(){
+        if(this.userInfo.name){
+          return true
+        }
+        return false
+      },
+      userInfo(){
+        return this.$store.state.account
+      },
+    },
+    mounted(){
+      if(this.userInfo.name){
+        this.name=this.userInfo.name
+        this.idCardNo=this.userInfo.idCardNo
+      }
     },
   }
 </script>

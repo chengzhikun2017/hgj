@@ -13,11 +13,9 @@
       <app-select v-model='startDay' :options='startDaysAvailable' :filter='dayPaser' :optionFilter='startOptsPaser' :placeholder='"请选择开始日期"' />
     </app-formitem>
     <app-formitem  :label="serviceLabel"  >
-    <app-input :value='choosedPlanDscrp' class='form-input' :placeholder='"请稍后..."'
-    :disabled='true'></app-input>
-    <!-- <span>{{choosedPlan.percent}}%保证金，{{choosedPlan.days}}天完成</span> -->
-  </app-formitem>
-
+      <app-input :value='choosedPlanDscrp' class='form-input' :placeholder='"请稍后..."'
+      :disabled='true' :disabledColor='"#000000"'></app-input>
+    </app-formitem>
         <!-- <app-formitem  label="计划执行天数">
           <app-select v-model='duration' :disabled='!startDay' :optionFilter='durationOptsPaser' :options='durationAvailable' :placeholder='placeholderDuration' :filter='durationPaser' />
         </app-formitem> -->
@@ -153,7 +151,7 @@ export default {
     methods:{
 
       startChoosePlan(){
-        console.log('choose plan')
+        this.defaultServiceChanged=true
         this.popFlagPlan=true
       },
       countDownMilis(){
@@ -194,7 +192,7 @@ export default {
         // console.log('fee,startDate,endDate',fee,startDate,endDate)
         // return
         this.plan_calc({
-          fee:amount,
+          fee:amount*100,
           startDate,
           endDate:this.latestEndDate,
         }).then(res=>{

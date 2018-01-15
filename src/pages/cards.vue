@@ -1,6 +1,6 @@
 <template>
   <div class="cards" flex="dir:top">
-    <nav flex="cross:center" flex-box="0">
+    <nav flex="cross:center" :showBack='false' flex-box="0">
       <span class="side" flex-box="0" @click='back'>
         <span class="icon" flex="main:center cross:center">
           <span class="icon-back"></span>

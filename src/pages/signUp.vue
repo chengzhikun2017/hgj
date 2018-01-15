@@ -10,13 +10,13 @@
         </div>
         <div class="input">
           <app-input v-model='captcha' class='login-input' :placeholder='"请输入四位图片验证码"'></app-input>
-          <div class="code-bttn " @click='getCaptcha' >
+          <div class="code-bttn "  @click='getCaptcha' >
           <!-- 此行修改之后，code-bttn class可以取消 -->
-            <img :src="captchaSrc" alt="获取图片码" @click='getCaptcha'>
+            <img :src="captchaSrc" alt="获取图片码" @click='getCaptcha' style="height:0.35rem">
           </div>
         </div>
         <div class="label">
-          <span class="icon-qrcode"></span>
+          <span class="icon-safe"></span>
           <span class="label-name">验证码</span>
         </div>
         <div class="input">

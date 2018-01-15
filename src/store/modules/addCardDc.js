@@ -7,9 +7,9 @@ class defaultInfo{
     this.name=null
     // this.idCardNo=null
     this.idCardNo=null
-    this.phone=13816938525
+    this.phone=null
     // this.cardNo='6214852109847213'
-    this.cardNo='6217850800002045332'
+    this.cardNo=null
     // '6217850800002045332'
   }
 }
