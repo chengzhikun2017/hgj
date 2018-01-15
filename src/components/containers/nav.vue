@@ -1,8 +1,8 @@
 <template>
   <div class="nav">
     <nav flex="cross:center">
-      <span class="side" flex-box="0" @click='back'>
-        <span class="icon" flex="main:center cross:center">
+      <span class="side" flex-box="0" >
+        <span v-show="showBack" class="icon" @click='back' flex="main:center cross:center">
           <span class="icon-back"></span>
         </span>
       </span>
@@ -18,6 +18,10 @@
   import helper from '@/utils/helper.js'
   export default {
     props: {
+      showBack: {
+        type: Boolean,
+        default: true,
+      },
       diyBack: {
         type: Boolean,
         default: false

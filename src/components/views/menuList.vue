@@ -42,7 +42,9 @@
       }
     },
     data () {
-
+      return {
+        
+      }
     }
   }
 </script>
