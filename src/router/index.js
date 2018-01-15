@@ -22,6 +22,7 @@ import cardDetail from '@/pages/cardDetail.vue'
 import addCreditCard1 from '@/pages/addCreditCard1.vue'
 import addCreditCard2 from '@/pages/addCreditCard2.vue'
 import addBankCard from '@/pages/addBankCard.vue'
+import accountUpdate from '@/pages/accountUpdate.vue'
 import planrecords from '@/pages/planrecords.vue'
 import planProcess from '@/pages/planProcess.vue'
 import payresult from '@/pages/payresult.vue'
@@ -35,6 +36,7 @@ import populizeScore from '@/pages/populizeScore.vue'
 import populizeShare from '@/pages/populizeShare.vue'
 import introduce from '@/pages/introduce.vue'
 import editPwd from '@/pages/editPwd.vue'
+import questions from '@/pages/questions.vue'
 // import forgetPwdStep1 from '@/pages/forgetPwdStep1.vue'
 // import forgetPwdStep2 from '@/pages/forgetPwdStep2.vue'
 Vue.use(Router)
@@ -89,6 +91,7 @@ index = index.concat(
   newRoute('/addCreditcard1', 'addCreditCard1', addCreditCard1),
   newRoute('/addCreditcard2', 'addCreditCard2', addCreditCard2),
   newRoute('/addBankCard', 'addBankCard', addBankCard),
+  newRoute('/account_update', 'account_update', accountUpdate),
   newRoute('/planrecords', 'planrecords', planrecords),
   newRoute('/planprocess', 'planProcess', planProcess),
   newRoute('/payresult', 'payresult', payresult),
@@ -107,6 +110,7 @@ index = index.concat(
   newRoute('/pay_free', 'pay_free', pay_free),
   newRoute('/user_setting', 'user_setting', user_setting),
   newRoute('/balance_page', 'balance_page', balancePage),
+  newRoute('/questions', 'questions', questions),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),

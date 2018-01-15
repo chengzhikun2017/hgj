@@ -239,7 +239,7 @@
       }
     }
     .mybutton {
-      margin-top: 1.68rem;
+      margin-top: 0.36rem;
     }
     .protocol {
       margin-top: 0.2rem;
