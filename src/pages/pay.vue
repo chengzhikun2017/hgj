@@ -91,7 +91,7 @@
     },
     computed:{
       balance(){
-        let fee=this.$store.state.account.unfreezeMoney/100
+        let fee=this.$store.state.account.money/100
         return fee.toFixed(2)
       },
       productDscrp() {
@@ -152,7 +152,6 @@
       }
     },
     methods:{
-
       getOrderStatus(){//todo:从上一页获取订单描述
         this.order_status(this.orderId).then(res=>{
           console.log('order status ',res)
@@ -167,11 +166,12 @@
           verCode:this.code,
         }
         this.order_pay(params).then(res=>{
-          this.order_getStatusAfterPay(this.orderId).then(status=>{
-            if(status==='SUCCESS'&&this.productId==20000){
-              this.account_setActived()
-            }
-          })
+          this.order_getStatusAfterPay(this.orderId)
+          // .then(status=>{
+            // if(status==='SUCCESS'&&this.productId==20000){
+            //   this.account_setActived()
+            // }
+          // })
           console.log('res',res)
         })
       },

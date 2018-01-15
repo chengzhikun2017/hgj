@@ -294,12 +294,7 @@ export default {
             orderId:res.orderId,
             cardId:this.cardInfo.cardId
           }).then(response=>{
-            // this.order_getStatusAfterPay(this.orderId)
-            console.log('res order pay',response)
-            
-            //维护card list 数据
             this.order_getStatusAfterPay(res.orderId).then(status=>{
-              console.log('%c status','color:red',status)
               if(status==='SUCCESS'){
                 this.cards_updatePlanStatus({
                   cardId:this.cardInfo.cardId,
@@ -307,9 +302,7 @@ export default {
                 })
               }
             })
-
-
-            helper.goPage(-1)
+            // helper.goPage(-1)
           })
         })
       },

@@ -93,6 +93,18 @@ export default class helper {
       //后续单项的更新，也通过此方法更新
   }
 
+  static updateOnOrderSucc(productId,params){
+    let state=HGJ_VUE.$store.state
+    let account=state.account
+    console.log('%c loglog','color:red',state,account,productId)
+    switch(productId){
+      case 20000: account.isActive=true; break;
+      case 20001: account.level=4; break;
+      case 20002: account.level=3; break;
+      case 20003: account.level=2; break;
+    }
+  }
+
   static resetInitialInfo() {
     HGJ_VUE.$store.commit('cards_clearListCC')
     HGJ_VUE.$store.commit('cards_clearListDC')

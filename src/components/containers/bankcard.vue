@@ -5,13 +5,12 @@
         <div class="logo" flex-box="1">
           <img :src="'/static/img/title/'+card.cardCode+'.png'" alt="">
         </div>
-        <span v-if='type==0'>
-
+        <span v-if='type==0' style='text-align: center;'>
           <span class="btn1" v-show="card.settlementStatus === 'SUCCESS'">结算卡</span>
           <span class="btn1" v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
           <span class="btn1" v-show="card.settlementStatus === 'FAILED'">设为结算卡失败</span>
           <span class="btn1" v-show="card.settlementStatus === 'FAILED'">重新设置为结算卡</span>
-          <span class="btn1" v-show="true" @click='deleteCard'>删除</span>
+          <span class="" v-show="true" @click='deleteCard'>删除</span>
         </span>
         <!-- <span class="btn1" v-show="card.settlementStatus === 'edit'">编辑</span> -->
       </div>

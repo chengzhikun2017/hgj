@@ -13,7 +13,7 @@
         <div class="liner"></div>
         <div class="info" flex="main:center cross:center">
           <div class="item" @click='viewBalance'>
-            <p>3638.00 <span class="yuan">元</span></p>
+            <p>{{balance}}<span class="yuan">元</span></p>
             <div class="label">余额</div>
           </div>
           <div class="item">
@@ -21,8 +21,8 @@
             <div class="label">积分</div>
           </div>
           <div class="item">
-            <p>500.00<span class="yuan">元</span></p>
-            <div class="label">已冻结保证金</div>
+            <p>{{securityFee}}<span class="yuan">元</span></p>
+            <div class="label">保证金</div>
           </div>
         </div>
         <div v-if='userInfo.isLoged' @click='goSetting'style="position:absolute;top:0.55rem;right:0.1rem;font-size: 0.12rem;color:#ccc;text-decoration: underline">
@@ -54,6 +54,14 @@
             <span class="icon-go"></span>
           </div>
         </app-formitem3>
+        <app-formitem3 title="我的订单" note="" @click.native='goOrderList'>
+          <div class="header" slot="icon">
+            <app-cricleicon bgcolor="bg-lightblue" icon="icon-cricle-yuan"></app-cricleicon>
+          </div>
+          <div class="content" slot="action">
+            <span class="icon-go"></span>
+          </div>
+        </app-formitem3>
         <app-formitem3 title="常见问题" note="" :last="true">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-orange" icon="icon-question"></app-cricleicon>
@@ -80,6 +88,9 @@ export default {
     }
   },
   methods:{
+    goOrderList(){
+      helper.goPage('/orderRecords')
+    },
     viewBalance(){
       helper.goPage('/balance_page')
     },
@@ -103,11 +114,20 @@ export default {
     },
   },
   computed:{
+    balance() {
+      let fee = this.userInfo.money / 100
+      return fee.toFixed(2)
+    },
+
+    securityFee(){
+      let fee=(this.userInfo.unfreezeMoney+this.userInfo.freezeMoney)/100
+      return fee.toFixed(2)
+    },
     userInfo(){
       return this.$store.state.account
     },
     phone(){
-      return this.$store.state.account.phone
+      return this.userInfo.phone
     },
   },
   events: {},

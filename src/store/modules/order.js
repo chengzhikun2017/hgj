@@ -20,14 +20,19 @@ const order = {
       var promise= new Promise((resolve,reject)=>{
         var timer=setInterval(()=>{
           dispatch('order_status',orderId).then(res=>{
-            console.log('res order_getStatusAfterPay',res)
+            // console.log('res order_getStatusAfterPay',res)
             i++
             let status=res.status
+            let productId=res.productId
             if(status!=='DOING'&&status!=='NOTPAY'&&status!=='REFUND_DOING'){
               clearInterval(timer)
               resolve(status)
+              if(status==='SUCCESS'){
+                console.log('%c success in order store','color:red',)
+                helper.updateOnOrderSucc(productId)
+              }
               if(status==='SUCCESS'||status==='REFUND'){
-                HGJ_VUE.hgjAlert({
+                HGJ_VUE.hgjAlert({//todo:跳转支付成功页面 polling持续多久？
                   title:res.statusRemark,
                   options:[{
                     text:'确定',callback:()=>{
@@ -38,6 +43,7 @@ const order = {
                 })
                 return 
               }
+
               if(status==='FAILED'){
                 HGJ_VUE.hgjAlert({
                   title:res.statusRemark,

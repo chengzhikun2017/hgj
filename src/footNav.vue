@@ -76,7 +76,7 @@ export default {
 <style lang='scss' scoped>
 .container{
   background:#fff;
-  display: flex;
+  /*display: flex;*/
   position: fixed;
   width: 100%;
   height: 0.5rem;
@@ -88,6 +88,7 @@ export default {
   color:#999;
   z-index: 9999;
   .share-bttn{
+    /*display: none;*/
     width: 0.54rem;
     height: 0.41rem;
     border-radius: 6px;
@@ -121,6 +122,9 @@ export default {
   .right-cell{
     text-align: right;
     padding-right: 0.65rem;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
   .active{
     color:#f84b4b;

@@ -46,7 +46,6 @@
     },
     methods: {
       close(callback) {
-        console.log('%c alert close','color:red',)
         this.closeAlert()
         // console.log('callback from alert',.callback)
         // this.canNavigate()

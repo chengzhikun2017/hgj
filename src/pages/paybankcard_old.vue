@@ -70,11 +70,12 @@
           verCode:this.code,
         }
         this.order_pay(params).then(res=>{
-          this.order_getStatusAfterPay(this.orderId).then(status=>{
-            if(status==='SUCCESS'&&res.productId==20000){
-              this.account_setActived()
-            }
-          })
+          this.order_getStatusAfterPay(this.orderId)
+          // .then(status=>{
+            // if(status==='SUCCESS'&&res.productId==20000){
+            //   this.account_setActived()
+            // }
+          // })
           // console.log('res',res)
         })
       },
