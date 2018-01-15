@@ -11,10 +11,10 @@
       </div>
       <div class="addbankcard-content">
         <app-formitem label="持卡人姓名" :first="true">
-          <app-input class='form-input' :placeholder='"请输入持卡人姓名"' v-model='name' :disabled='false'/>
+          <app-input class='form-input' :placeholder='"请输入持卡人姓名"' v-model='name' :disabled='realNameVerified'/>
         </app-formitem>
         <app-formitem label="持卡人身份证">
-          <app-input class='form-input' :placeholder='"请输入身份证号"' v-model='idCardNo' />
+          <app-input class='form-input' :placeholder='"请输入身份证号"' v-model='idCardNo' :disabled='realNameVerified' />
         </app-formitem>
         <app-formitem label="储蓄卡卡号">
           <app-input class='form-input' :placeholder='"请输入储蓄卡卡号"' v-model='cardNo' />

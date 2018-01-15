@@ -47,13 +47,14 @@ const addCardDC = {
       })
       return promise
     },
-    addCardDC_submit({state,getters,dispatch}){
+    addCardDC_submit({state,getters,dispatch,commit}){
       var promise= fetch({
         url:'card/bindDC',
         // method:'post',
         params:state.info,
       })
       promise.then(res=>{
+        commit('addCardDC_resetValue')
         dispatch('cards_getListDC')
       })
       return promise

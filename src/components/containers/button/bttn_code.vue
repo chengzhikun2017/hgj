@@ -40,7 +40,7 @@ export default {
     },
     countdown(){
       // this.getCodeRecently=true
-      let remainSec=5
+      let remainSec=60
       this.bttnText=remainSec+'s后获取'
       remainSec--
       let timer=setInterval(()=>{

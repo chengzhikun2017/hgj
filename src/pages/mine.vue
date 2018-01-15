@@ -1,6 +1,6 @@
 <template>
   <div class="mine hgj-container" flex="dir:top">
-    <app-nav :showBack='false' flex-box="0">我的</app-nav>
+    <app-nav flex-box="0" :showBack="false">我的</app-nav>
     <article flex-box="1">
       <div class="myInfo">
         <div class="portraiture" @click='onClickAvatar'>
@@ -98,7 +98,7 @@ export default {
       helper.goPage('/login')
     },
     onClickAvatar(){
-      if(this.userInfo){
+      if(this.userInfo.userId){
         if(!this.userInfo.name){
           this.hgjAlert('绑定第一张信用卡，自动实名')
         }

@@ -1,10 +1,11 @@
 <template>
   <div class="cards" flex="dir:top">
-    <nav flex="cross:center" :showBack='false' flex-box="0">
-      <span class="side" flex-box="0" @click='back'>
-        <span class="icon" flex="main:center cross:center">
+    <nav flex="cross:center" flex-box="0">
+      <span class="side" flex-box="0">
+        <!-- <span class="icon" flex="main:center cross:center" @click='back'>
+>>>>>>> cc51608694ea0d60baf6506a1239aa23d1c1a39a
           <span class="icon-back"></span>
-        </span>
+        </span> -->
       </span>
       <div class="tabs" flex-box="1" flex="main:center">
         <span :class="{'active': choose == 0}" @click="choose=0">我的信用卡{{numCC}}</span>
