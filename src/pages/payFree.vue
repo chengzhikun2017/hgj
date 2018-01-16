@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-nav flex-box="0">{{title}}</app-nav>
-    <h1 style="text-align: center;padding:0.1rem">{{canBuyFree?'':'距离免费升级还差成功分享15次'}}</h1>
+    <h1 style="text-align: center;padding:0.1rem">{{canBuyFree?'':'距离免费'+"升级"+'还差成功分享'+'15'+'次'}}</h1>
     <div class="lv-treatment" v-if='!canBuyFree' style='border:1px solid red;'>
       <h3 class="sub-title">
         当前等级（保时捷）权益
@@ -28,7 +28,7 @@
       <app-button style='width:80%; margin: 0.1rem auto;' @click.native='pay' v-if='canBuyFree'>立即升级</app-button>
       <!-- <app-button style='width:80%; margin: 0.1rem auto;' @click.native='go'>马上升级</app-button> -->
       <!-- {{ Regs.idCardNoUtil.checkIdCardNo("330382199202235931") }} -->
-      <span @click="ceshi">测试</span>
+      <!-- <span @click="ceshi">测试</span> -->
     </div>
   </div>
 </template>

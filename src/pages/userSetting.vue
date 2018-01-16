@@ -7,10 +7,15 @@
     </app-formitem>
     <app-formitem :label='"实名认证"' >
       <span class='real-name-right'>
-        <span class="item-right">{{realNameInfo}}</span>
-        <i class="icon-go"></i>
+        <span class="item-right">{{isRealNamed?'已实名':'未实名'}}</span>
+        <i class="icon-go" v-if='!isRealNamed'></i>
       </span>
-      
+    </app-formitem>
+    <app-formitem :label='"账户激活"' @click.native='goActive'>
+      <span class='real-name-right'>
+        <span class="item-right">{{accountActived?'已激活':'未激活'}}</span>
+        <i class="icon-go" v-if='!accountActived'></i>
+      </span>
     </app-formitem>
     <app-formitem :label='"我的分享二维码"' @click.native='showQR'>
       <span >
@@ -46,6 +51,13 @@ export default {
     }
   },
   methods:{
+    goActive(){
+      if(this.accountActived){
+        return
+      }else{
+        helper.goPage('/activeaccount')
+      }
+    },
     showQR(){
       this.QRisShow=true
     },
@@ -63,15 +75,17 @@ export default {
       ])
   },
   computed:{
-    realNameInfo(){
-      if(this.$store.state.account.isRealNamed){
-        return '已实名'
-      } else{
-        return '未实名'
-      }
+    isRealNamed(){
+      return this.userInfo.isRealNamed
+    },
+    accountActived(){
+      return this.userInfo.isActive
+    },
+    userInfo(){
+      return this.$store.state.account
     },
     qrSrc(){
-      return this.$store.state.account.qrcodeUrl
+      return this.userInfo.qrcodeUrl
     },
   },
   events: {},

@@ -2,10 +2,6 @@
   <div class="cards" flex="dir:top">
     <nav flex="cross:center" flex-box="0">
       <span class="side" flex-box="0">
-        <!-- <span class="icon" flex="main:center cross:center" @click='back'>
->>>>>>> cc51608694ea0d60baf6506a1239aa23d1c1a39a
-          <span class="icon-back"></span>
-        </span> -->
       </span>
       <div class="tabs" flex-box="1" flex="main:center">
         <span :class="{'active': choose == 0}" @click="choose=0">我的信用卡{{numCC}}</span>
@@ -21,9 +17,6 @@
       <div v-for="item in cardListCC" class="cardItem">
         <app-creditcard :card="item" @click.native='goCardDetail(item)'></app-creditcard>
       </div>
-      <!-- <div class="cardItem">
-        <app-creditcard v-model="card2" bgcolor="cardbg-lightpurple"></app-creditcard>
-      </div> -->
       <div class="mybutton">
         <app-button class='add-bttn' :type='1' @click.native='goAddCreditCard'><span class="icon-add"></span>添加银行卡</app-button>
       </div>
@@ -62,7 +55,7 @@
     },
     methods:{
       goCardDetail(item){
-        let url=helper.urlConcat('/cardDetail',item)
+        let url=helper.urlConcat('/cardDetail',{cardId:item.cardId})
         helper.goPage(url)
       },
       goAddCreditCard(){

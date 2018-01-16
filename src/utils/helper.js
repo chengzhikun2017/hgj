@@ -42,7 +42,7 @@ export default class helper {
         this.goPage('/activeaccount')
         return
       }
-      this.goPage(this.urlConcat('/plan', card))
+      this.goPage(this.urlConcat('/plan', {cardId:card.cardId}))
     }
     // '/pay'
     // '/pay_free'
