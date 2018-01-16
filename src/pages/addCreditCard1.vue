@@ -141,7 +141,7 @@
         padding: 0.15rem 0.2rem;
       }
       .mybutton {
-        margin-top: 1.05rem;
+        margin-top: 0.36rem;
         padding:0 0.2rem;
       }
     }

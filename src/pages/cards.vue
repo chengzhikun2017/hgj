@@ -39,7 +39,7 @@
         <app-button class='add-bttn':type='1'  @click.native='goAddDC'><span class="icon-add"></span>添加银行卡</app-button>
         <div class="others" flex="main:justify">
           <span>什么是结算卡？</span>
-          <span>点击分享</span>
+          <!-- <span>点击分享</span> -->
         </div>
       </div>
     </article>

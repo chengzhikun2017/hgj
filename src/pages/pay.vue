@@ -265,7 +265,7 @@
         }
       }
       .mybutton {
-        padding: 0.4rem 0.2rem;
+        padding: 0.36rem 0.2rem;
       }
     }
   }

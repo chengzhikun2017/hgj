@@ -98,11 +98,8 @@
       padding-top: 0.2rem;
     }
     .mybutton {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 0.3rem 0.2rem;
+      padding:0 0.2rem;
+      margin-top: 0.36rem;
     }
   }
 </style>

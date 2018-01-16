@@ -127,7 +127,7 @@
         }
       }
       .mybutton {
-        margin-top: 0.86rem;
+        margin-top: 0.36rem;
         padding:0 0.2rem;
         .note {
           margin-bottom: 0.15rem;
