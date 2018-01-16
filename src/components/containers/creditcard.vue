@@ -5,9 +5,9 @@
         <div class="logo" flex-box="1">
           <img :src="'/static/img/title/'+card.cardCode+'.png'" alt="">
         </div>
-        <span v-if='type===2||type===0'>
-          <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span>
-          <span class="btn1" v-show="card.status === 'DOING'" @click='cards_listCC'>绑定中，点击刷新</span>
+        <span v-if='type===2||type===0||type===3'>
+          <!-- <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span> -->
+          <span class="btn1" v-show="card.status === 'DOING'" @click.stop='cards_getListCC'>绑定中，点击刷新</span>
           <span class="" v-show="card.status === 'FAILED'">绑定失败</span>
           <span class="btn1" v-show="card.status === 'FAILED'">重新绑定</span>
           <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='goEdit'>编辑</span>
@@ -21,8 +21,9 @@
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
         <span v-if='type===0'>
-          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" @click.stop='goNewPlan'>绑卡成功</span>
-          <span class="btn2" v-if="card.planStatus == 'FAILED'"  @click.stop='goNewPlan'>绑卡失败</span>
+          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" @click.stop='goNewPlan'>创建还款计划</span>
+          <span class="btn2" v-if="card.planStatus == ''" @click.stop='goNewPlan'>创建还款计划</span>
+          <span class="btn2" v-if="card.planStatus == 'FAILED'"  @click.stop='goNewPlan'>创建还款计划</span>
           <span class="btn2" v-if="card.planStatus == 'DOING'" >计划执行中</span>
         </span>
         <span v-if='type===2'>
@@ -33,7 +34,7 @@
         <!-- <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span> -->
       </div>
       <div class="floor">
-        <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：每月{{card.repaymentDate}}号</span>
+        <span v-if="card.status !== 'choose'" >账单日：每月{{card.billDate}}号 <span class="liner">|</span> 还款日：{{isRepaySameMonth?'每':'次'}}月{{card.repaymentDate}}号</span>
         <span class="btn3" v-show="card.status === 'choose'">重新选择银行卡</span>
       </div>
     </div>
@@ -52,20 +53,25 @@
         //0 全部显示
         //1 不显示任何操作按钮
         //2 显示删除，不显示计划状态（信用卡详情页）
+        //3 只显示编辑
       },
       card: {
         type: Object,
-        default: (function () {
+        default: function () {
           return {
-            status: 'PLAN',
-            name: '韩**',
-            cardNoAfter4: '3638',
-            billDate: 3,
-            repaymentDate: 13,
-            cardCode: 'ABC',
-            planStatus: 'SUCCESS'
+            billDate:null,
+            cardCode:null,
+            cardId:null,
+            cardNoAfter4:null,
+            createTime:null,
+            name:null,
+            phone:null,
+            planId:null,
+            planStatus:null,
+            repaymentDate:null,
+            status:null,
           }
-        })()
+        }
       },
       // 颜色不能作为参数传入，考虑到数据接口并没有设计这块
       bgcolor: {
@@ -75,8 +81,10 @@
     },
     methods:{
       goNewPlan(){
-        let url=helper.urlConcat('/plan',this.card)
-        console.log('go new plan',url)
+        // let url=helper.urlConcat('/plan',{
+        //   cardId:this.card.cardId
+        // })
+        // console.log('go new plan',url)
         helper.goNewPlanPage(this.card)
       },
       deleteConfirm(){
@@ -112,11 +120,14 @@
       ...mapActions([
         'router_willBackToIndex',
         'router_setNewPath',
+        'cards_getListCC',
         ]),
-      ...mapActions([
-        // 'addCardCC_delete',
-        'cards_listCC',
-        ])
+
+    },
+    computed:{
+      isRepaySameMonth(){
+        return Number(this.card.billDate)<Number(this.card.repaymentDate)
+      },
     },
     data () {
       return {

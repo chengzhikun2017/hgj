@@ -3,7 +3,7 @@
     <app-nav flex-box="0">新建还款计划</app-nav>
     <article flex-box="1">
       <div class="photoDetail">
-        <app-creditcard :card="cardInfo"></app-creditcard>
+        <app-creditcard :card="cardInfo" :type='3'></app-creditcard>
       </div>
       <div class="form">
         <app-formitem :last="true" label="还款金额">
@@ -103,7 +103,7 @@
 //可选天数，还款日-startDay
 import '@/css/flex.css'
 import '@/css/components.scss'
-import {mapActions,mapMutations} from 'vuex'
+import {mapActions,mapMutations,mapGetters} from 'vuex'
 import helper from '../utils/helper.js'
 import TimeUtil from '../utils/time.js'
 import config from './../config.js'
@@ -121,18 +121,14 @@ export default {
       planOpts:[],
       popFlag: false,
       popFlagPlan:false,
-        // nowDate:config.nowDate,
-        nowDate:new Date(),
-        getPlanOptsTimer:null,
+      nowDate:config.nowDate,
+      // nowDate:new Date(),
+      getPlanOptsTimer:null,
       }
     },
-    updated(){
-      // console.log('updated')
-      // let t=this
-      // let allFilled=t.planAmount&&t.duration&&t.choosedPlan
-      // if(allFilled){
-
-      // }
+    beforeRouteEnter(to,from,next){
+      next()
+      // console.log('%c loglog','color:red',to)
     },
     watch:{
       // planAmount(v){
@@ -141,6 +137,15 @@ export default {
       // duration(v){
       //   this.lazyGetPlanOpts()
       // },
+      // 
+      'cardInfo.cardId'(v){
+        if(v){
+          this.calcStartDaysAvailable()
+        }
+      },
+      latestEndDay(v){
+        this.lazyGetPlanOpts()
+      },
       startDay(v){
         this.lazyGetPlanOpts()
       },
@@ -189,6 +194,9 @@ export default {
         let fee=this.planAmountFee,
         startDate=this.startDate,
         endDate=this.endDate
+        // if(!(fee&&startDate&&endDate)){
+        //   return
+        // }
         // console.log('fee,startDate,endDate',fee,startDate,endDate)
         // return
         this.plan_calc({
@@ -304,7 +312,11 @@ export default {
           })
         })
       },
-      calcStartDaysAvailable(){
+      calcStartDaysAvailable(){ 
+        // console.log('%c this.cardInfo','color:red',this.cardInfo)
+        if(!this.cardInfo.cardId){
+          return null
+        }
         var dateArr=[],day=this.earlistStartDay
         //var billDateStamp=this.billDateStamp
         let month=this.today.month,year=this.today.year
@@ -359,13 +371,17 @@ export default {
         'account_getUserInfo',
         ])
     },
-    created(){
-      var today=this.today
-      var {year,month,day}=today
-      var nextDay=new Date(year,month,day+1)
-      console.log('nextD',nextDay,this.nowDate,nextDay-this.nowDate)
-      setTimeout(()=>{
-        console.log('choosedPlan',this.choosedPlan)
+    created() {
+      var today = this.today
+      var {
+        year,
+        month,
+        day
+      } = today
+      var nextDay = new Date(year, month, day + 1)
+      console.log('nextD', nextDay, this.nowDate, nextDay - this.nowDate)
+      setTimeout(() => {
+        console.log('choosedPlan', this.choosedPlan)
       }, 5000);
       // setTimeout(()=> {
       //   this.nowDate=new Date(2018,1,5)
@@ -374,150 +390,157 @@ export default {
       //     this.calcStartDaysAvailable()
       //   })
       // }, 3330);
-},
-mounted(){
-  this.calcStartDaysAvailable()
-  this.startDay=this.earlistStartDay
-},
-computed:{
-  choosedPlanDscrp(){
-    var choosedPlan=this.choosedPlan
-    if(choosedPlan.percent){
-      return choosedPlan.percent+'%保证金 '+choosedPlan.days+"天完成"
-    }else{
-      return null
-    }
-  },
-  serviceLabel(){
-    if(this.defaultServiceChanged){
-      return '已选计划'
-    }else{
-      return '默认计划'
-    }
-  },
-  ttlFee(){
-    let service=this.serviceFree?0:this.choosedPlan.serviceFee
-    return service+this.choosedPlan.securityFee
-  },
-  allFilled(){
-    let t=this
-        // let allFilled=t.planAmount>100&&t.duration&&
-        let allFilled=t.startDay
-        // &&t.planAmount
-        return !!allFilled
-      },
-      serviceFree(){
-        return this.$store.state.account.freePlanTimes
-      },
-      planAmountFee(){
-        return this.planAmount*100||0
-      },
-      startDate(){
-        if(!this.startDay){
+    },
+    mounted() {
+      this.calcStartDaysAvailable()
+      this.startDay = this.earlistStartDay
+    },
+    computed: {
+      choosedPlanDscrp() {
+        var choosedPlan = this.choosedPlan
+        if (choosedPlan.percent) {
+          return choosedPlan.percent + '%保证金 ' + choosedPlan.days + "天完成"
+        } else {
           return null
         }
-        let v=this.startDay
-        // this.dayPaser(v)
+      },
+      serviceLabel() {
+        if (this.defaultServiceChanged) {
+          return '已选计划'
+        } else {
+          return '默认计划'
+        }
+      },
+      ttlFee() {
+        let service = this.serviceFree ? 0 : this.choosedPlan.serviceFee
+        return service + this.choosedPlan.securityFee
+      },
+      allFilled() {
+        let t = this
+          // let allFilled=t.planAmount>100&&t.duration&&
+        let allFilled = t.startDay&&t.latestEndDay
+          // &&t.planAmount
+        return !!allFilled
+      },
+      serviceFree() {
+        return this.$store.state.account.freePlanTimes
+      },
+      planAmountFee() {
+        return this.planAmount * 100 || 0
+      },
+      startDate() {
+        if (!this.startDay) {
+          return null
+        }
+        let v = this.startDay
+          // this.dayPaser(v)
         return this.dayPaser(v)
       },
-      endDate(){
+      endDate() {
         // if(!this.startDay||!this.duration){
         //   return null
         // }
-        if(!this.startDay||!this.choosedPlan.percent){
+        if (!this.startDay || !this.choosedPlan.percent) {
           return null
         }
-        let v=Number(this.startDay)+(Number(this.choosedPlan.days)-1)*86400000
+        let v = Number(this.startDay) + (Number(this.choosedPlan.days) - 1) * 86400000
         return this.dayPaser(v)
       },
-      durationAvailable(){
-        if(this.startDay){
-          let opts=[]
-          let day=Number(this.startDay)+86400000
-          let duration=2
-          if(this.startDaysAvailable.length<1){
-            return[]
+      durationAvailable() {
+        if (this.startDay) {
+          let opts = []
+          let day = Number(this.startDay) + 86400000
+          let duration = 2
+          if (this.startDaysAvailable.length < 1) {
+            return []
           }
-          let lastDay=this.startDaysAvailable[this.startDaysAvailable.length-1].value
-          // console.log('duration',duration)
-          // console.log('day',new Date(this.startDay))
-          // console.log('lastDay',new Date(lastDay))
-          while(day<=lastDay&&duration<=30){
+          let lastDay = this.startDaysAvailable[this.startDaysAvailable.length - 1].value
             // console.log('duration',duration)
-            opts.push({value:duration})
+            // console.log('day',new Date(this.startDay))
+            // console.log('lastDay',new Date(lastDay))
+          while (day <= lastDay && duration <= 30) {
+            // console.log('duration',duration)
+            opts.push({
+              value: duration
+            })
             duration++
-            day+=86400000
+            day += 86400000
           }
           // console.log('duration opts',opts)
-          this.duration=duration-1
+          this.duration = duration - 1
           return opts
-        }else{
+        } else {
           return []
         }
       },
-      placeholderDuration(){
-        if(!this.startDay){
+      placeholderDuration() {
+        if (!this.startDay) {
           return "请先选择开始时间"
-        }else{
+        } else {
           return '请选择执行天数'
         }
       },
-      today(){//2400时刷新 | 提交时检测 today
-        var today={}
-        today.day=this.nowDate.getDate()
-        today.month=this.nowDate.getMonth()+1
-        today.year=this.nowDate.getFullYear()
+      today() { //2400时刷新 | 提交时检测 today
+        var today = {}
+        today.day = this.nowDate.getDate()
+        today.month = this.nowDate.getMonth() + 1
+        today.year = this.nowDate.getFullYear()
         return today
       },
-      nowDay(){
+      nowDay() {
         return this.nowDate.getDate()
       },
-      earlistStartDay(){
-        var now=this.today
-        // var nowDay=this.nowDay
-        var nowDay=now.day
-        if(this.isRepamentSameMonth){
-          if(this.isPlanInCrrtMonth){
-            if(nowDay<this.cardInfo.billDate){
+      earlistStartDay() {
+        var now = this.today
+          // var nowDay=this.nowDay
+        var nowDay = now.day
+        if (this.isRepamentSameMonth) {
+          if (this.isPlanInCrrtMonth) {
+            if (nowDay < this.cardInfo.billDate) {
               return TimeUtil.getStampByDate(this.cardInfo.billDate)
-            }else{
-              return TimeUtil.getStampByDate(Number(nowDay)+1)
+            } else {
+              return TimeUtil.getStampByDate(Number(nowDay) + 1)
             }
-          }else{
-            return TimeUtil.getStampByDate(this.cardInfo.billDate,1)
+          } else {
+            return TimeUtil.getStampByDate(this.cardInfo.billDate, 1)
           }
-          
-        }else{
-          if(this.isPlanInCrrtMonth){
-            return TimeUtil.getStampByDate(Number(nowDay)+1)
-          }else{
-            if(nowDay<this.cardInfo.billDate){
+
+        } else {
+          if (this.isPlanInCrrtMonth) {
+            return TimeUtil.getStampByDate(Number(nowDay) + 1)
+          } else {
+            if (nowDay < this.cardInfo.billDate) {
               return TimeUtil.getStampByDate(this.cardInfo.billDate)
-            }else{
-              return TimeUtil.getStampByDate(Number(nowDay)+1)
+            } else {
+              return TimeUtil.getStampByDate(Number(nowDay) + 1)
             }
           }
         }
       },
-      latestEndDay(){
-        let len=this.startDaysAvailable.length
-        return this.startDaysAvailable[len-1]
+      latestEndDay() {
+        let len = this.startDaysAvailable.length
+        return this.startDaysAvailable[len - 1]
       },
-      latestEndDate(){
+      latestEndDate() {
+        if(!this.latestEndDay){
+          return null
+        }
         return this.dayPaser(this.latestEndDay.value)
       },
-      billDateStamp(){
-        return 
+      billDateStamp() {
+        return
       },
-      isRepamentSameMonth(){
-        if(this.cardInfo.repaymentDate<this.cardInfo.billDate){
+      isRepamentSameMonth() {
+
+        let card = this.cardInfo
+        if (Number(card.repaymentDate) > Number(card.billDate)) {
           return true
-        }else{
+        } else {
           return false
         }
       },
       isPlanInCrrtMonth() {
-        if (this.today.day < this.cardInfo.repaymentDate-2) {
+        if (this.today.day < this.cardInfo.repaymentDate - 2) {
           return true
         } else {
           return false
@@ -528,9 +551,18 @@ computed:{
 
         // }
       },
-      cardInfo(){
-        return this.$route.query
+      cardInfo() {
+        if (this.cards_listCC.length>0) {
+          let cardId = this.$route.query.cardId
+          return this.cards_listCC.find(item => item.cardId == cardId)
+        } else {
+          return {}
+        }
+        return {}
       },
+      ...mapGetters([
+        'cards_listCC',
+      ]),
     },
   }
 </script>

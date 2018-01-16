@@ -51,8 +51,8 @@ function getTimeString(AdDate, AiStart = 0, AiEnd, cfg = {}) {
 function dayQtyOfMonth(stamp){
   if(stamp===undefined){
     // stamp=HGJ_VUE.__isDev?config.nowDate:new Date()
-    // stamp=config.nowDate
-    stamp=new Date()
+    stamp=config.nowDate
+    // stamp=new Date()
   }
   var time=new Date(stamp)
   var month=time.getMonth(),year=time.getFullYear(),date=time.getDate()
@@ -64,8 +64,8 @@ function dayQtyOfMonth(stamp){
 }
 function getStampByDate(date,monthAdd=0){
   // let now=HGJ_VUE.__isDev?config.nowDate:new Date()
-  // let now=config.nowDate
-  let now=new Date()
+  let now=config.nowDate
+  // let now=new Date()
   let newDate=new Date(now.getFullYear(),now.getMonth()+monthAdd,Number(date))
   return newDate.getTime()
 }

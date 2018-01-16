@@ -49,7 +49,7 @@
 </template>
 <script>
   import '@/css/components.scss'
-  import {mapActions,mapMutations} from 'vuex'
+  import {mapActions,mapMutations,mapGetters} from 'vuex'
   import helper from '../utils/helper.js'
   export default  {
     data () {
@@ -124,9 +124,17 @@
       this.planReview()
     },
     computed:{
-      cardInfo(){
-        return this.$route.query
+      cardId(){
+        return this.$route.query.cardId
       },
+      cardInfo(){
+        // let cards_listCC=this.$store.state.cards_listCC
+        if(this.cards_listCC){
+          return this.cards_listCC.find(item=>item.cardId==this.cardId)
+        }
+        return {}
+      },
+      ...mapGetters(['cards_listCC']),
     },
   }
 </script>

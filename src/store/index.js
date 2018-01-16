@@ -10,6 +10,7 @@ import order from './modules/order'
 import plan from './modules/plan'
 import cards from './modules/cards'
 import balance from './modules/balance'
+import share from './modules/share'
 
 Vue.use(Vuex)
 
@@ -25,6 +26,7 @@ const store = new Vuex.Store({
     order,
     plan,
     balance,
+    share,
   }
 })
 

@@ -138,6 +138,7 @@
       }
     }
     .list-top{
+      color:#999999;
       position: absolute;
       top: 0.2rem;
       font-size: 0.12rem;
@@ -147,6 +148,7 @@
       /*z-index: 0;*/
     }
     .list-bottom{
+      color:#999999;
       text-align: center;
       font-size: 0.12rem;
       height: 0.16rem;

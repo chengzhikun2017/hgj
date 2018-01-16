@@ -3,12 +3,16 @@
     <app-nav flex-box="0">提现记录</app-nav>
     <article flex-box="1">
       <app-record-list :cfg='cfg' v-model='recordList'>
-        <div  class='record-box' v-for='record in recordList' :key='record.planId' >
-          <p>{{record.statusRemark}}</p>
-          <p>{{record.status|status}}</p>
-          <p>{{record.moneyType|moneyType}}</p>
-          <p>{{record.fee|moneyFilter}}</p>
-          <p>{{record.createTime|timePlanRecordFilter}}</p>
+        <div  class='record-box' v-for='record in recordList' :key='record.planId' flex>
+          <i class="icon icon-money"  v-if='record.moneyType=="UNFREEZE_MONEY"' flex-box='0'></i>
+          <i class="icon icon-yuan"  v-if='record.moneyType=="MONEY"' flex-box='0'></i>
+          <div flex-box='1'>
+            <!-- <p>{{record.statusRemark}}</p> -->
+            <p class="type">{{record.moneyType|moneyType}}</p>
+            <p class="status">{{record.status|status}}</p>
+            <p class="time">{{record.createTime|timePlanRecordFilter}}</p>
+          </div>
+          <p class="money">{{record.fee|moneyFilter}}</p>
         </div>
       </app-record-list>
     </article>
@@ -48,7 +52,7 @@ export default {
         params:{
           // moneyType:moneyType,
           // page:1,
-          limit:2,
+          limit:8,
         },
       }
     },
@@ -64,8 +68,46 @@ export default {
 
 <style lang='scss' scoped>
 .record-box{
-  border:1px solid red;
+  border:0px solid #999999;
+  border-top-width: 1px;
   background: #fff;
+  margin-left: 0.15rem;
 }
+.record-box:first-child{
+  border-top-width: 0px;
+}
+.record-box{
 
+  padding:0.1rem 0;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  position: relative;
+  .icon{
+    font-size: 0.25rem;
+    color:#fff;
+    background: #F5AF00;
+    border-radius: 50%;
+    padding:0.1rem;
+    margin:0.1rem;
+  }
+  .money{
+    color:#F5AF00;
+    position: absolute;
+    font-size: 0.18rem;
+    top: 0.1rem;right: 0.1rem;
+  }
+  .type{
+    font-size: 0.16rem;
+    color:#666666;
+  }
+  .status{
+    font-size: 0.14rem;
+    color:#666666;
+  }
+  .time{
+    font-size: 0.12rem;
+    color:#666666;
+  }
+}
 </style>
