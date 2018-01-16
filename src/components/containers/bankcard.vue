@@ -7,7 +7,7 @@
         </div>
         <span v-if='type==0' style='text-align: center;'>
           <span class="btn1" v-show="card.settlementStatus === 'SUCCESS'">结算卡</span>
-          <span class="btn1" v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
+          <span class="btn1" v-if='!!!hasSC' v-show="card.settlementStatus === ''" @click='bindSC'>设为结算卡</span>
           <span class="btn1" v-show="card.settlementStatus === 'FAILED'">设为结算卡失败</span>
           <span class="btn1" v-show="card.settlementStatus === 'FAILED'">重新设置为结算卡</span>
         </span>
@@ -63,6 +63,11 @@
       return {
       }
     },
+    computed:{
+      hasSC(){
+        return this.$store.state.cards.cardIdSC
+      },
+    },
     methods:{
       bindSC(){
         this.hgjAlert({
@@ -85,6 +90,7 @@
           }},{text:'取消'}]
         })
       },
+
       ...mapActions([
         'addCardDC_bindSC',
         'addCardDC_delete',

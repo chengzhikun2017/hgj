@@ -27,17 +27,19 @@
                 </div>
                 <div class="liner" flex-box="1"></div>
               </div>
-              <div class="active-box" >
-                <app-button @click.native='upgradePay' style='margin:0 0.15rem'>升级</app-button>
-                <app-button @click.native='upgradeFree' style='margin:0 0.15rem'>免费升级</app-button>
-              </div>
+              
               <div class="point"  v-if='!nextLvText'>
                 恭喜您！ 您已升至最高级别
               </div>
               <p  v-if='!nextLvText'>请尽情享受您的权益吧！</p>
             </div>
           </div>
-          <div class="incircle"></div>
+          <div class="incircle">
+            <div class="active-box" v-if='nextLvText'>
+              <app-button @click.native='upgradePay' style='margin:0 0.15rem'>升级</app-button>
+              <app-button @click.native='upgradeFree' style='margin:0 0.15rem'>免费升级</app-button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="accountUpdateContent">
@@ -311,8 +313,14 @@ article {
   }
 }
 .active-box{
-
+  position: absolute;
   display: flex;
+  bottom: 0;
+  left: 0;right: 0;
+  width: 3rem;
+  height: 1rem;
+  margin: 0 auto;
+  /*z-index: 2;*/
   padding:0.25rem;
 }
 /*.lv-treatment{
