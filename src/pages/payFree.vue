@@ -1,8 +1,16 @@
 <template>
   <div>
     <app-nav flex-box="0">{{title}}</app-nav>
-    <h1 style="text-align: center;padding:0.1rem">{{canBuyFree?'':'距离免费'+"升级"+'还差成功分享'+'15'+'次'}}</h1>
-    <div class="lv-treatment" v-if='!canBuyFree' style='border:1px solid red;'>
+    <div class="banner" flex="dir:top main:center cross:center">
+      <!-- <span class="paymoney">支付金额</span> -->
+      <!-- <div class="money">{{(productInfo.fee / 100).toFixed(0)}}<span>元</span></div> -->
+      <!-- <p>{{productDscrp}}</p> -->
+      <div class="paymoney">免费福利</div>
+      <div class="money" v-if='!canBuyFree'>只需推广{{Math.ceil(productInfo.jf/10000)}}个注册用户</div>
+      <div class="money sub" v-if='!canBuyFree'>还差{{Math.ceil(needJf/10000)}}个名额，再接再厉</div>
+      <div class="money" v-if='canBuyFree'>推广更多用户，获得更多积分</div>
+    </div>
+<!--     <div class="lv-treatment" v-if='!canBuyFree' style='border:1px solid red;'>
       <h3 class="sub-title">
         当前等级（保时捷）权益
       </h3>
@@ -17,7 +25,7 @@
       <p class="treatment-detail">1.享受25%的激活码购买折扣，助您邀请更多同道中人。</p>
       <p class="treatment-detail">2.享受最高达35%的分润。</p>
       <p class="treatment-detail">3.享受多至两级的再次分润。</p>
-    </div>
+    </div> -->
 
     <hr>
     <div class="activeaccount-content">
@@ -25,7 +33,7 @@
       <p class="info" v-if='!canBuyFree'>完成下面任务，即可免费升级</p>
       <p class="info" v-if='canBuyFree'>可以继续完成下面任务，获取更多免费机会</p>
       <app-menulist v-model="menulistData"></app-menulist>
-      <app-button style='width:80%; margin: 0.1rem auto;' @click.native='pay' v-if='canBuyFree'>立即升级</app-button>
+      <app-button style='width:80%; margin: 0.25rem auto;' @click.native='pay' v-if='canBuyFree'>立即升级</app-button>
       <!-- <app-button style='width:80%; margin: 0.1rem auto;' @click.native='go'>马上升级</app-button> -->
       <!-- {{ Regs.idCardNoUtil.checkIdCardNo("330382199202235931") }} -->
       <!-- <span @click="ceshi">测试</span> -->
@@ -39,47 +47,52 @@ import {mapActions,mapMutations} from 'vuex'
 export default {
   data() {
     return {
-      menulistData: [
-        {
-          title: '分享',
-          icon: 'icon-share',
-          note: '已被浏览10次',
-          position: -1,
-          notePoint: false,
-          long: false,
-          actionName: '去分享',
-          action: function () {
-            console.log('hello1')
-          }
-        },
-        {
-          title: '了解养成计划',
-          icon: 'icon-date',
-          note: '详细了解养成计划',
-          position: 0,
-          notePoint: false,
-          long: false,
-          actionName: '未完成',
-          action: function () {
-            console.log('hello2')
-          }
-        },
-        {
-          title: '实名计划',
-          icon: 'icon-person',
-          note: '请完成您的实名认证',
-          position: 1,
-          notePoint: false,
-          long: false,
-          actionName: '未完成',
-          action: function () {
-            console.log('hello3')
-          }
-        }
-      ]
+
     }
   },
   computed:{
+    menulistData(){
+      
+    return[
+      {
+        title: '分享链接，邀请好友注册',
+        icon: 'icon-share',
+        note: '已被浏览10次',
+        position: -1,
+        notePoint: false,
+        long: false,
+        actionName: '去分享',
+        action: function () {
+          console.log('hello1')
+        }
+      },
+      // {
+      //   title: '了解养成计划',
+      //   icon: 'icon-date',
+      //   note: '详细了解养成计划',
+      //   position: 0,
+      //   notePoint: false,
+      //   long: false,
+      //   actionName: '未完成',
+      //   action: function () {
+      //     console.log('hello2')
+      //   }
+      // },
+      // {
+      //   title: '实名计划',
+      //   icon: 'icon-person',
+      //   note: '请完成您的实名认证',
+      //   position: 1,
+      //   notePoint: false,
+      //   long: false,
+      //   actionName: '未完成',
+      //   action: function () {
+      //     console.log('hello3')
+      //   }
+      // }
+    ]
+    }, 
+
     needJf(){
       return this.productInfo.jf-this.jfMine
     },
@@ -163,6 +176,31 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+  .banner {
+    width: 100%;
+    height: 1.78rem;
+    background-image: linear-gradient(to right, #4b8cf8 1%, #884bf8);
+    .paymoney {
+      padding: 0.07rem 0.14rem;
+      border:1px solid white;
+      border-radius: 0.03rem;
+      font-size: 0.13rem;
+      color: white;
+      line-height: 1;
+    }
+    .money {
+      margin-top: 0.15rem;
+      font-size: 0.18rem;
+      line-height: 1;
+      color:white;
+      span {
+        font-size: 0.18rem;
+      }
+    }
+    .sub{
+      font-size: 0.16rem;
+    }
+  }
   .treatment-detail{
     font-size: 0.15rem;
   }

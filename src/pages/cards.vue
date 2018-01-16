@@ -106,6 +106,28 @@
 </script>
 
 <style lang='scss' scoped>
+.banner {
+  width: 100%;
+  height: 1.78rem;
+  background-image: linear-gradient(to right, #4b8cf8 1%, #884bf8);
+  .paymoney {
+    padding: 0.07rem 0.14rem;
+    border:1px solid white;
+    border-radius: 0.03rem;
+    font-size: 0.13rem;
+    color: white;
+    line-height: 1;
+  }
+  .money {
+    margin-top: 0.15rem;
+    font-size: 0.34rem;
+    line-height: 1;
+    color:white;
+    span {
+      font-size: 0.18rem;
+    }
+  }
+}
   .cards {
     width:100%;
     height: 100%;

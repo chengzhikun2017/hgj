@@ -28,7 +28,7 @@
               <p>朋友圈分享</p>
             </div>
           </div>
-          <div class="waysItem" flex>
+<!--           <div class="waysItem" flex>
             <div class="waybox">
               <div class="icon-qq blue"></div>
               <p>QQ分享</p>
@@ -41,7 +41,7 @@
               <div class="icon-qrcode black"></div>
               <p>二维码分享</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
     },
     methods: {
       close () {
-        this.$emit('input', false)
+        this.$store.commit('share_hide')
       }
     }
   }

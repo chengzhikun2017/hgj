@@ -10,6 +10,12 @@ const share = {
   },
   getters: {},
   mutations: {
+    share_show(s){
+      s.showShare=true
+    },
+    share_hide(s){
+      s.showShare=false
+    },
   },
   actions: {
   }

@@ -10,6 +10,7 @@
     <app-alert></app-alert>
     <app-toast></app-toast>
     <app-loading></app-loading>
+    <app-share v-model="showShare"></app-share>
     <button @click='test' id='test-bttn'> test</button>
     <!-- <button @click='test2' id='test-bttn2'> 登出</button> -->
   </div>
@@ -31,6 +32,9 @@ export default {
     // console.log('app store',this.$store)
   },
   computed:{
+    showShare(){
+      return this.$store.state.share.showShare
+    },
     showFootNav(){
       let path=this.$route.path
       let navPaths=this.$store.state.router.navPaths

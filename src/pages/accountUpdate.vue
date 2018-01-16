@@ -47,7 +47,7 @@
         <p>2. 享受最高达35%的巨大分润！</p>
         <p>3. 享受多至2成的再次分润！</p>
         <div class="mybutton">
-          <app-button>邀请更多道友</app-button>
+          <app-button @click.native='showShare'>邀请更多道友</app-button>
         </div>
       </div>
     </article>
@@ -59,7 +59,12 @@
       return {
 
       }
-    }
+    },
+    methods:{
+      showShare(){
+        this.$store.commit('share_show')
+      },
+    },
   }
 </script>
 <style lang="scss" scoped>
