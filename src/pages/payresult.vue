@@ -111,7 +111,7 @@
               left: -0.16rem;
               content: ' ';
               border-top: 0.075rem solid transparent;
-              border-left: 0.12rem solid #f3f3f3;
+              border-left: 0.12rem solid #e9e9e9;
               border-bottom: 0.075rem solid transparent;
             };
             &:after {
@@ -120,7 +120,7 @@
               right: -0.16rem;
               content: ' ';
               border-top: 0.075rem solid transparent;
-              border-right: 0.12rem solid #f3f3f3;
+              border-right: 0.12rem solid #e9e9e9;
               border-bottom: 0.075rem solid transparent;
             };
           }

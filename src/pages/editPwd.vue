@@ -53,7 +53,7 @@
   .editPwd {
     article {
       .mybutton {
-        margin-top:1.25rem;
+        margin-top:0.36rem;
         padding:0 0.2rem;
       }
     }

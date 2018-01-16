@@ -576,7 +576,7 @@ export default {
   }
   .change-plan-box{
     text-align: right;
-    padding-bottom: 0.2rem;
+    padding-bottom: 0.16rem;
     .change-plan{
       font-size: 0.14rem;
       color:#768bf5;
@@ -639,7 +639,7 @@ export default {
         /*padding-bottom: 0.2rem;*/
       }
       .mybutton {
-        margin-top: 0.24rem;
+        margin-top: 0.20rem;
         padding: 0.16rem 0.2rem;
       }
       .note {
@@ -706,7 +706,7 @@ export default {
         margin-right: 0.1rem;
       }
       .mybutton {
-        margin:0.45rem 0 0;
+        margin:0.36rem 0 0;
       }
     }
   }
