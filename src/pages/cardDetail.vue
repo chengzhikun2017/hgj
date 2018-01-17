@@ -166,6 +166,9 @@
         background-image: linear-gradient(to top, #2c2c33, #3d404b);
       }
       .content {
+        .planbox {
+          height:3.2rem;
+        }
         padding: 0.2rem;
         .icon {
           margin-right: 0.1rem;

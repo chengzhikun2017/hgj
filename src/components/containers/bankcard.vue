@@ -113,6 +113,7 @@
           color: rgba(255, 255, 255, 0.3);
           font-size: 0.2rem;
           font-weight: 700;
+          letter-spacing: 0.08rem;
         }
         
         .logo {

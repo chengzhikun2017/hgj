@@ -6,25 +6,25 @@
       <div class="populizeScore-content">
         <div class="title" flex="cross:center">
           <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
-          <h2 flex-box="1">积分任务</h2>
-          <button flex-box="0">积分如何使用?</button>
+          <h2 flex-box="1">推广记录</h2>
+          <button flex-box="0">这里该放什么?</button>
         </div>
         <div class="liner"></div>
         <div class="points">
           <div class="pointItem" flex="main:justify">
-            <span>分享链接浏览: <span class="data">36次</span></span>
+            <span>一级推广人数: <span class="data">36次</span></span>
             <span class="point">+36积分</span>
           </div>
           <div class="pointItem" flex="main:justify">
-            <span>分享被注册: <span class="data">10次</span></span>
+            <span>二级推广人数: <span class="data">36次</span></span>
             <span class="point">+10积分</span>
           </div>
           <div class="pointItem" flex="main:justify">
-            <span>微信分享朋友圈: <span class="data">10天</span></span>
+            <span>三级推广人数: <span class="data">36次</span></span>
             <span class="point">+10积分</span>
           </div>
           <div class="pointItem" flex="main:justify">
-            <span>升级签到: <span class="data">18天</span></span>
+            <span>三级以上推广人数: <span class="data">36次</span></span>
             <span class="point">+18积分</span>
           </div>
         </div>
