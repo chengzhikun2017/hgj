@@ -70,6 +70,9 @@
       //todo: 存入store
     },
     methods: {
+      chooseCard(){
+        this.popFlag=true
+      },
       confirmSubmit(){
         if(!this.checkValid()){
           return

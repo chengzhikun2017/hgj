@@ -61,7 +61,7 @@ export default {
     },
     confirmSecurityWidthDraw(){
       // if(this.cardIdSC==null){
-      if(this.cardIdSC){
+      if(!this.cardIdSC){
         this.hgjAlert({
           title:'无结算卡',
           content:'返回"卡包"页面选一张储蓄卡为结算卡',

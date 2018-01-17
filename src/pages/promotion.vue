@@ -27,30 +27,39 @@
                 </div>
                 <div class="liner" flex-box="1"></div>
               </div>
-              <div class="active-box" >
-                <app-button @click.native='upgradePay' style='margin:0 0.15rem'>升级</app-button>
-                <app-button @click.native='upgradeFree' style='margin:0 0.15rem'>免费升级</app-button>
-              </div>
+              
               <div class="point"  v-if='!nextLvText'>
                 恭喜您！ 您已升至最高级别
               </div>
               <p  v-if='!nextLvText'>请尽情享受您的权益吧！</p>
             </div>
           </div>
-          <div class="incircle"></div>
+          <div class="incircle">
+            <div class="active-box" v-if='nextLvText'>
+              <app-button @click.native='upgradePay' style='margin:0 0.15rem'>升级</app-button>
+              <app-button @click.native='upgradeFree' style='margin:0 0.15rem'>免费升级</app-button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="accountUpdateContent">
         <div class="topbar" flex="cross:center">
           <app-cricleicon icon="icon-star" flex-box="0" circle="small" bgcolor="bg-blue" size="0.28rem"></app-cricleicon>
-          <h3 flex-box="1" class="title">当前等级权益</h3>
+          <h3 flex-box="1" class="title">下一级别权益</h3>
           <span class="btn" flex-box="0" >了解规则</span>
         </div>
         <div class="cutliner">
         </div>
-        <p>1. 享受25%的激活码购买折扣，祝您邀请更多的同道好友！</p>
+       <!--  <p>1. 享受25%的激活码购买折扣，祝您邀请更多的同道好友！</p>
         <p>2. 享受最高达35%的巨大分润！</p>
-        <p>3. 享受多至2成的再次分润！</p>
+        <p>3. 享受多至2成的再次分润！</p> -->
+        <p v-if='crrtLv==0'>1、享受35%的收益；</p>
+        <p v-if='crrtLv==4'>1、享受45%的收益；</p>
+        <p v-if='crrtLv==4'>2、享受大众多余的10%收益。</p>
+        <p v-if='crrtLv==3'>1、享受60%的收益；</p>
+        <p v-if='crrtLv==3'>2、享受大众多余的25%收益；</p>
+        <p v-if='crrtLv==3'>3、享受保时捷多余的15%收益；</p>
+        <p v-if='crrtLv==3'>4、享受同级别推广的3%奖励。</p>
 
       </div>
    
@@ -98,10 +107,6 @@ import {mapActions} from 'vuex'
 export default {
   data() {
     return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
     }
   },
   methods:{
@@ -120,33 +125,9 @@ export default {
     upgradePay(){
       helper.goBuy('upgrade')
     },
-    // goUpgrade(src){
-    //   var crrtLv=this.$store.state.account.level
-    //   var productId=this.$store.state.order.products[crrtLv+1].productId
-    //   this.order_createUpgrade().then(res=>{
-    //     var orderId=res.orderId
-    //     let url =helper.urlConcat(src,{
-    //       orderId,
-    //       productId,
-    //     })
-    //     helper.goPage(url)
-    //   })
-    // },
-    // goActive(src){
-    //   this.order_createActive().then(res=>{
-    //     var orderId=res.orderId
-    //     let url =helper.urlConcat(src,{
-    //       orderId,
-    //     })
-    //     helper.goPage(url)
-    //   })
-    // },
     share(){
       
     },
-    // goJihuo(){
-    //   helper.goPage('/activeaccount')
-    // },
     ...mapActions([
       'order_createActive',
       ])
@@ -301,7 +282,7 @@ export default {
         }
       }
       .cutliner {
-        margin:0.2rem 0;
+        margin:0.1rem 0;
         height: 1px;
         border: 1px dashed #d3d3d3;
         transform: scaleY(.5);
@@ -310,18 +291,39 @@ export default {
         font-size: 0.14rem;
         color: #383838;
         line-height: 1.5;
-        margin-bottom: 0.15rem;
+        margin-bottom: 0.1rem;
       }
       
     }
   }
-  .mybutton {
-    padding: 0.1rem 0.2rem;
-  }
+}
+.active-box{
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  left: 0;right: 0;
+  width: 3rem;
+  height: 1rem;
+  margin: 0 auto;
+  /*z-index: 2;*/
+  padding:0.25rem;
+}
+.mybutton {
+  padding: 0.1rem 0.2rem;
+}
+/*.lv-treatment{
+  border:1px solid red;
+  padding:0.15rem;
+  p{
+    font-size: 0.15rem;
+     color:#333;
+=======
+
   .active-box{
 
     display: flex;
     padding:0.25rem;
+>>>>>>> 07ef829a45fd66619f11e568161492432feecacf
   }
   /*.lv-treatment{
     border:1px solid red;
@@ -339,5 +341,5 @@ export default {
       color:#333;
     }
   }
-}
+/*}*/
 </style>

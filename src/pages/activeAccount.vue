@@ -3,88 +3,16 @@
     <app-nav flex-box="0">激活账户</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <p>激活账户说明：</p>
-        <p>1.激活后可以使用智能还卡服务</p>
-        <p>2.首次使用智能还卡免服务费</p>
-        <p>3.未激活不影响推广分享收益</p>
+        <h1>激活账户说明</h1>
+        <div class="dash-line"></div>
+        <p>(1)激活后可以使用智能还卡服务</p>
+        <p>(2)首次使用智能还卡免服务费</p>
+        <p>(3)未激活不影响推广分享收益</p>
       </div>
-      <!-- <div class="activeaccount-content">
-        <p class="info">完成下面任务，更轻松完成（感觉怪怪的）</p>
-        <app-formitem3 title="分享" note="已被浏览10次" :first="true">
-          <div class="header" slot="icon">
-            <app-cricleicon></app-cricleicon>
-          </div>
-          <div class="content" slot="action">
-            去分享>
-          </div>
-        </app-formitem3>
-        <app-formitem3 title="了解养成计划" note="详细了解养成计划">
-          <div class="header" slot="icon">
-            <app-cricleicon></app-cricleicon>
-          </div>
-          <div class="content" slot="action">
-            未完成>
-          </div>
-        </app-formitem3>
-        <app-formitem3 title="实名计划" note="请完成您的实名认证" :last="true">
-          <div class="header" slot="icon">
-            <app-cricleicon></app-cricleicon>
-          </div>
-          <div class="content" slot="action">
-            未完成>
-          </div>
-        </app-formitem3>
-      </div> -->
-      <app-button @click.native='goActivePay' style='width:80%;margin:0.1rem auto;'>付费马上激活</app-button>
-      <app-button @click.native='goActiveFree' style='width:80%;margin:0.1rem auto;'>免费激活</app-button>
-     <!--  <div class="popView" v-show="popFlag"  v-if='true'>
-        <div class="popcontent">
-          <div class="planbox">
-            <header flex="cross:center">
-              <div class="myicon">
-                <app-cricleicon icon="icon-share" bgcolor="bg-red"></app-cricleicon>
-              </div>
-              <div class="title" flex="dir:top main:center" flex-box="1">
-                <h2>分享</h2>
-                <p></p>
-              </div>
-              <span flex-box="0" @click="popFlag=false">关闭</span>
-            </header>
-            <div class="planbox-content">
-              <div class="liner"></div>
-              <div class="waysItem" flex>
-                <div class="waybox">
-                  <div class="icon-message"></div>
-                  <p>短信分享</p>
-                </div>
-                <div class="waybox">
-                  <div class="icon-wechat"></div>
-                  <p>微信分享</p>
-                </div>
-                <div class="waybox">
-                  <div class="icon-wechat-cicle"></div>
-                  <p>朋友圈分享</p>
-                </div>
-              </div>
-              <div class="waysItem" flex>
-                <div class="waybox">
-                  <div class="icon-qq"></div>
-                  <p>QQ分享</p>
-                </div>
-                <div class="waybox">
-                  <div class="icon-link"></div>
-                  <p>通过链接分享</p>
-                </div>
-                <div class="waybox">
-                  <div class="icon-qrcode"></div>
-                  <p>二维码分享</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <app-share v-model="popFlag"></app-share>
+      <div class="bttn-box">
+        <app-button @click.native='goActivePay' class='bttn'>付费马上激活</app-button>
+        <app-button @click.native='goActiveFree' class='bttn'>免费激活</app-button>
+      </div>
     </article>
   </div>
 </template>
@@ -111,7 +39,21 @@
   }
 </script>
 <style lang="scss" scoped>
+  .bttn-box{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    height: 1.25rem;
+    padding:0.1rem;
+    /*border:1px solid red;*/
+    .bttn{
+      flex-grow:1;
+      margin:0.1rem;
+    }
+  }
   .activeaccount {
+    position: relative;
     width: 100%;
     height: 100%;
     article {
@@ -119,8 +61,27 @@
       background: #f3f3f3;
       .banner {
         width: 100%;
-        height: 1.78rem;
+        /*height: 1.78rem;*/
         background: white;
+        padding:0.25rem 0.2rem;
+        h1{
+          font-size: 0.19rem;
+          font-weight: 600;
+          line-height: 1.53;
+          text-align: left;
+          color: #3b3b3b;
+        }
+        p{
+          font-size: 0.14rem;
+          line-height: 1;
+          margin-top: 0.15rem;
+          text-align: left;
+          color: #3b3b3b;
+        }
+        .dash-line{
+          border:0px dashed #d2d2d2;
+          border-bottom-width: 1px;
+        }
       }
       .activeaccount-content {
         padding-top: 0.2rem;
