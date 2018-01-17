@@ -54,6 +54,9 @@
       }
     },
     computed: {
+      type(){
+        return this.$route.query
+      },
       ...mapGetters([
         'cards_dict'
       ])

@@ -7,9 +7,7 @@
           <div class="datechoose" flex="main:justify cross:center">
             <app-select :options='yearOptions' :filter='yearPaser' :placeholder='"年份"' v-model='fullYear' class='expire-select'/>
             <span class="cuteliner">/</span>
-            <!-- :filter='monthPaser' -->
-            <!-- {{fullMonth}} -->
-            <app-select :options='monthOptions' :placeholder='"月份"' v-model='fullMonth' class='expire-select'/>
+            <app-select :options='monthOptions' :filter='dayPaser2' :placeholder='"月份"' v-model='fullMonth' class='expire-select'/>
           </div>
         </app-formitem>
         <app-formitem label="卡背后三位数字" :qa="readme" :isQ="true">
@@ -25,8 +23,6 @@
           <app-input class='form-input' :placeholder="'请输入银行预留的手机号'" v-model='phone'/>
         </app-formitem>
         <app-formitem label="验证码" :last="true" >
-          <!-- <div class="input"> -->
-            
             <app-input class='form-input code-input'  :placeholder="'请输入验证码'" v-model='validateCode'/>
             <bttn-code :validateMethod='canGetVerifyCode' :getCodeMethod='getVerifyCode'/>
             <!-- <div class="code-bttn " :class="{'code-bttn-disabled':countdownTimer!==null}"@click='getVerifyCode' >{{}}获取验证码</div> -->
@@ -88,6 +84,10 @@
       dayPaser(v){
         return v+'号'
       },
+      dayPaser2(v){
+        let s=String(v)
+        return s.padStart(2,0)
+      },
       yearPaser(v){
         return (v.toString()).slice(2,4)
       },
@@ -130,6 +130,7 @@
         this.validateCode=info.validateCode
       },
       canGetVerifyCode(){
+
         return true
       },
       getVerifyCode(countdown){
@@ -137,7 +138,6 @@
         this.addCardCC_getCode(this.phone).then(res => {
           countdown()
         })
-
       },
 
       ...mapMutations([
@@ -150,6 +150,11 @@
         'addCardCC_submit',
         'addCardCC_getCode',
         ])
+    },
+    computed:{
+      cvv2Valid(){
+        return /\d{3}/.test(this.cvv2)
+      },
     },
     created(){
       this.setYearOptions()

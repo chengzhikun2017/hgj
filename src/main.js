@@ -66,7 +66,6 @@ Vue.component('app-popphoto', popPhoto)
 Vue.component('app-carditem', carditem)
 
 
-
 // Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
@@ -75,7 +74,7 @@ Vue.__isDev = process.env.NODE_ENV === 'development'
 Vue.filter('moneyFilter', (v) => {
   return (v / 100).toFixed(2) + '元'
 })
-Vue.filter('timePlanRecordFilter', (v) => {
+Vue.filter('timeFilter', (v) => {
   return TimeUtil.getTimeString(v)
 })
 Vue.filter('timePlanRecordFilter', (v) => {
@@ -96,7 +95,7 @@ Vue.directive('scroll-load', {
       }
   },
   bind: function(el, binding, vnode) {
-    console.log('vnode', vnode)
+    // console.log('vnode', vnode)
     // var el = document.querySelector('.list-container-inner')
     var cfg = binding.value,
       sel = cfg.listSelector
@@ -115,7 +114,7 @@ Vue.directive('scroll-load', {
     // console.log('el', listContainer)
     el.addEventListener('scroll', () => {
       btt = listContainer.getBoundingClientRect().bottom
-      console.log('btt scroll', btt)
+      // console.log('btt scroll', btt)
       if (btt < H) {
         // cfg.getting = true
         // cfg.get(cfg.crrtPage)

@@ -127,4 +127,7 @@
       color: #393939;
     }
   }
+  .planbox{
+    height: auto;
+  }
 </style>

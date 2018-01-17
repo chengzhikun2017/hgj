@@ -20,8 +20,8 @@
   export default {
     data () {
       return {
-        pwd:'12345678',
-        newPwd:'12345678',
+        pwd:'',
+        newPwd:'',
         pwdType:'password',
       }
     },

@@ -7,8 +7,13 @@ import helper from '../../utils/helper.js'
 const share = {
   state: {
     showShare:false,
+    countReport:{},
   },
-  getters: {},
+  getters: {
+    share_countReport(s){
+      return s.countReport
+    },
+  },
   mutations: {
     share_show(s){
       s.showShare=true
@@ -18,7 +23,14 @@ const share = {
     },
   },
   actions: {
-  }
+    share_getCount({state},){
+      fetch({
+        url:'report/count',
+      }).then(res=>{
+        state.countReport=res
+      })
+    },
+  },
 }
 
 export default share

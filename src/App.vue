@@ -44,6 +44,10 @@ export default {
     },
   },
   created(){
+    let query=this.$route.query
+    this.share_getCount()
+    this.account_shareInfoSet(query)
+    // this.$store.commit('account_shareInfoSet',query)
     this.$nextTick(()=>{
       this.account_checkSession().then(res=>{
         if(res.data.data&&res.data.data.userId){
@@ -96,6 +100,7 @@ export default {
     ...mapMutations([
       'router_willBackToIndex',
       'router_setNewPath',
+      'account_shareInfoSet',
     ]),
     ...mapActions([
       'account_checkSession',
@@ -104,6 +109,7 @@ export default {
       'cards_getListCC',
       'cards_getListDC',
       'order_productsListGet',
+      'share_getCount',
       ])
 
   },
