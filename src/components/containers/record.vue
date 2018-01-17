@@ -19,10 +19,11 @@
         </div>
       </div>
       <div class="right" flex="cross:center">
-        <button v-if="record.status === 'SUCCESS'">执行成功</button>
-        <button v-if="record.status === 'DOING'">执行中</button>
-        <button v-if="record.status === 'FAILED'">执行失败</button>
-        <button v-if="record.status === 'CREATE'">等待执行</button>
+        <button v-if="record.status === 'SUCCESS'" class="green">执行成功</button>
+        <button v-if="record.status === 'DOING'" class="green">执行中</button>
+        <button v-if="record.status === 'FAILED'" class="red">执行失败</button>
+        <button v-if="record.status === 'CREATE'" class="yellow">等待执行</button>
+        <!-- <button v-if="record.status === '？'" class="grey">计划取消</button> -->
       </div>
     </div>
   </div>
@@ -97,8 +98,19 @@
           border: none;
           outline: none;
           color: white;
-          background: #53d769;
           text-align: center;
+          &.green {
+            background: #53d769;
+          }
+          &.red {
+            background: #ed4949;
+          }
+           &.yellow {
+            background: #ed9a49;
+          }
+           &.grey {
+            background: #888888;
+          }
         }
       }
     }

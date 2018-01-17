@@ -2,7 +2,9 @@
   <div class="login" flex="dir:top">
     <app-nav flex-box="0">登录页</app-nav>
     <article>
-      <div class="logo"></div>
+      <div class="logo" flex="main:center cross:center">
+        <img src="/static/img/logo.jpg" alt="">
+      </div>
       <div class="form">
         <div class="label">
           <span class="icon-account"></span>
@@ -124,39 +126,42 @@
   .login {
     width: 100%;
     height: 100%;
-    .logo {
-      width: 100%;
-      height: 1.22rem;
-    }
     article {
       padding: 0 0.2rem;
-    }
-    .form {
-      .label {
-        padding-top: 0.1rem;
-        font-size: 0.14rem;
-        color: #a4a4a4;
-        .label-name {
-          padding-left: 0.05rem;
+      overflow: auto;
+      .logo {
+        width: 100%;
+        height: 1.22rem;
+        img {
+          width: 1rem;
         }
       }
-      .input {
-        width: 100%;
+      .form {
+        .label {
+          padding-top: 0.1rem;
+          font-size: 0.14rem;
+          color: #a4a4a4;
+          .label-name {
+            padding-left: 0.05rem;
+          }
+        }
+        .input {
+          width: 100%;
+        }
+      }
+      .note {
+        padding-top: 0.2rem;
+        p {
+          font-size: 0.15rem;
+          color: #999999;
+        }
+      }
+      .mybutton {
+        margin-top: 0.36rem;
+      }
+      .input{
+        position: relative;
       }
     }
-    .note {
-      padding-top: 0.2rem;
-      p {
-        font-size: 0.15rem;
-        color: #999999;
-      }
-    }
-    .mybutton {
-      margin-top: 0.36rem;
-    }
-    .input{
-      position: relative;
-    }
-
   } 
 </style>

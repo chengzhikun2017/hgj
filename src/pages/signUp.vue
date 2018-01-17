@@ -2,7 +2,9 @@
   <div class="login">
     <app-nav >{{title}}</app-nav>
     <article>
-      <div class="logo"></div>
+      <div class="logo" flex="main:center cross:center">
+        <img src="/static/img/logo.jpg" alt="">
+      </div>
       <div class="form">
         <div class="label">
           <span class="icon-qrcode"></span>
@@ -222,27 +224,30 @@
       .logo {
         width: 100%;
         height: 1.22rem;
-      }
-    }
-    .form {
-      .label {
-        padding-top: 0.1rem;
-        font-size: 0.14rem;
-        color: #a4a4a4;
-        .label-name {
-          padding-left: 0.05rem;
+        img {
+          width: 1rem;
         }
       }
-      .input {
-        width: 100%;
-        position: relative;
+      .form {
+        .label {
+          padding-top: 0.1rem;
+          font-size: 0.14rem;
+          color: #a4a4a4;
+          .label-name {
+            padding-left: 0.05rem;
+          }
+        }
+        .input {
+          width: 100%;
+          position: relative;
+        }
       }
-    }
-    .mybutton {
-      margin-top: 0.36rem;
-    }
-    .protocol {
-      margin-top: 0.2rem;
+      .mybutton {
+        margin-top: 0.36rem;
+      }
+      .protocol {
+        margin-top: 0.2rem;
+      }
     }
   } 
 
