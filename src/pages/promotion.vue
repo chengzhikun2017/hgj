@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="promotion" flex="dir:top">
     <app-nav flex-box="0" :showBack='false'>推广</app-nav>
     <article flex-box="1">
       <div class="banner">
@@ -53,10 +53,24 @@
         <p>3. 享受多至2成的再次分润！</p>
 
       </div>
-      <div class="mybutton">
-        <app-button @click.native='showShare'>邀请更多道友</app-button>
+   
+      <div class="accountUpdateContent">
+        <h3 class="topbar" flex="cross:center">
+          <app-cricleicon icon="icon-star" flex-box="0" circle="small" bgcolor="bg-blue" size="0.28rem"></app-cricleicon>
+          <h3 flex-box="1" class="title">概览</h3>
+          <span class="btn">更多详情</span>
+        </h3>
+        <div class="cutliner">
+        </div>
+        <div class="share-breif">
+          <p class="share-detail">推广总人数：<span>10人</span></p>
+          <p class="share-detail">推广总收入：<span>2371.92元</span></p>
+        </div>
       </div>
     </article>
+    <div class="mybutton" flex-box="0">
+      <app-button @click.native='showShare'>邀请好友赚分润</app-button>
+    </div>
 <!--     <div class="lv-box">
       <p class="crrt-lv">当前级别：{{crrtLvText}}</p>
       <p class="next-lv" v-if='nextLvText'>下一级别：{{nextLvText}}</p>
@@ -71,17 +85,7 @@
     </div> -->
     <!-- <h2 class="slogan" style="padding:0 0.15rem">马上升级获取更多权益</h2> -->
 
-    <div class="share-breif-box">
-      <h3 class="sub-title" style='display:flex;justify-content:space-between;'>
-        概览
-        <span style='font-size: 0.15rem;color:#999'>更多>></span>
-      </h3>
-      <div class="share-breif">
-        <p class="share-detail">一级推广人数：<span>10人</span></p>
-        <p class="share-detail">二级推广人数：<span>34人</span></p>
-        <p class="share-detail">推广总收入：<span>2371.92元</span></p>
-      </div>
-    </div>
+    
     <!-- <app-button @click.native='share' style='width:80%;margin: 0 auto;'>分享有礼</app-button> -->
     <!-- <app-button @click.native='goJihuo' style='width:80%;margin: 0 auto;'>马上激活</app-button> -->
 
@@ -177,158 +181,163 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-article {
-  background: white;
-  overflow: auto;
-  .banner {
-    position: relative;
-    height: 2.39rem;
-    overflow: hidden;
-    width: 100%;
-    .circle {
-      position: absolute;
-      top: -8.91rem;
-      left: 50%;
-      margin-left: -5.65rem;
-      width: 11.3rem;
-      height: 11.3rem;
-      border-radius: 50%;
-      background: #323232;
+.promotion {
+  width: 100%;
+  height: 100%;
+  article {
+    background: white;
+    overflow: auto;
+    .banner {
+      position: relative;
+      height: 2.39rem;
       overflow: hidden;
-      .incircle {
+      width: 100%;
+      .circle {
         position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        top: -8.91rem;
+        left: 50%;
+        margin-left: -5.65rem;
+        width: 11.3rem;
+        height: 11.3rem;
         border-radius: 50%;
-        box-shadow:0 0 0.5rem #999 inset;
-      }
-      .bannercontent {
-        width: 3.35rem;
-        height: 2.39rem;
-        .title {
-          height: 1.02rem;
-          .rank {
-            img {
-              width: 0.4rem;
-              display: block;
-            }
-          }
-          .level {
-            margin-left: 0.15rem;
-            .msg {
-              margin-bottom: 0.09rem;
-              font-size: 0.15rem;
-              color: #f8d444;
-              line-height: 1;
-            }
-            .note {
-              font-size: 0.12rem;
-              color: rgba(255, 255, 255, 0.56);
-              line-height: 1;
-            }
-          }
+        background: #323232;
+        overflow: hidden;
+        .incircle {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          border-radius: 50%;
+          box-shadow:0 0 0.5rem #999 inset;
         }
-        .content {
-          width: 100%;
-          height: 1.37rem;
-          box-sizing: border-box;
-          padding:0.15rem 0.15rem 0;
-          border-radius: 0.1rem;
-          background: white;
-          .bar {
-            .liner {
-              height: 1px;
-              background: #d3d3d3;
-              transform: scaleY(.5);
+        .bannercontent {
+          width: 3.35rem;
+          height: 2.39rem;
+          .title {
+            height: 1.02rem;
+            .rank {
+              img {
+                width: 0.4rem;
+                display: block;
+              }
             }
-            .note {
+            .level {
+              margin-left: 0.15rem;
+              .msg {
+                margin-bottom: 0.09rem;
+                font-size: 0.15rem;
+                color: #f8d444;
+                line-height: 1;
+              }
+              .note {
+                font-size: 0.12rem;
+                color: rgba(255, 255, 255, 0.56);
+                line-height: 1;
+              }
+            }
+          }
+          .content {
+            width: 100%;
+            height: 1.37rem;
+            box-sizing: border-box;
+            padding:0.15rem 0.15rem 0;
+            border-radius: 0.1rem;
+            background: white;
+            .bar {
+              .liner {
+                height: 1px;
+                background: #d3d3d3;
+                transform: scaleY(.5);
+              }
+              .note {
+                color: #383838;
+                font-size: 0.13rem;
+                line-height: 1;
+              }
+              .star {
+                color: #d3d3d3;
+                font-size: 0.12rem;
+                line-height: 1;
+                padding:0 0.15rem;
+              }
+            }
+            .point {
+              margin-top: 0.3rem;
+              font-size: 0.2rem;
+              font-weight: 900;
+              line-height: 1;
               color: #383838;
+              text-align: center;
+            }
+            p {
+              margin-top: 0.15rem;
               font-size: 0.13rem;
+              color: #a4a4a4;
               line-height: 1;
+              text-align: center;
             }
-            .star {
-              color: #d3d3d3;
-              font-size: 0.12rem;
-              line-height: 1;
-              padding:0 0.15rem;
-            }
-          }
-          .point {
-            margin-top: 0.3rem;
-            font-size: 0.2rem;
-            font-weight: 900;
-            line-height: 1;
-            color: #383838;
-            text-align: center;
-          }
-          p {
-            margin-top: 0.15rem;
-            font-size: 0.13rem;
-            color: #a4a4a4;
-            line-height: 1;
-            text-align: center;
           }
         }
       }
     }
-  }
-  .accountUpdateContent {
-    padding:0.2rem 0.2rem 0;
-    .topbar {
-      .title {
-        margin-left: 0.1rem;
-        font-size: 0.19rem;
+    .accountUpdateContent {
+      padding:0.2rem 0.2rem 0;
+      .topbar {
+        .title {
+          margin-left: 0.1rem;
+          font-size: 0.19rem;
+          color: #383838;
+          line-height: 1;
+          font-weight: 600;
+        }
+        .btn {
+          padding: 0.05rem 0.14rem;
+          border-radius: 0.03rem;
+          font-size: 0.13rem;
+          color: white;
+          line-height: 1;
+          background: #53d769;
+        }
+      }
+      .cutliner {
+        margin:0.2rem 0;
+        height: 1px;
+        border: 1px dashed #d3d3d3;
+        transform: scaleY(.5);
+      }
+      p {
+        font-size: 0.14rem;
         color: #383838;
-        line-height: 1;
-        font-weight: 600;
+        line-height: 1.5;
+        margin-bottom: 0.15rem;
       }
-      .btn {
-        padding: 0.05rem 0.14rem;
-        border-radius: 0.03rem;
-        font-size: 0.13rem;
-        color: white;
-        line-height: 1;
-        background: #53d769;
-      }
-    }
-    .cutliner {
-      margin:0.2rem 0;
-      height: 1px;
-      border: 1px dashed #d3d3d3;
-      transform: scaleY(.5);
-    }
-    p {
-      font-size: 0.14rem;
-      color: #383838;
-      line-height: 1.5;
-      margin-bottom: 0.15rem;
-    }
-    .mybutton {
-      margin-top: 0.36rem;
+      
     }
   }
-}
-.active-box{
+  .mybutton {
+    padding: 0.1rem 0.2rem;
+  }
+  .active-box{
 
-  display: flex;
-  padding:0.25rem;
-}
-/*.lv-treatment{
-  border:1px solid red;
-  padding:0.15rem;
-  p{
-    font-size: 0.15rem;
-     color:#333;
+    display: flex;
+    padding:0.25rem;
   }
-}*/
-.share-breif-box{
-  border:1px solid red;
-  padding: 0.15rem;
-  .share-detail{
-    font-size: 0.15rem;
-    color:#333;
+  /*.lv-treatment{
+    border:1px solid red;
+    padding:0.15rem;
+    p{
+      font-size: 0.15rem;
+       color:#333;
+    }
+  }*/
+  .share-breif-box{
+    border:1px solid red;
+    padding: 0.15rem;
+    .share-detail{
+      font-size: 0.15rem;
+      color:#333;
+    }
   }
 }
 </style>

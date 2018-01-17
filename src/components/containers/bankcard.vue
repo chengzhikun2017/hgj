@@ -21,7 +21,7 @@
         </div>
         <div class="right">
           <span class="delete" @click='deleteCard' v-if='type==0'>
-            <img src="/static/img/delete.png" alt="">
+            <span class="icon-trash"></span>
           </span>
         </div>
       </div>
@@ -105,12 +105,12 @@
         color: white;
         .right {
           .delete {
-            img {
-              width: 0.24rem;
-            }
+            font-size: 0.14rem;
           }
         }
-        .cardtype {
+        .cardtype { 
+          /*color: rgba(19, 8, 248, 0.2);*/
+          color: rgba(255, 255, 255, 0.3);
           font-size: 0.2rem;
           font-weight: 700;
         }

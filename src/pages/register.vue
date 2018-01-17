@@ -2,7 +2,9 @@
   <div class="register hgj-container" flex="dir:top">
     <app-nav flex-box="0">{{title}}</app-nav>
     <article flex-box="1">
-      <div class="logo"></div>
+      <div class="logo" flex="main:center cross:center">
+        <img src="/static/img/logo.jpg" alt="">
+      </div>
       <div class="form">
         <div class="label">
           <span class="icon-account"></span>
@@ -124,6 +126,9 @@
       .logo {
         width: 100%;
         height: 1.22rem;
+        img {
+          width: 1rem;
+        }
       }
     }
     .form {

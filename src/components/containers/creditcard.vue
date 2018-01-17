@@ -28,7 +28,7 @@
         </span>
         <span v-if='type===2'>
           <span v-show="card.status === 'SUCCESS'" class="delete" @click.stop='deleteConfirm'>
-            <img src="/static/img/delete.png" alt="">
+            <span class="icon-trash"></span>
           </span>
         </span>
         <!-- <span class="btn2" v-show="card.planStatus !== 'DOING'" @click.stop='goNewPlan'>建立还款计划</span> -->
@@ -163,9 +163,7 @@
           border-bottom: 1px dashed white;
           margin-bottom: 0.15rem;
           .delete {
-            img {
-              width: 0.24rem;
-            }
+            font-size: 0.14rem;
           }
         }
       }
