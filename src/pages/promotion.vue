@@ -65,7 +65,7 @@
    
       <div class="accountUpdateContent">
         <h3 class="topbar" flex="cross:center">
-          <app-cricleicon icon="icon-star" flex-box="0" circle="small" bgcolor="bg-blue" size="0.28rem"></app-cricleicon>
+          <app-cricleicon icon="icon-survey" flex-box="0" circle="small" bgcolor="bg-red" size="0.23rem"></app-cricleicon>
           <h3 flex-box="1" class="title">概览</h3>
           <span class="btn">更多详情</span>
         </h3>

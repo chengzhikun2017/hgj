@@ -3,7 +3,10 @@
     <app-nav flex-box="0">激活账户</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <h1>激活账户说明</h1>
+        <h1 flex="cross:center">
+          <app-cricleicon icon="icon-active" flex-box="0" circle="small" bgcolor="bg-lightblue" size="0.28rem"></app-cricleicon>
+          <span class="title" flex-box="1">激活账户说明</span>
+        </h1>
         <div class="dash-line"></div>
         <p>(1)激活后可以使用智能还卡服务</p>
         <p>(2)首次使用智能还卡免服务费</p>
@@ -64,21 +67,25 @@
         /*height: 1.78rem;*/
         background: white;
         padding:0.25rem 0.2rem;
-        h1{
+        h1 {
           font-size: 0.19rem;
           font-weight: 600;
           line-height: 1.53;
           text-align: left;
           color: #3b3b3b;
+          .title {
+            padding-left: 0.1rem;
+          }
         }
         p{
           font-size: 0.14rem;
           line-height: 1;
-          margin-top: 0.15rem;
+          margin-bottom: 0.15rem;
           text-align: left;
           color: #3b3b3b;
         }
         .dash-line{
+          margin:0.2rem 0;
           border:0px dashed #d2d2d2;
           border-bottom-width: 1px;
         }
