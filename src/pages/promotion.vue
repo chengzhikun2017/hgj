@@ -72,8 +72,8 @@
         <div class="cutliner">
         </div>
         <div class="share-breif">
-          <p class="share-detail">推广总人数：<span>10人</span></p>
-          <p class="share-detail">推广总收入：<span>2371.92元</span></p>
+          <p class="share-detail">推广总人数：<span>{{ttlEarning}}人</span></p>
+          <p class="share-detail">推广总收入：<span>{{ttlShareNum|moneyFilter}}</span></p>
         </div>
       </div>
     </article>
@@ -103,7 +103,7 @@
 
 <script>
 import helper from '../utils/helper.js'
-import {mapActions} from 'vuex'
+import {mapActions,mapGetters} from 'vuex'
 export default {
   data() {
     return {
@@ -133,6 +133,15 @@ export default {
       ])
   },
   computed:{
+    // 总收入=repaymentPlanFee + levelUpFee + accountActiveFee ，总推广人数 = agentLv1Number + agentLv2Number + agentLv3Number + agentLv3plusNumber
+    ttlEarning(){
+      let ttl=this.share_countReport.total
+      return ttl.repaymentPlanFee+ttl.levelUpFee+ttl.accountActiveFee
+    },
+    ttlShareNum(){
+      let ttl=this.share_countReport.total
+      return ttl.agentLv1Number+ttl.agentLv2Number+ttl.agentLv3Number+ttl.agentLv3plusNumber
+    },
     crrtLv(){
       return this.$store.state.account.level
     },
@@ -154,6 +163,9 @@ export default {
         case 4:return '保时捷';break;
       }
     },
+    ...mapGetters([
+      'share_countReport',
+      ])
   },
   events: {},
   components: {},

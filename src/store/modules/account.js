@@ -7,6 +7,8 @@ import helper from '../../utils/helper.js'
 class defaultAccountInfo {
   constructor(props) {
     // this.phone= null
+    this.ancestor=null
+    this.qudao=null
     this.phone= ''
     this.captcha= ''
     this.verifyCode=''
@@ -34,6 +36,11 @@ const account = {
     },
   },
   mutations: {
+    account_shareInfoSet(s,{qudao,ancestor}){
+      console.log('account_shareInfoSet commit',qudao,ancestor)
+      s.qudao=qudao
+      s.ancestor=ancestor
+    },
     account_setActived(s){
       s.isActive=true
     },
@@ -99,8 +106,8 @@ const account = {
           phone:state.phone,
           code:code,// 存不存store?
           password:password,
-          ancestor:0,
-          qudao:'',
+          ancestor:state.ancestor,
+          qudao:state.qudao,
         }
       })
       promise.then(res=>{
