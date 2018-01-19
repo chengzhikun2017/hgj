@@ -1,8 +1,38 @@
 <template>
   <div class="populizeScore hgj-container" flex="dir:top">
-    <app-nav flex-box="0">推广积分页面</app-nav>
+    <app-nav flex-box="0">推广页面</app-nav>
     <article flex-box="1">
-      <div class="banner"></div>
+      <div class="banner">
+        <swiper class="swiper" :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
+          <!-- slides -->
+          <swiper-slide flex="dir:top main:center cross:center">
+            <div class="people">
+              <span class="icon-person"></span>
+              <span class="number">100</span>
+            </div>
+            <div class="note" flex="cross:center">
+              <div class="linerleft" flex-box="1"></div>
+              <div class="msg">今日新增推广人数</div>
+              <div class="linerright" flex-box="1"></div>
+            </div>
+          </swiper-slide>
+          <swiper-slide flex="dir:top main:center cross:center">
+            <div class="people">
+              <span class="icon-person"></span>
+              <span class="number">100</span>
+            </div>
+            <div class="note" flex="cross:center">
+              <div class="linerleft" flex-box="1"></div>
+              <div class="msg">总推广人数</div>
+              <div class="linerright" flex-box="1"></div>
+            </div>
+          </swiper-slide>
+          <!-- Optional controls -->
+          <div class="swiper-pagination"  slot="pagination"></div>
+          <div class="swiper-button-prev" slot="button-prev"></div>
+          <div class="swiper-button-next" slot="button-next"></div>
+        </swiper>
+      </div>
       <div class="populizeScore-content">
         <div class="title" flex="cross:center">
           <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
@@ -33,11 +63,40 @@
   </div>
 </template>
 <script>
+  import 'swiper/dist/css/swiper.css'
+
+  import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
   export default {
+    components: {
+      swiper,
+      swiperSlide
+    },
     data () {
       return {
+        swiperOption: {
+          // some swiper options/callbacks
+          // 所有的参数同 swiper 官方 api 参数
+          // ...
 
+        }
       }
+    },
+    computed: {
+      swiper() {
+        return this.$refs.mySwiper.swiper
+      }
+    },
+    methods: {
+      callback () {
+        return "hello world"
+      }
+    },
+    mounted() {
+      // current swiper instance
+      // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
+      console.log('this is current swiper instance object', this.swiper)
+      this.swiper.slideTo(3, 1000, false)
     }
   }
 </script>
@@ -46,6 +105,44 @@
     .banner {
       height: 1.78rem;
       background: white;
+      .swiper {
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to top, #1ca3b1, #35b4c1);
+        .people {
+          .icon-person {
+            font-size: 0.16rem;
+            color: white;
+          }
+          .number {
+            font-size: 0.34rem;
+            color: white;
+          }
+        }
+        .note {
+          /*width: 2.28rem;*/
+          .linerleft {
+            width: 0;
+            height: 0;
+            border-top: 0.01rem solid transparent;
+            border-bottom: 0.01em solid transparent;
+            border-right: 0.655rem solid #cbf6fa;
+          }
+          .linerright {
+            width: 0;
+            height: 0;
+            border-top: 0.01rem solid transparent;
+            border-bottom: 0.01em solid transparent;
+            border-left: 0.655rem solid #cbf6fa;
+          } 
+          .msg {
+            font-size: 0.13rem;
+            color: #cbf6fa;
+            line-height: 1;
+            padding: 0 0.1rem;
+          }
+        }
+      }
     }
     .populizeScore-content {
       margin-top: 0.1rem;
