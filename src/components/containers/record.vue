@@ -58,6 +58,7 @@
         color:#383838;
       }
       .logo {
+        height: 0.35rem;
       }
     }
     .liner {

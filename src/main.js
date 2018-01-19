@@ -21,6 +21,7 @@ import alert from './components/views/reminder/alert.vue'
 import loading from './components/views/reminder/loading.vue'
 import toast from './components/views/reminder/toast.vue'
 import recordList from './components/views/record_list.vue'
+import dot_bg from './components/views/dot_bg.vue'
 
 import nav from './components/containers/nav.vue'
 import protocol from './components/containers/protocol.vue'
@@ -64,6 +65,7 @@ Vue.component('app-share', share)
 Vue.component('app-popview', popview)
 Vue.component('app-popphoto', popPhoto)
 Vue.component('app-carditem', carditem)
+Vue.component('app-dot-bg', dot_bg)
 
 
 // Vue.prototype.$http = axios
@@ -208,7 +210,8 @@ Vue.directive('pull-refresh', {
       //  console.log('refresh')
       //  this.getNew()
       // }
-      if (containerTop > 0) { //可以设置其他值控制下拉的幅度
+      console.log('containerTop',containerTop)
+      if (containerTop > 0.5) { //可以设置其他值控制下拉的幅度
 
         if (cfg.method) {
           if (cfg.method instanceof Function) {
@@ -240,14 +243,44 @@ Vue.directive('inner-scroll', {
     // console.warn('config', binding)
     var touch = {
       start: null,
+      startTime:null,
+      endTime:null,
       end: null,
       last: null,
       crrt: null,
     }
-    var scrollTop, outer
+    var scrollTop, outer,scrollTimer
+    let inertiaScroll=(outer,speed)=>{
+      // console.log('%c inertia scroll','color:red',speed)
+      if(speed<0){
+        let step=30*speed/2
+        // let step=30*Math.abs(speed)/4
+        scrollTimer=setInterval(()=>{
+          if(step<=0){
+            clearInterval(scrollTimer)
+          }
+          outer.scrollTop+=step
+          step-=0.75
+        },1000/60)
+      }else{
+        let step=30*speed/2
+        // let step=30*Math.abs(speed)/1
+        scrollTimer=setInterval(()=>{
+          if(step<=0){
+            clearInterval(scrollTimer)
+          }
+          outer.scrollTop-=step
+          step-=0.75
+        },1000/60)
+      }
+
+
+    }
     // console.log('bindded v-inner-scroll')
     el.addEventListener('touchstart', (e) => {
+      clearInterval(scrollTimer)
       e.stopPropagation()
+      touch.startTime=new Date()
       touch.start = e.touches[0].clientY
       touch.last = e.touches[0].clientY
     }, false)
@@ -289,7 +322,19 @@ Vue.directive('inner-scroll', {
     }, false)
     el.addEventListener('touchend', (e) => {
       e.stopPropagation()
+      touch.endTime=new Date()
+      let duration=touch.endTime-touch.startTime
+      let distance=touch.end-touch.start
+      let speed=distance/duration
       touch.end = e.changedTouches[0].clientY
+      // console.log('touch',duration,speed)
+      outer = e.currentTarget.parentElement
+      if(Math.abs(speed)>0.8){
+        // inertiaScroll(outer,speed)
+        // outer.scrollTop -=speed
+
+      }
+      
     }, false)
   }
 })

@@ -2,33 +2,33 @@
   <div class="mine hgj-container" flex="dir:top">
     <app-nav flex-box="0" :showBack="false">我的</app-nav>
     <article flex-box="1">
-      <div class="myInfo">
-        <div class="portraiture" @click='onClickAvatar'>
-          <img src="" alt="">
-        </div>
-        <div class="name" v-if='!userInfo.isLoged'>{{'未登录'}}</div>
-        <div class="name" v-if='userInfo.isLoged'>{{userInfo.name||'未实名'}}</div>
-        <!-- <div class="phone">{{userInfo.phone||''}}</div> -->
-        <!-- <div class="phone">{{phone}}</div> -->
-        <div class="liner"></div>
-        <div class="info" flex="main:center cross:center">
-          <div class="item" @click='viewBalance'>
-            <p>{{balance}}<span class="yuan">元</span></p>
-            <div class="label">余额</div>
+      <app-dot-bg class='banner' :type='1' :distanceOfCenter='4.5' :halfHeight='110'>
+        <div class="myInfo">
+          <div class="portraiture" @click='onClickAvatar'>
+            <img src="" alt="">
           </div>
-          <div class="item">
-            <p>{{jifen}}</p>
-            <div class="label">积分</div>
+          <div class="name" v-if='!userInfo.isLoged'>{{'未登录'}}</div>
+          <div class="name" v-if='userInfo.isLoged'>{{userInfo.name||'未实名'}}</div>
+          <div class="liner"></div>
+          <div class="info" flex="main:center cross:center">
+            <div class="item" @click='viewBalance'>
+              <p>{{balance}}<span class="yuan">元</span></p>
+              <div class="label">余额</div>
+            </div>
+            <div class="item">
+              <p>{{jifen}}</p>
+              <div class="label">积分</div>
+            </div>
+            <div class="item" @click='viewBalance'>
+              <p>{{securityFee}}<span class="yuan">元</span></p>
+              <div class="label">保证金</div>
+            </div>
           </div>
-          <div class="item" @click='viewBalance'>
-            <p>{{securityFee}}<span class="yuan">元</span></p>
-            <div class="label">保证金</div>
+          <div v-if='userInfo.isLoged' @click='goSetting' class="setting">
+            用户设置
           </div>
         </div>
-        <div v-if='userInfo.isLoged' @click='goSetting'style="position:absolute;top:0.55rem;right:0.1rem;font-size: 0.12rem;color:#ccc;text-decoration: underline">
-          用户设置
-        </div>
-      </div>
+      </app-dot-bg>
       <div class="mine-content">
         <app-formitem3 title="我的计划" note="" @click.native='viewPlanRecords' :first="true">
           <div class="header" slot="icon">
@@ -81,18 +81,14 @@ import helper from '../utils/helper.js'
 export default {
   data() {
     return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
     }
   },
   methods:{
     goOrderList(){
-      helper.goPage('/orderRecords')
+      helper.goPageLoged('/orderRecords')
     },
     viewBalance(){
-      helper.goPage('/balance_page')
+      helper.goPageLoged('/balance_page')
     },
     goSignIn(){
       helper.goPage('/login')
@@ -105,13 +101,12 @@ export default {
       }else{
         helper.goPage('/login')
       }
-      
     },
     goSetting(){
         helper.goPage('/user_setting')
     },
     viewPlanRecords(){
-      helper.goPage('/planrecords')
+      helper.goPageLoged('/planrecords')
     },
   },
   computed:{
@@ -140,10 +135,30 @@ export default {
 <style lang="scss" scoped>
   .mine {
     article {
-      .myInfo {
+      .banner{
+        height: 2.2rem;
+        position: relative;
         background: #0E2A53;
+      }
+      .myInfo {
         text-align: center;
         padding: 0.2rem;
+        position: relative;
+        /*z-index: 1;*/
+        .setting{
+          position:absolute;
+          top:0.15rem;
+          right:0.1rem;
+          font-size: 0.12rem;
+          color:#ccc;
+          text-decoration: underline;
+        }
+        .dot-bg{
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        }
         .portraiture {
           width: 0.78rem;
           height: 0.78rem;

@@ -40,7 +40,8 @@
   },
   computed:{
     height(){
-      let height=window.screen.height/100-0.44
+      console.log('window')
+      let height=window.innerHeight/devicePixelRatio/100-0.44
       return height+'rem'
     },
   },
@@ -60,7 +61,7 @@
         // this.ttlPage=null
         this.crrtPage=1
         this.noMore=false
-        this.get()
+        this.get(true)
       }
     },
     //loading
@@ -72,7 +73,7 @@
     //
     //uncertain parameters
     //url
-    get() {
+    get(isNew=false) {
       console.log(' get more')
       if (this.loading) {
         return
@@ -88,7 +89,7 @@
           page: this.crrtPage,
           limit: 8,
         }, this.cfg.params, ),
-      }).then(res => {
+      },isNew).then(res => {
         this.loading = false
         this.crrtPage++
         if(res.length<=0){
@@ -132,6 +133,7 @@
       /*height: 6rem;*/
       /*z-index: 2;*/
       background: transparent;
+      /*-webkit-overflow-scrolling : touch;  */
       .list-container-inner{
         background: transparent;
       }

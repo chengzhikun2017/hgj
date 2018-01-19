@@ -136,10 +136,16 @@ export default {
     // 总收入=repaymentPlanFee + levelUpFee + accountActiveFee ，总推广人数 = agentLv1Number + agentLv2Number + agentLv3Number + agentLv3plusNumber
     ttlEarning(){
       let ttl=this.share_countReport.total
+      if(!ttl){
+        return 0
+      }
       return ttl.repaymentPlanFee+ttl.levelUpFee+ttl.accountActiveFee
     },
     ttlShareNum(){
       let ttl=this.share_countReport.total
+      if(!ttl){
+        return 0
+      }
       return ttl.agentLv1Number+ttl.agentLv2Number+ttl.agentLv3Number+ttl.agentLv3plusNumber
     },
     crrtLv(){
@@ -165,6 +171,7 @@ export default {
     },
     ...mapGetters([
       'share_countReport',
+      'account_userInfo',
       ])
   },
   events: {},

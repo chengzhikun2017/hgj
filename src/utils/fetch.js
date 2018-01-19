@@ -3,10 +3,12 @@ import axios from 'axios'
 import store from '@/store'
 import {HGJ_VUE} from '../main.js'
 import helper from '../utils/helper.js'
+import commonRemind from './commonRemind.js'
 // const apiUrl='https://hgj.wd577.cn/api'
 const apiUrl='/api'
 function handleUnlogin(res){
-  helper.unloginRemind()
+  console.log('%c handleUnlogin','color:red',)
+  commonRemind.unloginRemind()
  
 }
 function handleWrongCode(res){

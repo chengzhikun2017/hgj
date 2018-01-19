@@ -3,6 +3,7 @@ import config from '../config.js'
 import {
   HGJ_VUE
 } from '../main.js'
+import commonRemind from './commonRemind.js'
 export default class helper {
   static urlConcat(url, obj) {
     var str = '',
@@ -26,6 +27,13 @@ export default class helper {
     if (callback !== undefined && callback instanceof Function) {
       callback()
     }
+  }
+  static goPageLoged(path, callback){
+    if(!HGJ_VUE.$store.state.account.userId){
+      commonRemind.unloginRemind()
+      return
+    }
+    this.goPage(path,callback)
   }
 
   // 'upgrade','active'
@@ -80,7 +88,6 @@ export default class helper {
         helper.goPage(url)
       })
     }
-
   }
 
   static replaceRouter(path) {
@@ -116,7 +123,6 @@ export default class helper {
     HGJ_VUE.$store.commit('cards_clearListDC')
     HGJ_VUE.$store.commit('account_reset')
       // HGJ_VUE.$store.commit('order_clearProductList')
-
   }
 
   static getInitialInfo() {

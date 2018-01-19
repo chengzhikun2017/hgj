@@ -25,19 +25,19 @@
 <script>
 import router from './router'
 import {mapState} from 'vuex'
+import commonRemind from './utils/commonRemind.js'
 export default {
   data() {
     return {
       activeIndex:0,
-      // navPaths:['/cards','/promotion','/mine'],
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
     }
   },
   methods:{
     clickNav(index){
+      if(index==1&&!this.userInfo.userId){
+        commonRemind.unloginRemind()
+        return
+      }
       this.activeIndex=index
       router.push(this.navPaths[index])
     },
@@ -51,6 +51,9 @@ export default {
     })
   },
   computed:{ 
+    userInfo(){
+      return this.$store.state.account
+    },
     showFootNav(){
       let path=this.$route.path
       let isFootNavPath=this.navPaths.indexOf(path)>=0

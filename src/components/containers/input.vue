@@ -57,6 +57,7 @@ export default {
       // this.$emit('change',e.target.value)
     },
     focus(){
+      // this.$refs.input.scrollIntoView(false)
       this.$refs.input.focus.call()
     },
     onEnter(e){

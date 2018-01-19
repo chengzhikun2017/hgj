@@ -1,5 +1,6 @@
 <template>
   <div class="popView" v-show="value">
+    <qr-code v-model='isQrShow'></qr-code>
     <div class="popcontent">
       <div class="planbox">
         <header flex="cross:center">
@@ -23,12 +24,14 @@
               <div class="icon-wechat green"></div>
               <p>微信分享</p>
             </div>
-            <div class="waybox">
-              <div class="icon-wechat darkred"></div>
-              <p>朋友圈分享</p>
+            <div class="waybox" @click='qrShareShow'>
+              <div class="icon-qrcode black"></div>
+              <p>二维码分享</p>
             </div>
+            
           </div>
-<!--           <div class="waysItem" flex>
+          <!--
+           <div class="waysItem" flex>
             <div class="waybox">
               <div class="icon-qq blue"></div>
               <p>QQ分享</p>
@@ -38,8 +41,8 @@
               <p>通过链接分享</p>
             </div>
             <div class="waybox">
-              <div class="icon-qrcode black"></div>
-              <p>二维码分享</p>
+              <div class="icon-wechat darkred"></div>
+              <p>朋友圈分享</p>
             </div>
           </div> -->
         </div>
@@ -48,6 +51,7 @@
   </div>
 </template>
 <script>
+  import qrCode from './qrCode.vue'
   export default {
     props: {
       value: {
@@ -61,14 +65,20 @@
     },
     data () {
       return {
-
+        isQrShow:false
       }
     },
     methods: {
       close () {
         this.$store.commit('share_hide')
-      }
-    }
+      },
+      qrShareShow(){
+        this.isQrShow=true
+      },
+    },
+    components:{
+      'qr-code':qrCode,
+    },
   }
 </script>
 <style lang="scss" scoped>

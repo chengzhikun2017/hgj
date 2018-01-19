@@ -15,6 +15,7 @@ import pay_free from '../pages/payFree.vue'
 import orderRecords from '../pages/orderRecords.vue'
 import balanceRecords from '../pages/balanceRecords.vue'
 import paybankcard_old from '../pages/paybankcard_old.vue'
+import changeSC from '../pages/card_changeSC.vue'
 
 
 import login from '@/pages/login.vue'
@@ -115,6 +116,7 @@ index = index.concat(
   newRoute('/orderRecords', 'orderRecords', orderRecords),
   newRoute('/balanceRecords', 'balanceRecords', balanceRecords),
   newRoute('/questions', 'questions', questions),
+  newRoute('/changeSC', 'changeSC', changeSC),
 )
 route_test = route_test.concat(
   newRoute('/test', 'test', test),
@@ -123,12 +125,12 @@ route_test = route_test.concat(
   newRoute('/test3', 'test3', test3),
 )
 basicRoutes = [
-  // {
-  //   path: '*',
-  //   name: 'cards',
-  //   redirect: '/hgj/cards',
-  //   component: cards
-  // },
+  {
+    path: '',
+    name: 'cards',
+    redirect: '/cards',
+    component: cards
+  },
   {
     path: '/*',
     name: 'error_page',

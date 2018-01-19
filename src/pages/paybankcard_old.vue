@@ -2,7 +2,7 @@
   <div class="paybankcard hgj-container" flex="dir:top">
     <app-nav flex-box="0">储蓄卡支付</app-nav>
     <div class="banner-card-choosed">
-      <app-bankcard  :type='1' v-if="cardId!==null" :card="cardInfo"></app-bankcard>
+      <app-bankcard  :type='2' v-if="cardId!==null" :card="cardInfo"></app-bankcard>
       <div class="emptyCard" v-if="cardId===null" flex="dir:top main:center cross:center">
         <div class="note" flex="cross:center">
           <span class="icon-alert"></span>

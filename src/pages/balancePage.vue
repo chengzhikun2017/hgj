@@ -1,22 +1,25 @@
 <template>
   <div >
     <app-nav flex-box="0">我的钱包</app-nav>
-    <div class="balance-box">
-      <div class="balance-text">账户余额</div>
-      <p class="balance-money">
-        {{balance}}<span>元</span>
-      </p>
-      <div class="security-box">
-        <div class="fee-detail">
-          <p class="money">{{unfreezeMoneyText}}<span>元</span></p>
-          <p class="money-text">可提现保证金</p>
-        </div>
-        <div class="fee-detail">
-          <p class="money">{{freezeMoney}}<span>元</span></p>
-          <p class="money-text">已冻结保证金</p>
-        </div>
-      </div>
-    </div>   
+      <app-dot-bg class='dot-bg '>
+        <div class="balance-box">
+
+          <div class="balance-text">账户余额</div>
+          <p class="balance-money">
+            {{balance}}<span>元</span>
+          </p>
+          <div class="security-box">
+            <div class="fee-detail">
+              <p class="money">{{unfreezeMoneyText}}<span>元</span></p>
+              <p class="money-text">可提现保证金</p>
+            </div>
+            <div class="fee-detail">
+              <p class="money">{{freezeMoney}}<span>元</span></p>
+              <p class="money-text">已冻结保证金</p>
+            </div>
+          </div>
+        </div> 
+      </app-dot-bg>
     <div class="dscrp">
       <i class="icon icon-alert"></i>
       <p class="dscrp-text">
@@ -152,10 +155,15 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+  .dot-bg{
+    position: relative;
+    height: 2.68rem;
+    background-image: linear-gradient(to right, #4be2f8 1%, #4b84f8);
+  }
 .balance-box{
+
   width: 100%;
   height: 2.68rem;
-  background-image: linear-gradient(to right, #4be2f8 1%, #4b84f8);
   padding-top: 0.6rem;
   position: relative;
   .balance-text{
