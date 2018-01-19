@@ -38,15 +38,15 @@
             <span class="icon-go"></span>
           </div>
         </app-formitem3>
-        <app-formitem3 title="联系我们" note="">
+        <!-- <app-formitem3 title="联系我们" note="">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-lightblue" icon="icon-contact"></app-cricleicon>
           </div>
           <div class="content" slot="action">
             <span class="icon-go"></span>
           </div>
-        </app-formitem3>
-        <app-formitem3 title="关于我们" note="">
+        </app-formitem3> -->
+        <app-formitem3 title="关于我们" note="" @click.native='aboutus'>
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-purple" icon="icon-aboutus"></app-cricleicon>
           </div>
@@ -62,7 +62,7 @@
             <span class="icon-go"></span>
           </div>
         </app-formitem3>
-        <app-formitem3 title="常见问题" note="" :last="true">
+        <app-formitem3 title="常见问题" note="" :last="true" @click.native='viewQuestions'>
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-orange" icon="icon-question"></app-cricleicon>
           </div>
@@ -78,12 +78,23 @@
 
 <script>
 import helper from '../utils/helper.js'
+import {mapMutations} from 'vuex'
 export default {
   data() {
     return {
     }
   },
   methods:{
+    aboutus(){
+      this.get_qa_ansqwer({
+        aim:'2-2',
+        title:'关于我们',
+      })
+      helper.goPage('/questions')
+    },
+    viewQuestions(){
+      helper.goPage('/questions')
+    },
     goOrderList(){
       helper.goPageLoged('/orderRecords')
     },
@@ -108,6 +119,9 @@ export default {
     viewPlanRecords(){
       helper.goPageLoged('/planrecords')
     },
+    ...mapMutations([
+      'get_qa_ansqwer',
+    ]),
   },
   computed:{
     balance() {
@@ -128,6 +142,7 @@ export default {
       return this.userInfo.phone
     },
   },
+
   events: {},
   components: {}
 }

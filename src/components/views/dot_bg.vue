@@ -82,7 +82,7 @@ export default {
           x+=distance
         }
         x=-halfWidth-halfDistance*(i%2)
-        console.log('x',x)
+        // console.log('x',x)
         y+=distance
         i++
       }

@@ -7,7 +7,7 @@
       </div>
       <div class="chooseBank" flex="main:justify cross:center">
         <span>请绑定您本人的储蓄卡</span>
-        <button class="btn">支持的银行</button>
+        <button class="btn" @click='viewRules'>支持的银行</button>
       </div>
       <div class="addbankcard-content">
         <app-formitem label="持卡人姓名" :first="true">
@@ -56,6 +56,13 @@
           helper.goPage(-1)
         })
       },
+      viewRules(){
+        this.get_qa_ansqwer({
+          aim:'2-2',
+          title:'支持的银行卡',
+        })
+        helper.goPage('/questions')
+      },
       getValueFromStore(){
         let info = this.$store.state.addCardDC.info
         console.log('add bank card info',info)
@@ -69,6 +76,7 @@
         }
       },
       ...mapMutations([
+        'get_qa_ansqwer',
         'addCardDC_setValue',
         ]),
       ...mapActions([

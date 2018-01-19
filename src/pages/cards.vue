@@ -31,7 +31,7 @@
       <div class="mybutton">
         <app-button class='add-bttn':type='1'  @click.native='goAddDC'><span class="icon-add"></span>添加银行卡</app-button>
         <div class="others" flex="main:justify">
-          <span>什么是结算卡？</span>
+          <span @click='goSCQA'>什么是结算卡？</span>
           <!-- <span>点击分享</span> -->
         </div>
       </div>
@@ -72,10 +72,18 @@
         }
         helper.goPage('/addbankcard')
       },
+      goSCQA(){
+        this.get_qa_ansqwer({
+          aim:'3-1',
+          title:'什么是结算卡',
+        })
+        helper.goPage('/questions')
+      },
       back(){//temp
         this.$router.go(-1)
       },
       ...mapMutations([
+        'get_qa_ansqwer',
         ]),
       ...mapActions([
         'cards_getListCC',

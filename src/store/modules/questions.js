@@ -24,7 +24,7 @@ const questions = {
     change_qa_activeIndex(s, index) {
       s.qa_activeIndex = index
     },
-    get_qa_ansqwer(s, aim, title) {
+    get_qa_ansqwer(s, {aim, title}) {
       let activeIndex = aim.split('-')[0];
       s.qa_title = title
       s.qa_activeIndex = activeIndex;

@@ -46,7 +46,7 @@
         <div class="topbar" flex="cross:center">
           <app-cricleicon icon="icon-star" flex-box="0" circle="small" bgcolor="bg-blue" size="0.28rem"></app-cricleicon>
           <h3 flex-box="1" class="title">下一级别权益</h3>
-          <span class="btn" flex-box="0" >了解规则</span>
+          <span class="btn" flex-box="0" @click='viewRules'>了解规则</span>
         </div>
         <div class="cutliner">
         </div>
@@ -103,7 +103,7 @@
 
 <script>
 import helper from '../utils/helper.js'
-import {mapActions,mapGetters} from 'vuex'
+import {mapActions,mapGetters,mapMutations} from 'vuex'
 export default {
   data() {
     return {
@@ -112,6 +112,13 @@ export default {
   methods:{
     showShare(){
       this.$store.commit('share_show')
+    },
+    viewRules(){
+      this.get_qa_ansqwer({
+        aim:'',
+        title:'',
+      })
+      helper.goPage('/questions')
     },
     activePay(){
       helper.goBuy('active')
@@ -128,6 +135,9 @@ export default {
     share(){
       
     },
+    ...mapMutations([
+      'get_qa_ansqwer',
+      ]),
     ...mapActions([
       'order_createActive',
       ])
