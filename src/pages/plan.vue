@@ -250,10 +250,19 @@ export default {
         v=new Date(v)
         return v.getMonth()+1+'月'+v.getDate()+'日'
       },
+      padStart0_2(v){
+        if(v>10){
+          return v
+        }else{
+          return '0'+v
+        }
+      },
       dayPaser(v){
         let date =new Date(Number(v))
-        let month =(date.getMonth()+1).toString().padStart(2,0)
-        let day =(date.getDate()).toString().padStart(2,0)
+        let month =(date.getMonth()+1).toString()
+        month=this.padStart0_2(month)
+        let day =(date.getDate()).toString()
+        day=this.padStart0_2(day)
         return `${date.getFullYear()}-${month}-${day}`
       },
       choosePlan(plan){

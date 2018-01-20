@@ -122,6 +122,7 @@ export default class helper {
     HGJ_VUE.$store.commit('cards_clearListCC')
     HGJ_VUE.$store.commit('cards_clearListDC')
     HGJ_VUE.$store.commit('account_reset')
+    HGJ_VUE.$store.commit('share_resetReport')
       // HGJ_VUE.$store.commit('order_clearProductList')
   }
 
@@ -130,5 +131,6 @@ export default class helper {
     HGJ_VUE.$store.dispatch('cards_getListDC')
     HGJ_VUE.$store.dispatch('account_getUserInfo')
     HGJ_VUE.$store.dispatch('order_productsListGet')
+    HGJ_VUE.$store.dispatch('share_getCount')
   }
 }

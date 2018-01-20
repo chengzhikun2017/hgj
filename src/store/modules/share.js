@@ -77,6 +77,9 @@ const share = {
     share_hide(s) {
       s.showShare = false
     },
+    share_resetReport(s){
+      
+    }
   },
   actions: {
     share_getCount({
@@ -86,11 +89,11 @@ const share = {
         url: 'report/count',
       }).then(res => {
         state.countReport = res
-        console.log(res)
+        // console.log(res)
         let today = res.today
         let total = res.total
-        console.log(today)
-        console.log(total)
+        // console.log(today)
+        // console.log(total)
         state.todayNumber = today.agentLv1Number + today.agentLv2Number + today.agentLv3Number + today.agentLv3plusNumber;
         state.totalagentLv1Number = total.agentLv1Number
         state.totalagentLv2Number = total.agentLv2Number
