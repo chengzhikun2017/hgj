@@ -4,6 +4,7 @@ import config from './config.js'
 import helper from './utils/helper.js'
 import TimeUtil from './utils/time.js'
 import Vue from 'vue'
+
 import App from './App'
 import router from './router'
 import axios from 'axios'
@@ -83,18 +84,18 @@ Vue.filter('timePlanRecordFilter', (v) => {
   return TimeUtil.getTimeString(v)
 })
 Vue.directive('scroll-load', {
-  update:function(el, binding, vnode) {
+  update: function(el, binding, vnode) {
     var cfg = binding.value,
       sel = cfg.listSelector
     var listContainer,
       containerHeight,
       H = screen.height * devicePixelRatio + 150 //trigger height
-      listContainer = document.querySelector(sel)
-      containerHeight = listContainer.getBoundingClientRect().height
-      console.log('containerHeight', containerHeight,'H', H,containerHeight<H)
-      if(containerHeight<H){
-        cfg.method()
-      }
+    listContainer = document.querySelector(sel)
+    containerHeight = listContainer.getBoundingClientRect().height
+    console.log('containerHeight', containerHeight, 'H', H, containerHeight < H)
+    if (containerHeight < H) {
+      cfg.method()
+    }
   },
   bind: function(el, binding, vnode) {
     // console.log('vnode', vnode)
@@ -104,8 +105,8 @@ Vue.directive('scroll-load', {
     var listContainer,
       btt,
       H = screen.height * devicePixelRatio + 150 //trigger height
-    
-    vnode.context.$nextTick(()=>{
+
+    vnode.context.$nextTick(() => {
       listContainer = document.querySelector(sel)
       btt = listContainer.getBoundingClientRect().bottom
       // console.log('H', screen.height, H)
@@ -210,7 +211,7 @@ Vue.directive('pull-refresh', {
       //  console.log('refresh')
       //  this.getNew()
       // }
-      console.log('containerTop',containerTop)
+      console.log('containerTop', containerTop)
       if (containerTop > 0.5) { //可以设置其他值控制下拉的幅度
 
         if (cfg.method) {
@@ -243,35 +244,35 @@ Vue.directive('inner-scroll', {
     // console.warn('config', binding)
     var touch = {
       start: null,
-      startTime:null,
-      endTime:null,
+      startTime: null,
+      endTime: null,
       end: null,
       last: null,
       crrt: null,
     }
-    var scrollTop, outer,scrollTimer
-    let inertiaScroll=(outer,speed)=>{
+    var scrollTop, outer, scrollTimer
+    let inertiaScroll = (outer, speed) => {
       // console.log('%c inertia scroll','color:red',speed)
-      if(speed<0){
-        let step=30*speed/2
+      if (speed < 0) {
+        let step = 30 * speed / 2
         // let step=30*Math.abs(speed)/4
-        scrollTimer=setInterval(()=>{
-          if(step<=0){
+        scrollTimer = setInterval(() => {
+          if (step <= 0) {
             clearInterval(scrollTimer)
           }
-          outer.scrollTop+=step
-          step-=0.75
-        },1000/60)
-      }else{
-        let step=30*speed/2
+          outer.scrollTop += step
+          step -= 0.75
+        }, 1000 / 60)
+      } else {
+        let step = 30 * speed / 2
         // let step=30*Math.abs(speed)/1
-        scrollTimer=setInterval(()=>{
-          if(step<=0){
+        scrollTimer = setInterval(() => {
+          if (step <= 0) {
             clearInterval(scrollTimer)
           }
-          outer.scrollTop-=step
-          step-=0.75
-        },1000/60)
+          outer.scrollTop -= step
+          step -= 0.75
+        }, 1000 / 60)
       }
 
 
@@ -280,7 +281,7 @@ Vue.directive('inner-scroll', {
     el.addEventListener('touchstart', (e) => {
       clearInterval(scrollTimer)
       e.stopPropagation()
-      touch.startTime=new Date()
+      touch.startTime = new Date()
       touch.start = e.touches[0].clientY
       touch.last = e.touches[0].clientY
     }, false)
@@ -322,19 +323,19 @@ Vue.directive('inner-scroll', {
     }, false)
     el.addEventListener('touchend', (e) => {
       e.stopPropagation()
-      touch.endTime=new Date()
-      let duration=touch.endTime-touch.startTime
-      let distance=touch.end-touch.start
-      let speed=distance/duration
+      touch.endTime = new Date()
+      let duration = touch.endTime - touch.startTime
+      let distance = touch.end - touch.start
+      let speed = distance / duration
       touch.end = e.changedTouches[0].clientY
       // console.log('touch',duration,speed)
       outer = e.currentTarget.parentElement
-      if(Math.abs(speed)>0.8){
+      if (Math.abs(speed) > 0.8) {
         // inertiaScroll(outer,speed)
         // outer.scrollTop -=speed
 
       }
-      
+
     }, false)
   }
 })
