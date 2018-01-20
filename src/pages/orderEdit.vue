@@ -3,7 +3,7 @@
     <app-nav flex-box="0">账单/还款日修改</app-nav>
     <article flex-box="1">
       <div class="banner">
-        <app-creditcard :card="card"></app-creditcard>
+        <app-creditcard :card="card" :type='1'></app-creditcard>
       </div>
       <div class="orderEdit-content">
         <app-formitem label="账单日" :first="true">

@@ -10,7 +10,7 @@
           <span class="btn1" v-show="card.status === 'DOING'" @click.stop='cards_getListCC'>绑定中，点击刷新</span>
           <span class="" v-show="card.status === 'FAILED'">绑定失败</span>
           <span class="btn1" v-show="card.status === 'FAILED'">重新绑定</span>
-          <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='goEdit'>编辑</span>
+          <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='goEdit'>修改</span>
 
         </span>
       </div>

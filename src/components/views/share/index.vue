@@ -20,7 +20,7 @@
               <div class="icon-link purple"></div>
               <p>通过链接分享</p>
             </div>
-            <div class="waybox">
+            <div class="waybox" @click='configShareIfConfiged'>
               <div class="icon-wechat green"></div>
               <p>微信分享</p>
             </div>
@@ -52,6 +52,7 @@
 <script>
   import qrCode from './qrCode.vue'
   import helper from '../../../utils/helper.js'
+  import {mapActions,mapMutations} from 'vuex'
   export default {
     props: {
       value: {
@@ -65,8 +66,12 @@
     },
     data () {
       return {
-        isQrShow:false
+        isQrShow:false,
+        wxConfigTimer:null,
       }
+    },
+    destroyed(){
+      clearInterval(this.wxConfigTimer)
     },
     computed:{
       userInfo(){
@@ -79,11 +84,58 @@
         return this.userInfo.userId
       },
     },
+    created(){
+      
+    },
     methods: {
+
+      configMenueShare() {
+        // console.log('%c configMenueShare','color:red',)
+        alert('configMenueShare cfg')
+        wx.onMenuShareAppMessage({
+          title: '禾管家', // 分享标题
+          desc: '分享描述', // 分享描述
+          // link: 'http://hzg.he577.com' + bus.relativeUrlTest + '/m/#/index/apply_borrow?uniqueId=' + bus.uniqueId + '&share=1', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          link:helper.urlConcat('http://hgj.wd577.cn/share.html',{
+            img:this.shareSrc,
+            uid:this.uid
+          }),
+          imgUrl: 'http://hgj.wd577.cn/logo_share.png', // 分享图标
+          type: '', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          success: () => {
+            // alert('分享成功')
+            console.log('%c 分享成功','color:red',)
+            // 用户确认分享后执行的回调函数
+          },
+          cancel: () => {
+            // alert('分享被取消')
+            console.log('%c 分享被取消','color:red',)
+
+              // 用户取消分享后执行的回调函数
+          }
+        });
+      },
+      configShareIfConfiged(){
+        // let configed=true
+        // this.app_jsconfig()
+        if(this.$store.state.app.isWX){
+
+        this.wxConfigTimer=setInterval(()=>{
+          console.log('this.$store.state.app.wxConfiged',this.$store.state.app.wxConfiged)
+          if(this.$store.state.app.wxConfiged){
+            clearInterval(this.wxConfigTimer)
+            this.hgjAlert('点击右上角分享链接')
+            this.configMenueShare()
+          }
+        },100)
+        }
+        
+      },
       urlShare(){
         // http://hgj.wd577.cn/
         let oldPath=this.$route.fullPath
-        let path=helper.urlConcat('share.html?img=',{
+        let path=helper.urlConcat('share.html',{
           img:this.shareSrc,
           uid:this.uid
         })
@@ -107,6 +159,12 @@
       qrShareShow(){
         this.isQrShow=true
       },
+      ...mapActions([
+        'app_jsconfig',
+        ]),
+      ...mapMutations([
+        'app_checkIsWX',
+        ]),
     },
     components:{
       'qr-code':qrCode,

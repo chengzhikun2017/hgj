@@ -55,7 +55,7 @@
   <img id='shareImg' src='#' alt=''>
   <!-- <div class="btn-gradient yellow large">立即注册</div> -->
   <div class="bttn" onclick='goSignUp()'>立即注册</div>
-  <p id='src'></p>
+  <!-- <p id='src'></p> -->
   <script type="text/javascript">
     var url=location.href
     var index=url.indexOf('?'),len=url.length
@@ -72,11 +72,10 @@
       addValueToObj(arr[i],query)
     }
     shareImg.src=query.img
+    if(src){
     src.innerHTML=query.img
+    }
 
-    // console.log('query',query)
-    // console.log('shareImg',shareImg)
-    // shareImg.src=src
     function addValueToObj(string,obj){
       let key,value,index=string.indexOf('=')
       key=string.slice(0,index)
@@ -86,6 +85,34 @@
     function goSignUp(){
       location.href='http://hgj.wd577.cn/register?ancestor='+query.uid
     }
+    'report/sharePvCount'
+    var xhr=new XMLHttpRequest()
+    xhr.open('get','http://hgj.wd577.cn/api/report/sharePvCount?uid='+query.uid,true)
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*")
+    xhr.onreadystatechange=readyStateChange
+    xhr.send(null)
+    function readyStateChange(){
+      var status=xhr.readyState===4&&xhr.status===200
+      if(status){
+        console.log('xhr',xhr)
+      }
+    }
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

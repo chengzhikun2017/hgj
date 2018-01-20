@@ -12,7 +12,7 @@
         </div> -->
         <span class="paymoney">支付金额</span>
         <div class="money">{{(productInfo.fee / 100).toFixed(0)}}<span>元</span></div>
-        <div class="originBox">原价：<span class="originFee">{{(productInfo.originFee / 100).toFixed(0)}}</span></div>
+        <div class="originBox">原价：<span class="originFee">{{productInfo.originFee|moneyFilter}}</span></div>
         <!-- <p>{{productDscrp}}</p> -->
 
       </div>
@@ -258,7 +258,7 @@
           font-size: 0.12rem;
           color: white;
           .originFee {
-            color: rgb(248, 75, 75);
+            color:#ccbfbf;
             text-decoration: line-through;
           }
         }

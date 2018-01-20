@@ -69,6 +69,7 @@ const account = {
     },
   },
   actions: {
+
     account_logoutReset({state,dispatch,commit}){
       console.log('reset')
       commit('account_reset')

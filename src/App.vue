@@ -46,6 +46,8 @@ export default {
   created(){
     let query=this.$route.query
     this.share_getCount()
+    this.app_checkIsWX()
+    this.app_jsconfig()
     this.account_shareInfoSet(query)
     // this.$store.commit('account_shareInfoSet',query)
     this.$nextTick(()=>{
@@ -101,8 +103,10 @@ export default {
       'router_willBackToIndex',
       'router_setNewPath',
       'account_shareInfoSet',
+      'app_checkIsWX',
     ]),
     ...mapActions([
+      'app_jsconfig',
       'account_checkSession',
       'account_getUserInfo',
       'account_logout',

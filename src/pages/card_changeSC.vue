@@ -12,7 +12,7 @@
         <app-radio v-model='cardId' :label='card.cardId' v-for='card in cardsDC' v-if='card.settlementStatus!=="SUCCESS"' :key='card.cardId'>
           <app-carditem :card='card' :choosedCardId='cardId'></app-carditem>
         </app-radio>
-        <div @click='newCard' >使用新的银行卡</div>
+        <div @click='newCard' class='new-card' >使用新的银行卡</div>
       </div>
     </app-popview>
   </div>

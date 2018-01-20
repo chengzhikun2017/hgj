@@ -73,8 +73,8 @@
         <div class="cutliner">
         </div>
         <div class="share-breif">
-          <p class="share-detail">推广总人数：<span>{{ttlEarning}}人</span></p>
-          <p class="share-detail">推广总收入：<span>{{ttlShareNum|moneyFilter}}</span></p>
+          <p class="share-detail">推广总人数：<span>{{ttlShareNum}}人</span></p>
+          <p class="share-detail">推广总收入：<span>{{ttlEarning|moneyFilter}}</span></p>
         </div>
       </div>
     </article>
