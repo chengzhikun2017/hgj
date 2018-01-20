@@ -58,16 +58,16 @@ const share = {
       return s.accountActiveFee + s.repaymentPlanFee + s.levelUpFee
     },
     share_totalagentLv1Fee(s) {
-      return s.agentLv1Fee
+      return s.totalagentLv1Fee
     },
     share_totalagentLv2Fee(s) {
-      return s.agentLv2Fee
+      return s.totalagentLv2Fee
     },
     share_totalagentLv3Fee(s) {
-      return s.agentLv3Fee
+      return s.totalagentLv3Fee
     },
     share_totalagentLv3plusFee(s) {
-      return s.agentLv3plusFee
+      return s.totalagentLv3plusFee
     },
   },
   mutations: {
