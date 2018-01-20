@@ -2,7 +2,17 @@
   <div class="populizeShare hgj-container" flex="dir:top">
     <app-nav flex-box="0">推广积分页面</app-nav>
     <article flex-box="1">
-      <div class="banner"></div>
+      <div class="banner" flex="dir:top main:center cross:center">
+        <div class="people">
+          <span class="icon-money"></span>
+          <span class="number">100</span>
+        </div>
+        <div class="note" flex="cross:center">
+          <div class="linerleft" flex-box="1"></div>
+          <div class="msg">我当前的分润</div>
+          <div class="linerright" flex-box="1"></div>
+        </div>
+      </div>
       <div class="populizeShare-content">
         <div class="title" flex="cross:center">
           <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
@@ -11,9 +21,9 @@
         </div>
         <div class="liner"></div>
         <div class="points">
-          <p>账号激活分润: <span class="point">+10点</span></p>
-          <p>代理升级分润: <span class="point">+15点</span></p>
-          <p>智能还卡计划分润: <span class="point">+88点</span></p>
+          <p>账号激活分润: <span class="point">+10元</span></p>
+          <p>代理升级分润: <span class="point">+15元</span></p>
+          <p>智能还卡计划分润: <span class="point">+88元</span></p>
         </div>
       </div>
     </article>
@@ -32,7 +42,40 @@
   .populizeShare {
     .banner {
       height: 1.78rem;
-      background: white;
+      background-image: linear-gradient(to top, #1ca3b1, #35b4c1);
+      .people {
+        .icon-money {
+          font-size: 0.16rem;
+          color: white;
+        }
+        .number {
+          font-size: 0.34rem;
+          color: white;
+        }
+      }
+      .note {
+        /*width: 2.28rem;*/
+        .linerleft {
+          width: 0;
+          height: 0;
+          border-top: 0.01rem solid transparent;
+          border-bottom: 0.01em solid transparent;
+          border-right: 0.655rem solid #cbf6fa;
+        }
+        .linerright {
+          width: 0;
+          height: 0;
+          border-top: 0.01rem solid transparent;
+          border-bottom: 0.01em solid transparent;
+          border-left: 0.655rem solid #cbf6fa;
+        } 
+        .msg {
+          font-size: 0.13rem;
+          color: #cbf6fa;
+          line-height: 1;
+          padding: 0 0.1rem;
+        }
+      }
     }
     .populizeShare-content {
       margin-top: 0.1rem;

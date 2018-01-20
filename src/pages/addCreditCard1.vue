@@ -5,7 +5,10 @@
       <div class="banner">
         <img src="/static/img/bannercredit.jpg" alt="">
       </div>
-      <p class="note">请绑定您本人的信用卡</p>
+      <div class="chooseBank" flex="main:justify cross:center">
+        <span>请绑定您本人的信用卡</span>
+        <button class="btn" @click='viewRules'>支持的银行</button>
+      </div>
       <div class="form">
         <app-formitem label="持卡人姓名" :first="true">
           <!-- <app-input class='form-input' :placeholder='"请输入持卡人姓名"' v-model='name' :disabled='realNameVerified'/> -->
@@ -41,6 +44,13 @@
     computed: {
     },
     methods:{
+      viewRules(){
+        this.get_qa_ansqwer({
+          aim:'6',
+          title:'支持的银行卡',
+        })
+        helper.goPage('/questions')
+      },
       checkValid () {
         if (!this.name) {
           CR.inputWarn(this,'请输入姓名','formname')
@@ -87,6 +97,7 @@
         }
       },
       ...mapMutations([
+        'get_qa_ansqwer',
         'addCardCC_setValue',
         ]),
       ...mapActions([
@@ -128,6 +139,22 @@
     article {
       overflow: auto;
       background: #f3f3f3;
+      .chooseBank {
+        padding:0 0.2rem;
+        height: 0.44rem;
+        font-size: 0.13rem;
+        color: #a4a4a4;
+        .btn {
+          padding: 0.05rem 0.15rem;
+          color: white;
+          font-size: 0.12rem;
+          line-height: 1;
+          outline: none;
+          border:none;
+          border-radius: 0.03rem;
+          background-image: linear-gradient(to right, #f86b4b 1%, #f84b4b);
+        }
+      }
       .banner {
         height: 1.78rem;
         background: white;

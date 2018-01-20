@@ -29,33 +29,37 @@
           </swiper-slide>
           <!-- Optional controls -->
           <div class="swiper-pagination"  slot="pagination"></div>
-          <div class="swiper-button-prev" slot="button-prev"></div>
-          <div class="swiper-button-next" slot="button-next"></div>
+          <div class="my-button-prev" slot="button-prev">
+            <span class="icon-back"></span>
+          </div>
+          <div class="my-button-next" slot="button-next">
+            <span class="icon-go"></span>
+          </div>
         </swiper>
       </div>
       <div class="populizeScore-content">
         <div class="title" flex="cross:center">
           <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
           <h2 flex-box="1">推广记录</h2>
-          <button flex-box="0">这里该放什么?</button>
+          <button flex-box="0">详情</button>
         </div>
         <div class="liner"></div>
         <div class="points">
           <div class="pointItem" flex="main:justify">
             <span>一级推广人数: <span class="data">36次</span></span>
-            <span class="point">+36积分</span>
+            <span class="point">+36元</span>
           </div>
           <div class="pointItem" flex="main:justify">
             <span>二级推广人数: <span class="data">36次</span></span>
-            <span class="point">+10积分</span>
+            <span class="point">+10元</span>
           </div>
           <div class="pointItem" flex="main:justify">
             <span>三级推广人数: <span class="data">36次</span></span>
-            <span class="point">+10积分</span>
+            <span class="point">+10元</span>
           </div>
           <div class="pointItem" flex="main:justify">
             <span>三级以上推广人数: <span class="data">36次</span></span>
-            <span class="point">+18积分</span>
+            <span class="point">+18元</span>
           </div>
         </div>
       </div>
@@ -64,7 +68,6 @@
 </template>
 <script>
   import 'swiper/dist/css/swiper.css'
-
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
   export default {
@@ -75,6 +78,15 @@
     data () {
       return {
         swiperOption: {
+          pagination: {
+            el: '.swiper-pagination',
+          },
+          navigation: {
+            nextEl: '.my-button-next',
+            prevEl: '.my-button-prev',
+            hideOnClick: true,
+            hiddenClass: 'my-button-hidden',
+          },
           // some swiper options/callbacks
           // 所有的参数同 swiper 官方 api 参数
           // ...
@@ -96,10 +108,42 @@
       // current swiper instance
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
       console.log('this is current swiper instance object', this.swiper)
-      this.swiper.slideTo(3, 1000, false)
+      // this.swiper.slideTo(3, 1000, false)
     }
   }
 </script>
+<style lang="scss">
+  .my-button-prev, .my-button-next {
+    position: absolute;
+    top: 50%;
+    width: 0.2rem;
+    height: 0.2rem;
+    margin-top: -0.1rem;
+    z-index: 10;
+    cursor: pointer;
+    color: white;
+    &.swiper-button-disabled {
+      opacity: 0;
+    }
+  }
+  .my-button-prev {
+    left: 0.05rem;
+    right: auto;
+  }
+  .my-button-next {
+    left: auto;
+    right: 0.05rem;
+  }
+  .swiper-pagination-bullet {
+    opacity: 0.38;
+    background-color: #032023;
+  }
+  .swiper-pagination-bullet-active {
+    background: white;
+    opacity: 1;
+  }
+  
+</style>
 <style lang="scss" scoped>
   .populizeScore {
     .banner {

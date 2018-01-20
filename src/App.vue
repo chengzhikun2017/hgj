@@ -18,6 +18,7 @@
 
 <script>
 import './css/styles.scss'
+import './css/small_logo_sprite.css'
 import router from './router'
 import helper from './utils/helper.js'
 import footNav from './footNav.vue'
