@@ -5,7 +5,7 @@
       <div class="banner" flex="dir:top main:center cross:center">
         <div class="people">
           <span class="icon-money"></span>
-          <span class="number">100</span>
+          <span class="number">{{(share_totalFee / 100).toFixed(2)}}</span>
         </div>
         <div class="note" flex="cross:center">
           <div class="linerleft" flex-box="1"></div>
@@ -21,20 +21,35 @@
         </div>
         <div class="liner"></div>
         <div class="points">
-          <p>账号激活分润: <span class="point">+10元</span></p>
-          <p>代理升级分润: <span class="point">+15元</span></p>
-          <p>智能还卡计划分润: <span class="point">+88元</span></p>
+          <p>账号激活分润: <span class="point">+{{share_accountActiveFee | money}}元</span></p>
+          <p>代理升级分润: <span class="point">+{{share_repaymentPlanFee | money}}元</span></p>
+          <p>智能还卡计划分润: <span class="point">+{{share_levelUpFee | money}}元</span></p>
         </div>
       </div>
     </article>
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     data () {
       return {
 
       }
+    },
+    filters: {
+      money (val) {
+        if(!val) return 0
+        else return (val / 100).toFixed(2)
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'share_accountActiveFee',
+        'share_repaymentPlanFee',
+        'share_levelUpFee',
+        'share_totalFee'
+        ])
     }
   }
 </script>

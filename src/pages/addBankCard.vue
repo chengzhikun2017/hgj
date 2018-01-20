@@ -57,7 +57,7 @@
         })
       },
       viewRules(){
-        this.get_qa_ansqwer({
+        this.qa_get_ansqwer({
           aim:'6',
           title:'支持的银行卡',
         })
@@ -76,7 +76,7 @@
         }
       },
       ...mapMutations([
-        'get_qa_ansqwer',
+        'qa_get_ansqwer',
         'addCardDC_setValue',
         ]),
       ...mapActions([

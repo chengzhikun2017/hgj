@@ -68,7 +68,7 @@
         <h3 class="topbar" flex="cross:center">
           <app-cricleicon icon="icon-survey" flex-box="0" circle="small" bgcolor="bg-red" size="0.23rem"></app-cricleicon>
           <h3 flex-box="1" class="title">概览</h3>
-          <span class="btn">更多详情</span>
+          <span class="btn" @click="moreDetails">更多详情</span>
         </h3>
         <div class="cutliner">
         </div>
@@ -111,11 +111,14 @@ export default {
     }
   },
   methods:{
+    moreDetails () {
+      helper.goPage('/populizeScore')
+    },
     showShare(){
       this.$store.commit('share_show')
     },
     viewRules(){
-      this.get_qa_ansqwer({
+      this.qa_get_ansqwer({
         aim:'9',
         title:'代理等级收益',
       })
@@ -137,7 +140,7 @@ export default {
       
     },
     ...mapMutations([
-      'get_qa_ansqwer',
+      'qa_get_ansqwer',
       ]),
     ...mapActions([
       'order_createActive',
