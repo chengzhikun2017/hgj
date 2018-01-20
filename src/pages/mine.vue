@@ -5,7 +5,7 @@
       <app-dot-bg class='banner' :type='1' :distanceOfCenter='4.5' :halfHeight='110'>
         <div class="myInfo">
           <div class="portraiture" @click='onClickAvatar'>
-            <img src="" alt="">
+            <img src="/static/img/logo.jpg" alt="">
           </div>
           <div class="name" v-if='!userInfo.isLoged'>{{'未登录'}}</div>
           <div class="name" v-if='userInfo.isLoged'>{{userInfo.name||'未实名'}}</div>
@@ -46,7 +46,7 @@
             <span class="icon-go"></span>
           </div>
         </app-formitem3> -->
-        <app-formitem3 title="关于我们" note="" @click.native='aboutus'>
+        <app-formitem3 title="关于我们" note="" @click.native='viewAboutus'>
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-purple" icon="icon-aboutus"></app-cricleicon>
           </div>
@@ -119,6 +119,13 @@ export default {
     viewPlanRecords(){
       helper.goPageLoged('/planrecords')
     },
+    viewAboutus(){
+      this.get_qa_ansqwer({
+        aim:'8',
+        title:'关于我们',
+      })
+      helper.goPage('/questions')
+    },
     ...mapMutations([
       'get_qa_ansqwer',
     ]),
@@ -175,12 +182,19 @@ export default {
           z-index: -1;
         }
         .portraiture {
+          box-sizing: border-box;
           width: 0.78rem;
           height: 0.78rem;
+          padding: 0.1rem;
           margin:0 auto;
           border-radius: 50%;
           background: white;
           margin-bottom: 0.1rem;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
         .name {
           font-size: 0.16rem;

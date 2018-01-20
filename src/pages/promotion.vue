@@ -116,8 +116,8 @@ export default {
     },
     viewRules(){
       this.get_qa_ansqwer({
-        aim:'',
-        title:'',
+        aim:'9',
+        title:'代理等级收益',
       })
       helper.goPage('/questions')
     },
