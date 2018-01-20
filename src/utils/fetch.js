@@ -8,6 +8,9 @@ import commonRemind from './commonRemind.js'
 const apiUrl='/api'
 function handleUnlogin(res){
   console.log('%c handleUnlogin','color:red',)
+  if(!HGJ_VUE.$store.state.account.userId){
+    return
+  }
   commonRemind.unloginRemind()
  
 }

@@ -45,7 +45,8 @@
       <div class="accountUpdateContent">
         <div class="topbar" flex="cross:center">
           <app-cricleicon icon="icon-star" flex-box="0" circle="small" bgcolor="bg-blue" size="0.28rem"></app-cricleicon>
-          <h3 flex-box="1" class="title">下一级别权益</h3>
+          <h3 flex-box="1" class="title"  v-if='crrtLv!=2'>下一级别权益</h3>
+          <h3 flex-box="1" class="title" v-if='crrtLv==2'>当前级别权益</h3>
           <span class="btn" flex-box="0" @click='viewRules'>了解规则</span>
         </div>
         <div class="cutliner">
@@ -56,10 +57,10 @@
         <p v-if='crrtLv==0'>1、享受35%的收益；</p>
         <p v-if='crrtLv==4'>1、享受45%的收益；</p>
         <p v-if='crrtLv==4'>2、享受大众多余的10%收益。</p>
-        <p v-if='crrtLv==3'>1、享受60%的收益；</p>
-        <p v-if='crrtLv==3'>2、享受大众多余的25%收益；</p>
-        <p v-if='crrtLv==3'>3、享受保时捷多余的15%收益；</p>
-        <p v-if='crrtLv==3'>4、享受同级别推广的3%奖励。</p>
+        <p v-if='crrtLv==3||crrtLv==2'>1、享受60%的收益；</p>
+        <p v-if='crrtLv==3||crrtLv==2'>2、享受大众多余的25%收益；</p>
+        <p v-if='crrtLv==3||crrtLv==2'>3、享受保时捷多余的15%收益；</p>
+        <p v-if='crrtLv==3||crrtLv==2'>4、享受同级别推广的3%奖励。</p>
 
       </div>
    

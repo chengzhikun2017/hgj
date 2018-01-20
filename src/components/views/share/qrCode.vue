@@ -1,6 +1,6 @@
 <template>
   <div class="qrcode-box" v-if='value'>
-    <img src="../../../../static/img/bannerbank.jpg" class="img">
+    <img :src="imgUrl" class="img">
     <div class="remind-box">
       <p>长按下方图片保存</p>
       <i class="icon-cancel" @click='close'></i>
@@ -22,6 +22,11 @@ export default {
       this.$emit('input',false)
     },
   },
+  computed:{
+    imgUrl(){
+      return this.$store.state.account.qrcodeShareUrl
+    },
+  },
   events: {},
   components: {}
 }
@@ -30,13 +35,19 @@ export default {
 <style lang='scss' scoped>
 .qrcode-box{
   position: fixed;
+  display: flex;
   width: 100%;
   height: 100%;
-  border:2px solid red;
-  background: rgba(0,0,0,1);
+  justify-content:center;
+  align-items:center;
+  /*border:2px solid red;*/
+  background: #fc4b5b;
   z-index: 999999;
   .img{
-    width: 100%;
+    margin: auto;
+    /*margin-top: 0.5rem;*/
+    width: 80%;
+    border:10px solid #fff;
   }
   .remind-box{
     background: rgba(0,0,0,0.3);

@@ -244,7 +244,7 @@ export default {
 }
 .widthdraw-record{
   margin: 0 auto;
-  margin-top: 0.95rem;
+  margin-top: 0.55rem;
   display: flex;
   justify-content:center;
   align-items:center;

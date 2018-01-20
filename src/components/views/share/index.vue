@@ -16,9 +16,9 @@
         <div class="planbox-content">
           <div class="liner"></div>
           <div class="waysItem" flex>
-            <div class="waybox">
-              <div class="icon-message bluegreen"></div>
-              <p>短信分享</p>
+            <div class="waybox" @click='urlShare'>
+              <div class="icon-link purple"></div>
+              <p>通过链接分享</p>
             </div>
             <div class="waybox">
               <div class="icon-wechat green"></div>
@@ -28,7 +28,6 @@
               <div class="icon-qrcode black"></div>
               <p>二维码分享</p>
             </div>
-            
           </div>
           <!--
            <div class="waysItem" flex>
@@ -37,8 +36,8 @@
               <p>QQ分享</p>
             </div>
             <div class="waybox">
-              <div class="icon-link purple"></div>
-              <p>通过链接分享</p>
+              <div class="icon-message bluegreen"></div>
+              <p>短信分享</p>
             </div>
             <div class="waybox">
               <div class="icon-wechat darkred"></div>
@@ -52,6 +51,7 @@
 </template>
 <script>
   import qrCode from './qrCode.vue'
+  import helper from '../../../utils/helper.js'
   export default {
     props: {
       value: {
@@ -68,7 +68,39 @@
         isQrShow:false
       }
     },
+    computed:{
+      userInfo(){
+        return this.$store.state.account
+      },
+      shareSrc(){
+        return this.userInfo.qrcodeShareUrl
+      },
+      uid(){
+        return this.userInfo.userId
+      },
+    },
     methods: {
+      urlShare(){
+        // http://hgj.wd577.cn/
+        let oldPath=this.$route.fullPath
+        let path=helper.urlConcat('share.html?img=',{
+          img:this.shareSrc,
+          uid:this.uid
+        })
+        console.log('path',path)
+        history.replaceState({}, "page 3", path);
+        // history.pushState({}, "page 3", path);
+        this.hgjAlert({
+          title:'',
+          content:'点击右上角分享链接',
+          options:[{
+            text:'确认',callback:()=>{
+              history.replaceState({}, "page 3", oldPath);
+            },
+          }],
+        })
+        // history.replace
+      },
       close () {
         this.$store.commit('share_hide')
       },
@@ -89,7 +121,7 @@
     left: 0;
     right: 0;
     background: rgba(0, 0, 0, .8);
-    z-index: 99999;
+    z-index: 9999;
     .popcontent {
       position: absolute;
       left: 0.2rem;

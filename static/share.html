@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>分享</title>
+  <style type="text/css">
+    html,body{
+      height: 100%;
+      background: #fc4d5e;
+      display: flex;
+      width: 100%;
+      flex-direction:colum;
+    }
+    *{
+      padding:0;
+      margin:0;
+    }
+    .bttn{
+      width: 150px;
+      height: 50px;
+      position: absolute;
+      top: 50px;
+      left: 0;right: 0;
+      margin: 0 auto;
+
+      color:#fff;
+      line-height: 50px;
+      text-align: center;
+      font-size: 20px;
+      background: rgba(240,210,100,1);
+      border-radius: 15px;
+      /*background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(240,210,100,1)), to(rgba(229,201,96,1)));
+      background: -webkit-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+      background: -moz-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+      background: -o-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+      background: linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%)*/
+    }
+    #shareImg{
+      width: 75%;
+      margin:auto;
+      border:10px solid #fff;
+    }
+    #src{
+      position: absolute;
+      top: 0;
+      white-space:pre-wrap;
+      word-break: break-all;
+    }
+  </style>
+
+</head>
+<body>
+<!-- https://hgj.wd577.cn/uploads/qrcode/20180119/4_.jpg -->
+  <img id='shareImg' src='#' alt=''>
+  <!-- <div class="btn-gradient yellow large">立即注册</div> -->
+  <div class="bttn" onclick='goSignUp()'>立即注册</div>
+  <p id='src'></p>
+  <script type="text/javascript">
+    var url=location.href
+    var index=url.indexOf('?'),len=url.length
+    console.log('index',index)
+    var queryString=url.slice(index+1)
+    // console.log('src',src)
+    console.log('queryString',queryString)
+    var arr=queryString.split('&')
+    console.log('arr',arr)
+    var shareImg=document.querySelector('#shareImg')
+    var query={}
+    var src=document.querySelector('#src')
+    for(let i=0;i<arr.length;i++){
+      addValueToObj(arr[i],query)
+    }
+    shareImg.src=query.img
+    src.innerHTML=query.img
+
+    // console.log('query',query)
+    // console.log('shareImg',shareImg)
+    // shareImg.src=src
+    function addValueToObj(string,obj){
+      let key,value,index=string.indexOf('=')
+      key=string.slice(0,index)
+      value=string.slice(index+1,string.length)
+      obj[key]=decodeURIComponent(value)
+    }
+    function goSignUp(){
+      location.href='http://hgj.wd577.cn/register?ancestor='+query.uid
+    }
+  </script>
+</body>
+</html>
