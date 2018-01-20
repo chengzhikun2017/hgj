@@ -12,6 +12,7 @@
         </div> -->
         <span class="paymoney">支付金额</span>
         <div class="money">{{(productInfo.fee / 100).toFixed(0)}}<span>元</span></div>
+        <div class="originBox">原价：<span class="originFee">{{(productInfo.originFee / 100).toFixed(0)}}</span></div>
         <!-- <p>{{productDscrp}}</p> -->
 
       </div>
@@ -44,7 +45,7 @@
           </app-formitem3>
         </app-radio>
         <app-radio v-model='payWay' :label='3'>
-          <app-formitem3 title="储蓄卡快捷支付" note="绑卡就送苍老师限量版资源" :last="true">
+          <app-formitem3 title="储蓄卡快捷支付" note="支持各大主流银行卡" :last="true">
             <div class="header" slot="icon">
               <span class="icon icon-bankcard blue"></span>
             </div>
@@ -251,6 +252,14 @@
           color:white;
           span {
             font-size: 0.18rem;
+          }
+        }
+        .originBox {
+          font-size: 0.12rem;
+          color: white;
+          .originFee {
+            color: rgb(248, 75, 75);
+            text-decoration: line-through;
           }
         }
       }

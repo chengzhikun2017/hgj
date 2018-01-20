@@ -11,9 +11,9 @@
     </nav>
 
     <article v-if="choose == 0" flex-box="1">
-      <div v-if="cardListCC.length === 0" class="empty">
+      <!-- <div v-if="cardListCC.length === 0" class="empty">
         <img src="/static/img/creditcard.png" alt="">
-      </div>
+      </div> -->
       <div v-for="item in cardListCC" class="cardItem">
         <app-creditcard :card="item" @click.native='goCardDetail(item)'></app-creditcard>
       </div>
@@ -22,9 +22,9 @@
       </div>
     </article>
     <article v-if="choose == 1" flex-box="1">
-      <div v-if="cardListDC.length === 0" class="empty">
+     <!--  <div v-if="cardListDC.length === 0" class="empty">
         <img src="/static/img/bankcard.png" alt="">
-      </div>
+      </div> -->
       <div v-for="item in cardListDC"  class="cardItem">
         <app-bankcard :card="item"></app-bankcard>
       </div>
