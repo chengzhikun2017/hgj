@@ -58,7 +58,7 @@
       },
       viewRules(){
         this.get_qa_ansqwer({
-          aim:'2-2',
+          aim:'6',
           title:'支持的银行卡',
         })
         helper.goPage('/questions')
