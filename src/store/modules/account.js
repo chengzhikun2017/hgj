@@ -36,10 +36,11 @@ const account = {
     },
   },
   mutations: {
-    account_shareInfoSet(s,{qudao,ancestor}){
-      console.log('account_shareInfoSet commit',qudao,ancestor)
+    account_shareInfoSet(s,{qudao,ancestor,uid}){
+      // console.log('account_shareInfoSet commit',qudao,ancestor,uid)
       s.qudao=qudao
-      s.ancestor=ancestor
+      // s.ancestor=ancestor
+      s.ancestor=uid
     },
     account_setActived(s){
       s.isActive=true

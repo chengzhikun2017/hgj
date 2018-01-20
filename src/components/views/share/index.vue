@@ -91,12 +91,12 @@
 
       configMenueShare() {
         // console.log('%c configMenueShare','color:red',)
-        alert('configMenueShare cfg')
+        // alert('configMenueShare cfg')
         wx.onMenuShareAppMessage({
           title: '禾管家', // 分享标题
           desc: '分享描述', // 分享描述
           // link: 'http://hzg.he577.com' + bus.relativeUrlTest + '/m/#/index/apply_borrow?uniqueId=' + bus.uniqueId + '&share=1', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          link:helper.urlConcat('http://hgj.wd577.cn/share.html',{
+          link:helper.urlConcat('https://hgj.wd577.cn/share.html',{
             img:this.shareSrc,
             uid:this.uid
           }),
