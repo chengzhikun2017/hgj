@@ -8,7 +8,7 @@
           <swiper-slide flex="dir:top main:center cross:center">
             <div class="people">
               <span class="icon-person"></span>
-              <span class="number">100</span>
+              <span class="number">{{share_todayNumber}}</span>
             </div>
             <div class="note" flex="cross:center">
               <div class="linerleft" flex-box="1"></div>
@@ -19,7 +19,7 @@
           <swiper-slide flex="dir:top main:center cross:center">
             <div class="people">
               <span class="icon-person"></span>
-              <span class="number">100</span>
+              <span class="number">{{share_totalNumber}}</span>
             </div>
             <div class="note" flex="cross:center">
               <div class="linerleft" flex-box="1"></div>
@@ -46,20 +46,20 @@
         <div class="liner"></div>
         <div class="points">
           <div class="pointItem" flex="main:justify">
-            <span>一级推广人数: <span class="data">36次</span></span>
-            <span class="point">+36元</span>
+            <span>一级推广人数: <span class="data">{{share_totalagentLv1Number}}人</span></span>
+            <span class="point">+{{share_totalagentLv1Fee | money}}元</span>
           </div>
           <div class="pointItem" flex="main:justify">
-            <span>二级推广人数: <span class="data">36次</span></span>
-            <span class="point">+10元</span>
+            <span>二级推广人数: <span class="data">{{share_totalagentLv2Number}}人</span></span>
+            <span class="point">+{{share_totalagentLv2Fee | money}}元</span>
           </div>
           <div class="pointItem" flex="main:justify">
-            <span>三级推广人数: <span class="data">36次</span></span>
-            <span class="point">+10元</span>
+            <span>三级推广人数: <span class="data">{{share_totalagentLv3Number}}人</span></span>
+            <span class="point">+{{share_totalagentLv3Fee | money}}元</span>
           </div>
-          <div class="pointItem" flex="main:justify">
-            <span>三级以上推广人数: <span class="data">36次</span></span>
-            <span class="point">+18元</span>
+          <div class="pointItem" flex="main:justify" v-if="account_userInfo.level === 4">
+            <span>三级以上推广人数: <span class="data">{{share_totalagentLv3plusNumber}}人</span></span>
+            <span class="point">+{{share_totalagentLv3plusFee | money}}元</span>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
 <script>
   import 'swiper/dist/css/swiper.css'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
-
+  import {mapMutations,mapActions,mapGetters} from 'vuex'
   export default {
     components: {
       swiper,
@@ -94,9 +94,30 @@
         }
       }
     },
+    created () {
+    },
     computed: {
+      ...mapGetters([
+        'account_userInfo',
+        'share_todayNumber',
+        'share_totalagentLv1Number',
+        'share_totalagentLv2Number',
+        'share_totalagentLv3Number',
+        'share_totalagentLv3plusNumber',
+        'share_totalNumber',
+        'share_totalagentLv1Fee',
+        'share_totalagentLv2Fee',
+        'share_totalagentLv3Fee',
+        'share_totalagentLv3plusFee',
+        ]),
       swiper() {
         return this.$refs.mySwiper.swiper
+      }
+    },
+    filters: {
+      money (val) {
+        if(!val) return 0
+        else return (val / 100).toFixed(2)
       }
     },
     methods: {
@@ -105,6 +126,9 @@
       }
     },
     mounted() {
+      console.log('hello')
+      console.log(this.share_countReport)
+      console.log(this.account_userInfo)
       // current swiper instance
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
       console.log('this is current swiper instance object', this.swiper)

@@ -1,35 +1,38 @@
 const questions = {
   state: {
-    qa_title: '支持银行卡类型',
-    qa_popFlag: false,
-    qa_contentId: '6',
-    qa_activeIndex: '6',
+    title: '支持银行卡类型',
+    popFlag: false,
+    contentId: '6',
+    activeIndex: '6',
   },
   getters: {
-    QaPopFlag: state => state.qa_popFlag,
-    QaContentId: state => state.qa_contentId,
-    QaActiveIndex: state => state.qa_activeIndex,
-    QaTitle: state => state.qa_title
+    qa_popFlag: state => state.popFlag,
+    qa_contentId: state => state.contentId,
+    qa_activeIndex: state => state.activeIndex,
+    qa_title: state => state.title
   },
   mutations: {
-    set_qa_title(s, title) {
-      s.qa_title = title
+    qa_set_title(s, title) {
+      s.title = title
     },
-    toggle_qa_popflag(s, val) {
-      s.qa_popFlag = val
+    qa_toggle_popflag(s, val) {
+      s.popFlag = val
     },
-    choose_qa_contentId(s, id) {
-      s.qa_contentId = id
+    qa_choose_contentId(s, id) {
+      s.contentId = id
     },
-    change_qa_activeIndex(s, index) {
-      s.qa_activeIndex = index
+    qa_change_activeIndex(s, index) {
+      s.activeIndex = index
     },
-    get_qa_ansqwer(s, {aim, title}) {
+    qa_get_ansqwer(s, {
+      aim,
+      title
+    }) {
       let activeIndex = aim.split('-')[0];
-      s.qa_title = title
-      s.qa_activeIndex = activeIndex;
-      s.qa_contentId = aim;
-      s.qa_popFlag = true;
+      s.title = title
+      s.activeIndex = activeIndex;
+      s.contentId = aim;
+      s.popFlag = true;
     }
   },
   actions: {},

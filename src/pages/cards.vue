@@ -73,7 +73,7 @@
         helper.goPage('/addbankcard')
       },
       goSCQA(){
-        this.get_qa_ansqwer({
+        this.qa_get_ansqwer({
           aim:'3-1',
           title:'什么是结算卡',
         })
@@ -83,7 +83,7 @@
         this.$router.go(-1)
       },
       ...mapMutations([
-        'get_qa_ansqwer',
+        'qa_get_ansqwer',
         ]),
       ...mapActions([
         'cards_getListCC',
