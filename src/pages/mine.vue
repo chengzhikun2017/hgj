@@ -157,7 +157,7 @@ export default {
 <style lang="scss" scoped>
   .mine {
     article {
-      overflow: hidden;
+      overflow: auto;
       .banner{
         height: 2.2rem;
         position: relative;
