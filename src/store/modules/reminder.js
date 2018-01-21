@@ -1,21 +1,40 @@
+class defaultAlert{
+  constructor() {
+    this.isShow= false
+    this.title= 'remind'
+    this.options= [{
+      text: '确定',
+    }, ]
+  }
+}
+class defaultToast{
+  constructor(){
+    this.isShow=false
+    this.content=''
+    this.cbLeaved=()=>{}
+    this.cbEntered=()=>{}
+    this.type='normal'
+  }
+}
 const reminder = {
   state: {
     backToIndex: false,
-    alert: {
-      isShow: false,
-      title: 'remind',
-      // self_: this,
-      options: [{
-        text: '确定',
-      }, ],
-    },
-    toast:{
-      isShow:false,
-      content:'test from vuex store',
-      cbLeaved:()=>{},
-      cbEntered:()=>{},
-      type:'normal',
-    },
+    alert: new defaultAlert(),
+    // {
+    //   isShow: false,
+    //   title: 'remind',
+    //   options: [{
+    //     text: '确定',
+    //   }, ],
+    // },
+    toast:new defaultToast(),
+    // {
+    //   isShow:false,
+    //   content:'',
+    //   cbLeaved:()=>{},
+    //   cbEntered:()=>{},
+    //   type:'normal',
+    // },
     isLoading:false,
     loadingText:'请稍后',
   },
@@ -23,6 +42,22 @@ const reminder = {
   },
   actions: {},
   mutations: {
+    // reminder_resetAlert(s){
+    //   let alert=new defaultAlert()
+    //   // s.alert.isShow=false
+    //   s.alert.content=''
+    //   s.alert.cbLeaved=()=>{}
+    //   s.alert.cbEntered=()=>{}
+    //   s.alert.type='normal'
+    // },
+    // reminder_resetToast(s){
+    //   let toast=new defaultToast()
+    //   s.toast.isShow=false
+    //   s.toast.content=''
+    //   s.toast.cbLeaved=()=>{}
+    //   s.toast.cbEntered=()=>{}
+    //   s.toast.type='normal'
+    // },
     reminder_closeAlert(s) {
       s.alert.content=null
       s.alert.title=null
@@ -69,15 +104,16 @@ const reminder = {
     },
 
     reminder_hideToast(s){
-      // console.log('hide toast')
+      console.log('hide toast')
       s.toast.isShow=false
     },
     reminder_showToast(s,toast){
       // console.log('toast',toast,toast instanceof String)
       // s.toast.content=toast
       if( typeof toast=='string'){
-        s.toast.content=toast
-      }else if(toast instanceof Object){
+        toast={content:toast}
+      }
+      if(toast instanceof Object){
         if(toast.content){
           s.toast.content=toast.content
         }else{

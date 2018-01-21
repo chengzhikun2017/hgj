@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import testFetch from '../../api/test.js'
+// import testFetch from '../../api/test.js'
 import {mapActions} from 'vuex'
 export default {
   data() {
@@ -25,16 +25,16 @@ export default {
       // this.$store.dispatch('account_isPhoneRegister',11111111111)
     },
     testGet(){
-      var fetchPro=testFetch.isPhoneRegister(17702103430)
-      fetchPro.then(res=>{
-        console.log('res',res)
-      })
+      // var fetchPro=testFetch.isPhoneRegister(17702103430)
+      // fetchPro.then(res=>{
+      //   console.log('res',res)
+      // })
     },
     test(){
-      var fetchPro=testFetch.testPost()
-      fetchPro.then(res=>{
-        console.log('res',res)
-      })
+      // var fetchPro=testFetch.testPost()
+      // fetchPro.then(res=>{
+      //   console.log('res',res)
+      // })
     },
     testXHR(){
       var formData = new FormData();

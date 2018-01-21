@@ -49,6 +49,7 @@ export default function fetch(options,showloading=1) {
           resolve(res.data)
         } else {
           // let code=res.error
+          reject(res)
           switch(res.error){
             case 20006:handleUnlogin(res);break;
             // case 20040:resolve(res);break;
@@ -64,6 +65,7 @@ export default function fetch(options,showloading=1) {
         if(showloading&&HGJ_VUE){
           HGJ_VUE.hgjHideLoading()
         }
+        reject(err)
         // 加载失败：超时，无响应，无对应资源
         // 通过store数据驱动，做错误提示
         // store.dispatch('error', err)

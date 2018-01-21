@@ -65,8 +65,10 @@
             this.hgjToast({
               content:'修改成功',
               cbEntered:()=>{
-                this.cards_getListCC()
-                helper.goPage(-1)
+                this.cards_getListCC().then(res=>{
+                  helper.goPage(-1)
+                })
+                
               }
             })
           }

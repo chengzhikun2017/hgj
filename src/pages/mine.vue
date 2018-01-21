@@ -78,7 +78,7 @@
 
 <script>
 import helper from '../utils/helper.js'
-import {mapMutations} from 'vuex'
+import {mapMutations,mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -129,6 +129,10 @@ export default {
     ...mapMutations([
       'get_qa_ansqwer',
     ]),
+    ...mapActions([
+      'share_getCount',
+      'account_getUserInfo',
+      ],)
   },
   computed:{
     balance() {
@@ -149,7 +153,9 @@ export default {
       return this.userInfo.phone
     },
   },
-
+  created(){
+    this.account_getUserInfo(false)
+  },
   events: {},
   components: {}
 }

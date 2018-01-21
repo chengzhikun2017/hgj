@@ -22,13 +22,13 @@
               <div class="icon-qrcode black"></div>
               <p>二维码分享</p>
             </div>
-            <div class="waybox" @click='urlShare'>
-              <div class="icon-link purple"></div>
-              <p>通过链接分享</p>
-            </div>
             <div class="waybox" @click='configShareIfConfiged'>
               <div class="icon-wechat green"></div>
               <p>微信分享</p>
+            </div>
+            <div class="waybox" @click='urlShare'>
+              <div class="icon-link purple"></div>
+              <p>通过链接分享</p>
             </div>
           </div>
 

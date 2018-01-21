@@ -52,8 +52,10 @@
         if (callback !== undefined && callback instanceof Function) {
           callback()
         }
+        // this.resetAlert()
       },
       ...mapMutations({
+        // resetAlert:'reminder_resetAlert',
         closeAlert:'reminder_closeAlert',
       }),
     },

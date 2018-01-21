@@ -124,6 +124,7 @@ export default {
       // nowDate:config.nowDate,
       nowDate:new Date(),
       getPlanOptsTimer:null,
+      newDayTimer:null,
       }
     },
     beforeRouteEnter(to,from,next){
@@ -160,16 +161,16 @@ export default {
     },
     beforeDestroy(){
       clearTimeout(this.getPlanOptsTimer)
+      clearTimeout(this.newDayTimer)
     },
     methods:{
       startChoosePlan(){
         this.defaultServiceChanged=true
         this.popFlagPlan=true
       },
-      countDownMilis(){
-        let now=new Date()
-        // let 
-      },
+      // countDownMilis(){
+      //   let now=new Date()
+      // },
       resetPlan(){
         this.planOpts=[]
         this.choosedPlan={}
@@ -238,6 +239,8 @@ export default {
             this.popFlag=true
           }
         },rej=>{
+          console.log('rej',rej)
+          this.hgjHideLoading()
           this.loadingPlanOpts=false
         })
       },
@@ -392,6 +395,23 @@ export default {
           this.calcStartDaysAvailable()
         })
       },
+      newDaySet(){
+        var today = this.today
+        var {
+          year,
+          month,
+          day
+        } = today
+
+        var nextDay = new Date(year, month, day + 1)
+        var countDownMilis=nextDay.getTime()-this.nowDate.getTime()
+        console.log('countDownMilis',countDownMilis)
+        this.newDayTimer=setTimeout(() =>{
+          this.nowDate=new Date(2018,0,24)
+          this.startDay=this.earlistStartDay
+          this.calcStartDaysAvailable()
+        }, 4000);
+      },
       ...mapMutations([
         'router_willBackToIndex',
         'cards_updatePlanStatus',
@@ -406,19 +426,12 @@ export default {
         ])
     },
     created() {
-      var today = this.today
-      var {
-        year,
-        month,
-        day
-      } = today
-      var nextDay = new Date(year, month, day + 1)
+      this.$nextTick(() => {
+        this.newDaySet()
+      })
       // console.log('nextD', nextDay, this.nowDate, nextDay - this.nowDate)
-      // setTimeout(() => {
-      //   console.log('choosedPlan', this.choosedPlan)
-      // }, 5000);
       // setTimeout(()=> {
-      //   this.nowDate=new Date(2018,1,5)
+      //   this.nowDate=new Date(2018,0,18)
       //   this.$nextTick(()=>{
       //     this.startDay=this.earlistStartDay
       //     this.calcStartDaysAvailable()
@@ -429,15 +442,11 @@ export default {
       this.calcStartDaysAvailable()
       this.startDay = this.earlistStartDay
     },
-    // activated() {
-    //   this.calcStartDaysAvailable()
-    //   this.startDay = this.earlistStartDay
-    // },
     computed: {
       choosedPlanDscrp() {
         var choosedPlan = this.choosedPlan,securityFee=''
         if(this.planAmount){
-           securityFee='('+this.planAmount*choosedPlan.percent/100+'元)' 
+           securityFee='('+this.planAmount*choosedPlan.percent/100+'元) ' 
         }
         if (choosedPlan.percent) {
           return choosedPlan.percent + '%保证金 '+securityFee+ choosedPlan.days + "天完成"
@@ -538,12 +547,12 @@ export default {
         if (this.isRepamentSameMonth) {
           if (this.isPlanInCrrtMonth) {
             if (nowDay < this.cardInfo.billDate) {
-              return TimeUtil.getStampByDate(this.cardInfo.billDate)
+              return TimeUtil.getStampByDate(this.cardInfo.billDate-0+1)
             } else {
               return TimeUtil.getStampByDate(Number(nowDay) + 1)
             }
           } else {
-            return TimeUtil.getStampByDate(this.cardInfo.billDate, 1)
+            return TimeUtil.getStampByDate(this.cardInfo.billDate-0+1, 1)
           }
 
         } else {
@@ -551,7 +560,7 @@ export default {
             return TimeUtil.getStampByDate(Number(nowDay) + 1)
           } else {
             if (nowDay < this.cardInfo.billDate) {
-              return TimeUtil.getStampByDate(this.cardInfo.billDate)
+              return TimeUtil.getStampByDate(this.cardInfo.billDate-0+1)
             } else {
               return TimeUtil.getStampByDate(Number(nowDay) + 1)
             }

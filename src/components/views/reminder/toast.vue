@@ -25,11 +25,11 @@ export default {
     }
   },
   created(){
-    setTimeout(()=> {
-      // bus.remindSimple.isShow=false
-      // this.$store.commit('reminder_hideToast')
-      this.reminder_hideToast()
-    }, 1200);
+    // setTimeout(()=> {
+    //   // bus.remindSimple.isShow=false
+    //   // this.$store.commit('reminder_hideToast')
+    //   // this.reminder_hideToast()
+    // }, 1200);
   },
   computed:{
     bgcolor(){
@@ -66,31 +66,37 @@ export default {
         // return nullFunc
         return this.toast.cbLeaved || nullFunc
       },
-      cbEntered() {
-        let nullFunc = () => {
-            // console.log('callback enter')
-          }
-          // return nullFunc
-        return this.toast.cbEntered || nullFunc
-      },
+    cbEntered() {
+      let nullFunc = () => {
+          // console.log('callback enter')
+        }
+        // return nullFunc
+      return this.toast.cbEntered || nullFunc
+    },
   },
   methods:{
     afterLeave(){
         // console.log('this.toast.cbLeaved',this.toast.cbLeaved)
       // resetToast
       this.cbLeaved()
+      // this.reminder_resetToast()
     },
     afterEnter(){
+      console.log('afterEnter')
       setTimeout(()=> {
+        // console.log('this.cbEntered',this.cbEntered)
         this.cbEntered()
+        //问题在这里
       }, 200);
       setTimeout(()=>{
+        // console.log('%c hideToast','color:red',)
         this.reminder_hideToast()
       },500)
     },
-    ...mapMutations({
-      reminder_hideToast:'reminder_hideToast',
-    })
+    ...mapMutations([
+      // 'reminder_resetToast',
+      'reminder_hideToast',
+    ])
   },
 
   events: {},

@@ -4,9 +4,13 @@ import {HGJ_VUE} from '../../main.js'
 class defaultInfo{
   constructor(props) {
     this.name=null
+    // this.name='黄树栋'
     this.phone=null
+    // this.phone=13816938525
     this.idCardNo=null
+    // this.idCardNo=321282199201264216
     this.cardNo=null
+    // this.cardNo=6259960047813225
     this.year=null
     this.month=null
     this.fullYear=null

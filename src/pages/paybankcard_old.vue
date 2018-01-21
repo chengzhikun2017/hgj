@@ -34,7 +34,7 @@
           <app-radio v-model='cardId' :label='card.cardId' v-for='card in cardsDC' :key='card.cardId'>
             <app-carditem :card='card' :choosedCardId='cardId'></app-carditem>
           </app-radio>
-          <div @click='newCardPay' >使用新的银行卡</div>
+          <div @click='newCardPay' class="new-card" >使用新的银行卡</div>
         </div>
       </app-popview>
     </article>
@@ -174,6 +174,30 @@
         border:1px dashed #d3d3d3;
         transform: scaleY(.5);
       }
+    }
+    .popicon{
+      margin-right: 0.1rem;
+
+    }
+    .new-card{
+/*      color:#666666;
+      font-size: 0.16rem;
+      padding: 0.1rem;
+      text-align: center;*/
+      margin: 0 auto;
+      margin-top: 0.1rem;
+      display: flex;
+      justify-content:center;
+      align-items:center;
+      width: 1.6rem;
+      height: 0.28rem;
+      border-radius: 0.14rem;
+      /*background-color: #4ba8f8;*/
+      /*box-shadow: 0 13px 32px 0 rgba(248, 81, 75, 0.36);*/
+      border: solid 1px #4ba8f8;
+      font-size: 0.13rem;
+      text-align: center;
+      color: #4ba8f8;
     }
   }
 

@@ -144,7 +144,11 @@ export default {
       ]),
     ...mapActions([
       'order_createActive',
+      'share_getCount',
       ])
+  },
+  created(){
+    this.share_getCount(false)
   },
   computed:{
     // 总收入=repaymentPlanFee + levelUpFee + accountActiveFee ，总推广人数 = agentLv1Number + agentLv2Number + agentLv3Number + agentLv3plusNumber

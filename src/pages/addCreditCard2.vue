@@ -45,6 +45,7 @@
   import '@/css/flex.css'
   import {mapMutations,mapActions} from 'vuex'
   import helper from '../utils/helper.js'
+  import regs from '../utils/reg.js'
   export default {
     data () {
       return {
@@ -69,7 +70,20 @@
         this.photoShow  = true
         return true;
       },
+      checkValid(){
+        if(!this.billDate||!this.repaymentDate){
+          this.hgjToast('请选择账单日和还款日',1)
+          return false
+        }
+        if(!regs.code6(this.validateCode)){
+          this.hgjToast('请填写验证码',1)
+        }
+        return true
+      },
       submit(){
+        if(!this.checkValid()){
+          return
+        }
         this.addCardCC_setValue(this)
         this.addCardCC_submit().then(res=>{
           this.hgjToast('绑定成功')
@@ -84,9 +98,16 @@
       dayPaser(v){
         return v+'号'
       },
+      padStart0_2(v){
+        if(v>=10){
+          return v
+        }else{
+          return '0'+v
+        }
+      },
       dayPaser2(v){
         let s=String(v)
-        return s.padStart(2,0)
+        return this.padStart0_2(s)
       },
       yearPaser(v){
         return (v.toString()).slice(2,4)
@@ -130,7 +151,6 @@
         this.validateCode=info.validateCode
       },
       canGetVerifyCode(){
-
         return true
       },
       getVerifyCode(countdown){
@@ -167,11 +187,12 @@
       this.addCardCC_setValue(this)
     },
     beforeRouteEnter(to,from,next){
+      // next()
+      // return
       //todo:刷新此页面，进入addcard1
       // console.log('%c from','color:blue',from)
       if(/addCreditCard1/.test(from.name)){
         // console.log('%c from cc card page1','color:yellow')
-
         next()
       }else{
         // console.log('%c redirect to add cc card page1','color:yellow')
@@ -210,7 +231,7 @@
       }
       .expire-select{
         /*border:1px solid red;*/
-        width: 0.3rem;
+        width: 0.35rem;
       }
     }
    

@@ -83,10 +83,10 @@ const share = {
     }
   },
   actions: {
-    share_getCount({state}, ) {
+    share_getCount({state}, showLoding=true) {
       fetch({
         url: 'report/count',
-      }).then(res => {
+      },showLoding).then(res => {
         state.countReport = res
         // console.log(res)
         let today = res.today

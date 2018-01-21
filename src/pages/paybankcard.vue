@@ -76,6 +76,7 @@
         }
         this.order_pay(params).then(res=>{
           this.order_getStatusAfterPay(this.orderId)
+          this.cards_getListDC()
           // .then(status=>{
             // if(status==='SUCCESS'&&res.productId==20000){
             //   this.account_setActived()
@@ -124,7 +125,7 @@
         'addCardDC_submit',
         'order_pay',
         'order_getStatusAfterPay',
-
+        'cards_getListDC',
         ])
     },
     computed:{
