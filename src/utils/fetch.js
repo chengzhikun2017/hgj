@@ -42,7 +42,7 @@ export default function fetch(options,showloading=1) {
         if(showloading&&HGJ_VUE){
           HGJ_VUE.hgjHideLoading()
         }
-        // console.log('responese to>>>%c'+options.url,'color:green','<<<',response)
+        console.log('responese to>>>%c'+options.url,'color:green','<<<',response)
         const res = response.data
           // 根据陶雨的基本标准，做error的错误封装
         if (res.error === 0) {
@@ -88,7 +88,7 @@ function simpleFetch(options) {
     })
     instance(options).then(response => {
         // status必然是200
-        // console.log('simpleFetch responese to>>>%c'+options.url,'color:blue','<<<',response)
+        console.log('simpleFetch responese to>>>%c'+options.url,'color:blue','<<<',response)
         const res = response
           // 根据陶雨的基本标准，做error的错误封
         if(res.data.error==0){

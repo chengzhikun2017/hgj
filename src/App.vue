@@ -46,7 +46,7 @@ export default {
   },
   created(){
     let query=this.$route.query
-    this.share_getCount()
+    // this.share_getCount()
     this.app_checkIsWX()
     this.app_jsconfig()
     this.account_shareInfoSet(query)
@@ -57,7 +57,7 @@ export default {
           // this.cards_getListCC()
           // this.cards_getListDC()
           // this.order_productsListGet()
-          helper.getInitialInfo()
+          // helper.getInitialInfo()
         }else{
           console.log('未登录')
         }

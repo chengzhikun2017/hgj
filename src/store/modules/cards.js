@@ -67,11 +67,13 @@ const cards = {
       })
     },
     cards_getListCC({state}) {
-      fetch({
+      let promise=fetch({
         url: 'card/cc',
-      }).then(res => {
+      })
+      promise.then(res => {
         state.cardsListCC = res
       })
+      return promise
     },
     cards_getListDC({state}) {
       fetch({

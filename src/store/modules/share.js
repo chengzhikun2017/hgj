@@ -9,6 +9,7 @@ import helper from '../../utils/helper.js'
 const share = {
   state: {
     showShare: false,
+    sharePagePv:0,
     countReport: {},
     todayNumber: 0,
     totalagentLv1Number: 0,
@@ -78,13 +79,11 @@ const share = {
       s.showShare = false
     },
     share_resetReport(s){
-      
+
     }
   },
   actions: {
-    share_getCount({
-      state
-    }, ) {
+    share_getCount({state}, ) {
       fetch({
         url: 'report/count',
       }).then(res => {
@@ -106,6 +105,13 @@ const share = {
         state.totalagentLv2Fee = total.agentLv2Fee
         state.totalagentLv3Fee = total.agentLv3Fee
         state.totalagentLv3plusFee = total.agentLv3plusFee
+      })
+    },
+    share_viewCount({state},){
+      fetch({
+        url:'report/countSharePagePv'
+      }).then(res=>{
+        state.sharePagePv=res.count
       })
     },
   },

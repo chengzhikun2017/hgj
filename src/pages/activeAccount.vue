@@ -14,7 +14,7 @@
         <p>(4)激活费用限时5折优惠</p>
       </div>
       <div class="bttn-box">
-        <app-button @click.native='goActivePay' class='bttn'>付费马上激活</app-button>
+        <app-button @click.native='goActivePay' class='bttn'>付费激活</app-button>
         <app-button @click.native='goActiveFree' class='bttn'>免费激活</app-button>
       </div>
     </article>

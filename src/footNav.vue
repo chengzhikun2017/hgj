@@ -24,7 +24,7 @@
 
 <script>
 import router from './router'
-import {mapState} from 'vuex'
+import {mapState,mapMutations} from 'vuex'
 import commonRemind from './utils/commonRemind.js'
 export default {
   data() {
@@ -38,9 +38,15 @@ export default {
         commonRemind.unloginRemind()
         return
       }
+      if(index==1){
+        this.share_show()
+      }
       this.activeIndex=index
       router.push(this.navPaths[index])
     },
+    ...mapMutations([
+      'share_show',
+      ]),
   },
   created(){
     this.activeIndex=this.navPaths.indexOf(this.$route.path)

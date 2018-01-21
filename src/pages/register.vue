@@ -16,13 +16,21 @@
         <div class="mybutton">
           <app-button @click.native='nextStep'>下一步</app-button>
         </div>
+        <div class="note" flex="main:justify" v-if='pageType=="signup"'>
+          <p></p>
+          <p @click='goLogin'>已有账号，立刻<span>登录</span></p>
+        </div>
+        <div class="service-contact">
+          <p >客服电话：<a href='tel:4000577009'>400-0577-009</a></p>
+        </div>
       </div>
+      
     </article>
   </div>
 </template>
 <script>
   import Regs from '../utils/reg.js'
-  import {mapActions} from 'vuex'
+  import {mapActions,mapMutations} from 'vuex'
   import helper from './../utils/helper.js'
   // import API from '../api'
   // import accountAPI from '../api/account.js'
@@ -34,6 +42,9 @@
       }
     },
     methods:{
+      goLogin(){
+        helper.goPage('/login')
+      },
       nextStep(){
         if(this.pageType==='findPwd'){
           this.goFindPwd()
@@ -81,9 +92,17 @@
       },
       ...mapActions({
         isPhoneRegisted:'account_isPhoneRegister'
-      })
+      }),
+      ...mapMutations([
+        'router_willBackToIndex',
+        'router_setNewPath',
+        ]),
     },
+
     computed:{
+      isLoged(){
+        return this.$store.state.account.isLoged
+      },
       pageType(){
         if(/forgetPwdStep/.test(this.$route.path)){
           return 'findPwd'
@@ -114,10 +133,32 @@
           this.$store.commit('account_setPhone',this.phone)
         }
       },
+      isLoged(v){
+        if(v&&this.pageType==='signup'){
+          this.hgjToast({
+            content:'您已注册并登录',
+            cbEntered:()=>{
+              this.router_willBackToIndex()
+              this.router_setNewPath(['/mine'])
+              helper.goPage(-1)
+            },
+          })
+        }
+      },
     },
   }
 </script>
 <style lang="scss" scoped>
+.note {
+  padding-top: 0.2rem;
+  p {
+    font-size: 0.15rem;
+    color: #999999;
+    span{
+      color:#9ca4ef;
+    }
+  }
+}
   .register {
     
     article {

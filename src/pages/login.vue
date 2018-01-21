@@ -29,6 +29,9 @@
         <p @click='goSignUp'>新用户注册</p>
         <p @click='goForgetPwd'>忘记密码？</p>
       </div>
+      <div class="service-contact">
+        <p >客服电话：<a href='tel:4000577009'>400-0577-009</a></p>
+      </div>
     </article>
   </div>
 </template>
@@ -156,6 +159,7 @@
           color: #999999;
         }
       }
+
       .mybutton {
         margin-top: 0.36rem;
       }

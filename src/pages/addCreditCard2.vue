@@ -5,9 +5,9 @@
       <div class="form">
         <app-formitem label="信用卡有效期" :first="true">
           <div class="datechoose" flex="main:justify cross:center">
-            <app-select :options='yearOptions' :filter='yearPaser' :placeholder='"年份"' v-model='fullYear' class='expire-select'/>
-            <span class="cuteliner">/</span>
             <app-select :options='monthOptions' :filter='dayPaser2' :placeholder='"月份"' v-model='fullMonth' class='expire-select'/>
+            <span class="cuteliner">/</span>
+            <app-select :options='yearOptions' :filter='yearPaser' :placeholder='"年份"' v-model='fullYear' class='expire-select'/>
           </div>
         </app-formitem>
         <app-formitem label="卡背后三位数字" :qa="readme" :isQ="true">

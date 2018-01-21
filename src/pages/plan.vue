@@ -121,8 +121,8 @@ export default {
       planOpts:[],
       popFlag: false,
       popFlagPlan:false,
-      nowDate:config.nowDate,
-      // nowDate:new Date(),
+      // nowDate:config.nowDate,
+      nowDate:new Date(),
       getPlanOptsTimer:null,
       }
     },
@@ -143,6 +143,14 @@ export default {
           this.calcStartDaysAvailable()
         }
       },
+      'cardInfo.billDate'(){
+        this.calcStartDaysAvailable()
+        this.startDay = this.earlistStartDay
+      },
+      'cardInfo.repaymentDate'(){
+        this.calcStartDaysAvailable()
+        this.startDay = this.earlistStartDay
+      },
       latestEndDay(v){
         this.lazyGetPlanOpts()
       },
@@ -154,7 +162,6 @@ export default {
       clearTimeout(this.getPlanOptsTimer)
     },
     methods:{
-
       startChoosePlan(){
         this.defaultServiceChanged=true
         this.popFlagPlan=true
@@ -172,6 +179,10 @@ export default {
           this.hgjToast('请先填写金额',1)
           return
         }
+        if(this.planAmount<400){
+          this.hgjToast('金额不得小于400',1)
+          return
+        }
         this.getPlanOpts(this.planAmount,1)
         // this.popFlag=true
       },
@@ -180,6 +191,12 @@ export default {
         this.getPlanOptsTimer=setTimeout(()=> {
           this.getPlanOpts()
         }, 300);
+      },
+      handleWrongBillPeriod(){
+        this.hgjAlert({
+          title: '无法创建计划',
+          content: '请设置正确的账单日和还款日',
+        })
       },
       getPlanOpts(amount=0,willViewPlan=0){
         if(!this.allFilled){
@@ -210,7 +227,9 @@ export default {
             //todo: 非整数问题
             res[i].securityFee=fee
           }
-
+          if(res.length===0){
+            this.handleWrongBillPeriod()
+          }
           this.planOpts=res
           this.setChoosedPlan(res)
           this.loadingPlanOpts=false
@@ -223,6 +242,9 @@ export default {
         })
       },
       setChoosedPlan(newPlanOpts){
+        if(newPlanOpts.length===0){
+          return
+        }
         let choosedPlan=this.choosedPlan
         console.log('choosedPlan',this,this.choosedPlan,!!choosedPlan.percent)
         if(!choosedPlan.percent){
@@ -251,7 +273,7 @@ export default {
         return v.getMonth()+1+'月'+v.getDate()+'日'
       },
       padStart0_2(v){
-        if(v>10){
+        if(v>=10){
           return v
         }else{
           return '0'+v
@@ -331,19 +353,19 @@ export default {
         let month=this.today.month,year=this.today.year
         if(this.isRepamentSameMonth){//&&this.isPlanInCrrtMonth
           if(this.isPlanInCrrtMonth){
-            while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2)){
+            while(day<TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2)){
               dateArr.push({value:day})
               day+=86400000
             }
           }else{
-            while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1)){
+            while(day<TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1)){
               dateArr.push({value:day})
               day+=86400000
             }
           }
         }else{
           if(this.isPlanInCrrtMonth){
-            while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2)){
+            while(day<TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2)){
               dateArr.push({value:day})
               day+=86400000
             }
@@ -352,11 +374,14 @@ export default {
               dateArr.push({value:day})
               day+=86400000
             }
-            while(day<=TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1)){
+            while(day<TimeUtil.getStampByDate(this.cardInfo.repaymentDate-2,1)){
               dateArr.push({value:day})
               day+=86400000
             }
           }
+        }
+        if(dateArr.length===0){
+          this.handleWrongBillPeriod()
         }
         this.startDaysAvailable=dateArr
       },
@@ -388,10 +413,10 @@ export default {
         day
       } = today
       var nextDay = new Date(year, month, day + 1)
-      console.log('nextD', nextDay, this.nowDate, nextDay - this.nowDate)
-      setTimeout(() => {
-        console.log('choosedPlan', this.choosedPlan)
-      }, 5000);
+      // console.log('nextD', nextDay, this.nowDate, nextDay - this.nowDate)
+      // setTimeout(() => {
+      //   console.log('choosedPlan', this.choosedPlan)
+      // }, 5000);
       // setTimeout(()=> {
       //   this.nowDate=new Date(2018,1,5)
       //   this.$nextTick(()=>{
@@ -404,11 +429,18 @@ export default {
       this.calcStartDaysAvailable()
       this.startDay = this.earlistStartDay
     },
+    // activated() {
+    //   this.calcStartDaysAvailable()
+    //   this.startDay = this.earlistStartDay
+    // },
     computed: {
       choosedPlanDscrp() {
-        var choosedPlan = this.choosedPlan
+        var choosedPlan = this.choosedPlan,securityFee=''
+        if(this.planAmount){
+           securityFee='('+this.planAmount*choosedPlan.percent/100+'元)' 
+        }
         if (choosedPlan.percent) {
-          return choosedPlan.percent + '%保证金 ' + choosedPlan.days + "天完成"
+          return choosedPlan.percent + '%保证金 '+securityFee+ choosedPlan.days + "天完成"
         } else {
           return null
         }
@@ -527,8 +559,18 @@ export default {
         }
       },
       latestEndDay() {
-        let len = this.startDaysAvailable.length
-        return this.startDaysAvailable[len - 1]
+        if (this.startDaysAvailable && this.startDaysAvailable.length > 0) {
+
+          let len = this.startDaysAvailable.length
+          let obj = this.startDaysAvailable[len - 1]
+          let value = obj.value
+          return {
+            value: value += 86400000
+          }
+        }else{
+          return null
+        }
+
       },
       latestEndDate() {
         if(!this.latestEndDay){

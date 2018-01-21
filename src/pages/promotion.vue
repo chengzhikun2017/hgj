@@ -79,7 +79,7 @@
       </div>
     </article>
     <div class="mybutton" flex-box="0">
-      <app-button @click.native='showShare'>邀请好友赚分润</app-button>
+      <app-button @click.native='showShare'>邀请好友注册</app-button>
     </div>
 <!--     <div class="lv-box">
       <p class="crrt-lv">当前级别：{{crrtLvText}}</p>

@@ -114,6 +114,7 @@ const account = {
       })
       promise.then(res=>{
         state.isLoged=true
+        helper.getInitialInfo()
         //save to local
       })
       return promise
@@ -170,7 +171,8 @@ const account = {
       })
       promise.then(res=>{
         if(res.data.data&&res.data.data.userId){
-          dispatch('account_getUserInfo')
+          // dispatch('account_getUserInfo')
+          helper.getInitialInfo()
         }else if(res.data.message==='请登录'){
           console.log('未登录')
         }

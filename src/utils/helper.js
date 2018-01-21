@@ -132,5 +132,6 @@ export default class helper {
     HGJ_VUE.$store.dispatch('account_getUserInfo')
     HGJ_VUE.$store.dispatch('order_productsListGet')
     HGJ_VUE.$store.dispatch('share_getCount')
+    HGJ_VUE.$store.dispatch('share_viewCount')
   }
 }

@@ -51,19 +51,23 @@ export default {
     }
   },
   computed:{
+    sharePagePv(){
+      // console.log('this.$store.state.share',this.$store.state.share)
+      return this.$store.state.share.sharePagePv
+    },
     menulistData(){
-      
     return[
       {
         title: '分享链接，邀请好友注册',
         icon: 'icon-share',
-        note: '已被浏览10次',
+        note: '已被浏览'+this.sharePagePv+'次',
         position: -1,
         notePoint: false,
         long: false,
         actionName: '去分享',
-        action: function () {
-          console.log('hello1')
+        action:  () =>{
+          console.log('show share')
+          this.share_show()
         }
       },
       // {
@@ -164,6 +168,7 @@ export default {
     },
     ...mapMutations([
       'account_setActived',
+      'share_show',
       ]),
     ...mapActions([
       'order_pay',

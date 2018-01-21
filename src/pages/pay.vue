@@ -69,7 +69,7 @@
   export default {
     data () {
       return {
-        payWay:null,
+        payWay:3,
         card1: {
           status: 'PLAN',
           name: '韩**',

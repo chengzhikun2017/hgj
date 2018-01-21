@@ -6,8 +6,8 @@
     <div class="list-container" :style='{height:height}' v-scroll-load='{method:getmore,listSelector:".list-container-inner"}' >
       <div class="list-container-inner" v-pull-refresh='{method:getNew}' v-inner-scroll>
         <slot></slot>
-        <div class="list-bottom" v-if='noMore'>————我是有底线的————</div>
-        <div class="list-bottom" v-if='!noMore'>————加载中————</div>
+        <div class="list-bottom" v-if='noMore&&list.length>0'>————我是有底线的————</div>
+        <div class="list-bottom" v-if='!noMore&&list.length>0'>————加载中————</div>
       </div>
     </div>
   </div>

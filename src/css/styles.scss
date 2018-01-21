@@ -19,6 +19,18 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color:    $placeholderColor;
 }
 
+.service-contact{
+
+  padding-top: 0.2rem;
+  p {
+    font-size: 0.15rem;
+    color: #999999;
+    text-align: center;
+    a{
+      color:#9ca4ef;
+    }
+  }
+}
 .login-input{
   font-size: 0.15rem;
   text-align: left;

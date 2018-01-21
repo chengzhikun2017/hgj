@@ -1,6 +1,7 @@
 <template>
   <div class="popView" v-show="value">
     <qr-code v-model='isQrShow'></qr-code>
+
     <div class="popcontent">
       <div class="planbox">
         <header flex="cross:center">
@@ -16,6 +17,11 @@
         <div class="planbox-content">
           <div class="liner"></div>
           <div class="waysItem" flex>
+
+            <div class="waybox" @click='qrShareShow'>
+              <div class="icon-qrcode black"></div>
+              <p>二维码分享</p>
+            </div>
             <div class="waybox" @click='urlShare'>
               <div class="icon-link purple"></div>
               <p>通过链接分享</p>
@@ -24,11 +30,8 @@
               <div class="icon-wechat green"></div>
               <p>微信分享</p>
             </div>
-            <div class="waybox" @click='qrShareShow'>
-              <div class="icon-qrcode black"></div>
-              <p>二维码分享</p>
-            </div>
           </div>
+
           <!--
            <div class="waysItem" flex>
             <div class="waybox">
@@ -45,6 +48,13 @@
             </div>
           </div> -->
         </div>
+      </div>
+    </div>
+    <div class="url-box" v-if='isShareUrlShow' @click='isShareUrlShow=false'>
+      <i class="icon-cancel" @click='isShareUrlShow=false'></i>
+      <div class="box">
+        <h2 class="title">请复制下面的地址</h2>
+        <textarea type="text" class="url-input" @click.stop='' :value='shareUrl' readonly="readonly" ref='urlInput'></textarea>
       </div>
     </div>
   </div>
@@ -68,6 +78,8 @@
       return {
         isQrShow:false,
         wxConfigTimer:null,
+        isShareUrlShow:false,
+        shareUrl:'',
       }
     },
     destroyed(){
@@ -94,13 +106,13 @@
         // alert('configMenueShare cfg')
         wx.onMenuShareAppMessage({
           title: '禾管家', // 分享标题
-          desc: '分享描述', // 分享描述
+          desc: '智能养卡，免费申请信用卡', // 分享描述
           // link: 'http://hzg.he577.com' + bus.relativeUrlTest + '/m/#/index/apply_borrow?uniqueId=' + bus.uniqueId + '&share=1', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
           link:helper.urlConcat('https://hgj.wd577.cn/share.html',{
             img:this.shareSrc,
             uid:this.uid
           }),
-          imgUrl: 'http://hgj.wd577.cn/logo_share.png', // 分享图标
+          imgUrl: 'https://hgj.wd577.cn/logo_share.png', // 分享图标
           type: '', // 分享类型,music、video或link，不填默认为link
           dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
           success: () => {
@@ -134,23 +146,27 @@
       },
       urlShare(){
         // http://hgj.wd577.cn/
+        this.isShareUrlShow=true
         let oldPath=this.$route.fullPath
-        let path=helper.urlConcat('share.html',{
+        let path=helper.urlConcat('https://hgj.wd577.cn/share.html',{
           img:this.shareSrc,
           uid:this.uid
         })
         console.log('path',path)
-        history.replaceState({}, "page 3", path);
+        this.shareUrl=path
+        this.$refs.urlInput.focus()
+        this.$refs.urlInput.select()
+        // history.replaceState({}, "page 3", path);
         // history.pushState({}, "page 3", path);
-        this.hgjAlert({
-          title:'',
-          content:'点击右上角分享链接',
-          options:[{
-            text:'确认',callback:()=>{
-              history.replaceState({}, "page 3", oldPath);
-            },
-          }],
-        })
+        // this.hgjAlert({
+        //   title:'',
+        //   content:'分享当前链接',
+        //   options:[{
+        //     text:'确认',callback:()=>{
+        //       history.replaceState({}, "page 3", oldPath);
+        //     },
+        //   }],
+        // })
         // history.replace
       },
       close () {
@@ -172,6 +188,38 @@
   }
 </script>
 <style lang="scss" scoped>
+.url-box{
+  position:fixed;
+  width: 100%;
+  height:100%;
+  background: #000;
+  top: 0;
+  right: 0;
+  z-index: 99999;
+  .icon-cancel{
+    position: absolute;
+    right: 0;top: 0;
+    padding:0.2rem;
+    color:#fff;
+    font-size: 0.25rem;
+  }
+  .box{
+    width: 80%;
+    position: absolute;
+    top: 0;right: 0;bottom: 0;left: 0;
+    margin:auto;
+    height: 1.5rem;
+    .title{
+      color:#fff;
+    }
+
+  }
+  .url-input{
+    width: 100%;
+    height: 1rem;
+    word-break: break-all;
+  }
+}
   .popView {
     position: fixed;
     top:0;
