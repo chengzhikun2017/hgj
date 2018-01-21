@@ -1,6 +1,6 @@
 <template>
   <div class="populizeScore hgj-container" flex="dir:top">
-    <app-nav flex-box="0">推广页面</app-nav>
+    <app-nav flex-box="0">推广统计页面</app-nav>
     <article flex-box="1">
       <div class="banner">
         <swiper class="swiper" :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">

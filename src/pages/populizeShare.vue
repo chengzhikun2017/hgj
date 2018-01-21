@@ -1,6 +1,6 @@
 <template>
   <div class="populizeShare hgj-container" flex="dir:top">
-    <app-nav flex-box="0">推广积分页面</app-nav>
+    <app-nav flex-box="0">推广统计页面</app-nav>
     <article flex-box="1">
       <div class="banner" flex="dir:top main:center cross:center">
         <div class="people">
