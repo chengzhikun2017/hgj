@@ -39,7 +39,7 @@
       </div>
       <div class="populizeScore-content">
         <div class="title" flex="cross:center">
-          <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
+          <app-cricleicon bgcolor="bg-red" icon="icon-book" flex-box="0" size="0.28rem"></app-cricleicon>
           <h2 flex-box="1">推广记录</h2>
           <button flex-box="0">详情</button>
         </div>
