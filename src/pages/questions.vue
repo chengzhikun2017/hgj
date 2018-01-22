@@ -175,8 +175,7 @@
             当前等级权益<br>
             <div class="label">1、享受60%的收益；</div>
             <div class="msg">
-              （收益来源包括客户账户激活费、等级升级费、服务费分润）
-例：劳斯莱斯→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯获得收益如下：
+              （收益来源包括客户账户激活费、等级升级费、服务费分润）例：劳斯莱斯→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯获得收益如下：
             </div>
             <table cellspacing="0" border="1">
               <tr>
@@ -256,6 +255,8 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
+  import helper from '@/utils/helper.js'
+
   export default {
     data () {
       return {
@@ -412,7 +413,8 @@
         'qa_popFlag',
         'qa_contentId',
         'qa_activeIndex',
-        'qa_title'
+        'qa_title',
+        'qa_straight'
       ])
     },
     methods: {
@@ -432,6 +434,10 @@
       },
       close () {
         this.$store.commit('qa_toggle_popflag', false)
+        if (this.qa_straight) {
+          helper.goPage(-1)
+        }
+        this.$store.commit('qa_change_straight', false)
       }
     },
     destroyed () {
