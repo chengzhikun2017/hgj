@@ -387,11 +387,6 @@
             'more': false,
           },
           {
-            'title': '关于我们',
-            'id': '8',
-            'more': false,
-          },
-          {
             'title': '代理等级收益',
             'id': '9',
             'more': false,
@@ -399,6 +394,11 @@
           {
             'title': '如何赚取积分',
             'id': '10',
+            'more': false,
+          },
+          {
+            'title': '关于我们',
+            'id': '8',
             'more': false,
           },
         ]
