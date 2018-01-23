@@ -74,7 +74,7 @@
       },
       goSCQA(){
         this.qa_get_ansqwer({
-          aim:'7',
+          aim:'2-4',
           title:'什么是结算卡',
         })
         helper.goPage('/questions')

@@ -15,7 +15,7 @@
         <app-input class='form-input' :placeholder='"请输入~~"' v-model='phone'/>
       </app-formitem>
       <app-formitem label="验证码" :last="true">
-        <app-input class='form-input code-input' :placeholder='"请输入~~"' v-model='code' />
+        <app-input class='form-input code-input' :placeholder='"请输入"' v-model='code' />
         <bttn-code :validateMethod='isValidated' :getCodeMethod='bindCardAndGetCode'></bttn-code>
       </app-formitem>
       <div class="myprotocol">
