@@ -11,7 +11,7 @@
     <app-toast></app-toast>
     <app-loading></app-loading>
     <app-share v-model="showShare"></app-share>
-    <button @click='test' id='test-bttn'> test</button>
+    <button @click='test' id='test-bttn' v-if='isDev'> test</button>
     <!-- <button @click='test2' id='test-bttn2'> 登出</button> -->
   </div>
 </template>
@@ -33,6 +33,9 @@ export default {
     // console.log('app store',this.$store)
   },
   computed:{
+    isDev(){
+      return /localhost/.test(location.href)
+    },
     showShare(){
       return this.$store.state.share.showShare
     },
@@ -45,10 +48,33 @@ export default {
     },
   },
   created(){
+    // var u = navigator.userAgent;
+    // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    // var isFromGroup
+    // var queryString=location.href.split('?')[1]
+    // if(/from=groupmessage/.test(queryString)){
+
+    // }
+    // var queryArr=queryString.split('&')
+    // for(let i=0;i<queryArr.length;i++){
+
+    // }
+    // if(isAndroid&&/from=groupmessage/.test(queryString)){
+    //   // alert('redirect')
+    //   location.href=location.href.split('?')[0]
+    // }
+
+
     let query=this.$route.query
     // this.share_getCount()
     this.app_checkIsWX()
-    this.app_jsconfig()
+    setTimeout(()=> {
+    }, 3000);
+    var u=navigator.userAgent;
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if(isiOS){
+      this.app_jsconfig()
+    }
     this.account_shareInfoSet(query)
     // this.$store.commit('account_shareInfoSet',query)
     this.$nextTick(()=>{

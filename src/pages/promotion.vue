@@ -36,7 +36,7 @@
           </div>
           <div class="incircle">
             <div class="active-box" v-if='nextLvText'>
-              <app-button @click.native='upgradePay' style='margin:0 0.15rem'>升级</app-button>
+              <app-button @click.native='upgradePay' style='margin:0 0.15rem'>付费升级</app-button>
               <app-button @click.native='upgradeFree' style='margin:0 0.15rem'>免费升级</app-button>
             </div>
           </div>

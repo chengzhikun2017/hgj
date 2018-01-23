@@ -12,7 +12,7 @@
         </div> -->
         <span class="paymoney">支付金额</span>
         <div class="money">{{(productInfo.fee / 100).toFixed(0)}}<span>元</span></div>
-        <div class="originBox">原价：<span class="originFee">{{productInfo.originFee|moneyFilter}}</span></div>
+        <div class="originBox"  v-if='productInfo.fee!==productInfo.originFee'>原价：<span class="originFee">{{productInfo.originFee|moneyFilter}}</span></div>
         <!-- <p>{{productDscrp}}</p> -->
 
       </div>
@@ -150,6 +150,9 @@
       }
       if(!this.productId){
         this.getOrderStatus()
+      }
+      if(this.productInfo.fee===0){
+        this.payWay=2
       }
     },
     methods:{

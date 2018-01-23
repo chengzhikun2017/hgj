@@ -1,6 +1,7 @@
 import fetch from '../../utils/fetch.js'
 import {simpleFetch} from '../../utils/fetch.js'
 import {HGJ_VUE} from '../../main.js'
+import helper from '../../utils/helper.js'
 class defaultInfo{
   constructor(props) {
     this.name=null
@@ -10,7 +11,7 @@ class defaultInfo{
     this.idCardNo=null
     // this.idCardNo=321282199201264216
     this.cardNo=null
-    // this.cardNo=6259960047813225
+    // this.cardNo=6225757525926177
     this.year=null
     this.month=null
     this.fullYear=null
@@ -72,7 +73,8 @@ const addCardCC = {
       return promise
     },
     addCardCC_submit({state,dispatch,getters,commit}){
-      state.info.month=(state.info.fullMonth).toString().padStart(2,0)
+      console.log('fullMonth',state.info.fullMonth)
+      state.info.month=helper.padStart0_2(state.info.fullMonth)
       state.info.year=(state.info.fullYear).toString().slice(2,4)
       var promise= fetch({
         url:'card/bindCC',

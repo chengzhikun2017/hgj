@@ -3,19 +3,19 @@
     <app-nav flex-box="0">储蓄卡支付</app-nav>
     <article flex-box="1">
       <app-formitem label="姓名" :first="true">
-        <app-input class='form-input' :placeholder='"请输入~~"' v-model='name' :disabled='isRealNamed'/>
+        <app-input class='form-input' :placeholder='"请输入姓名"' v-model='name' :disabled='isRealNamed'/>
       </app-formitem>
       <app-formitem label="身份证号" >
-        <app-input class='form-input' :placeholder='"请输入~~"' v-model='idCardNo' :disabled='isRealNamed'/>
+        <app-input class='form-input' :placeholder='"请输入身份证号"' v-model='idCardNo' :disabled='isRealNamed'/>
       </app-formitem>
       <app-formitem label="银行卡号">
-        <app-input class='form-input' :placeholder='"请输入~~"' v-model='cardNo'/>
+        <app-input class='form-input' :placeholder='"请输入银行卡号"' v-model='cardNo'/>
       </app-formitem>
       <app-formitem label="手机号码">
-        <app-input class='form-input' :placeholder='"请输入~~"' v-model='phone'/>
+        <app-input class='form-input' :placeholder='"请输入银行预留的手机号码"' v-model='phone'/>
       </app-formitem>
       <app-formitem label="验证码" :last="true">
-        <app-input class='form-input code-input' :placeholder='"请输入~~"' v-model='code' />
+        <app-input class='form-input code-input' :placeholder='"请输入验证码"' v-model='code' />
         <bttn-code :validateMethod='isValidated' :getCodeMethod='bindCardAndGetCode'></bttn-code>
       </app-formitem>
       <div class="myprotocol">

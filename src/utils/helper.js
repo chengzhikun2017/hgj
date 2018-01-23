@@ -16,7 +16,13 @@ export default class helper {
     str = url + '?' + str
     return str
   }
-
+  static padStart0_2(v){
+    if(v>=10){
+      return v
+    }else{
+      return '0'+v
+    }
+  }
   static goPage(path, callback) {
     if (typeof path === 'number') {
       // console.log('back unknown', 1)
@@ -35,7 +41,14 @@ export default class helper {
     }
     this.goPage(path,callback)
   }
-
+  static getProductInfo(id){
+    if(HGJ_VUE&&HGJ_VUE.$store){
+      var products = HGJ_VUE.$store.state.order.products
+      return products.find(item => {
+        return item.productId == id
+      })
+    }
+  }
   // 'upgrade','active'
   // free,pay
   static goBuyFree(type) {

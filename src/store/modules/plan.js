@@ -21,7 +21,7 @@ const plan = {
           startDate,
           endDate,
         },
-      }, false)
+      }, false,true)
       return promise
     },
     plan_review({}, cardId) {

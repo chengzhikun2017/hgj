@@ -1,5 +1,5 @@
 <template>
-  <div class="addCreditCard2" flex="dir:top">
+  <div  class="addCreditCard2" flex="dir:top">
     <app-nav flex-box="0">添加信用卡</app-nav>
     <article flex-box="1">
       <div class="form">
@@ -71,6 +71,18 @@
         return true;
       },
       checkValid(){
+        if(!this.fullYear||!this.fullMonth){
+          this.hgjToast('请选择信用卡有效期',1)
+          return false
+        }
+        if(!this.phoneValid){
+          this.hgjToast('请填写手机号并填写验证码',1)
+          return false
+        }
+        if(!this.cvv2Valid){
+          this.hgjToast('请填写三位信用卡安全码',1)
+          return false
+        }
         if(!this.billDate||!this.repaymentDate){
           this.hgjToast('请选择账单日和还款日',1)
           return false
@@ -107,13 +119,15 @@
       },
       dayPaser2(v){
         let s=String(v)
+        console.log('s',s)
         return this.padStart0_2(s)
       },
       yearPaser(v){
         return (v.toString()).slice(2,4)
       },
       monthPaser(v){
-        return (v.toString()).padStart(2,0)
+        return this.padStart0_2(v)
+        // return (v.toString()).padStart(2,0)
       },
       setYearOptions(){
         let l=20,start=(new Date()).getFullYear(),i=0
@@ -175,6 +189,9 @@
       cvv2Valid(){
         return /\d{3}/.test(this.cvv2)
       },
+      phoneValid(){
+        return regs.phone(this.phone)
+      }, 
     },
     created(){
       this.setYearOptions()
@@ -201,6 +218,7 @@
     },
   }
 </script>
+
 <style lang="scss" scoped>
   .addCreditCard2 {
     width:100%;
@@ -231,7 +249,7 @@
       }
       .expire-select{
         /*border:1px solid red;*/
-        width: 0.35rem;
+        width: 0.3rem;
       }
     }
    

@@ -402,15 +402,14 @@ export default {
           month,
           day
         } = today
-
         var nextDay = new Date(year, month, day + 1)
         var countDownMilis=nextDay.getTime()-this.nowDate.getTime()
         console.log('countDownMilis',countDownMilis)
         this.newDayTimer=setTimeout(() =>{
-          this.nowDate=new Date(2018,0,24)
+          this.nowDate=new Date()
           this.startDay=this.earlistStartDay
           this.calcStartDaysAvailable()
-        }, 4000);
+        }, countDownMilis);
       },
       ...mapMutations([
         'router_willBackToIndex',

@@ -11,19 +11,22 @@
           </div>
           <div class="btn3">选择银行卡</div>
         </div>
-        <app-button class="card-choose-bttn" :type='1'@click.native='chooseCard' >
+        <app-button class="card-choose-bttn" v-if='cardId' :type='1'@click.native='chooseCard' >
           重新选择银行卡
         </app-button>
       </div>
       <div class="balance-content">
         <app-formitem label="提现金额" :first="true">
-          <app-input class='form-input' :placeholder='"请输入~"' v-model='amount'/>
+          <app-input  class='form-input' :placeholder='"请输入提现金额"' v-model='amount'/>
         </app-formitem>
        <!--  <app-formitem label="联系手机号" :last="true">
           <app-input class='form-input' :placeholder='"请输入~"' v-model='phone'/>
         </app-formitem> -->
         <!-- <img src="/static/img/zxlogo.png" alt=""> -->
       </div>
+      <app-description class='description'>
+        工作时间提现金额2小时内到账
+      </app-description>
       <div class="mybutton">
         <app-button @click.native='confirmSubmit'>提交</app-button>
       </div>
@@ -183,10 +186,13 @@
     }
     article {
       position: relative;
-
+      .description{
+        margin:0.2rem 0.15rem;
+        margin-bottom: 0;
+      }
       .mybutton {
         padding:0 0.2rem;
-        margin-top: 0.36rem;
+        margin-top: 0.3rem;
       }
       .chooseCardsPopView {
         .popicon {

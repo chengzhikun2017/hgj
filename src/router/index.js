@@ -5,10 +5,10 @@ import cards from '../pages/cards.vue'
 import mine from '../pages/mine.vue'
 import pay from '../pages/pay.vue'
 import promotion from '../pages/promotion.vue'
-import test from '../pages/testPage/test.vue'
-import test1 from '../pages/testPage/test1.vue'
-import test2 from '../pages/testPage/test2.vue'
-import test3 from '../pages/testPage/test3.vue'
+// import test from '../pages/testPage/test.vue'
+// import test1 from '../pages/testPage/test1.vue'
+// import test2 from '../pages/testPage/test2.vue'
+// import test3 from '../pages/testPage/test3.vue'
 import error_page from '../pages/testPage/error.vue'
 import user_setting from '../pages/userSetting.vue'
 import pay_free from '../pages/payFree.vue'
@@ -16,7 +16,7 @@ import orderRecords from '../pages/orderRecords.vue'
 import balanceRecords from '../pages/balanceRecords.vue'
 import paybankcard_old from '../pages/paybankcard_old.vue'
 import changeSC from '../pages/card_changeSC.vue'
-
+import brokerage_list from '../pages/brokerageList.vue'
 
 import login from '@/pages/login.vue'
 import signUp from '@/pages/signUp.vue'
@@ -117,12 +117,13 @@ index = index.concat(
   newRoute('/balanceRecords', 'balanceRecords', balanceRecords),
   newRoute('/questions', 'questions', questions),
   newRoute('/changeSC', 'changeSC', changeSC),
+  newRoute('/brokerage_list', 'brokerage_list', brokerage_list),
 )
 route_test = route_test.concat(
-  newRoute('/test', 'test', test),
-  newRoute('/test1', 'test1', test1),
-  newRoute('/test2', 'test2', test2),
-  newRoute('/test3', 'test3', test3),
+  // newRoute('/test', 'test', test),
+  // newRoute('/test1', 'test1', test1),
+  // newRoute('/test2', 'test2', test2),
+  // newRoute('/test3', 'test3', test3),
 )
 basicRoutes = [
   {

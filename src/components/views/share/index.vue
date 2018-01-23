@@ -1,7 +1,6 @@
 <template>
-  <div class="popView" v-show="value">
+  <div class="popView" v-show="value" @click='close'>
     <qr-code v-model='isQrShow'></qr-code>
-
     <div class="popcontent">
       <div class="planbox">
         <header flex="cross:center">
@@ -17,21 +16,19 @@
         <div class="planbox-content">
           <div class="liner"></div>
           <div class="waysItem" flex>
-
-            <div class="waybox" @click='qrShareShow'>
+            <div class="waybox" @click.stop='qrShareShow'>
               <div class="icon-qrcode black"></div>
               <p>二维码分享</p>
             </div>
-            <div class="waybox" @click='configShareIfConfiged'>
+            <div class="waybox" @click.stop='configShareIfConfiged'>
               <div class="icon-wechat green"></div>
               <p>微信分享</p>
             </div>
-            <div class="waybox" @click='urlShare'>
+            <div class="waybox" @click.stop='urlShare'>
               <div class="icon-link purple"></div>
               <p>通过链接分享</p>
             </div>
           </div>
-
           <!--
            <div class="waysItem" flex>
             <div class="waybox">
@@ -89,6 +86,9 @@
       userInfo(){
         return this.$store.state.account
       },
+      qrcode(){
+        return this.userInfo.qrcodeUrl
+      },
       shareSrc(){
         return this.userInfo.qrcodeShareUrl
       },
@@ -102,14 +102,15 @@
     methods: {
 
       configMenueShare() {
-        // console.log('%c configMenueShare','color:red',)
+        console.log('%c configMenueShare','color:red',)
         // alert('configMenueShare cfg')
-        wx.onMenuShareAppMessage({
+        let options={
           title: '禾管家', // 分享标题
           desc: '智能养卡，免费申请信用卡', // 分享描述
           // link: 'http://hzg.he577.com' + bus.relativeUrlTest + '/m/#/index/apply_borrow?uniqueId=' + bus.uniqueId + '&share=1', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
           link:helper.urlConcat('https://hgj.wd577.cn/share.html',{
-            img:this.shareSrc,
+            img:this.qrcode,
+            // img:this.shareSrc,
             uid:this.uid
           }),
           imgUrl: 'https://hgj.wd577.cn/logo_share.png', // 分享图标
@@ -118,29 +119,61 @@
           success: () => {
             // alert('分享成功')
             console.log('%c 分享成功','color:red',)
-            // 用户确认分享后执行的回调函数
           },
           cancel: () => {
             // alert('分享被取消')
             console.log('%c 分享被取消','color:red',)
-
-              // 用户取消分享后执行的回调函数
           }
-        });
+        }
+        Object.assign(options,{
+                })
+        wx.onMenuShareAppMessage(options)
+        wx.onMenuShareTimeline({
+          title:'智能养卡，免费申请信用卡。新年酬宾大优惠，首单壕免服务费',
+          link:helper.urlConcat('https://hgj.wd577.cn/share.html',{
+            img:this.qrcode,
+            // img:this.shareSrc,
+            uid:this.uid
+          }),
+          imgUrl: 'https://hgj.wd577.cn/logo_share.png', // 分享图标
+          type: '', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          success: () => {
+          },
+          cancel: () => {
+          }
+        })
       },
       configShareIfConfiged(){
         // let configed=true
         // this.app_jsconfig()
+        // this.hgjAlert({
+        //   title:'点击右上角分享',
+        //   content:'发送给朋友/分享到朋友圈'
+        // })
+        var u=navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        if(isAndroid&&!this.$store.state.app.wxConfiged){
+          this.app_jsconfig()
+        }
+        
         if(this.$store.state.app.isWX){
-
-        this.wxConfigTimer=setInterval(()=>{
-          console.log('this.$store.state.app.wxConfiged',this.$store.state.app.wxConfiged)
-          if(this.$store.state.app.wxConfiged){
-            clearInterval(this.wxConfigTimer)
-            this.hgjAlert('点击右上角分享链接')
-            this.configMenueShare()
+          if(this.wxConfigTimer){
+            return
           }
-        },100)
+          this.wxConfigTimer=setInterval(()=>{
+            console.log('this.$store.state.app.wxConfiged',this.$store.state.app.wxConfiged)
+            // alert(this.$store.state.app.wxConfiged)
+            if(this.$store.state.app.wxConfiged){
+              clearInterval(this.wxConfigTimer)
+              this.wxConfigTimer=null
+              this.configMenueShare()
+              this.hgjAlert({
+                title:'点击右上角分享',
+                content:'发送给朋友/分享到朋友圈'
+              })
+            }
+          },100)
         }
         
       },
@@ -154,8 +187,11 @@
         })
         console.log('path',path)
         this.shareUrl=path
-        this.$refs.urlInput.focus()
-        this.$refs.urlInput.select()
+        console.log('this.$refs',this.$refs)
+        this.$nextTick(()=>{
+          this.$refs.urlInput.focus()
+          this.$refs.urlInput.select()
+        })
         // history.replaceState({}, "page 3", path);
         // history.pushState({}, "page 3", path);
         // this.hgjAlert({

@@ -22,6 +22,7 @@
         </div>
         <div class="service-contact">
           <p >客服电话：<a href='tel:4000577009'>400-0577-009</a></p>
+          <p>招商加盟电话/微信：<a href='tel:1356624446'>135-6624-4446</a></p>
         </div>
       </div>
       

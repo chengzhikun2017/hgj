@@ -173,7 +173,11 @@ export default {
     ...mapActions([
       'order_pay',
       'order_getStatusAfterPay',
+      'share_viewCount',
       ])
+  },
+  created(){
+    this.share_viewCount()
   },
   events: {},
   components: {}

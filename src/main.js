@@ -1,5 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
 import config from './config.js'
 import helper from './utils/helper.js'
 import TimeUtil from './utils/time.js'
@@ -14,6 +15,7 @@ import input from './components/containers/input.vue'
 import radio from './components/containers/input/radio.vue'
 
 import checkbox from './components/containers/checkbox.vue'
+import description from './components/containers/description.vue'
 import button from './components/containers/button.vue'
 import bttn_choose from './components/containers/button/bttn_choose.vue'
 import bttn_code from './components/containers/button/bttn_code.vue'
@@ -67,6 +69,8 @@ Vue.component('app-popview', popview)
 Vue.component('app-popphoto', popPhoto)
 Vue.component('app-carditem', carditem)
 Vue.component('app-dot-bg', dot_bg)
+Vue.component('app-description', description)
+
 
 
 // Vue.prototype.$http = axios

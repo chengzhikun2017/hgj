@@ -30,7 +30,8 @@
         <p @click='goForgetPwd'>忘记密码？</p>
       </div>
       <div class="service-contact">
-        <p >客服电话：<a href='tel:4000577009'>400-0577-009</a></p>
+        <p>客服电话：<a href='tel:4000577009'>400-0577-009</a></p>
+        <p>招商加盟电话/微信：<a href='tel:1356624446'>135-6624-4446</a></p>
       </div>
     </article>
   </div>
@@ -92,7 +93,7 @@
             this.hgjToast({
               content:'登录成功',
               cbEntered:()=>{
-                console.log('cbEntered')
+                // console.log('cbEntered')
                 this.router_willBackToIndex()
                 this.$router.go(-1)
                 // helper.goPage(-1)
@@ -100,7 +101,7 @@
                 
               }
             })
-            console.log('res login', res)
+            // console.log('res login', res)
           })
         }
       },

@@ -107,10 +107,10 @@ const share = {
         state.totalagentLv3plusFee = total.agentLv3plusFee
       })
     },
-    share_viewCount({state},){
+    share_viewCount({state},showLoding=false){
       fetch({
         url:'report/countSharePagePv'
-      }).then(res=>{
+      },false).then(res=>{
         state.sharePagePv=res.count
       })
     },

@@ -1,6 +1,6 @@
 <template>
   <div class="menuItem" :class="{'first': position === -1, 'last':position === 1, 'full': long}">
-    <div class="item" flex="cross:center main:justify">
+    <div class="item" flex="cross:center main:justify" @click="action">
       <div flex-box="0" class="menuitemicon">
         <app-cricleicon v-if="icon === 'icon-share'" icon="icon-share" bgcolor="bg-red" size="0.27rem"></app-cricleicon>
         <app-cricleicon v-if="icon === 'icon-date'" icon="icon-date" bgcolor="bg-lightblue" size="0.26rem"></app-cricleicon>

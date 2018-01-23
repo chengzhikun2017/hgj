@@ -22,7 +22,7 @@ function handleWrongCode(res){
   HGJ_VUE.hgjAlert(res.message)
 }
 // console.log('process',process)
-export default function fetch(options,showloading=1) {
+export default function fetch(options,showloading=1,rejectErr=false) {
   var fetchPromis=new Promise((resolve, reject) => {
     if(showloading&&HGJ_VUE){
       HGJ_VUE.hgjShowLoading()
@@ -36,7 +36,9 @@ export default function fetch(options,showloading=1) {
       withCredentials: true,
       // headers: {'Access-Control-Allow-Origin': "*"},
     })
-
+    if(options.url=='wechat/jsconfig'){
+      // alert('wechat/jsconfig')
+    }
     instance(options).then(response => {
         // status必然是200
         if(showloading&&HGJ_VUE){
@@ -44,12 +46,18 @@ export default function fetch(options,showloading=1) {
         }
         console.log('responese to>>>%c'+options.url,'color:green','<<<',response)
         const res = response.data
+        if(options.url=='wechat/jsconfig'){
+          // alert(res)
+        }
+
           // 根据陶雨的基本标准，做error的错误封装
         if (res.error === 0) {
           resolve(res.data)
         } else {
           // let code=res.error
-          reject(res)
+          if(rejectErr){
+            reject(res)
+          }
           switch(res.error){
             case 20006:handleUnlogin(res);break;
             // case 20040:resolve(res);break;
@@ -62,6 +70,9 @@ export default function fetch(options,showloading=1) {
         }
       })
       .catch(err => {
+        // if(options.url=='wechat/jsconfig'){
+        //   alert(err)
+        // }
         if(showloading&&HGJ_VUE){
           HGJ_VUE.hgjHideLoading()
         }

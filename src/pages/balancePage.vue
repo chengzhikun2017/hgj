@@ -20,14 +20,22 @@
           </div>
         </div> 
       </app-dot-bg>
-    <div class="dscrp">
+<!--     <div class="dscrp">
       <i class="icon icon-alert"></i>
       <p class="dscrp-text">
         短时间内进行过创建还款计划、终止还款计划、提取保证金等操作，信息显示不正确，可尝试点击
         <span class="refresh" @click='reGetUserInfo'>刷新</span>
         重新查看。
       </p>
-    </div>
+    </div> -->
+    <app-description class='description'>
+      短时间内进行过创建还款计划、终止还款计划、提取保证金等操作后，如果信息显示不及时，可尝试点击
+      <span class="refresh" @click='reGetUserInfo'>刷新</span>
+      重新查看。
+    </app-description>
+    <app-description class='description'>
+      工作时间提现金额2小时内到账
+    </app-description>
     <div class="bttn-box">
       <app-button class='bttn' @click.native='balanceWidthdraw'>提现</app-button>
       <app-button class='bttn' @click.native='confirmSecurityWidthDraw'>保证金提现</app-button>
@@ -90,7 +98,7 @@ export default {
       }
       this.hgjAlert({
         title:'提取保证金',
-        content:'提取全部未冻结保证金'+this.unfreezeMoney+'元',
+        content:'提取全部未冻结保证金'+this.unfreezeMoney/100+'元',
         options: [{
           text: '确认',
           callback: () => {
@@ -258,26 +266,26 @@ export default {
   text-align: center;
   color: #4ba8f8;
 }
-div.dscrp{
-  display: flex;
-  padding:0.3rem 0.15rem;
-  .icon{
+.description{
+  /*display: flex;*/
+  margin:0.3rem 0.15rem;
+  /*.icon{
     font-size: 0.15rem;
     color:#a4a4a4;
     line-height: 1.5;
-  }
-  .dscrp-text{
+  }*/
+/*  .dscrp-text{
     color:#a4a4a4;
     font-size: 0.14rem;
     line-height: 1.5;
     margin-left: 0.1rem;
     letter-spacing: -0.1px;
     text-align: justify;
+  }*/
     .refresh{
       font-size: 0.15rem;
       color:#4ba8f8;
     }
-  }
 
 }
 
