@@ -15,7 +15,7 @@
       </div>
       <div class="populizeShare-content">
         <div class="title" flex="cross:center">
-          <app-cricleicon bgcolor="bg-red" icon="" flex-box="0"></app-cricleicon>
+          <app-cricleicon bgcolor="bg-red" icon="icon-record" flex-box="0" size="0.24rem"></app-cricleicon>
           <h2 flex-box="1">分润记录</h2>
           <button flex-box="0">提现</button>
         </div>

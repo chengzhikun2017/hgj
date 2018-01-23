@@ -3,7 +3,7 @@
     <app-nav flex-box="0">添加信用卡</app-nav>
     <article flex-box="1">
       <div class="form">
-        <app-formitem label="信用卡有效期" :first="true">
+        <app-formitem label="信用卡有效期" :first="true" :qa="readme2" :isQ="true">
           <div class="datechoose" flex="main:justify cross:center">
             <app-select :options='monthOptions' :filter='dayPaser2' :placeholder='"月份"' v-model='fullMonth' class='expire-select'/>
             <span class="cuteliner">/</span>
@@ -38,7 +38,7 @@
         </div>
       </div>
     </article>
-    <app-popphoto v-model="photoShow" :imgUrl="imgurl"></app-popphoto>
+    <app-popphoto v-model="photoShow" :type="readmeType"></app-popphoto>
   </div>
 </template>
 <script>
@@ -62,12 +62,18 @@
         repaymentDateOpts:[],
 
         photoShow: false,
-        imgurl: '/static/img/creditreadme1.jpg'
+        readmeType: ''
       }
     },
     methods:{
       readme () {
         this.photoShow  = true
+        this.readmeType = 'CVN2说明'
+        return true;
+      },
+      readme2 () {
+        this.photoShow  = true
+        this.readmeType = '有效期说明'
         return true;
       },
       checkValid(){
@@ -204,17 +210,18 @@
       this.addCardCC_setValue(this)
     },
     beforeRouteEnter(to,from,next){
+      next()
       // next()
       // return
       //todo:刷新此页面，进入addcard1
       // console.log('%c from','color:blue',from)
-      if(/addCreditCard1/.test(from.name)){
-        // console.log('%c from cc card page1','color:yellow')
-        next()
-      }else{
-        // console.log('%c redirect to add cc card page1','color:yellow')
-        helper.replaceRouter('/addCreditcard1')
-      }
+      // if(/addCreditCard1/.test(from.name)){
+      //   // console.log('%c from cc card page1','color:yellow')
+      //   next()
+      // }else{
+      //   // console.log('%c redirect to add cc card page1','color:yellow')
+      //   helper.replaceRouter('/addCreditcard1')
+      // }
     },
   }
 </script>

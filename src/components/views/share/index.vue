@@ -108,7 +108,7 @@
           title: '禾管家', // 分享标题
           desc: '智能养卡，免费申请信用卡', // 分享描述
           // link: 'http://hzg.he577.com' + bus.relativeUrlTest + '/m/#/index/apply_borrow?uniqueId=' + bus.uniqueId + '&share=1', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          link:helper.urlConcat('https://hgj.wd577.cn/share.html',{
+          link:helper.urlConcat('https://hgj.wd577.cn/static/share/share.html',{
             img:this.qrcode,
             // img:this.shareSrc,
             uid:this.uid
@@ -130,7 +130,7 @@
         wx.onMenuShareAppMessage(options)
         wx.onMenuShareTimeline({
           title:'智能养卡，免费申请信用卡。新年酬宾大优惠，首单壕免服务费',
-          link:helper.urlConcat('https://hgj.wd577.cn/share.html',{
+          link:helper.urlConcat('https://hgj.wd577.cn/static/share/share.html',{
             img:this.qrcode,
             // img:this.shareSrc,
             uid:this.uid
@@ -181,8 +181,8 @@
         // http://hgj.wd577.cn/
         this.isShareUrlShow=true
         let oldPath=this.$route.fullPath
-        let path=helper.urlConcat('https://hgj.wd577.cn/share.html',{
-          img:this.shareSrc,
+        let path=helper.urlConcat('https://hgj.wd577.cn/static/share/share.html',{
+          img:this.qrcode,
           uid:this.uid
         })
         console.log('path',path)

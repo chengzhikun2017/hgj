@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,user-scalable=no">
+  <title>分享</title>
+  <script type="text/javascript">
+    var meta=document.createElement('meta')
+    meta.setAttribute('name','viewport')
+    meta.setAttribute('content','initial-scale='+1/devicePixelRatio+',user-scalable=no')
+    document.querySelector('head').appendChild(meta)
+
+    function setRem(){
+      var remDefault=document.documentElement.style.fontSize = 
+      window.innerWidth/3.75 + 'px';
+      console.log('hello')
+    }
+    setRem()
+    window.onresize=setRem
+    console.log('dpr and window with',devicePixelRatio+ ' ' + window.innerWidth)
+  </script>
+  <link rel="stylesheet" href="flex.css">
+  <style>
+    /*flex 当前简化版*/
+    /*! https://github.com/lzxb/flex.css */
+    [flex] {
+      display:-webkit-box;
+      display:-webkit-flex;
+      display:-ms-flexbox;
+      display:flex
+    }
+    [flex] >* {
+      display:block
+    }
+    [flex]>[flex] {
+      display:-webkit-box;
+      display:-webkit-flex;
+      display:-ms-flexbox;
+      display:flex
+    }
+    [flex~="dir:left"] {
+      -webkit-box-orient:horizontal;
+      -webkit-box-direction:normal;
+      -webkit-flex-direction:row;
+      -ms-flex-direction:row;
+      flex-direction:row
+    }
+    [flex~="dir:top"] {-webkit-box-orient:vertical;
+        -webkit-box-direction:normal;
+      -webkit-flex-direction:column;
+      -ms-flex-direction:column;
+      flex-direction:column
+    }
+    [flex~="main:justify"] {
+      -webkit-box-pack:justify;
+      -webkit-justify-content:space-between;
+      -ms-flex-pack:justify;
+      justify-content:space-between
+    }
+    [flex~="main:center"] {
+      -webkit-box-pack:center;
+      -webkit-justify-content:center;
+      -ms-flex-pack:center;
+      justify-content:center
+    }
+    [flex~="cross:center"] {
+      -webkit-box-align:center;
+      -webkit-align-items:center;
+      -ms-flex-align:center;
+      align-items:center
+    }
+    [flex-box="0"]{-webkit-box-flex:0;
+      -webkit-flex-grow:0;
+    -ms-flex-positive:0;
+    flex-grow:0;
+    -webkit-flex-shrink:0;
+    -ms-flex-negative:0;
+    flex-shrink:0}
+    [flex-box="1"]{-webkit-box-flex:1;
+      -webkit-flex-grow:1;
+    -ms-flex-positive:1;
+    flex-grow:1;
+    -webkit-flex-shrink:1;
+    -ms-flex-negative:1;
+    flex-shrink:1}
+
+  </style>
+  <style type="text/css">
+    html,body{
+      height: 100%;
+      display: flex;
+      width: 100%;
+      flex-direction:colum;
+    }
+    *{
+      padding:0;
+      margin:0;
+    }
+    .bttn{
+      width: 150px;
+      height: 50px;
+      position: absolute;
+      top: 50px;
+      left: 0;right: 0;
+      margin: 0 auto;
+
+      color:#fff;
+      line-height: 50px;
+      text-align: center;
+      font-size: 20px;
+      background: rgba(240,210,100,1);
+      border-radius: 15px;
+      /*background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(240,210,100,1)), to(rgba(229,201,96,1)));
+      background: -webkit-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+      background: -moz-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+      background: -o-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+      background: linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%)*/
+    }
+    #shareImg{
+      width: 100%;
+      margin:auto;
+      border:10px solid #fff;
+    }
+    #src{
+      position: absolute;
+      top: 0;
+      white-space:pre-wrap;
+      word-break: break-all;
+    }
+    .sharebg {
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to top, #f74141, #fe5772);
+    }
+    .share {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-image: url(./img/bgShare.png);
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      background-size: 88% auto;
+    }
+    .share .background {
+      position: absolute;
+      top:0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      overflow: hidden;
+    }
+    .share .background .circle1 {
+      position: absolute;
+      top: -1.075rem;
+      left: -1.235rem;
+      width: 2.48rem;
+      height: 2.48rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .share .background .circle2 {
+      position: absolute;
+      bottom: -0.9rem;
+      right: -0.95rem;
+      width: 1.9rem;
+      height: 1.9rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .share .content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      padding:0 0.2rem;
+    }
+    .share .content .flexbox {
+      width: 100%;
+      height: 100%;
+    }
+    .share .content .title {
+      width: 100%;
+      height: 1.5rem;
+      border-radius: 0.05rem;
+      background: white;
+      font-size: 0.366rem;
+      font-family: sans-serif;
+      letter-spacing: 0.02rem;
+      color: #f74141;
+      text-shadow: 0.02rem 0.02rem 0.03rem #BEFCCE;
+      font-weight: 900;
+      box-shadow: 0 0 0.1rem rgba(144, 144, 144, .6);
+      line-height: 1.2;
+    }
+    .share .content .title .line2 .icon {
+      padding-left: 0.05rem;
+      padding-right: 0.05rem;
+    }
+    .share .content .title .line2 .icon img {
+      width: 0.2rem;
+      position: relative;
+      top: 0.07rem;
+    }
+
+    .share .content .msg {
+      width: 100%;
+      font-size: 0.23rem;
+      line-height: 1;
+      font-family: sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.013rem;
+      color: white;
+    }
+    .share .content .msg .line {
+      height: 0.14rem;
+    }
+    .share .content .msg .important {
+      color: #faf34a;
+    }
+    .share .content .button {
+      width: 100%;
+      height: 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.23rem;
+      font-weight: 900;
+      line-height: 0.5rem;
+      text-align: center;
+      letter-spacing: 0.013rem;
+      color: #f74449;
+      background: white;
+      box-shadow: 0.02rem 0.02rem 0.2rem rgba(144, 144, 144, .6);
+    }
+    .share .content .qrcode .img {
+      width: 1.08rem;
+      height: 1.08rem;
+      background:white;
+    }
+    .share .content .qrcode p {
+      margin:0;
+      padding:0;
+      margin-top: 0.07rem;
+      font-size: 0.13rem;
+      color: white;
+      text-shadow: 0.01rem 0.01rem 0.01rem black;
+
+    }
+  </style>
+
+</head>
+<body>
+  <div class="sharebg">
+    <div class="share">
+      <div class="background">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+      </div>
+      <div class="content">
+        <div class="flexbox" flex="dir:top">
+          <div class="flexitem" flex-box="1" flex="main:center cross:center">
+            <div class="title" flex="dir:top main:center cross:center">
+              <div class="line1">
+                您的信用卡账单
+              </div>
+              <div class="line2">
+                智能管理专家
+                <span class="icon"><img src="img/card.png" alt=""></span>
+              </div>
+            </div>
+          </div>
+          <div class="flexitem" flex-box="1" flex="main:center cross:center">
+            <div class="msg" flex="cross:center main:justify">
+              <!-- 内容 -->
+              <div class="readme">
+                <p>最高分润<span class="important">60%!</span></p>
+                <div class="line"></div>
+                <p>开业酬宾<span class="important">免费激活!</span></p>
+                <div class="line"></div>
+                <p>智能还款，<span class="important">一键搞定!</span></p>
+              </div>
+              <img src="img/logo.png" alt="">
+            </div>
+          </div>
+          <div class="flexitem" flex-box="1" flex="main:center cross:center">
+            <div class="button" onclick='goSignUp()'>
+              立即注册
+            </div>
+          </div>
+          <div class="flexitem" flex-box="1" flex="main:center cross:center">
+            <div class="qrcode" flex="dir:top main:center cross:center">
+              <!-- 二维码 -->
+              <div class="img">
+                <img id='shareImg' src='#' alt=''>
+              </div>
+              <p>请关注“禾管家”微信公众号获取更多资讯</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- https://hgj.wd577.cn/uploads/qrcode/20180119/4_.jpg -->
+  <!-- <div class="btn-gradient yellow large">立即注册</div> -->
+  <!-- <div class="bttn" onclick='goSignUp()'>立即注册</div> -->
+  <!-- <p id='src'></p> -->
+  <script type="text/javascript">
+    var url=location.href
+    var index=url.indexOf('?'),len=url.length
+    console.log('index',index)
+    var queryString=url.slice(index+1)
+    // console.log('src',src)
+    console.log('queryString',queryString)
+    var arr=queryString.split('&')
+    console.log('arr',arr)
+    var shareImg=document.querySelector('#shareImg')
+    var query={}
+    var src=document.querySelector('#src')
+    for(let i=0;i<arr.length;i++){
+      addValueToObj(arr[i],query)
+    }
+    shareImg.src=query.img
+    if(src){
+      src.innerHTML=query.img
+    }
+
+    function addValueToObj(string,obj){
+      let key,value,index=string.indexOf('=')
+      key=string.slice(0,index)
+      value=string.slice(index+1,string.length)
+      obj[key]=decodeURIComponent(value)
+    }
+    function goSignUp(){
+      location.href='https://hgj.wd577.cn/register?uid='+query.uid
+    }
+    // var script=document.createElement('script')
+    // script.src='https://hgj.wd577.cn/api/report/sharePvCount?uid='+query.uid
+    // document.body.appendChild(script)
+    
+    var xhr=new XMLHttpRequest()
+    xhr.open('get','https://hgj.wd577.cn/api/report/sharePvCount?uid='+query.uid,true)
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*")
+    xhr.onreadystatechange=readyStateChange
+    xhr.send(null)
+    function readyStateChange(){
+      var status=xhr.readyState===4&&xhr.status===200
+      if(status){
+        console.log('xhr',xhr)
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

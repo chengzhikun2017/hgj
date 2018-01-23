@@ -120,14 +120,14 @@ export default {
       helper.goPageLoged('/planrecords')
     },
     viewAboutus(){
-      this.get_qa_ansqwer({
+      this.qa_get_ansqwer({
         aim:'8',
         title:'关于我们',
       })
       helper.goPage('/questions')
     },
     ...mapMutations([
-      'get_qa_ansqwer',
+      'qa_get_ansqwer',
     ]),
     ...mapActions([
       'share_getCount',

@@ -28,7 +28,7 @@
           <p>登陆禾管家→我的→未登录头像→新用户注册（目前只支持手机号注册）</p>
         </div>
         <div class="content" v-if="qa_contentId === '1-2'">
-          <p>登陆禾管家→我的→用户设置→账户激活→付费马上激活→确认支付（开业酬宾优惠价98元）</p>
+          <p>登陆禾管家→我的→用户设置→账户激活→付费马上激活→确认支付（开业酬宾优惠价99元）</p>
         </div>
         <div class="content" v-if="qa_contentId === '1-3'">
           <p>登陆禾管家→我的→用户设置→账户激活→免费激活→分享（成功分享15次即可免费激活账户）</p>
@@ -43,6 +43,9 @@
           <p>登陆禾管家→卡包→我的信用卡/储蓄卡→选择信用卡/储蓄卡→点击删除图标→确认</p>
         </div>
         <div class="content" v-if="qa_contentId === '2-4'">
+          <p>结算卡用于提现保证金， 最多只能设置一张储蓄卡为结算卡，一般选择您的常用储蓄卡作为结算卡，目前暂不支持更换结算卡，如有需求请联系客服</p>
+        </div>
+        <div class="content" v-if="qa_contentId === '2-5'">
           <p>登陆禾管家→卡包→我的储蓄卡→设置为结算卡</p>
         </div>
         <div class="content" v-if="qa_contentId === '3-1'">
@@ -99,13 +102,10 @@
             </tr>
           </table>
         </div>
-        <div class="content" v-if="qa_contentId === '7'">
-          <p>结算卡用于提现保证金， 最多只能设置一张储蓄卡为结算卡，一般选择您的常用储蓄卡作为结算卡，目前暂不支持更换结算卡，如有需求请联系客服</p>
-        </div>
         <div class="content" v-if="qa_contentId === '8'">
           <p>客服电话：4000577009  </p> 
           <p>QQ公众号：4000577009</p>
-          <p>微信：13566244446</p>
+          <p>招商加盟电话/微信：13566244446</p>
         </div>
         <div class="content" v-if="qa_contentId === '9'">
           <p>大众:</p>
@@ -113,7 +113,7 @@
             当前等级权益<br>
             <div class="label">1、享受35%的收益。</div>
             <div class="msg">
-              （收益来源包括客户账户激活费、等级升级费、服务费分润）例：大众    客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原大众获得收益如下：
+              （收益来源包括客户账户激活费、等级升级费、服务费分润）例：大众→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原大众获得收益如下：
             </div>
             <table cellspacing="0" border="1">
               <tr>
@@ -135,7 +135,7 @@
             当前等级权益<br>
             <div class="label">1、享受45%的收益。</div>
              <div class="msg">
-              （收益来源包括客户账户激活费、等级升级费、服务费分润）例：保时捷->客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原保时捷获得收益如下：
+              （收益来源包括客户账户激活费、等级升级费、服务费分润）例：保时捷→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原保时捷获得收益如下：
             </div>
             <table cellspacing="0" border="1">
               <tr>
@@ -153,7 +153,7 @@
             </table>
             2、享受大众多余的10%收益。<br>
             <div class="msg">
-              例：保时捷->大众->客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原保时捷获得收益如下：
+              例：保时捷→大众→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原保时捷获得收益如下：
             </div>
             <table cellspacing="0" border="1">
               <tr>
@@ -175,8 +175,7 @@
             当前等级权益<br>
             <div class="label">1、享受60%的收益；</div>
             <div class="msg">
-              （收益来源包括客户账户激活费、等级升级费、服务费分润）
-例：劳斯莱斯    客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯获得收益如下：
+              （收益来源包括客户账户激活费、等级升级费、服务费分润）例：劳斯莱斯→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯获得收益如下：
             </div>
             <table cellspacing="0" border="1">
               <tr>
@@ -194,7 +193,7 @@
             </table>
             <div class="label">2、享受大众多余的25%的收益；</div>
             <div class="msg">
-              例：劳斯莱斯    大众    客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯获得收益如下：
+              例：劳斯莱斯→大众→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯获得收益如下：
             </div>
             <table cellspacing="0" border="1">
               <tr>
@@ -212,7 +211,7 @@
             </table>
             <div class="label">3、享受保时捷多余的15%的收益；</div>
             <div class="msg">
-              例：劳斯莱斯    保时捷    客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯获得收益如下：
+              例：劳斯莱斯→保时捷→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯获得收益如下：
             </div>
             <table cellspacing="0" border="1">
               <tr>
@@ -230,7 +229,7 @@
             </table>
             <div class="label">4、享受同级别推广的3%的收益。</div>
             <div class="msg">
-              例：劳斯莱斯1    劳斯莱斯2    客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯1获得收益如下：
+              例：劳斯莱斯1→劳斯莱斯2→客户，客户激活账户后并操作还款（首次还款免服务费，第二次开始计费结算收益），并且客户付费升级为大众，原劳斯莱斯1获得收益如下：
             </div>
             <table cellspacing="0" border="1">
               <tr>
@@ -248,11 +247,16 @@
             </table>
           </div>
         </div>
+        <div class="content" v-if="qa_contentId === '10'">
+          <p>推广一个注册用户即可获得10000积分，积分目前可以用于免费激活账号、代理升级等</p>
+        </div>
     </div>
   </div>
 </template>
 <script>
   import { mapGetters } from 'vuex'
+  import helper from '@/utils/helper.js'
+
   export default {
     data () {
       return {
@@ -300,8 +304,13 @@
                 'more': false,
               },
               {
-                'title': '如何设置结算卡',
+                'title': '什么是结算卡',
                 'id': '2-4',
+                'more': false,
+              },
+              {
+                'title': '如何设置结算卡',
+                'id': '2-5',
                 'more': false,
               }
             ]
@@ -377,19 +386,20 @@
             'id': '6',
             'more': false,
           },
+          
           {
-            'title': '什么是结算卡',
-            'id': '7',
+            'title': '代理等级收益',
+            'id': '9',
+            'more': false,
+          },
+          {
+            'title': '如何赚取积分',
+            'id': '10',
             'more': false,
           },
           {
             'title': '关于我们',
             'id': '8',
-            'more': false,
-          },
-          {
-            'title': '代理等级收益',
-            'id': '9',
             'more': false,
           },
         ]
@@ -404,7 +414,8 @@
         'qa_popFlag',
         'qa_contentId',
         'qa_activeIndex',
-        'qa_title'
+        'qa_title',
+        'qa_straight'
       ])
     },
     methods: {
@@ -424,6 +435,10 @@
       },
       close () {
         this.$store.commit('qa_toggle_popflag', false)
+        if (this.qa_straight) {
+          helper.goPage(-1)
+        }
+        this.$store.commit('qa_change_straight', false)
       }
     },
     destroyed () {
@@ -533,14 +548,19 @@
         }
         .notemsg2 {
           padding: 0 0.1rem;
-          font-size: 0.14rem;
+          font-size: 0.1rem;
           color: #888;
           .label {
             color: #f84c4b;
+            font-size: 0.1rem;
+          }
+          .msg {
+            font-size: 0.08rem;
           }
           table {
             margin-top: 0.1rem;
             margin-bottom: 0.2rem;
+            font-size: 0.12rem;
             td {
               padding:0.05rem;
             }

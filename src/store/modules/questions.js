@@ -4,12 +4,14 @@ const questions = {
     popFlag: false,
     contentId: '6',
     activeIndex: '6',
+    straight: false,
   },
   getters: {
     qa_popFlag: state => state.popFlag,
     qa_contentId: state => state.contentId,
     qa_activeIndex: state => state.activeIndex,
-    qa_title: state => state.title
+    qa_title: state => state.title,
+    qa_straight: state => state.straight,
   },
   mutations: {
     qa_set_title(s, title) {
@@ -24,6 +26,9 @@ const questions = {
     qa_change_activeIndex(s, index) {
       s.activeIndex = index
     },
+    qa_change_straight(s, flag) {
+      s.straight = flag
+    },
     qa_get_ansqwer(s, {
       aim,
       title
@@ -32,6 +37,7 @@ const questions = {
       s.title = title
       s.activeIndex = activeIndex;
       s.contentId = aim;
+      s.straight = true;
       s.popFlag = true;
     }
   },

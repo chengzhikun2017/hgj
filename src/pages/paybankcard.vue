@@ -15,7 +15,11 @@
         <app-input class='form-input' :placeholder='"请输入银行预留的手机号码"' v-model='phone'/>
       </app-formitem>
       <app-formitem label="验证码" :last="true">
+<<<<<<< HEAD
         <app-input class='form-input code-input' :placeholder='"请输入验证码"' v-model='code' />
+=======
+        <app-input class='form-input code-input' :placeholder='"请输入"' v-model='code' />
+>>>>>>> ea82db6461074e226ff262b609d03b55ed5123e7
         <bttn-code :validateMethod='isValidated' :getCodeMethod='bindCardAndGetCode'></bttn-code>
       </app-formitem>
       <div class="myprotocol">
