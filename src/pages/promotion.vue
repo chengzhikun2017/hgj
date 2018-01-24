@@ -1,6 +1,6 @@
 <template>
   <div class="promotion" flex="dir:top">
-    <app-nav flex-box="0" :showBack='false'>推广</app-nav>
+    <!-- <app-nav flex-box="0" :showBack='false'>推广</app-nav> -->
     <article flex-box="1">
       <div class="banner">
         <div class="circle" flex="main:center cross:bottom">

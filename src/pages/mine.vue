@@ -1,6 +1,6 @@
 <template>
   <div class="mine hgj-container" flex="dir:top">
-    <app-nav flex-box="0" :showBack="false">我的</app-nav>
+    <!-- <app-nav flex-box="0" :showBack="false">我的</app-nav> -->
     <article flex-box="1">
       <app-dot-bg class='banner' :type='1' :distanceOfCenter='4.5' :halfHeight='110'>
         <div class="myInfo">
