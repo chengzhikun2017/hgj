@@ -28,7 +28,7 @@
           <p>登陆禾管家→我的→未登录头像→新用户注册（目前只支持手机号注册）</p>
         </div>
         <div class="content" v-if="qa_contentId === '1-2'">
-          <p>登陆禾管家→我的→用户设置→账户激活→付费马上激活→确认支付（开业酬宾优惠价99元）</p>
+          <p>登陆禾管家→我的→用户设置→账户激活→付费马上激活→确认支付（开业酬宾激活免费）</p>
         </div>
         <div class="content" v-if="qa_contentId === '1-3'">
           <p>登陆禾管家→我的→用户设置→账户激活→免费激活→分享（成功分享15次即可免费激活账户）</p>
@@ -49,7 +49,7 @@
           <p>登陆禾管家→卡包→我的储蓄卡→设置为结算卡</p>
         </div>
         <div class="content" v-if="qa_contentId === '3-1'">
-          <p>登陆禾管家→卡包→我的信用卡→创建还款计划→预览还款计划→支付并开启还款计划（系统将自动为您设置最优还款计划，首次还款免服务费）</p>
+          <p>登陆禾管家→卡包→我的信用卡→创建还款计划→预览还款计划→支付并开启还款计划（系统将自动为您设置最优还款计划）</p>
         </div>
         <div class="content" v-if="qa_contentId === '3-2'">
           <p>登陆禾管家→卡包→我的信用卡→选择信用卡→修改计划→选择还款计划→预览还款计划→支付并开启还款计划</p>
@@ -91,11 +91,73 @@
         <div class="content" v-if="qa_contentId === '5-4'">
           <p>客户激活账户后，并成功创建还款计划，平台会收取服务费，服务费除掉成本，剩余服务费可进行分润，大概30元左右（服务费分润根据还款周期而波动）。</p>
         </div>
+         <div class="content" v-if="qa_contentId === '5-5'">
+          <p>同一级别或者低一级别，除劳斯莱斯外，其他级别推广无收益，公司奖励劳斯莱斯3%，另外代理关系最多3层。</p>
+          <div class="notemsg2">
+            <div class="label">例⑴.大众1→保时捷→大众2→客户，该客户付费激活账户后，各级别收益情况如下：</div>
+            
+            <table cellspacing="0" border="1">
+              <tr>
+                <td>大众1</td>
+                <td>无收益</td>
+              </tr>
+              <tr>
+                <td>保时捷</td>
+                <td>99元*（45-35）%=9.9元</td>
+              </tr>
+              <tr>
+                <td>大众2</td>
+                <td>99元*35%=34.65元</td>
+              </tr>
+            </table>
+            <div class="msg">
+              备注：大众1想获得收益，可以升级更高一级代理，下一次间接推广的客户就可以获得收益
+              （大众1和大众2同一级别，并且大众1比保时捷低一级别，所以大众1无收益）。
+            </div>
+          </div>
+          <div class="notemsg2">
+            <div class="label">例⑵.劳斯莱斯1→劳斯莱斯2→客户，该客户付费激活账户后，各级别收益情况如下：</div>
+            <table cellspacing="0" border="1">
+              <tr>
+                <td>劳斯莱斯1</td>
+                <td>99元*3%=3.97元</td>
+              </tr>
+              <tr>
+                <td>莱斯莱斯2</td>
+                <td>99元*60%=59.4元</td>
+              </tr>
+            </table>
+          </div>
+          <div class="notemsg2">
+            <div class="label">例⑶.保时捷1→保时捷2→大众1→大众2→客户，该客户付费激活账户后，各级别收益情况如下：</div>
+            <table cellspacing="0" border="1">
+              <tr>
+                <td>保时捷1</td>
+                <td>无收益</td>
+              </tr>
+              <tr>
+                <td>保时捷2</td>
+                <td>99元*（45-35）%=9.9元</td>
+              </tr>
+              <tr>
+                <td>大众1</td>
+                <td>无收益</td>
+              </tr>
+              <tr>
+                <td>大众2</td>
+                <td>99元*35%=34.65元</td>
+              </tr>
+            </table>
+            <div class="msg">
+              备注：保时捷1因代理关系超过3层无收益；大众1因同一级别无收益。
+            </div>
+          </div>
+        </div>
         <div class="content" v-if="qa_contentId === '6'">
           <table class="bankList">
             <tr v-for="(value, key) in cards_dict">
               <td flex>
-                <div :class='"ui-banklogo-s-" + key' style="margin:0 auto;background-image: url(/static/img/small_logo_sprite.png);"></div>
+                <!-- <div :class='"ui-banklogo-s-" + key' style="margin:0 auto;background-image: url(/static/img/small_logo_sprite.png);"></div> -->
                 <div class="name">{{value}}</div><!-- <img :src="'https://apimg.alipay.com/combo.png?d=cashier&t=' + key" alt=""> -->
               </td>
               <td></td>
@@ -118,7 +180,7 @@
             <table cellspacing="0" border="1">
               <tr>
                 <td>账户激活收益</td>
-                <td>98元*35%=34.3元</td>
+                <td>99元*35%=34.65元</td>
               </tr>
               <tr>
                 <td>等级升级收益</td>
@@ -140,7 +202,7 @@
             <table cellspacing="0" border="1">
               <tr>
                 <td>账户激活收益</td>
-                <td>98元*45%=44.1元</td>
+                <td>99元*45%=44.55元</td>
               </tr>
               <tr>
                 <td>等级升级收益</td>
@@ -158,7 +220,7 @@
             <table cellspacing="0" border="1">
               <tr>
                 <td>账户激活收益</td>
-                <td>98元*（45-35）%=9.8元</td>
+                <td>99元*（45-35）%=9.9元</td>
               </tr>
               <tr>
                 <td>等级升级收益</td>
@@ -180,7 +242,7 @@
             <table cellspacing="0" border="1">
               <tr>
                 <td>账户激活收益</td>
-                <td>98元*60%=58.8元</td>
+                <td>99元*60%=59.4元</td>
               </tr>
               <tr>
                 <td>等级升级收益</td>
@@ -198,7 +260,7 @@
             <table cellspacing="0" border="1">
               <tr>
                 <td>账户激活收益</td>
-                <td>98元*（60-35）%=24.5元</td>
+                <td>99元*（60-35）%=24.75元</td>
               </tr>
               <tr>
                 <td>等级升级收益</td>
@@ -216,7 +278,7 @@
             <table cellspacing="0" border="1">
               <tr>
                 <td>账户激活收益</td>
-                <td>98元*（60-45）%=14.7元</td>
+                <td>99元*（60-45）%=14.85元</td>
               </tr>
               <tr>
                 <td>等级升级收益</td>
@@ -234,7 +296,7 @@
             <table cellspacing="0" border="1">
               <tr>
                 <td>账户激活收益</td>
-                <td>98元*3%=2.94元</td>
+                <td>99元*3%=2.97元</td>
               </tr>
               <tr>
                 <td>等级升级收益</td>
@@ -377,6 +439,11 @@
               {
                 'title': '什么是服务费分润',
                 'id': '5-4',
+                'more': false,
+              },
+              {
+                'title': '关于同一级别或低一级别的推广问题',
+                'id': '5-5',
                 'more': false,
               }
             ]
