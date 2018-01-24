@@ -486,16 +486,20 @@
     }
     .popanswer {
       position: fixed;
-      overflow: auto;
+      /*overflow: hidden;*/
       top: 0.44rem;
       left: 0;
       right: 0;
       bottom: 0;
       background: white;
       transition: all 2s;
+      /*overflow: scroll;*/
       .header {
-        position: relative;
+        /*position: relative;*/
         padding:0.1rem 0.2rem;
+        position: absolute;
+        top: 0;left: 0;
+        width: 100%;
         font-size: 0.18rem;
         &:after {
           position: absolute;
@@ -509,6 +513,12 @@
         };
       }
       .content {
+        overflow: scroll;
+        /*height: 100%;*/
+        position: fixed;
+        top: 0.92rem;
+        bottom: 0;
+        /*margin-top: 0.46rem;*/
         .bankList {
           padding-top: 0.2rem;
           padding-left: 0.2rem;
@@ -549,6 +559,7 @@
         .notemsg2 {
           padding: 0 0.1rem;
           font-size: 0.1rem;
+          font-size: 0.2rem;
           color: #888;
           .label {
             color: #f84c4b;
@@ -556,6 +567,7 @@
           }
           .msg {
             font-size: 0.08rem;
+            font-size: 0.16rem;
           }
           table {
             margin-top: 0.1rem;

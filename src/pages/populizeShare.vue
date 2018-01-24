@@ -17,7 +17,7 @@
         <div class="title" flex="cross:center">
           <app-cricleicon bgcolor="bg-red" icon="icon-record" flex-box="0" size="0.24rem"></app-cricleicon>
           <h2 flex-box="1">分润记录</h2>
-          <button flex-box="0">提现</button>
+          <button flex-box="0" @click='viewRecord'>获取记录</button>
         </div>
         <div class="liner"></div>
         <div class="points">
@@ -31,11 +31,17 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
+  import helper from '../utils/helper.js'
   export default {
     data () {
       return {
 
       }
+    },
+    methods:{
+      viewRecord(){
+        helper.goPage('/brokerage_list')
+      },
     },
     filters: {
       money (val) {

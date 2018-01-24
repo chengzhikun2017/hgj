@@ -24,6 +24,7 @@
         list:[],
         crrtPage:0,
         noMore:false,
+        height:'6rem',
     }
   },
   props:{
@@ -36,16 +37,25 @@
   },
   created(){
     // this.url=this.config.url
+    this.$nextTick(()=>{
+      this.calcHeight()
+    })
     this.getNew()
+
+
   },
   computed:{
-    height(){
-      console.log('window')
-      let height=window.innerHeight/devicePixelRatio/100-0.44
-      return height+'rem'
-    },
+    // height(){
+    //   // console.log('window')
+    //   let height=window.innerHeight/devicePixelRatio/100-0.44
+    //   return height+'rem'
+    // },
   },
   methods:{
+    calcHeight(){
+      let height=window.innerHeight/devicePixelRatio/100-0.44
+      this.height+'rem'
+    },
     getmore(){
       if( !this.noMore&& this.loading === false){
         // console.warn('get!!')

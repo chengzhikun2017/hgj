@@ -46,8 +46,9 @@ export default class helper {
       var products = HGJ_VUE.$store.state.order.products
       return products.find(item => {
         return item.productId == id
-      })
+      })||{}
     }
+    //todo: 
   }
   // 'upgrade','active'
   // free,pay

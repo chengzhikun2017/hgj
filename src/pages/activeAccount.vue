@@ -8,10 +8,13 @@
           <span class="title" flex-box="1">激活账户说明</span>
         </h1>
         <div class="dash-line"></div>
-        <p>(1)激活后可以使用智能还卡服务</p>
+        <!-- <p>(1)激活后可以使用智能还卡服务</p>
         <p>(2)首次使用智能还卡免服务费</p>
         <p>(3)未激活不影响推广分享收益</p>
-        <p>(4)激活费用限时5折优惠</p>
+        <p>(4)激活费用限时5折优惠</p> -->
+        <p>(1)开业酬宾免费激活</p>
+        <p>(2)激活后可以使用智能还卡服务</p>
+        <p>(3)未激活不影响推广分享收益</p>
       </div>
       <div class="bttn-box">
         <app-button @click.native='goActivePay' class='bttn'>付费激活</app-button>

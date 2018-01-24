@@ -4,16 +4,23 @@
     <article flex-box="1">
       <app-record-list :cfg='cfg' v-model='recordList'>
         <div  class='record-box' v-for='record in recordList' :key='record.planId' flex>
-          <div>购买服务：{{record.productId|product}}</div>
-          <div>{{record.fee}}</div>
+          <div class="box">
+            <div class="service">购买：{{record.productId|product}}</div>
+            <p class="money">
+              消费金额：{{record.tradeFee|moneyFilter}}
+            </p>
+            <p class="time">{{record.createTime|timePlanRecordFilter}}</p>
+          </div>
+            <p class="money brokerage">
+             +{{record.fee|moneyFilter}}
+            </p>
+          <!-- <div>{{record.fee|moneyFilter}}</div> -->
           <!-- <i class="icon icon-money"  v-if='record.moneyType=="UNFREEZE_MONEY"' flex-box='0'></i>
           <i class="icon icon-yuan"  v-if='record.moneyType=="MONEY"' flex-box='0'></i>
           <div flex-box='1'>
             <p class="type">{{record.moneyType|moneyType}}</p>
             <p class="status">{{record.status|status}}</p>
-            <p class="time">{{record.createTime|timePlanRecordFilter}}</p>
-          </div>
-          <p class="money">{{record.fee|moneyFilter}}</p> -->
+          </div>-->
         </div>
       </app-record-list>
     </article>
@@ -87,34 +94,42 @@ export default {
   border-top-width: 0px;
 }
 .record-box{
-
+  .box{
+    width: 100%;
+  }
+  .service{
+    color:#666666;
+    font-size: 0.16rem;
+  }
+  .brokerage{
+    position: absolute;
+    top: 0.1rem;right: 0.1rem;
+  }
   padding:0.1rem 0;
   display: flex;
   justify-content:center;
   align-items:center;
   position: relative;
-  .icon{
+  /*.icon{
     font-size: 0.25rem;
     color:#fff;
     background: #F5AF00;
     border-radius: 50%;
     padding:0.1rem;
     margin:0.1rem;
-  }
+  }*/
   .money{
     color:#F5AF00;
-    position: absolute;
-    font-size: 0.18rem;
-    top: 0.1rem;right: 0.1rem;
+    font-size: 0.14rem;
   }
-  .type{
+  /*.type{
     font-size: 0.16rem;
     color:#666666;
   }
   .status{
     font-size: 0.14rem;
     color:#666666;
-  }
+  }*/
   .time{
     font-size: 0.12rem;
     color:#666666;

@@ -5,13 +5,13 @@
         <div class="logo" flex-box="1">
           <img :src="'/static/img/title/'+card.cardCode+'.png'" alt="">
         </div>
-        <span v-if='type===2||type===0||type===3'>
-          <!-- <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span> -->
-          <span class="btn1" v-show="card.status === 'DOING'" @click.stop='cards_getListCC'>绑定中，点击刷新</span>
-          <span class="" v-show="card.status === 'FAILED'">绑定失败</span>
-          <span class="btn1" v-show="card.status === 'FAILED'">重新绑定</span>
-          <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='goEdit'>修改</span>
 
+        <span v-if='type===0'>
+          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" @click.stop='goNewPlan'>创建还款计划</span>
+          <span class="btn2" v-if="card.planStatus == ''" @click.stop='goNewPlan'>创建还款计划</span>
+          <span class="btn2" v-if="card.planStatus == 'FAILED'"  @click.stop='goNewPlan'>创建还款计划</span>
+          <span class="btn2" v-if="card.planStatus == 'WAIT'"  @click.stop='cards_getListCC'>计划创建中，点击刷新</span>
+          <span class="btn2" v-if="card.planStatus == 'DOING'" >计划执行中</span>
         </span>
       </div>
       <div class="floor floor2" flex="main:justify">
@@ -20,11 +20,12 @@
           <span class="liner">|</span>
           <span>卡片尾号：{{card.cardNoAfter4}}</span>
         </div>
-        <span v-if='type===0'>
-          <span class="btn2" v-if="card.planStatus == 'SUCCESS'" @click.stop='goNewPlan'>创建还款计划</span>
-          <span class="btn2" v-if="card.planStatus == ''" @click.stop='goNewPlan'>创建还款计划</span>
-          <span class="btn2" v-if="card.planStatus == 'FAILED'"  @click.stop='goNewPlan'>创建还款计划</span>
-          <span class="btn2" v-if="card.planStatus == 'DOING'" >计划执行中</span>
+        <span v-if='type===2||type===0||type===3'>
+          <!-- <span class="btn1" v-show="card.status === 'PLAN'">查看明细</span> -->
+          <span class="btn1" v-show="card.status === 'DOING'" @click.stop='cards_getListCC'>绑定中，点击刷新</span>
+          <span class="" v-show="card.status === 'FAILED'">绑定失败</span>
+          <span class="btn1" v-show="card.status === 'FAILED'">重新绑定</span>
+          <span class="btn1" v-show="card.status === 'SUCCESS'" @click.stop='goEdit'>修改</span>
         </span>
         <span v-if='type===2'>
           <span v-show="card.status === 'SUCCESS'" class="delete" @click.stop='deleteConfirm'>
