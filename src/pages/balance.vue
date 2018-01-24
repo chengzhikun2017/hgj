@@ -111,12 +111,21 @@
         })
       },
       checkValid(){
+        console.log(this.amount)
+        if (isNaN(this.amount)) {
+          this.hgjToast('请正确填写提现金额格式',1)
+          return false
+        }
         if(!this.amount){
           this.hgjToast('请填写提现金额',1)
           return false
         }
-        if(this.amount<10){
+        if(this.amount < 10){
           this.hgjToast('提现金额最低10元',1)
+          return false
+        }
+        if(this.amount - Math.floor(this.amount) > 0){
+          this.hgjToast('只支持整额提现',1)
           return false
         }
 
