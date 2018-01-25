@@ -10,12 +10,12 @@
     <script type="text/javascript">
      var meta=document.createElement('meta')
      meta.setAttribute('name','viewport')
+     // 这里的devicePixelRatio只是把所有的dpr放置在同一个环境下进行，所以根本不需要配合dpr来配置文字
      meta.setAttribute('content','initial-scale='+1/devicePixelRatio+',user-scalable=no')
      document.querySelector('head').appendChild(meta)
 
      function setRem(){
-      var remDefault=document.documentElement.style.fontSize = 
-      window.innerWidth/3.75 + 'px';
+      document.documentElement.style.fontSize = window.innerWidth/3.75 + 'px';
      }
      setRem()
      window.onresize=setRem
