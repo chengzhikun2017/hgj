@@ -72,7 +72,7 @@
         //todo: 验证有效性，有效后下一步
         this.cards_getInfo(this.cardNo).then(res=>{
           if(res.type){
-            helper.goPage('/addCreditcard2')
+            helper.goPage('/addCreditcard2',undefined,1)
           }else if(res.type===''){
             this.hgjAlert({
               title:'此卡不支持',

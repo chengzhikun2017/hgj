@@ -63,14 +63,14 @@
           CR.unloginRemind()
           return
         }
-        helper.goPage('/addCreditcard1')
+        helper.goPage('/addCreditcard1',undefined,1)
       },
       goAddDC(){
         if(!this.isLoged){
           CR.unloginRemind()
           return
         }
-        helper.goPage('/addbankcard')
+        helper.goPage('/addbankcard',undefined,1)
       },
       goSCQA(){
         this.qa_get_ansqwer({

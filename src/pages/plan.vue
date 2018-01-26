@@ -324,11 +324,6 @@ export default {
           endDate: this.endDate,
         }
         this.order_createPlan(params).then(res=>{
-          // console.log('res orderId',res.orderId)
-          // let url=helper.urlConcat('/pay',{
-          //   orderId:res.orderId
-          // })
-          // helper.goPage(url)
           this.order_pay({
             payType:'HELIPAY_CC',
             orderId:res.orderId,

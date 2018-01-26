@@ -135,7 +135,7 @@
         let url=helper.urlConcat('/addbankcard',{
           willGoBack:1
         })
-        helper.goPage(url)
+        helper.goPage(url,undefined,1)
       },
       
       ...mapActions([

@@ -23,7 +23,11 @@ export default class helper {
       return '0'+v
     }
   }
-  static goPage(path, callback) {
+  static goPage(path, callback,stopGo) {
+    if(stopGo){
+      HGJ_VUE.hgjAlert('服务暂时关闭')
+      return
+    }
     if (typeof path === 'number') {
       // console.log('back unknown', 1)
       router.go(path)
@@ -34,7 +38,11 @@ export default class helper {
       callback()
     }
   }
-  static goPageLoged(path, callback){
+  static goPageLoged(path, callback,stopGo){
+    if(stopGo){
+      HGJ_VUE.hgjAlert('服务暂时关闭')
+      return
+    }
     if(!HGJ_VUE.$store.state.account.userId){
       commonRemind.unloginRemind()
       return
@@ -64,7 +72,7 @@ export default class helper {
         this.goPage('/activeaccount')
         return
       }
-      this.goPage(this.urlConcat('/plan', {cardId:card.cardId}))
+      this.goPage(this.urlConcat('/plan', {cardId:card.cardId}),undefined,1)
     }
     // '/pay'
     // '/pay_free'

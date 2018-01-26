@@ -42,7 +42,7 @@ export default {
     newCard(){
       let path=helper.urlConcat('/addbankcard',{
       })
-      helper.goPage(path)
+      helper.goPage(path,undefined,1)
     },
     ...mapActions([
       'addCardDC_bindSC',

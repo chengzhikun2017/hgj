@@ -116,7 +116,7 @@
           repaymentDate:this.card.repaymentDate,
         }
         let url=helper.urlConcat('/orderedit',this.card)
-        helper.goPage(url)
+        helper.goPage(url,undefined,1)
       },
       ...mapActions([
         'router_willBackToIndex',
