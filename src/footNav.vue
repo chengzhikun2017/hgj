@@ -6,11 +6,11 @@
           <p class="text">卡包</p>
         </div>
       </span>
-      <span class="cell " flex-box="1" flex="cross:center main:center" @click='clickNav(1)'>
+      <span class="cell" flex-box="1" flex="cross:center main:center" @click='clickNav(1)'>
 <!--         <div class="share-bttn" >
           <i class="icon-share share-icon"></i>
         </div> -->
-        <div class="_icon-box icon ">
+        <div class="_icon-box icon share-bttn2">
           <i class="icon-share icon"></i>
           <p class="text">分享</p>
         </div>
@@ -102,7 +102,6 @@ export default {
   font-size: 0.11rem;
   color:#999;
   z-index: 9999;
-    
   .share-bttn{
     display: inline-block;
     width: 0.54rem;
@@ -157,6 +156,16 @@ export default {
     .icon{
       font-size: 0.2rem;
     }
+  }
+
+  .share-bttn2 {
+    display: inline-block;
+    border-radius: 6px;
+    width: 0.6rem;
+    padding-bottom: 0.05rem;
+    background-image: linear-gradient(to right, #f86b4b 1%, #f84b4b);
+    box-shadow: 0 13px 32px 0 rgba(248, 81, 75, 0.36);
+    color: white;
   }
 }
 </style>

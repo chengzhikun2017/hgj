@@ -38,6 +38,15 @@
             <span class="icon-go"></span>
           </div>
         </app-formitem3>
+        
+        <app-formitem3 title="我的推广" note="" @click.native='viewPromotions' >
+          <div class="header" slot="icon">
+            <app-cricleicon bgcolor="bg-lightblue" icon="icon-book"></app-cricleicon>
+          </div>
+          <div class="content" slot="action">
+            <span class="icon-go"></span>
+          </div>
+        </app-formitem3>
         <!-- <app-formitem3 title="联系我们" note="">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-lightblue" icon="icon-contact"></app-cricleicon>
@@ -118,6 +127,9 @@ export default {
     },
     viewPlanRecords(){
       helper.goPageLoged('/planrecords')
+    },
+    viewPromotions() {
+      helper.goPageLoged('/populizeScore')
     },
     viewAboutus(){
       this.qa_get_ansqwer({

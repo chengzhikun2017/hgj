@@ -129,7 +129,7 @@
                 })
         wx.onMenuShareAppMessage(options)
         wx.onMenuShareTimeline({
-          title:'智能养卡，免费申请信用卡。新年酬宾大优惠，首单壕免服务费',
+          title:'智能养卡，免费申请信用卡。全国招代理！',
           link:helper.urlConcat('https://hgj.wd577.cn/static/share/share.html',{
             img:this.qrcode,
             // img:this.shareSrc,
