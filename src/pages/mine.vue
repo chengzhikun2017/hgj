@@ -176,6 +176,7 @@ export default {
   .mine {
     article {
       overflow: auto;
+      overflow-x:hidden;
       .banner{
         height: 2.2rem;
         position: relative;

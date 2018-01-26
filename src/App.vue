@@ -1,5 +1,10 @@
 <template>
   <div id="app" :class="{'show-foot':showFootNav}">
+    <div class="announce-box">
+      <div class="announce" ref='announce'>
+        尊敬的各位用户，由于支付通道升级中，暂时关闭智能还卡以及相关功能，敬请谅解！
+      </div>
+    </div>
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive" />
     </keep-alive>
@@ -29,10 +34,9 @@ export default {
   components:{
     footNav
   },
-  created(){
-    // console.log('app store',this.$store)
-  },
+
   computed:{
+    
     isDev(){
       return /localhost/.test(location.href)
     },
@@ -47,29 +51,13 @@ export default {
       return isFootNavPath
     },
   },
+  mounted(){
+    this.announceMove()
+  },
   created(){
-    // var u = navigator.userAgent;
-    // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-    // var isFromGroup
-    // var queryString=location.href.split('?')[1]
-    // if(/from=groupmessage/.test(queryString)){
-
-    // }
-    // var queryArr=queryString.split('&')
-    // for(let i=0;i<queryArr.length;i++){
-
-    // }
-    // if(isAndroid&&/from=groupmessage/.test(queryString)){
-    //   // alert('redirect')
-    //   location.href=location.href.split('?')[0]
-    // }
-
-
     let query=this.$route.query
     // this.share_getCount()
     this.app_checkIsWX()
-    setTimeout(()=> {
-    }, 3000);
     var u=navigator.userAgent;
     var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
     if(isiOS){
@@ -80,10 +68,6 @@ export default {
     this.$nextTick(()=>{
       this.account_checkSession().then(res=>{
         if(res.data.data&&res.data.data.userId){
-          // this.cards_getListCC()
-          // this.cards_getListDC()
-          // this.order_productsListGet()
-          // helper.getInitialInfo()
         }else{
           console.log('未登录')
         }
@@ -91,27 +75,30 @@ export default {
       })
     })
   },
+
   methods:{
+    announceMove(){
+      let announceMent=document.querySelector('.announce')
+      console.log('announceMent',announceMent)
+      console.log('announceMent',announceMent.clientWidth)
+      console.log('announceMent',window.innerWidth)
+      let width=announceMent.clientWidth*1.2,windowW=window.innerWidth
+      let left=windowW
+      announceMent.style.left=left+'px'
+      this.announceTimer=setInterval(()=>{
+        left--
+        announceMent.style.left=left+'px'
+        if(left<-width){
+          left=windowW
+        }
+      },1000/60)
+    },
     test(){
       console.log('vuex state',this.$store.state,this.$store)
       return
-      // this.router_setNewPath()
-      // this.router_willBackToIndex()
-      // router.go(-1)
-      // fetch()
-      // this.testAlert()
     },
     testAlert(){
-      // let alert = {
-      //   title: 'alert title',
-      //   options: [{
-      //     text: 'confirm',
-      //     callback: () => {
-      //       console.log('yes')
-      //     }
-      //   }]
-      // }
-      // this.hzgAlert(alert)
+
     },
     test2(){
       this.account_logout()
@@ -147,9 +134,25 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
 .show-foot{
   padding-bottom: 0.5rem;
+}
+.announce-box{
+  z-index: 999999;
+  position: fixed;
+  top: 0.44rem;
+  left: 0;
+  background: #F4D43C;
+  color:#F7FFDE;
+  
+  padding:0.05rem;
+  .announce{
+    position: relative;
+    left: 0;
+    white-space: nowrap;
+    font-size: 0.14rem;
+  }
 }
 #test-bttn{
   position: fixed;
@@ -165,6 +168,7 @@ export default {
 #app {
   width:100%;
   height: 100%;
+  overflow: hidden;
   position: relative;
   font-family:'PingFangSC' ,'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

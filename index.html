@@ -8,18 +8,18 @@
     <title>禾管家</title>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script type="text/javascript">
-     var meta=document.createElement('meta')
-     meta.setAttribute('name','viewport')
      // 这里的devicePixelRatio只是把所有的dpr放置在同一个环境下进行，所以根本不需要配合dpr来配置文字
-     meta.setAttribute('content','initial-scale='+1/devicePixelRatio+',user-scalable=no')
-     document.querySelector('head').appendChild(meta)
+     // var meta=document.createElement('meta')
+     // meta.setAttribute('name','viewport')
+     // meta.setAttribute('content','initial-scale='+1/devicePixelRatio+',user-scalable=no')
+     // document.querySelector('head').appendChild(meta)
 
      function setRem(){
       document.documentElement.style.fontSize = window.innerWidth/3.75 + 'px';
      }
      setRem()
      window.onresize=setRem
-     console.log('dpr and window with',devicePixelRatio+ ' ' + window.innerWidth)
+     // console.log('dpr and window with',devicePixelRatio+ ' ' + window.innerWidth)
     </script>
     <style>
       #dpr{

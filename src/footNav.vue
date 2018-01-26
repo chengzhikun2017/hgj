@@ -6,11 +6,11 @@
           <p class="text">卡包</p>
         </div>
       </span>
-      <span class="cell" flex-box="1" flex="cross:center main:center" @click='clickNav(1)'>
+      <span class="cell" flex-box="0" flex="cross:center main:center"@click='clickNav(1)' >
 <!--         <div class="share-bttn" >
           <i class="icon-share share-icon"></i>
         </div> -->
-        <div class="_icon-box icon share-bttn2">
+        <div class="_icon-box icon share-bttn2" >
           <i class="icon-share icon"></i>
           <p class="text">分享</p>
         </div>

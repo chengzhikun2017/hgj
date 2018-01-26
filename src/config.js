@@ -6,3 +6,4 @@ var config={
   nowDate:new Date()
 }
 export default config
+// module.exports=config

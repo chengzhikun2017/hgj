@@ -1,7 +1,7 @@
 <template>
   <div class="popView" v-show="value" @click='close'>
     <qr-code v-model='isQrShow'></qr-code>
-    <div class="popcontent">
+    <div class="popcontent" @click.stop=''>
       <div class="planbox">
         <header flex="cross:center">
           <div class="myicon">
