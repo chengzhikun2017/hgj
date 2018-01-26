@@ -16,6 +16,7 @@
         <p>(2)激活后可以使用智能还卡服务</p>
         <p>(3)未激活不影响推广分享收益</p>
       </div>
+
       <div class="bttn-box">
         <app-button @click.native='goActivePay' class='bttn'>付费激活</app-button>
         <app-button @click.native='goActiveFree' class='bttn'>免费激活</app-button>

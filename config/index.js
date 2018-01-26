@@ -3,7 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+const config = require('../src/config.js')
 module.exports = {
   dev: {
 
@@ -65,7 +65,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     // assetsPublicPath: '/hgj/',
-    assetsPublicPath: '/',
+    assetsPublicPath: config.routerRoot+'/',
 
     /**
      * Source Maps
