@@ -12,6 +12,7 @@ import cards from './modules/cards'
 import balance from './modules/balance'
 import share from './modules/share'
 import questions from './modules/questions'
+import creditCard from './modules/creditCard'
 
 Vue.use(Vuex)
 
@@ -28,7 +29,8 @@ const store = new Vuex.Store({
     plan,
     balance,
     share,
-    questions
+    questions,
+    creditCard
   }
 })
 

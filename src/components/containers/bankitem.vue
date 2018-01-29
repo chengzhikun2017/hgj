@@ -1,8 +1,8 @@
 <template>
   <div class="bankitem" flex="dir:top">
-    <div class="main" flex>
+    <div class="main" flex @click="jump(url)">
       <div class="left">
-        <img src="/static/img/logo/ABC.png" alt="">
+        <img :src='"/static/img/logo/" + code + ".png"' alt="">
       </div>
       <div class="right">
         <div class="title">
@@ -12,8 +12,8 @@
           {{record}}
         </div>
         <div class="signs" flex>
-          <span v-for="sg in signs" class="btn" :class="sg.color">
-            {{sg.name}}
+          <span v-for="sg in signs" class="btn">
+            {{sg}}
           </span>
         </div>
       </div>
@@ -26,6 +26,14 @@
 <script>
   export default {
     props: {
+      url: {
+        type: String,
+        default: 'http://www.baidu.com'
+      },
+      code: {
+        type: String,
+        default: 'ABC'
+      },
       title: {
         type: String,
         default: '农业银行'
@@ -40,21 +48,19 @@
       },
       signs: {
         type: Array,
-        default: [
-          {
-            name: '无需房产',
-            color: 'yellow'
-          },
-          {
-            name: '免费申请',
-            color: 'red'
-          }
-        ]
+        default: function () {
+          return [ '无需房产', '免费申请']
+        }
       }
     },
     data () {
       return {
 
+      }
+    },
+    methods: {
+      jump(url) {
+        window.location.href = url;
       }
     }
   }

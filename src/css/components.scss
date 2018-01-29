@@ -71,6 +71,12 @@
 }
 
 /* enviroment */
+.bg-green {
+  background-image: -webkit-linear-gradient(left, #9BD961, #538F67);
+  background-image: -o-linear-gradient(left, #9BD961, #538F67);
+  background-image: linear-gradient(to right, #9BD961, #538F67);
+}
+
 .bg-blue {
   background-image: -webkit-linear-gradient(left, #64a6f8, #6767e8);
   background-image: -o-linear-gradient(left, #64a6f8, #6767e8);

@@ -3,18 +3,41 @@
     <app-nav flex-box="0">信用卡通道</app-nav>
     <article flex-box="1">
       <ul class="list">
-        <li v-for="i in 10">
-          <app-bankitem></app-bankitem>
+        <li v-for="cc in cc_list">
+          <app-bankitem :code="cc.code" :title="cc.name" :record="cc.applyNum + '人'" :note="cc.feature" ></app-bankitem>
         </li>
       </ul>
     </article>
   </div>
 </template>
 <script>
+  import {mapMutations,mapActions,mapGetters} from 'vuex'
+
   export default {
     data () {
       return {
       }
+    },
+    created () {
+      this.cc_cardList({
+        page: 1,
+        limit: 10
+      }).then(res => {
+
+      });
+    },
+    mounted () {
+      console.log(this.cc_list)
+    },
+    computed: {
+      ...mapGetters([
+        'cc_list'
+      ])
+    },
+    methods: {
+      ...mapActions([
+        'cc_cardList',
+      ]),
     }
   }
 </script>

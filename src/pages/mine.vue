@@ -30,6 +30,15 @@
         </div>
       </app-dot-bg>
       <div class="mine-content">
+        <app-formitem3 title="办卡进度" note="" @click.native='jumpProcess' :first="true">
+          <div class="header" slot="icon">
+            <app-cricleicon bgcolor="bg-green" icon="icon-truck"></app-cricleicon>
+          </div>
+          <div class="content" slot="action">
+            <span class="icon-go"></span>
+          </div>
+        </app-formitem3>
+
         <app-formitem3 title="我的计划" note="" @click.native='viewPlanRecords' :first="true">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-red" icon="icon-date"></app-cricleicon>
@@ -130,6 +139,9 @@ export default {
     },
     viewPromotions() {
       helper.goPageLoged('/populizeScore')
+    },
+    jumpProcess () {
+      window.location.href = 'http://www.huishuaka.com/5/coop/jinduchaxun.html?ichannelid='
     },
     viewAboutus(){
       this.qa_get_ansqwer({
