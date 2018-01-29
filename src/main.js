@@ -41,6 +41,8 @@ import carditem from './components/containers/cardItem.vue'
 import menuitem from './components/containers/menuItem.vue'
 import menulist from './components/views/menuList.vue'
 import popPhoto from './components/views/popview/photo.vue'
+import bankitem from './components/containers/bankitem.vue'
+
 Vue.component('app-nav', nav)
 Vue.component('app-protocol', protocol)
 Vue.component('app-creditcard', creditcard)
@@ -70,7 +72,7 @@ Vue.component('app-popphoto', popPhoto)
 Vue.component('app-carditem', carditem)
 Vue.component('app-dot-bg', dot_bg)
 Vue.component('app-description', description)
-
+Vue.component('app-bankitem', bankitem)
 
 
 // Vue.prototype.$http = axios

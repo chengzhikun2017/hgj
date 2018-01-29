@@ -40,6 +40,7 @@ import populizeShare from '@/pages/populizeShare.vue'
 import introduce from '@/pages/introduce.vue'
 import editPwd from '@/pages/editPwd.vue'
 import questions from '@/pages/questions.vue'
+import applycredit_list from '@/pages/applyCreditList.vue'
 // import forgetPwdStep1 from '@/pages/forgetPwdStep1.vue'
 // import forgetPwdStep2 from '@/pages/forgetPwdStep2.vue'
 Vue.use(Router)
@@ -118,6 +119,7 @@ index = index.concat(
   newRoute('/questions', 'questions', questions),
   newRoute('/changeSC', 'changeSC', changeSC),
   newRoute('/brokerage_list', 'brokerage_list', brokerage_list),
+  newRoute('/applycredit_list', 'applycredit_list', applycredit_list),
 )
 route_test = route_test.concat(
   // newRoute('/test', 'test', test),
@@ -125,20 +127,17 @@ route_test = route_test.concat(
   // newRoute('/test2', 'test2', test2),
   // newRoute('/test3', 'test3', test3),
 )
-basicRoutes = [
-  {
-    path: '',
-    name: 'cards',
-    redirect: '/cards',
-    component: cards
-  },
-  {
-    path: '/*',
-    name: 'error_page',
-    // redirect: '/cards',
-    component: error_page
-  },
-]
+basicRoutes = [{
+  path: '',
+  name: 'cards',
+  redirect: '/cards',
+  component: cards
+}, {
+  path: '/*',
+  name: 'error_page',
+  // redirect: '/cards',
+  component: error_page
+}, ]
 routes = routes.concat(index.concat(
   route_test,
 ), basicRoutes)

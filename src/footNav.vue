@@ -6,13 +6,22 @@
           <p class="text">卡包</p>
         </div>
       </span>
-      <span class="cell" flex-box="0" flex="cross:center main:center"@click='clickNav(1)' >
+      <span class="cell" flex="cross:center main:center"@click='clickNav(1)' >
 <!--         <div class="share-bttn" >
           <i class="icon-share share-icon"></i>
         </div> -->
-        <div class="_icon-box icon share-bttn2" >
+        <div class="_icon-box icon" >
           <i class="icon-share icon"></i>
           <p class="text">分享</p>
+        </div>
+      </span>
+       <span class="cell" flex="cross:center main:center"@click='clickNav(3)' >
+<!--         <div class="share-bttn" >
+          <i class="icon-share share-icon"></i>
+        </div> -->
+        <div class="_icon-box icon" >
+          <i class="icon-creditcard icon"></i>
+          <p class="text">信用卡</p>
         </div>
       </span>
       <!-- <span class="cell" :class="{'active':activeIndex===1}" @click='clickNav(1)'>分享</span> -->
@@ -123,7 +132,7 @@ export default {
     }
   }
   .cell{
-    /*width: 50%;*/
+    width: 50%;
     display: inline-block;
     text-align: center;
     /*border:1px solid red;*/
