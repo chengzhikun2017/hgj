@@ -34,6 +34,15 @@ const balance = {
         state.list = res
       })
       return promise
+    },
+    cc_applyCard({}, id) {
+      var promise = fetch({
+        url: '/bank/apply',
+        params: {
+          bankId: id
+        }
+      })
+      return promise
     }
   }
 }

@@ -2,6 +2,7 @@ import config from '../config.js'
 import Vue from 'vue'
 import Router from 'vue-router'
 import cards from '../pages/cards.vue'
+import cards2 from '../pages/cards2.vue'
 import mine from '../pages/mine.vue'
 import pay from '../pages/pay.vue'
 import promotion from '../pages/promotion.vue'
@@ -81,6 +82,11 @@ var routes = [],
   index = []
 index = index.concat(
   newRoute('/cards', 'cards', cards, {
+    meta: {
+      keepAlive: true //需要被缓存
+    }
+  }),
+  newRoute('/cards2', 'cards2', cards2, {
     meta: {
       keepAlive: true //需要被缓存
     }
