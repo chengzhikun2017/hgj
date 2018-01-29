@@ -37,7 +37,8 @@ export default {
 
   computed:{
     showAnnounce(){
-      return this.$route.path!=='/applycredit_list'
+      // return this.$route.path!=='/applycredit_list'
+      return this.$route.path==='/cards'
     },
     isDev(){
       return /localhost/.test(location.href)

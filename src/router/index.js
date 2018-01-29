@@ -86,7 +86,7 @@ index = index.concat(
       keepAlive: true //需要被缓存
     }
   }),
-  newRoute('/cards2', 'cards2', cards2, {
+  newRoute('/cards2', 'cards2', cards, {
     meta: {
       keepAlive: true //需要被缓存
     }
@@ -125,8 +125,11 @@ index = index.concat(
   newRoute('/questions', 'questions', questions),
   newRoute('/changeSC', 'changeSC', changeSC),
   newRoute('/brokerage_list', 'brokerage_list', brokerage_list),
-  newRoute('/applycredit_list', 'applycredit_list', applycredit_list),
+  
 )
+var indexPageArr=newRoute('/applycredit_list', 'applycredit_list', applycredit_list)
+var indexPage=indexPageArr[0]
+console.log('indexPage',indexPage)
 route_test = route_test.concat(
   // newRoute('/test', 'test', test),
   // newRoute('/test1', 'test1', test1),
@@ -135,9 +138,9 @@ route_test = route_test.concat(
 )
 basicRoutes = [{
   path: '',
-  name: 'cards',
-  redirect: '/cards',
-  component: cards
+  name: indexPage.name,
+  redirect: indexPage.path,
+  component: indexPage.component,
 }, {
   path: '/*',
   name: 'error_page',
@@ -145,6 +148,7 @@ basicRoutes = [{
   component: error_page
 }, ]
 routes = routes.concat(index.concat(
+  indexPage,
   route_test,
 ), basicRoutes)
 var router = new Router({
@@ -157,7 +161,7 @@ router.beforeEach((to, from, next) => {
   // console.log('router',to,from)
   // console.log('first enter app',router.firstEnter,router)
   // &&firstEnter===1
-  let indexPath = config.routerRoot + '/cards'
+  let indexPath = config.routerRoot + indexPage.path
   if (!from.name && to.path !== indexPath) {
     router.push(indexPath)
     router.push(to.fullPath)

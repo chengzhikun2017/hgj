@@ -68,7 +68,7 @@ export default {
             text:'确定',
             callback:()=>{
               this.router_willBackToIndex()
-              this.router_setNewPath(['/cards'])
+              this.router_setNewPath(['/cards2'])
               helper.goPage(-1)
 
             },

@@ -1,6 +1,7 @@
 <template>
   <div class="cards" flex="dir:top">
-    <nav flex="cross:center" flex-box="0">
+    <app-nav flex-box="0"  v-if='pageType==="cards2"'>我的储蓄卡{{numDC}}</app-nav>
+    <nav flex="cross:center" flex-box="0" v-if='pageType==="cards"'>
       <span class="side" flex-box="0">
       </span>
       <div class="tabs" flex-box="1" flex="main:center">
@@ -10,7 +11,7 @@
       <span class="side" flex-box="0"></span>
     </nav>
 
-    <article v-if="choose == 0" flex-box="1">
+    <article v-if="choose == 0&&pageType==='cards'" flex-box="1">
       <!-- <div v-if="cardListCC.length === 0" class="empty">
         <img src="/static/img/creditcard.png" alt="">
       </div> -->
@@ -21,7 +22,7 @@
         <app-button class='add-bttn' :type='1' @click.native='goAddCreditCard'><span class="icon-add"></span>添加银行卡</app-button>
       </div>
     </article>
-    <article v-if="choose == 1" flex-box="1">
+    <article v-if="(choose == 1&&pageType==='cards')||pageType==='cards2'" flex-box="1">
      <!--  <div v-if="cardListDC.length === 0" class="empty">
         <img src="/static/img/bankcard.png" alt="">
       </div> -->
@@ -30,7 +31,7 @@
       </div>
       <div class="mybutton">
         <app-button class='add-bttn':type='1'  @click.native='goAddDC'><span class="icon-add"></span>添加银行卡</app-button>
-        <div class="others" flex="main:justify">
+        <div class="others" flex="main:justify" v-if="pageType==='cards'">
           <span @click='goSCQA'>什么是结算卡？</span>
           <!-- <span>点击分享</span> -->
         </div>
@@ -70,7 +71,7 @@
           CR.unloginRemind()
           return
         }
-        helper.goPage('/addbankcard',undefined,1)
+        helper.goPage('/addbankcard',undefined,0)
       },
       goSCQA(){
         this.qa_get_ansqwer({
@@ -93,6 +94,16 @@
       // cardListCC(){
       //   return this.$store.state.cards.cardListCC
       // },
+      pageType(){
+        // return this.$route
+        var page=this.$route
+        if(page.path==='/cards2'){
+          return 'cards2'
+        }
+        if(page.path==='/cards'){
+          return 'cards'
+        }
+      },
       isLoged(){
         return this.$store.state.account.isLoged
       },
