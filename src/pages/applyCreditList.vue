@@ -1,6 +1,6 @@
 <template>
   <div class="applycreditlist" flex="dir:top">
-    <app-nav flex-box="0">信用卡通道</app-nav>
+    <!-- <app-nav flex-box="0">信用卡通道</app-nav> -->
     <article flex-box="1">
       <ul class="list">
         <li v-for="cc in cc_list">
