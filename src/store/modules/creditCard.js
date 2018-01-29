@@ -17,7 +17,9 @@ const balance = {
 
   },
   actions: {
-    cc_cardList({}, {
+    cc_cardList({
+      state
+    }, {
       page,
       limit
     }) {
@@ -27,6 +29,9 @@ const balance = {
           page: page,
           limit: limit
         },
+      })
+      promise.then(res => {
+        state.list = res
       })
       return promise
     }
