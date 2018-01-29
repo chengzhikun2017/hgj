@@ -5,8 +5,8 @@ const router={
   state: {
     backToIndex: false,
 
-    navPaths:[rootPath+'/cards',rootPath+'/promotion',rootPath+'/mine'],
-    showFootNavPaths:['','/'],
+    navPaths: [rootPath + '/cards', rootPath + '/promotion', rootPath + '/mine', rootPath + '/applycredit_list', ],
+    showFootNavPaths: ['', '/'],
     newPaths:[],
   },
   getters: { // 约等于 computed

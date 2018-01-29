@@ -6,7 +6,7 @@
           <p class="text">卡包</p>
         </div>
       </span>
-      <span class="cell" flex="cross:center main:center"@click='clickNav(1)' >
+      <span class="cell" :class="{'active':activeIndex===1}" flex="cross:center main:center"@click='clickNav(1)' >
 <!--         <div class="share-bttn" >
           <i class="icon-share share-icon"></i>
         </div> -->
@@ -15,7 +15,7 @@
           <p class="text">分享</p>
         </div>
       </span>
-       <span class="cell" flex="cross:center main:center"@click='clickNav(3)' >
+       <span class="cell" :class="{'active':activeIndex==3}" flex="cross:center main:center"@click='clickNav(3)' >
 <!--         <div class="share-bttn" >
           <i class="icon-share share-icon"></i>
         </div> -->
@@ -75,6 +75,7 @@ export default {
     },
     showFootNav(){
       let path=this.$route.path
+      console.log('path',path,this.navPaths)
       let isFootNavPath=this.navPaths.indexOf(path)>=0
       // let isShowFootNavPath=this.showFootNavPaths.indexOf(path)>=0
       return isFootNavPath

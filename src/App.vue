@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="{'show-foot':showFootNav}">
-    <div class="announce-box">
+    <div class="announce-box" v-if='showAnnounce'>
       <div class="announce" ref='announce'>
         尊敬的各位用户，由于支付通道升级中，暂时关闭智能还卡以及相关功能，敬请谅解！
       </div>
@@ -36,7 +36,9 @@ export default {
   },
 
   computed:{
-    
+    showAnnounce(){
+      return this.$route.path!=='/applycredit_list'
+    },
     isDev(){
       return /localhost/.test(location.href)
     },

@@ -130,7 +130,6 @@
         }else if(this.orderStatus){
           return this.orderStatus
         }
-
       },
       productId(){
         return this.$route.query.productId
