@@ -75,7 +75,7 @@ export default {
     },
     showFootNav(){
       let path=this.$route.path
-      console.log('path',path,this.navPaths)
+      // console.log('path',path,this.navPaths)
       let isFootNavPath=this.navPaths.indexOf(path)>=0
       // let isShowFootNavPath=this.showFootNavPaths.indexOf(path)>=0
       return isFootNavPath

@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="{'show-foot':showFootNav}">
-    <div class="announce-box" v-if='showAnnounce'>
+    <div class="announce-box" v-show='showAnnounce'>
       <div class="announce" ref='announce'>
         尊敬的各位用户，由于支付通道升级中，暂时关闭智能还卡以及相关功能，敬请谅解！
       </div>
@@ -81,9 +81,9 @@ export default {
   methods:{
     announceMove(){
       let announceMent=document.querySelector('.announce')
-      console.log('announceMent',announceMent)
-      console.log('announceMent',announceMent.clientWidth)
-      console.log('announceMent',window.innerWidth)
+      // console.log('announceMent',announceMent)
+      // console.log('announceMent',announceMent.clientWidth)
+      // console.log('announceMent',window.innerWidth)
       let width=announceMent.clientWidth*1.2,windowW=window.innerWidth
       let left=windowW
       announceMent.style.left=left+'px'
