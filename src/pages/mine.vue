@@ -38,15 +38,22 @@
             <span class="icon-go"></span>
           </div>
         </app-formitem3>
-
-        <app-formitem3 title="我的计划" note="" @click.native='viewPlanRecords' :first="true">
+        <app-formitem3 title="我的卡包" note="" @click.native='viewCards' >
+          <div class="header" slot="icon">
+            <app-cricleicon bgcolor="bg-red" icon="icon-creditcard"></app-cricleicon>
+          </div>
+          <div class="content" slot="action">
+            <span class="icon-go"></span>
+          </div>
+        </app-formitem3>
+       <!--  <app-formitem3 title="我的计划" note="" @click.native='viewPlanRecords' :first="true">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-red" icon="icon-date"></app-cricleicon>
           </div>
           <div class="content" slot="action">
             <span class="icon-go"></span>
           </div>
-        </app-formitem3>
+        </app-formitem3> -->
         
         <app-formitem3 title="我的推广" note="" @click.native='viewPromotions' >
           <div class="header" slot="icon">
@@ -72,14 +79,14 @@
             <span class="icon-go"></span>
           </div>
         </app-formitem3>
-        <app-formitem3 title="我的订单" note="" @click.native='goOrderList'>
+        <!-- <app-formitem3 title="我的订单" note="" @click.native='goOrderList'>
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-lightblue" icon="icon-cricle-yuan"></app-cricleicon>
           </div>
           <div class="content" slot="action">
             <span class="icon-go"></span>
           </div>
-        </app-formitem3>
+        </app-formitem3> -->
         <app-formitem3 title="常见问题" note="" :last="true" @click.native='viewQuestions'>
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-orange" icon="icon-question"></app-cricleicon>
@@ -115,6 +122,9 @@ export default {
     },
     goOrderList(){
       helper.goPageLoged('/orderRecords')
+    },
+    viewCards() {
+      helper.goPageLoged('/cards2')
     },
     viewBalance(){
       helper.goPageLoged('/balance_page')

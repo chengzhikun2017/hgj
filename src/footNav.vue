@@ -1,9 +1,18 @@
 <template>
   <div id="footNavVue" v-if='showFootNav' class="container" flex>
-      <span class="cell " :class="{'active':activeIndex===0}" @click='clickNav(0)' flex-box="1">
+      <!-- <span class="cell " :class="{'active':activeIndex===0}" @click='clickNav(0)' flex-box="1">
         <div class="_icon-box icon left-icon">
           <i class="icon-wallet icon"></i>
           <p class="text">卡包</p>
+        </div>
+      </span> -->
+       <span class="cell" :class="{'active':activeIndex==3}" flex="cross:center main:center"@click='clickNav(3)' >
+<!--         <div class="share-bttn" >
+          <i class="icon-share share-icon"></i>
+        </div> -->
+        <div class="_icon-box icon" >
+          <i class="icon-creditcard icon"></i>
+          <p class="text">信用卡</p>
         </div>
       </span>
       <span class="cell" :class="{'active':activeIndex===1}" flex="cross:center main:center"@click='clickNav(1)' >
@@ -15,15 +24,7 @@
           <p class="text">分享</p>
         </div>
       </span>
-       <span class="cell" :class="{'active':activeIndex==3}" flex="cross:center main:center"@click='clickNav(3)' >
-<!--         <div class="share-bttn" >
-          <i class="icon-share share-icon"></i>
-        </div> -->
-        <div class="_icon-box icon" >
-          <i class="icon-creditcard icon"></i>
-          <p class="text">信用卡</p>
-        </div>
-      </span>
+      
       <!-- <span class="cell" :class="{'active':activeIndex===1}" @click='clickNav(1)'>分享</span> -->
       <span class="cell " :class="{'active':activeIndex===2}" @click='clickNav(2)' flex-box="1">
         <div class="_icon-box">
