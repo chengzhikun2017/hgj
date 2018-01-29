@@ -30,7 +30,22 @@
         </div>
       </app-dot-bg>
       <div class="mine-content">
-        <app-formitem3 title="办卡进度" note="" @click.native='jumpProcess' :first="true">
+        <div class="quickports" flex>
+          <div class="portbox" flex-box="1" flex="dir:top cross:center">
+            <div class="icon-truck icon green" fontcolor="" @click='jumpProcess'></div>
+            <p>办卡进度</p>
+          </div>
+          <div class="portbox" flex-box="1" flex="dir:top cross:center">
+            <div class="icon-creditcard icon red" fontcolor="" @click='viewCards'></div>
+            <p>我的卡包</p>
+          </div>
+          <div class="portbox" flex-box="1" flex="dir:top cross:center">
+            <div class="icon-book icon blue" fontcolor="" @click='viewPromotions'></div>
+            <p>我的推广</p>
+          </div>
+        </div>
+
+       <!--  <app-formitem3 title="办卡进度" note="" @click.native='jumpProcess' :first="true">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-green" icon="icon-truck"></app-cricleicon>
           </div>
@@ -45,7 +60,7 @@
           <div class="content" slot="action">
             <span class="icon-go"></span>
           </div>
-        </app-formitem3>
+        </app-formitem3> -->
        <!--  <app-formitem3 title="我的计划" note="" @click.native='viewPlanRecords' :first="true">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-red" icon="icon-date"></app-cricleicon>
@@ -55,14 +70,14 @@
           </div>
         </app-formitem3> -->
         
-        <app-formitem3 title="我的推广" note="" @click.native='viewPromotions' >
+       <!--  <app-formitem3 title="我的推广" note="" @click.native='viewPromotions' >
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-lightblue" icon="icon-book"></app-cricleicon>
           </div>
           <div class="content" slot="action">
             <span class="icon-go"></span>
           </div>
-        </app-formitem3>
+        </app-formitem3> -->
         <!-- <app-formitem3 title="联系我们" note="">
           <div class="header" slot="icon">
             <app-cricleicon bgcolor="bg-lightblue" icon="icon-contact"></app-cricleicon>
@@ -276,6 +291,28 @@ export default {
       }
     }
     .mine-content {
+      .quickports {
+        padding-bottom: 0.2rem;
+        .portbox {
+          .icon {
+            font-size: 0.36rem;
+            &.green {
+              color: #87DD49;
+            }
+            &.red {
+              color: #F15058;
+            }
+            &.blue {
+              color: #558CF2;
+            }
+          }
+          p {
+            font-size: 0.12rem;
+            color: #363636;
+            padding-top: 0.01rem;
+          }
+        }
+      }
       padding-top: 0.2rem;
       .header {
         margin-right: 0.15rem;
