@@ -43,7 +43,7 @@ export default class helper {
       HGJ_VUE.hgjAlert('服务暂时关闭')
       return
     }
-    if(!HGJ_VUE.$store.state.account.userId){
+    if(!HGJ_VUE.$store.state.account.isLoged){
       commonRemind.unloginRemind()
       return
     }
