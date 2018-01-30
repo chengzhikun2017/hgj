@@ -42,6 +42,7 @@ import introduce from '@/pages/introduce.vue'
 import editPwd from '@/pages/editPwd.vue'
 import questions from '@/pages/questions.vue'
 import applycredit_list from '@/pages/applyCreditList.vue'
+import homepage from '@/pages/homepage.vue'
 // import forgetPwdStep1 from '@/pages/forgetPwdStep1.vue'
 // import forgetPwdStep2 from '@/pages/forgetPwdStep2.vue'
 Vue.use(Router)
@@ -125,11 +126,12 @@ index = index.concat(
   newRoute('/questions', 'questions', questions),
   newRoute('/changeSC', 'changeSC', changeSC),
   newRoute('/brokerage_list', 'brokerage_list', brokerage_list),
-  
+  newRoute('/homepage', 'homepage', homepage),
+
 )
-var indexPageArr=newRoute('/applycredit_list', 'applycredit_list', applycredit_list)
-var indexPage=indexPageArr[0]
-console.log('indexPage',indexPage)
+var indexPageArr = newRoute('/applycredit_list', 'applycredit_list', applycredit_list)
+var indexPage = indexPageArr[0]
+console.log('indexPage', indexPage)
 route_test = route_test.concat(
   // newRoute('/test', 'test', test),
   // newRoute('/test1', 'test1', test1),

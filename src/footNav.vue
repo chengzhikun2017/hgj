@@ -11,8 +11,8 @@
           <i class="icon-share share-icon"></i>
         </div> -->
         <div class="_icon-box icon" >
-          <i class="icon-creditcard icon"></i>
-          <p class="text">信用卡</p>
+          <i class="icon-home icon"></i>
+          <p class="text">首页</p>
         </div>
       </span>
       <span class="cell" :class="{'active':activeIndex===1}" flex="cross:center main:center"@click='clickNav(1)' >
